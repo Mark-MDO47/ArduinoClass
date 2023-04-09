@@ -4,7 +4,7 @@
 
 ## Add serial port messages
 
-## Add loop counter; display on serial port
+## Add loop counter and Button; display on serial port
 
 ## Resources
 
