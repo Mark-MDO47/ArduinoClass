@@ -1,5 +1,11 @@
 # NOTES
 
+## Connect the Arduino Nano
+The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide.
+- https://www.technicalcable.com/usb-cable-assemblies/
+
+This cable provides both a serial connection and power/ground.
+
 ## Start with example program
 
 ## Add serial port messages
