@@ -7,6 +7,7 @@
 ## Arduino ports and pins
 
 - Four LEDs are outputs
+  - Polarity of LEDs
   - Current limiting resistor
 - Counter to sequence light patterns
   - Sawtooth
