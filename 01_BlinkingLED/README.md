@@ -24,9 +24,14 @@ When opening the Arduino IDE you will initially see the empty sketch (program) a
 ## Start with example program
 In the Arduino IDE, use menu **File** -> **Examples** -> **01.Basics** -> **Blink**. This will bring up the starting point for our Blink exercise.
 
-In the **setup()** function you will find a "pinMode" call. LED_BUILTIN is a symbol number for the builtin "pin" that controls the builtin LED on the Arduino Nano; this will be set to OUTPUT mode so we can turn the LED on and off.
+In the **setup()** function you will find a "pinMode" call. LED_BUILTIN is a symbol number for the builtin "pin" that controls the builtin LED on the Arduino Nano; this will be set to OUTPUT mode so we can turn the LED on and off. The **setup()** function is called only once, before ever calling the **loop()** function.
 
 In the **loop()** function you will find that it delays 1000 milliseconds, turns the LED **ON**, delays 1000 milliseconds, and turns the LED **OFF**. Because the **loop()** function is called over and over, this will continue until you stop it by reprogramming or powering off the Arduino Nano.
+
+**CONGRATULATIONS!** You have executed your first Arduino program!
+
+## Add an external LED
+As you undoubtedly know, LEDs are designed to be connected with positive voltage on one side and negative voltage on the other. If this rule is not followed, the LED will either not work or burn up. Also
 
 ## Add serial port messages
 
