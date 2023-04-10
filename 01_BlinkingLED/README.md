@@ -3,7 +3,7 @@
 ## Connect the Arduino Nano
 ![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
-I will provide four Arduino Nano clones for use during the class, along with some supporting hardware.
+I will provide four Arduino Nano clones and some supporting hardware for use during the class.
 
 The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide. This USB connection provides both a serial port (for uploading and communication) and power/ground.
 - https://www.technicalcable.com/usb-cable-assemblies/
