@@ -8,7 +8,9 @@ I will provide four Arduino Nano clones and some supporting hardware for use dur
 The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide. This USB connection provides both a serial port (for uploading and communication) and power/ground.
 - https://www.technicalcable.com/usb-cable-assemblies/
 
-Connect the Arduino Nano to a USB port on your computer. Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
+To connect your computer to the Arduino Nano
+- Connect the Arduino Nano to a USB port on your computer.
+- Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
 
 These are relatively old Arduino Nanos.
 - In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
