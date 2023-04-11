@@ -10,7 +10,7 @@ The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop
 
 Connect the Arduino Nano to a USB port on your computer. Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
 
-These are relatively old Arduino Nanos. In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P select **Old Bootloader**.
+These are relatively old Arduino Nanos. In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
 - **Programmer** should be selected as **AVRISP mkll**.
 
 ## View an Empty Sketch (Arduino program)
