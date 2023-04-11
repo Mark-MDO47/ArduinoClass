@@ -31,7 +31,7 @@ In the **loop()** function you will find that it delays 1000 milliseconds, turns
 **CONGRATULATIONS!** You have executed your first Arduino program!
 
 ## Add an external LED
-As you undoubtedly know, LEDs are designed to be connected with positive voltage on one side and negative voltage on the other. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED.
+As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
 ![alt text](https://pxt.azureedge.net/blob/03fec9ac9dbaee9f745ae2beda43fc15119c1c20/static/cp/learn/pins-tutorial/devices/led-polarity.jpg "Adafruit.com polarity of LED")
