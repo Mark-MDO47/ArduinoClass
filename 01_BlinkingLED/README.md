@@ -10,8 +10,9 @@ The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop
 
 Connect the Arduino Nano to a USB port on your computer. Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
 
-These are relatively old Arduino Nanos. In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
-- **Programmer** should be selected as **AVRISP mkll**.
+These are relatively old Arduino Nanos.
+- In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
+- **Programmer** should then automatically be selected as **AVRISP mkll**.
 
 ## View an Empty Sketch (Arduino program)
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
