@@ -50,6 +50,10 @@ As you undoubtedly know, LEDs are designed to be connected with positive voltage
 "Adafruit.com Resistor and LED in circuit")
 
 We will use the breadboard and connectors I supply to create the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3).
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of our external LED connections")
+
 
 
 ## Add serial port messages
