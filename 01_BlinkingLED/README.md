@@ -24,12 +24,15 @@ The Arduino IDE uses a variant of the C++ language. You can program in a C++ sty
 An Arduino program (called a "sketch" in Arduino-speak) is typically stored with extension ".ino". If you save your program as fred.ino, you will find that it is saved in a directory named fred.
 
 When opening the Arduino IDE you will initially see the empty sketch (program) as shown below. This is the standard architecture for Arduino code. It is possible to extend this to use interrupts, go to low power modes, and other special-purpose things. For our class we will just use the standard architecture as seen below.
-- void setup() {
--   // put your setup code here, to run once:
-- }
-- void loop() {
--   // put your main code here, to run repeatedly:
-- }
+
+```
+void setup() {
+ // put your setup code here, to run once:
+}
+void loop() {
+ // put your main code here, to run repeatedly:
+}
+```
 
 ## Start with example program
 In the Arduino IDE, use menu **File** -> **Examples** -> **01.Basics** -> **Blink**. This will bring up the starting point for our Blink exercise.
@@ -40,7 +43,7 @@ In the **loop()** function you will find that it delays 1000 milliseconds, turns
 
 **CONGRATULATIONS!** You have executed your first Arduino program!
 
-## Add an external LED
+## Part A - Add an external LED
 As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
@@ -54,11 +57,35 @@ We will use the breadboard and connectors I supply to create the following circu
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of our external LED connections")
 
+Here are the changes we will make to the standard Blink program; first in (or before) **setup()**:
 
+```
+#define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
+#define DPIN_BTN_IN  2 // in case we want to move it, only need to change this
 
-## Add serial port messages
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+  // initialize our new pins
+  pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
+  pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+}
+```
 
-## Add loop counter and Button; display on serial port
+And now the changes for **loop()**:
+
+```
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(DPIN_LED_OUT, LOW);   // turn the external LED off
+  delay(1000);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  digitalWrite(DPIN_LED_OUT, HIGH);  // turn the external LED on
+  delay(1000);                       // wait for a second
+}
+```
+
+## Part B - Add loop counter and Button; display messages on serial port
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
