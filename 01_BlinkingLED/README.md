@@ -102,7 +102,10 @@ We will use some **Serial.*()** routines such as Serial.begin(), Serial.print(),
 For instance, the various ways to use Serial.print() are documented here
 - https://www.arduino.cc/reference/en/language/functions/communication/serial/print/
 
-Now our one-time setup() code is starting to be more complex; see if you can figure out what the new code does.
+When using the USB serial port, the Arduino IDE needs to be started as seen here:
+
+
+Now our one-time setup() code is starting to be more complex. I am sure you can figure out what the new code does even if it is unfamiliar to you.
 ```
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
 #define DPIN_BTN_IN  5 // in case we want to move it, only need to change this
@@ -112,7 +115,7 @@ void setup() {
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
   pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
-  Serial.begin(115200);         // this is for general debug
+  Serial.begin(115200);         // this serial communication is for general debug; we will set the port to 115,200 baud
 
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
