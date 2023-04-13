@@ -61,14 +61,12 @@ Here are the changes we will make to the standard Blink program; first in (or be
 
 ```
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
-#define DPIN_BTN_IN  2 // in case we want to move it, only need to change this
 
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
   // initialize our new pins
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
-  pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 }
 ```
 
