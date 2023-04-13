@@ -84,7 +84,7 @@ void loop() {
 ```
 
 ## Part B - Add loop counter and Button; display messages on serial port
-Now we will add a push button for digital input and start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
+Now we will add a push button for digital input. We will also start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_B_Schematic.pdf
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_Schematic.png "Circuit Diagram of 01-Part-B: add button")
@@ -92,16 +92,17 @@ Now we will add a push button for digital input and start using the USB serial p
 We will configure the input pin D05 as **INPUT_PULLUP**; this means that the Arduino Nano will connect it internally to the +5V "rail" using a resistance that minimizes power loss, probably about 5,000 or 10,000 ohms. This could be written as 5Kohm or 10Kohm.
 - When the switch is OPEN (disconnected or not pushed) then the voltage on the pin is HIGH (close to +5V) and will be sensed as HIGH.
 - When the switch is CLOSED (connected or pushed) the pin is grounded by a low-resistance path; therefore the voltage on the pin is LOW (close to GND) and will be sensed as LOW.
+
 In reality, I don't often rely on this internal pullup because I use a lot of inexpensive Arduino Nano clones that can be sensitive to heat and a bit fragile, so I usually have an external resistor for the pullup as can be seen in the upper left-hand side of this schematic:
 - https://github.com/Mark-MDO47/RubberBandGun/blob/master/RubberBandGun_Wiring.pdf
 
-We will use some **Serial.*"" routines: Serial.begin(), Serial.print(), and Serial.println(). These are documented starting in this area:
+We will use some **Serial.*()** routines such as Serial.begin(), Serial.print(), and Serial.println(). These are documented starting in this area:
 - https://www.arduino.cc/reference/en/language/functions/communication/serial/
 
 For instance, the various ways to use Serial.print() are documented here
 - https://www.arduino.cc/reference/en/language/functions/communication/serial/print/
 
-Now our one-time setup() code is starting to be more complex; see if you can spot the new code and figure out what it does.
+Now our one-time setup() code is starting to be more complex; see if you can figure out what the new code does.
 ```
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
 #define DPIN_BTN_IN  5 // in case we want to move it, only need to change this
