@@ -4,7 +4,7 @@ EELAYER END
 $Descr A 11000 8500
 encoding utf-8
 Sheet 1 1
-Title "01 Blinking LED part B and C"
+Title "01 Blinking LED part B"
 Date "2023-04-13"
 Rev ""
 Comp "Author: https://github.com/Mark-MDO47/ArduinoClass/tree/master"
