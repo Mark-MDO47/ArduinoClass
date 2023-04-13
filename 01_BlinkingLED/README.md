@@ -16,6 +16,8 @@ These are relatively old Arduino Nanos.
 - In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
 - **Programmer** should then automatically be selected as **AVRISP mkll**.
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ConfigUSB.png "Configure USB port for old Arduino Nano")
+
 ## View an Empty Sketch (Arduino program)
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 
