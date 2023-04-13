@@ -49,6 +49,9 @@ As you undoubtedly know, LEDs are designed to be connected with positive voltage
 ![alt text](https://pxt.azureedge.net/blob/2ebeedcf4108aa2a5ecc9b8b232cbb5960b2dfb6/static/cp/learn/pins-tutorial/devices/led-connection.jpg 
 "Adafruit.com Resistor and LED in circuit")
 
+We will use the breadboard and connectors I supply to create the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3).
+
+
 ## Add serial port messages
 
 ## Add loop counter and Button; display on serial port
