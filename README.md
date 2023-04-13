@@ -2,7 +2,7 @@
 Code for the FabLab Arduino class 2023
 Author: Mark Olson
 
-### Table of Contents
+## Table of Contents
 ### 00_InstallArduinoIDE
 ### 01_BlinkingLED
 ### 02_PersistenceOfVision
