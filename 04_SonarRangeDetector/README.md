@@ -45,6 +45,26 @@ Data from https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml
 | 21 | 69.8 | 343.6 | 13,528 | 1,127 |
 | -1 | 30.2 | 330.4 | 13,008 | 1,084 |
 
+### Pros and Cons of HC-SR04
+
+Many people have noted pros and cons of the HC-SR04, such as
+- https://github.com/shurik179/DualSonar
+
+```
+HC-SR04 are cheap and reliable ultrasonic sensors, used in many robotics projects
+with Arduino or similar microcontrollers. However, they have two drawbacks:
+
+1. The standard method of reading the sensor in Arduino, using PulseIn() function,
+   ties up the microcontroller for up to 30ms and interferes with tasks which need
+   to be run frequently such as WiFi communication using Blynk or reading input
+   from other sensors over serial interface.
+2. Each sensor requires 2 pins, so if you have several ultrasonic senors, you run out of pins quickly.
+
+There are some ways to mitigate these probems, such as using interrupts instead of PulseIn
+or using NewPing library which allows one to use only one pin per sensor.
+```
+
+Fortunately, the delay from the HC-SR04 gets longer as the distance of the detected object gets farther away. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function.
 
 ## Theremin controller
 
