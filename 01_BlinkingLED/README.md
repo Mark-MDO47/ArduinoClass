@@ -104,6 +104,9 @@ For instance, the various ways to use Serial.print() are documented here
 
 When using the USB serial port, the Arduino IDE needs to be started as seen here:
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor.png "Start Arduino IDE Serial Monitor")
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png "Arduino IDE Serial Monitor Screen")
 
 Now our one-time setup() code is starting to be more complex. I am sure you can figure out what the new code does even if it is unfamiliar to you.
 ```
@@ -115,7 +118,7 @@ void setup() {
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
   pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
-  Serial.begin(115200);         // this serial communication is for general debug; we will set the port to 115,200 baud
+  Serial.begin(115200);         // this serial communication is for general debug; set the port to 115,200 baud
 
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
@@ -125,7 +128,46 @@ void setup() {
 }
 ```
 
+The **loop()** code is also more complex. I tried to write it in a simple style; we will discuss it in the class.
+```
+void loop() {
+  int btn_val = digitalRead(DPIN_BTN_IN)) {
 
+  if (HIGH == btn_val) { // push button to STOP light blinking
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(DPIN_LED_OUT, LOW);   // turn the external LED off
+  } // end if btn_val HIGH
+  delay(1000);                       // wait for a second
+  if (HIGH == btn_val) {
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+    digitalWrite(DPIN_LED_OUT, HIGH);  // turn the external LED on
+  } // end if btn_val HIGH
+  delay(1000);                       // wait for a second
+
+  loop_count += 1;    // instead of loop_count = loop_count + 1
+  Serial.print("Button ");
+  if (HIGH == btn_val) {
+    Serial.print("UP   (GO)  ");
+  } else {
+    Serial.print("DOWN (STOP)");
+  } // end if statement on btn_val
+  Serial.print("Serial.print(" loop_count: "); Serial.println(loop_count);
+}
+```
+
+### Some Arduino and C-language features not used above
+
+C-language has some useful but perhaps obscure features; I will just mention one here for those that want to explore further. It is possible to compress the code above a little using the **?:** operator. This takes a **Condition** and chooses one of two results separated by the **:**. For instance:
+- Condition?X:Y
+
+If Condition is true then the resulting value is X : otherwise the resulting value is Y.
+
+To use this to print either UP or DOWN we could say
+```
+  Serial.print((HIGH == btn_val) ? "Button UP   (GO)  " : "Button DOWN (STOP)");
+```
+
+There are many other ways we could re-arrange the printing to minimize RAM usage, or to minimize calls to the Serial.*() routines, etc.
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
