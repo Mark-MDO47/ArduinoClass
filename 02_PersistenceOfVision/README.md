@@ -4,7 +4,8 @@
 * [Top](#notes "Top")
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
 * [WS2811 and WS2812B individually addressable color LEDs](#ws2811-and-ws2812b-individually-addressable-color-leds "WS2811 and WS2812B individually addressable color LEDs")
-* [The Circuit and the Code](#the-circuit-and-the-code "The Circuit and the Code")
+* [The Circuit](#the-circuit "The Circuit")
+* [The Code](#the-code "The Code")
 * [Resources](#resources "Resources")
 
 ## Human Vision Persistence
@@ -40,9 +41,17 @@ I typically use the FastLED library to control these LEDs. It is a powerful libr
 
 Because we are already using the USB serial port for debugging, we will dedicate a Digital pin as the "software" serial data line.
 
-## The Circuit and the Code
+## The Circuit
 
-The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick.
+The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick.
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265">
+
+With just 8 RGB LEDs the power draw through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs.
+
+## The Code
+
 
 ## Resources
 
