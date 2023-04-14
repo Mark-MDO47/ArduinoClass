@@ -64,7 +64,7 @@ There are some ways to mitigate these probems, such as using interrupts instead 
 or using NewPing library which allows one to use only one pin per sensor.
 ```
 
-Fortunately, the delay from the HC-SR04 gets longer as the distance of the detected object gets farther away. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function.
+Fortunately, the delay from the HC-SR04 gets shorter as the distance of the detected object gets closer. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function.
 
 ## Theremin controller
 
