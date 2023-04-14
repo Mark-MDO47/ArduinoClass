@@ -53,7 +53,7 @@ Because we are already using the USB serial port for debugging, we will dedicate
 The WS2812B protocol can be found in this spec:
 * https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
 
-A higher level depiction of this output protocol (taken from the spec) in action is shown here. First is the serial head-to-tail cascade architecture of the LEDs:
+A higher level depiction of this output protocol in action (taken from the spec) is shown here. First is the serial head-to-tail cascade architecture of the LEDs:
 
 ![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
 
