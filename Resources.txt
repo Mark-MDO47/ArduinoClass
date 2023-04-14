@@ -8,6 +8,8 @@ https://www.instructables.com/Galaxy-Mood-Lamp/
 https://blog.arduino.cc/2022/04/06/the-o-clock-is-a-fun-way-to-check-the-current-time/
 https://www.instructables.com/O-Clock/
 https://www.instructables.com/Persistence-of-Vision-LED-Staff/
+https://povstaff.readthedocs.io/en/latest/
+https://learn.adafruit.com/pov-dotstar-double-staff
 https://www.instructables.com/LED-Kaleidoscope-1/
 https://www.instructables.com/The-Neopixel-LED-Vase/
 https://www.instructables.com/How-to-Make-an-Old-school-Neon-Street-Sign/
