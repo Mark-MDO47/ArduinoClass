@@ -42,10 +42,7 @@ Because we are already using the USB serial port for debugging, we will dedicate
 
 ## The Circuit and the Code
 
-- 
-- Counter to sequence light patterns
-  - Sawtooth
-  - Oval
+The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick.
 
 ## Resources
 
