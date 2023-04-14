@@ -4,9 +4,13 @@
 * [Top](#notes "Top")
 * [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
-
+* [Part A - Add an external LED](#part-a-\--add-an-external-led "Part A - Add an external LED")
+* [Part B - Add Button and Display Messages on USB Serial Port](#part-b-\--add-button-and-display-messages-on-usb-serial-port "Part B - Add Button and Display Messages on USB Serial Port")
+* [Resources](#resources "Resources")
 
 ## Connect the Arduino Nano to the USB cable
+[Back to Top](#notes "Back to Top")
+
 ![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
 I will provide four Arduino Nano clones and some supporting hardware for use during the class.
@@ -41,6 +45,8 @@ void loop() {
 ```
 
 ## Run the example Blink program
+[Back to Top](#notes "Back to Top")
+
 In the Arduino IDE, choose menu **File** -> **Examples** -> **01.Basics** -> **Blink**. This will bring up the starting point for our Blink exercise.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlink.png "Arduino IDE loading Blink example program")
@@ -61,6 +67,8 @@ With the Arduino connected to the USB port on your computer, use the button circ
 **CONGRATULATIONS!** You have executed your first Arduino program!
 
 ## Part A - Add an external LED
+[Back to Top](#notes "Back to Top")
+
 As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
@@ -105,7 +113,9 @@ void loop() {
 
 When we execute this program, the internal LED and the external LED blink; one is off when the other is on.
 
-## Part B - Add Loop Counter and Button; display messages on USB Serial Port
+## Part B - Add Button and Display Messages on USB Serial Port
+[Back to Top](#notes "Back to Top")
+
 Now we will add a push button for digital input. We will also start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
 
 Here is what our new circuit looks like:
@@ -182,6 +192,7 @@ void loop() {
 ```
 
 ### Some Arduino and C-language features not used above
+[Back to Top](#notes "Back to Top")
 
 C-language has some useful but perhaps obscure features; I will just mention one here for those that want to explore further. It is possible to compress the code above a little using the **?:** operator. This takes a **Condition** and chooses one of two results separated by the **:**. For instance:
 - Condition?X:Y
