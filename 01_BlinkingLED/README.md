@@ -1,5 +1,11 @@
 # NOTES
 
+**Table of Contents**
+* [Top](#notes "Top")
+* [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
+* [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
+
+
 ## Connect the Arduino Nano to the USB cable
 ![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
