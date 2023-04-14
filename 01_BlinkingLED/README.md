@@ -108,7 +108,7 @@ When using the USB serial port, the Arduino IDE needs to be started as seen here
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png "Arduino IDE Serial Monitor Screen")
 
-Now our one-time setup() code is starting to be more complex. I am sure you can figure out what the new code does even if it is unfamiliar to you.
+Now our one-time **setup()** code is starting to be more complex. I am sure you can figure out what the new code does even if it is unfamiliar to you.
 ```
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
 #define DPIN_BTN_IN  5 // in case we want to move it, only need to change this
@@ -167,7 +167,7 @@ To use this to print either UP or DOWN we could say
   Serial.print((HIGH == btn_val) ? "Button UP   (GO)  " : "Button DOWN (STOP)");
 ```
 
-There are many other ways we could re-arrange the printing to minimize RAM usage, or to minimize calls to the Serial.*() routines, etc.
+There are many other ways we could re-arrange the printing to minimize calls to the Serial.*() routines, or to minimize RAM usage, etc. One of these is use of the "F" macro to put strings into program memory instead of RAM - RAM can be precious when programming Arduino. If you are interested in some of these, see the **Resources** section and/or talk with me after the class.
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
@@ -182,6 +182,20 @@ The ATMEGA 328P chip used in the Arduino Nano is described here
 Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
 
-### "F" macro to save RAM
-
 ### My favorite Arduino clone - ESP32
+* https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html
+
+A few quotes from above:
+- ESP32 is a single 2.4 GHz Wi-Fi-and-Bluetooth SoC (System On a Chip) designed by Espressif Systems.
+- The ESP32 series is available as a chip or module.
+
+Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
+- https://www.amazon.com/gp/product/B08DQQ8CBP
+
+They have MUCH more RAM and program storage, are much faster, and come complete with easy-to-use on-board WIFI and Bluetooth. On the other hand, they work with 3.5V instead of 5V so you need to be prepared to handle that; for instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5V outputs to 5V outputs.
+
+### PROGMEM and "F" macro to save RAM
+The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
+- https://cdn.arduino.cc/reference/en/language/variables/utilities/progmem/
+- https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
+- https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
