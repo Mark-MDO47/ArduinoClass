@@ -47,12 +47,15 @@ In the **loop()** function you will find that it delays 1000 milliseconds, turns
 As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
+Here from the above link is a diagram showing how to identify the polarity (+ and - pins) of an LED:
+
 ![alt text](https://pxt.azureedge.net/blob/03fec9ac9dbaee9f745ae2beda43fc15119c1c20/static/cp/learn/pins-tutorial/devices/led-polarity.jpg "Adafruit.com polarity of LED")
 
+Here from the above link is a diagram showing a simple battery circuit to light up an LED. Note the resistor to prevent burning out the LED.
 ![alt text](https://pxt.azureedge.net/blob/2ebeedcf4108aa2a5ecc9b8b232cbb5960b2dfb6/static/cp/learn/pins-tutorial/devices/led-connection.jpg 
 "Adafruit.com Resistor and LED in circuit")
 
-We will use the breadboard and connectors I supply to create the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3).
+We will use the breadboard and connectors I supply to implement the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3 or D03).
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of 01-Part-A: our external LED connections")
@@ -82,6 +85,8 @@ void loop() {
   delay(1000);                       // wait for a second
 }
 ```
+
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on.
 
 ## Part B - Add Loop Counter and Button; display messages on USB Serial Port
 Now we will add a push button for digital input. We will also start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
