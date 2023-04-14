@@ -229,6 +229,8 @@ A few quotes from above:
 Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
 - https://www.amazon.com/gp/product/B08DQQ8CBP
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32.png" width="475" height="476">
+
 An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. It has dual-CPUs for expert users.
 
 On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
