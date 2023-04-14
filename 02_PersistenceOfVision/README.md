@@ -60,7 +60,7 @@ Open another Example program - Blink Without Delay - and lets compare it with Bl
 
 The **setup()** code is essentially the same - just setting up the LED pin as OUTPUT.
 
-There are some new variables, defined outside of **setup()** and **loop()** - this means that the values will remain between calls to **loop()**
+There are some new variables, defined before (and outside) of **setup()** and **loop()** - this means that the values will remain between calls to **loop()**.
 ```C
 // Variables will change:
 int ledState = LOW;             // ledState used to set the LED
@@ -72,6 +72,9 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 // constants won't change:
 const long interval = 50;           // interval at which to blink (milliseconds)
 ```
+
+When we look at the new **loop()** code, we don't see any calls to **delay()** - it just runs straight through and uses the clock to decide if it should set the LED pin HIGH or LOW. What is the advantage of this?
+
 
 ## Resources
 
