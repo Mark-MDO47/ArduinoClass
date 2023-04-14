@@ -65,7 +65,7 @@ Here are the changes we will make to the standard Blink program; first in (or be
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
-  // initialize our new pins
+  // initialize our new pin for external LED
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
 }
 ```
