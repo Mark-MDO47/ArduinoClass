@@ -14,12 +14,6 @@ It is possible to use the "Arduino Cloud". This method is not used in this class
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 - https://reference.arduino.cc/reference/en/
 
-## KiCad (optional)
-I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
-- https://www.kicad.org/
-
-This is not needed for the class but is a fantastic tool for those that are interested.
-
 ## Arduino Nano and ATMEGA 328P
 We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons.
 
@@ -32,7 +26,7 @@ The ATMEGA 328P chip used in the Arduino Nano is described here
 Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
 
-## My favorite Arduino clone - ESP32
+## My favorite Arduino clone - ESP32 (optional)
 * https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html
 
 A few quotes from above:
@@ -50,7 +44,7 @@ On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be 
 
 Also, ESP32 modules are larger than an Arduino Nano and don't fit well on typical breadboards. I sometimes use two breadboards with space in between and put the ESP32 in the middle.
 
-## PROGMEM and "F" macro to save RAM
+## PROGMEM and "F" macro to save RAM (optional)
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
 - https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
@@ -62,6 +56,7 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 
 #define USE_PROGMEM true                     // set true to keep big const items in FLASH (PROGMEM keyword)
 
+
 // somewhere in your code 
 #if USE_PROGMEM
   Serial.println(F("My strings are stored in PROGMEM"));
@@ -71,3 +66,9 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 ```
 
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
+
+## KiCad (optional)
+I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
+- https://www.kicad.org/
+
+This is not needed for the class but is a fantastic tool for those that are interested.
