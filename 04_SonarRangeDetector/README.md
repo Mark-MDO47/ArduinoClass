@@ -31,6 +31,20 @@ This delay may vary, but is about 200mSec on the modules that I have measured.
 This is required to prevent the module from hanging if there is no return echo.
 ```
 
+From https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml
+```
+Since the molecules vibrate faster, sound waves can travel more quickly.
+The speed of sound in room temperature air is 346 meters per second.
+This is faster than 331 meters per second, which is the speed of sound in air at freezing temperatures.
+```
+
+Data from https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml
+
+| Temp degC | Temp DegF | Speed Meter/Sec | Speed Inch/Sec |
+| --- | --- | --- | --- | --- |
+| 45 | xx | 358.0 | yy |
+
+
 ## Theremin controller
 
 ## Resources
