@@ -57,8 +57,15 @@ A higher level depiction of this output protocol (taken from the spec) in action
 
 ![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
 
-Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "swallows" the first set of bytes and passes on the rest. This module in the FPGA will receive the serial stream labelled D1 in this example and process all the bits.
+Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "consumes" the first set of bytes and passes on the rest.
 
 ![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
 
+In summary, there is a serial data protocol used to control strings of WS2811/WS2812B RGB LEDs.
+- 3 8-bit bytes per LED are sent to control Red/Green/Blue.
+  - The actual color order can vary; I determine it by experimentation.
+  - This allows 256 levels (0-255) for each of the colors Red/Green/Blue.
+- The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
+- Each LED "consumes" its 3-byte RGB command from the data and then sends all the rest of the data down the line.
+- If there is a stopage of data for a certain specified amount of time, the string resets and the first LED will consume the next RGB command.
 
