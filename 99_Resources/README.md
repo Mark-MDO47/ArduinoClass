@@ -48,6 +48,5 @@ On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be 
 
 ## PROGMEM and "F" macro to save RAM
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
-- https://cdn.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
