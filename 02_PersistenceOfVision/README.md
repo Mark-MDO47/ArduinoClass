@@ -51,7 +51,27 @@ The circuit is simple; it is almost just a replacement of the LED from the previ
 With just 8 RGB LEDs the power draw through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs.
 
 ## The Code
+Now our code discussion section is going to get a little more involved.
 
+### The Code - Timing Without Delays
+Open another Example program - Blink Without Delay - and lets compare it with Blink.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlinkWithoutDelay.png "Arduino IDE loading Blink Without Delay example program")
+
+The **setup()** code is essentially the same - just setting up the LED pin as OUTPUT.
+
+There are some new variables, defined outside of **setup()** and **loop()** - this means that the values will remain between calls to **loop()**
+```C
+// Variables will change:
+int ledState = LOW;             // ledState used to set the LED
+
+// Generally, you should use "unsigned long" for variables that hold time
+// The value will quickly become too large for an int to store
+unsigned long previousMillis = 0;        // will store last time LED was updated
+
+// constants won't change:
+const long interval = 50;           // interval at which to blink (milliseconds)
+```
 
 ## Resources
 
