@@ -69,7 +69,10 @@ With the Arduino connected to the USB port on your computer, use the button circ
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
 
-We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A good guide to solderless breadboards can be found at this link:
+We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube of connecting LEDs to a solderless breadboard can be found at this link:
+- https://www.youtube.com/watch?v=UvS9Wf2BoyE
+
+A good guide to solderless breadboards can be found at this link:
 - https://protosupplies.com/guide-to-solderless-breadboards/
 
 Here from the above link is an image of a typical solderless breadboard.
