@@ -46,7 +46,9 @@ In the **loop()** function you will find that it delays 1000 milliseconds, turns
 
 Because the **loop()** function is called over and over, this will continue until you stop it by reprogramming or powering off the Arduino Nano.
 
+With the Arduino connected to the USB port on your computer, use the button circled in red below to compile, load, and run the Blink example program. The on-board LED should blink.
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_CompileAndRun.png "Arduino IDE compile-load-run button")
 
 **CONGRATULATIONS!** You have executed your first Arduino program!
 
