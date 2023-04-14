@@ -83,8 +83,10 @@ void loop() {
 }
 ```
 
-## Part B - Add loop counter and Button; display messages on serial port
+## Part B - Add Loop Counter and Button; display messages on USB Serial Port
 Now we will add a push button for digital input. We will also start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
+
+Here is what our new circuit looks like:
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_B_Schematic.pdf
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_Schematic.png "Circuit Diagram of 01-Part-B: add button")
@@ -93,37 +95,39 @@ We will configure the input pin D05 as **INPUT_PULLUP**; this means that the Ard
 - When the switch is OPEN (disconnected or not pushed) then the voltage on the pin is HIGH (close to +5V) and will be sensed as HIGH.
 - When the switch is CLOSED (connected or pushed) the pin is grounded by a low-resistance path; therefore the voltage on the pin is LOW (close to GND) and will be sensed as LOW.
 
-In reality, I don't often rely on this internal pullup because I use a lot of inexpensive Arduino Nano clones that can be sensitive to heat and a bit fragile, so I usually have an external resistor for the pullup as can be seen in the upper left-hand side of this schematic:
+In reality, I don't often rely on this internal pullup because I use a lot of inexpensive Arduino Nano clones that can be sensitive to heat and a bit fragile, so I usually have an external resistor for the pullup as can be seen in the upper left-hand side of this schematic for one of my recent projects:
 - https://github.com/Mark-MDO47/RubberBandGun/blob/master/RubberBandGun_Wiring.pdf
 
-We will use some **Serial.*()** routines such as Serial.begin(), Serial.print(), and Serial.println(). These are documented starting in this area:
+For our USB Serial communications we will use some **Serial.*()** routines such as Serial.begin(), Serial.print(), and Serial.println(). These are documented starting in this area:
 - https://www.arduino.cc/reference/en/language/functions/communication/serial/
 
 For instance, the various ways to use Serial.print() are documented here
 - https://www.arduino.cc/reference/en/language/functions/communication/serial/print/
 
-When using the USB serial port, the Arduino IDE needs to be started as seen here:
+When using the USB serial port, the Arduino IDE "Serial Monitor" needs to be started as seen here:
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor.png "Start Arduino IDE Serial Monitor")
 
+The screen itself looks like this:
+
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png "Arduino IDE Serial Monitor Screen")
 
-Now our one-time **setup()** code is starting to be more complex. I am sure you can figure out what the new code does even if it is unfamiliar to you.
+Now our one-time **setup()** code is starting to be a little more complex. I am sure you can figure out what the new code does even if some techniques are unfamiliar to you.
 ```
-#define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
-#define DPIN_BTN_IN  5 // in case we want to move it, only need to change this
+#define DPIN_LED_OUT 3 // this pin drives the external LED
+#define DPIN_BTN_IN  5 // this pin is used to sense the external button
 
 void setup() {
   static int loop_count = 0;
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
   pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
-  Serial.begin(115200);         // this serial communication is for general debug; set the port to 115,200 baud
+  Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
 
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
-  Serial.println();
+  Serial.println(""); // print a blank line in case there is some junk from power-on
   Serial.println(F("ArduinoClass init..."));
 }
 ```
@@ -167,7 +171,7 @@ To use this to print either UP or DOWN we could say
   Serial.print((HIGH == btn_val) ? "Button UP   (GO)  " : "Button DOWN (STOP)");
 ```
 
-There are many other ways we could re-arrange the printing to minimize calls to the Serial.*() routines, or to minimize RAM usage, etc. One of these is use of the "F" macro to put strings into program memory instead of RAM - RAM can be precious when programming Arduino. If you are interested in some of these, see the **Resources** section and/or talk with me after the class.
+There are many other ways we could re-arrange the printing to minimize calls to the Serial.*() routines, or to minimize RAM usage, etc. One of these is use of the "F" macro to put strings into program memory instead of RAM - RAM can be precious when programming Arduino. If you are interested in some of these, see **PROGMEM and "F" macro** in the **Resources** section and/or talk with me after the class.
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
@@ -192,7 +196,9 @@ A few quotes from above:
 Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
 - https://www.amazon.com/gp/product/B08DQQ8CBP
 
-They have MUCH more RAM and program storage, are much faster, and come complete with easy-to-use on-board WIFI and Bluetooth. On the other hand, they work with 3.5V instead of 5V so you need to be prepared to handle that; for instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5V outputs to 5V outputs.
+An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. It has dual-CPUs for expert users.
+
+On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
 
 ### PROGMEM and "F" macro to save RAM
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
