@@ -25,7 +25,7 @@ An Arduino program (called a "sketch" in Arduino-speak) is typically stored with
 
 When opening the Arduino IDE you will initially see the empty sketch (program) as shown below. This is the standard architecture for Arduino code. It is possible to extend this to use interrupts, go to low power modes, and other special-purpose things. For our class we will just use the standard architecture as seen below.
 
-```
+```C
 void setup() {
  // put your setup code here, to run once:
 }
@@ -59,7 +59,7 @@ We will use the breadboard and connectors I supply to create the following circu
 
 Here are the changes we will make to the standard Blink program; first in (or before) **setup()**:
 
-```
+```C
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
 
 void setup() {
@@ -72,7 +72,7 @@ void setup() {
 
 And now the changes for **loop()**:
 
-```
+```C
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   digitalWrite(DPIN_LED_OUT, LOW);   // turn the external LED off
@@ -113,7 +113,7 @@ The screen itself looks like this:
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png "Arduino IDE Serial Monitor Screen")
 
 Now our one-time **setup()** code is starting to be a little more complex. I am sure you can figure out what the new code does even if some techniques are unfamiliar to you.
-```
+```C
 #define DPIN_LED_OUT 3 // this pin drives the external LED
 #define DPIN_BTN_IN  5 // this pin is used to sense the external button
 
@@ -133,7 +133,7 @@ void setup() {
 ```
 
 The **loop()** code is also more complex. I tried to write it in a simple style; we will discuss it in the class.
-```
+```C
 void loop() {
   int btn_val = digitalRead(DPIN_BTN_IN)) {
 
@@ -167,7 +167,7 @@ C-language has some useful but perhaps obscure features; I will just mention one
 If Condition is true then the resulting value is X : otherwise the resulting value is Y.
 
 To use this to print either UP or DOWN we could say
-```
+```C
   Serial.print((HIGH == btn_val) ? "Button UP   (GO)  " : "Button DOWN (STOP)");
 ```
 
