@@ -54,3 +54,20 @@ Also, ESP32 modules are larger than an Arduino Nano and don't fit well on typica
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
 - https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
+
+Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
+
+```C
+#include "Arduino.h"
+
+#define USE_PROGMEM true                     // set true to keep big const items in FLASH (PROGMEM keyword)
+
+// somewhere in your code 
+#if USE_PROGMEM
+  Serial.println(F("My strings are stored in PROGMEM"));
+#else // not USE_PROGMEM
+  Serial.println("My strings are stored in RAM");
+#endif // USE_PROGMEM
+```
+
+Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
