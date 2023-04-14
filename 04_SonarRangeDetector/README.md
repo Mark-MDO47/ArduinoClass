@@ -3,14 +3,16 @@
 ## Speed of Sound
 
 ## HC-SR04 Ultrasonic Sensor
-This can be found here (for example) for less than $2:
+I will be providing the parts to be used in this class for four workstations.
+
+The HC-SR04 can be found here (for example) for less than $2:
 - https://protosupplies.com/product/hc-sr04-ultrasonic-range-finder-module/
 
-Below is a picture of this detector from the above website:
+Below is a picture of this detector from the protosupplies.com website:
 
 <img src="https://protosupplies.com/wp-content/uploads/2019/08/HC-SR04-Ultrasonic-Range-Finder.jpg" width="640" height="480">
 
-This description comes from the protosupplies.com website:
+This description also comes from the protosupplies.com website:
 ```
 The way the HC-SR04 Ultrasonic Range Finder Module works is as follows:
 
