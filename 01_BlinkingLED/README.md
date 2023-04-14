@@ -69,6 +69,13 @@ With the Arduino connected to the USB port on your computer, use the button circ
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
 
+We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A good guide to solderless breadboards can be found at this link:
+- https://protosupplies.com/guide-to-solderless-breadboards/
+
+Here from the above link is an image of a typical solderless breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
+
 As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
