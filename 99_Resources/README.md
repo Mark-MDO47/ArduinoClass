@@ -9,6 +9,11 @@ If you have a Chromebook I have not found a way to install the latest version, b
 
 It is possible to use the "Arduino Cloud". This method is not used in this class.
 
+## The C/C++ Language used in the Arduino IDE
+
+The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
+- https://reference.arduino.cc/reference/en/
+
 ## KiCad (optional)
 I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
