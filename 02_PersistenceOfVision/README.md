@@ -30,7 +30,11 @@ We will be using this color LED stick
 
 Here is the image from https://protosupplies.com:
 
-<img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" width="640" height="480">
+<img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" width="640" height="480" alt="protosupplies.com picture of RGB 8 LED Stick Module">
+
+And another image from https://protosupplies.com:
+
+![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-In-Operation.jpg "protosupplies.com picture of RGB 8 LED Stick Module in operation")
 
 Note: the WS in WS2811 and WS2812B stands for Worldsemi. Search this page for WS2812B and see the chip that implements all the magic in this project.
 - http://www.world-semi.com/
