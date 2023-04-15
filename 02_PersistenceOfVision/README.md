@@ -116,7 +116,7 @@ When we look at the new **loop()** code, we don't see any calls to **delay()** -
   }
 ```
 
-This code design doesn't prevent the code from doing other things (reading other sensors, controlling other devices) during the time we are waiting for the next **interval** to expire.
+This code design doesn't prevent the Arduino from doing other things (reading other sensors, controlling other devices) during the time we are waiting for the next **interval** to expire.
 - In the Blink code inside the **loop()** routine, the two **delay()** calls take almost 100% of the time. This is time during which the Arduino cannot be doing anything else.
 - In the "Blink Without Delay" code, the **loop()** code completes rapidly and is called again and again with only a few milliseconds in between loops. If there are other devices to handle and if the code for those devices is written in a similar manner, the Arduino can handle those also. It can do more than just Blink!
 
@@ -124,6 +124,9 @@ All this is caused because we are using the standard architecture for Arduino co
 
 It is possible to enable and use interrupts in the Arduino, but this introduces complexities that sometimes cause trouble for the worlds best programmers - issues of code re-entrancy, software synchronization (i.e. semaphores), prioritization, non-deterministic latency, etc. The people who designed the Arduino chose to use this simpler architecture since the expected audience included many hobbyist and first-time programmers. This simpler architecture avoids many of the complexities mentioned above and thus helps to "keep us out of trouble". If you are more advanced, they do not prevent you from going further.
 - See attachInterrupt(), detachInterrupt(), interrupts(), and noInterrupts() in https://reference.arduino.cc/reference/en/.
+
+In all my Arduino projects, I have not needed to use interrupts; I have always stayed with the standard Arduino code architecture. Even for my latest Arduino Nano project I stuck with this architecture: the Rubber Band Gun which includes multiple buttons, multiple strings of WS2812B RGB LEDs, sound generation, bluetooth sound transfer, voice menus for reconfiguration, and motor control.
+- https://github.com/Mark-MDO47/RubberBandGun
 
 In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
 
