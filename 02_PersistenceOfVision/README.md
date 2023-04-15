@@ -30,7 +30,7 @@ We will be using this color LED stick
 
 Here is the image from https://protosupplies.com:
 
-<img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" width="640" height="480" alt="protosupplies.com picture of RGB 8 LED Stick Module">
+<img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" alt="protosupplies.com picture of RGB 8 LED Stick Module" width="640" height="480">
 
 And another image from https://protosupplies.com:
 
