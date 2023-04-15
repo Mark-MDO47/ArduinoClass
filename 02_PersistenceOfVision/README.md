@@ -163,17 +163,19 @@ Now we understand
 
 Now the question is: what are we trying to do?
 
-The ultimate goal is to have a wand we can wave that makes our eyes see patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
+The ultimate goal is to have a wand we can wave that makes our eyes see patterns. We will use the button to stop and restart the patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
 - Blink - talk to just the first LED, make sure we know the color order https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 - Sawtooth - a triangular wave bouncing from top to bottom and back
 - Oval - a pattern that appears to be a set of ovals; maybe even appear to be a bubble-blower
 - DemoReel - Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
 So I will split this into four projects:
-- Part A: Blink
-- Part B: Sawtooth
-- Part C: Oval
-- Part D: DemoReel
+| Part | Title | Link |
+| --- | --- | --- |
+| Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md |
+| Part B | Sawtooth | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md |
+| Part C | Oval | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
+| Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md |
 
 ## Resources
 
