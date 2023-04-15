@@ -6,6 +6,9 @@
 * [WS2811 and WS2812B individually addressable color LEDs](#ws2811-and-ws2812b-individually-addressable-color-leds "WS2811 and WS2812B individually addressable color LEDs")
 * [The Circuit](#the-circuit "The Circuit")
 * [The Code](#the-code "The Code")
+  * [The Code - Timing Without Delays](#the-code-\--timing-without-delays "The Code - Timing Without Delays")
+  * [The Code - FastLED](#the-code-\--fastled "The Code - FastLED")
+  * [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing")
 * [Resources](#resources "Resources")
 
 ## Human Vision Persistence
@@ -105,6 +108,8 @@ It is possible to enable and use interrupts in the Arduino, but this introduces 
 In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
 
 ### The Code - FastLED
+
+### The Code - What are we Doing
 
 ## Resources
 
