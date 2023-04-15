@@ -53,3 +53,7 @@ dkms.conf
 
 # MDO mods
 *.sch-bak
+*.eml
+mdo*.txt
+*Present*.pptx
+
