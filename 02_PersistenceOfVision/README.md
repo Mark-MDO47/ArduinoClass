@@ -42,7 +42,7 @@ There is a serial data protocol used to control this string of 8 LEDs.
 
 I typically use the FastLED library to control these LEDs. It is a powerful library, but simple things are simple.
 
-Because we are already using the USB serial port for debugging, we will dedicate a Digital pin as the "software" serial data line.
+Because we are already using the USB serial port for debugging, we will dedicate a Digital pin as the "software" serial data line. FastLED will take care of using the Digital pin to send a serial data stream.
 
 ## The Circuit
 
@@ -51,7 +51,22 @@ The circuit is simple; it is almost just a replacement of the LED from the previ
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265">
 
-With just 8 RGB LEDs the power draw through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs.
+These LEDs use power that adds up. Can use this to estimate the power<br>
+
+   http://fastled.io/docs/3.1/group___power.html<br>
+
+     calculate_max_brightness_for_power_vmA(lots of parameters)
+     
+   https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp<br>
+
+     static const uint8_t gRed_mW   = 16 * 5; // 16mA @ 5v = 80mW
+     static const uint8_t gGreen_mW = 11 * 5; // 11mA @ 5v = 55mW
+     static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW
+     static const uint8_t gDark_mW  =  1 * 5; //  1mA @ 5v =  5mW
+  
+   about 42 milliamps per LED at max brightness WHITE<br>
+
+With just 8 RGB LEDs the power draw of 336 milliamps worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
 
 ## The Code
 Now our code discussion section is going to get a little more involved.
@@ -108,6 +123,31 @@ It is possible to enable and use interrupts in the Arduino, but this introduces 
 In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
 
 ### The Code - FastLED
+Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED library and examples!!! Unfortunately Daniel Garcia passed away in a tragic accident a few years ago but the library is still being actively maintained.
+- https://github.com/FastLED/FastLED<br>
+- https://github.com/FastLED/FastLED/blob/master/examples<br>
+
+The LED pattern code here is pretty much done from scratch using the FastLED library - see [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing").
+
+As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
+
+Here is what we do in **setup()**
+- We include the FastLED file (**#include <FastLED.h>**)
+- We tell it what pin is to be used for serial communication
+  - We are not using the built-in USB serial port for FastLED; FastLED will take care of sending the serial data on a digital I/O pin for us.
+- We tell it how many LEDs are in the string attached to that pin
+- We tell it what order the three bytes go onto the data line: RGB, RBG, GBR, etc.
+- We use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
+- We use **FastLED.addLeds(...)** to point at fastled_array and give it the information about pin, number of LEDs, and color order.
+
+Here is what we do in **loop()**
+- If it is time for the next data pattern:
+  - We fill fastled_array with the RGB colors we want for each LED
+  - We call **FastLED.show()** to send the color commands to the LED strip
+  - We calculate what time the next data pattern should be sent
+
+A preview - look here to see what our first attempt at using the LED strip will look like. I know, we just cannot get away from Blink; it is the "Hello World" of Arduinos.
+- https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
 ### The Code - What are we Doing
 
