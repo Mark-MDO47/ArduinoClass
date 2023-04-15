@@ -67,6 +67,14 @@ or using NewPing library which allows one to use only one pin per sensor.
 Fortunately, the delay from the HC-SR04 gets shorter as the distance of the detected object gets closer. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function.
 
 ## Theremin controller
+We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position.
+- https://en.wikipedia.org/wiki/Theremin
+
+Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the theremin on NBC Radio in 1930.
+
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Theramin-Alexandra-Stepanoff-1930.jpg/220px-Theramin-Alexandra-Stepanoff-1930.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
+
+
 
 ## Resources
 
