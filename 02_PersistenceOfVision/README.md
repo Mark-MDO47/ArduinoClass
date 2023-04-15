@@ -73,11 +73,38 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 const long interval = 50;           // interval at which to blink (milliseconds)
 ```
 
-When we look at the new **loop()** code, we don't see any calls to **delay()** - it just runs straight through and uses the clock to decide if it should set the LED pin HIGH or LOW. What is the advantage of this?
+When we look at the new **loop()** code, we don't see any calls to **delay()** - it just runs straight through and uses the **millis()** clock to decide if it should set the LED pin HIGH or LOW. Usually it just passes through the loop with almost no delay and no change to the LED state. What is the advantage of this?
+```C
+  unsigned long currentMillis = millis();
 
-This code design doesn't prevent the code from doing other things (reading other sensors, controlling other devices) during the time we are waiting.
-- In the Blink code, the two **delay()** calls take almost 100% of the time, and this is time that the Arduino cannot be doing anything else.
-- In the "Blink Without Delay" code, the **loop()** code completes rapidly and is called again and again. If there are other devices to handle and if the code for those devices is written in a similar manner, the Arduino can handle those also. It can do more than just Blink!
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+    // if the LED is off turn it on and vice-versa:
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } else {
+      ledState = LOW;
+    }
+
+    // set the LED with the ledState of the variable:
+    digitalWrite(ledPin, ledState);
+  }
+```
+
+This code design doesn't prevent the code from doing other things (reading other sensors, controlling other devices) during the time we are waiting for the next **interval** to expire.
+- In the Blink code inside the **loop()** routine, the two **delay()** calls take almost 100% of the time. This is time during which the Arduino cannot be doing anything else.
+- In the "Blink Without Delay" code, the **loop()** code completes rapidly and is called again and again with only a few milliseconds in between loops. If there are other devices to handle and if the code for those devices is written in a similar manner, the Arduino can handle those also. It can do more than just Blink!
+
+All this is caused because we are using the standard architecture for Arduino code, in which there are two routines **setup()** and **loop()** and no interrupts. If the system was multi-tasking either based on real-time interrupts or time slicing and if one task does a delay it doesn't prevent another task from running.
+
+It is possible to enable and use interrupts in the Arduino, but this introduces complexities that sometimes cause trouble for the worlds best programmers - issues of code re-entrancy, software synchronization (i.e. semaphores), prioritization, variable latency, etc. The people who designed the Arduino chose to use this simpler architecture since the expected audience included many hobbyist and first-time programmers. This simpler architecture avoids many of the complexities mentioned above and thus helps to "keep us out of trouble".
+- See attachInterrupt(), detachInterrupt(), interrupts(), and noInterrupts() in https://reference.arduino.cc/reference/en/.
+
+In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
+
+### The Code - FastLED
 
 ## Resources
 
