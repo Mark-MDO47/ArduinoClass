@@ -32,13 +32,18 @@ Here is the image from https://protosupplies.com:
 
 <img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" width="640" height="480">
 
+Note: the WS in WS2811 and WS2812B stands for Worldsemi. Search this page for WS2812B and see the chip that implements all the magic in this project.
+- http://www.world-semi.com/
+- http://www.world-semi.com/ws2812-family/
+
 There is a serial data protocol used to control this string of 8 LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
   - The actual color order can vary; I determine it by experimentation.
-  - This allows 256 levels (0-255) for each of the colors Red/Green/Blue.
+  - This allows 256 levels (0-255 for an unsigned 8-bit byte) for each of the colors Red/Green/Blue.
 - The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
-- Each LED "consumes" its 3-byte RGB command from the data and then sends all the rest of the data down the line.
-- If there is a stopage of data for a certain specified amount of time, the string resets and the first LED will consume the next RGB command.
+- Each LED "consumes" its 3-byte RGB command from the data and then passes all the rest of the data down the line until there is a stopage.
+- If there is a stopage of data for a certain specified amount of time, the string resets and the each LED will consume a new 3-byte value for its next RGB command.
+- That is it! There are some more details on this protocol in [Resources](#resources "Resources") for the curious. 
 
 I typically use the FastLED library to control these LEDs. It is a powerful library, but simple things are simple.
 
@@ -150,6 +155,25 @@ A preview - look here to see what our first attempt at using the LED strip will 
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
 ### The Code - What are we Doing
+Now we understand
+- the basics of persistance of vision
+- how to organize our code using timers so we can respond rapidly to many sensors and devices
+- how to detect the state of the button
+- how to talk to the LED strip
+
+Now the question is: what are we trying to do?
+
+The ultimate goal is to have a wand we can wave that makes our eyes see patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
+- Blink - talk to just the first LED, make sure we know the color order https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
+- Sawtooth - a triangular wave bouncing from top to bottom and back
+- Oval - a pattern that appears to be a set of ovals; maybe even appear to be a bubble-blower
+- DemoReel - Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
+
+So I will split this into four projects:
+- Part A: Blink
+- Part B: Sawtooth
+- Part C: Oval
+- Part D: DemoReel
 
 ## Resources
 
