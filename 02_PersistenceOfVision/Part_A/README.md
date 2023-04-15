@@ -24,6 +24,7 @@ And you should be able to identify the code in **loop()**
 
 Of course I cannot resist putting my fingers in the gears so we will make just a few changes.
 - Line 08: change definition for NUM_LEDS from 1 to 8
+- Line 14: change definition for DATA_PIN from 3 to 7
 - Line 66: we will fill all 8 locations, we want the first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue
   - you can use loops if you want or just set them one at a time
 - Line 70: we will fill all 8 locations with CRGB::Black
@@ -42,4 +43,4 @@ Here is a protosupplies.com image of the LED stick detail showing labels
 
 Here is a reminder of our desired wiring
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265" alt="Image of wiring diagram for Persistence of Vision">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
