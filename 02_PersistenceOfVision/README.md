@@ -122,17 +122,15 @@ This code design doesn't prevent the code from doing other things (reading other
 
 All this is caused because we are using the standard architecture for Arduino code, in which there are two routines **setup()** and **loop()** and no interrupts. If the system was multi-tasking either based on real-time interrupts or time slicing and if one task does a delay it doesn't prevent another task from running.
 
-It is possible to enable and use interrupts in the Arduino, but this introduces complexities that sometimes cause trouble for the worlds best programmers - issues of code re-entrancy, software synchronization (i.e. semaphores), prioritization, variable latency, etc. The people who designed the Arduino chose to use this simpler architecture since the expected audience included many hobbyist and first-time programmers. This simpler architecture avoids many of the complexities mentioned above and thus helps to "keep us out of trouble".
+It is possible to enable and use interrupts in the Arduino, but this introduces complexities that sometimes cause trouble for the worlds best programmers - issues of code re-entrancy, software synchronization (i.e. semaphores), prioritization, non-deterministic latency, etc. The people who designed the Arduino chose to use this simpler architecture since the expected audience included many hobbyist and first-time programmers. This simpler architecture avoids many of the complexities mentioned above and thus helps to "keep us out of trouble". If you are more advanced, they do not prevent you from going further.
 - See attachInterrupt(), detachInterrupt(), interrupts(), and noInterrupts() in https://reference.arduino.cc/reference/en/.
 
 In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
 
 ### The Code - FastLED
 Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED library and examples!!! Unfortunately Daniel Garcia passed away in a tragic accident a few years ago but the library is still being actively maintained.
-- https://github.com/FastLED/FastLED<br>
-- https://github.com/FastLED/FastLED/blob/master/examples<br>
-
-The LED pattern code here is pretty much done from scratch using the FastLED library - see [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing").
+- https://github.com/FastLED/FastLED
+- https://github.com/FastLED/FastLED/blob/master/examples
 
 As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
 
@@ -168,6 +166,8 @@ The ultimate goal is to have a wand we can wave that makes our eyes see patterns
 - Sawtooth - a triangular wave bouncing from top to bottom and back
 - Oval - a pattern that appears to be a set of ovals; maybe even appear to be a bubble-blower
 - DemoReel - Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
+
+The LED pattern code for Sawtooth and Oval will pretty much done from scratch using the FastLED library. The LED pattern code for Blink and DemoReel will be derived from example FastLED code. DemoReel will show some of the incredible capabilities of the FastLED library for generating beautiful patterns with little code.
 
 So I will split this into four projects:
 | Part | Title | Link |
