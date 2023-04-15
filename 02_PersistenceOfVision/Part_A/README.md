@@ -39,3 +39,7 @@ Once you have made these changes, connect up the LED stick and try it out. Remem
 Here is a protosupplies.com image of the LED stick detail showing labels
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
+
+Here is a reminder of our desired wiring
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265" alt="Image of wiring diagram for Persistence of Vision">
