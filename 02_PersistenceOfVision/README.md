@@ -137,13 +137,15 @@ Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED libr
 
 As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
 
-Here is what we do in **setup()**
+Here is what we do before **setup()**
 - We include the FastLED file (**#include <FastLED.h>**)
 - We tell it what pin is to be used for serial communication
   - We are not using the built-in USB serial port for FastLED; FastLED will take care of sending the serial data on a digital I/O pin for us.
 - We tell it how many LEDs are in the string attached to that pin
 - We tell it what order the three bytes go onto the data line: RGB, RBG, GBR, etc.
 - We use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
+
+Here is what we do in **setup()**
 - We use **FastLED.addLeds(...)** to point at fastled_array and give it the information about pin, number of LEDs, and color order.
 
 Here is what we do in **loop()**
