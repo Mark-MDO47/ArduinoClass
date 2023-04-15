@@ -69,7 +69,7 @@ These LEDs use power that adds up. We can use this to estimate the power
 | static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW |
 | static const uint8_t gDark_mW  =  1 * 5; //  1mA @ 5v =  5mW |
   
-This calculatest to about 42 milliamps per LED at max brightness WHITE.
+This calculates to about 42 milliamps per LED at max brightness WHITE.
 
 With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
 
