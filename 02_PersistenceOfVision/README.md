@@ -165,10 +165,12 @@ Now we understand
 Now the question is: what are we trying to do?
 
 The ultimate goal is to have a wand we can wave that makes our eyes see patterns. We will use the button to stop and restart the patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
-- Blink - talk to just the first LED, make sure we know the color order https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
+- Blink - talk to just the first LED, make sure we know the color order
+  - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 - Sawtooth - a triangular wave bouncing from top to bottom and back
 - Oval - a pattern that appears to be a set of ovals; maybe even appear to be a bubble-blower
-- DemoReel - Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
+- DemoReel - Mark Kriegsman's classic DemoReel100.ino
+  - https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
 The LED pattern code for Sawtooth and Oval will pretty much done from scratch using the FastLED library. The LED pattern code for Blink and DemoReel will be derived from example FastLED code. DemoReel will show some of the incredible capabilities of the FastLED library for generating beautiful patterns with little code.
 
