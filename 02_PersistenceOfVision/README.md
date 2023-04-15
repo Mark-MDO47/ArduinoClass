@@ -54,24 +54,24 @@ Because we are already using the USB serial port for debugging, we will dedicate
 The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf
 
+Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
+
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265">
 
-These LEDs use power that adds up. Can use this to estimate the power<br>
-
-   http://fastled.io/docs/3.1/group___power.html<br>
-
-     calculate_max_brightness_for_power_vmA(lots of parameters)
+These LEDs use power that adds up. We can use this to estimate the power
+- http://fastled.io/docs/3.1/group___power.html<br>
+  - calculate_max_brightness_for_power_vmA(lots of parameters)
      
-   https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp<br>
-
-     static const uint8_t gRed_mW   = 16 * 5; // 16mA @ 5v = 80mW
-     static const uint8_t gGreen_mW = 11 * 5; // 11mA @ 5v = 55mW
-     static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW
-     static const uint8_t gDark_mW  =  1 * 5; //  1mA @ 5v =  5mW
+ | https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp |
+ | --- |
+| static const uint8_t gRed_mW   = 16 * 5; // 16mA @ 5v = 80mW |
+| static const uint8_t gGreen_mW = 11 * 5; // 11mA @ 5v = 55mW |
+| static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW |
+| static const uint8_t gDark_mW  =  1 * 5; //  1mA @ 5v =  5mW |
   
-   about 42 milliamps per LED at max brightness WHITE<br>
+This calculatest to about 42 milliamps per LED at max brightness WHITE.
 
-With just 8 RGB LEDs the power draw of 336 milliamps worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
+With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
 
 ## The Code
 Now our code discussion section is going to get a little more involved.
