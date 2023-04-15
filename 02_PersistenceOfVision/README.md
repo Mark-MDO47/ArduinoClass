@@ -28,11 +28,7 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 We will be using this color LED stick
 - https://protosupplies.com/product/ws2812-addressable-rgb-led-stick-module/
 
-Here is the image from https://protosupplies.com:
-
-<img src="https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module.jpg" alt="protosupplies.com picture of RGB 8 LED Stick Module" width="640" height="480">
-
-And another image from https://protosupplies.com:
+Here is an image from https://protosupplies.com:
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-In-Operation.jpg "protosupplies.com picture of RGB 8 LED Stick Module in operation")
 
