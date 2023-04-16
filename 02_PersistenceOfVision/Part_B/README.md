@@ -170,7 +170,7 @@ long int sawtooth_phase(int btn_pressed) {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // sawtooth_pause_pattern(blink_phase, ptrn_leds) - 
-//    fills ptrn_leds with all CRGB:Black
+//    fills ptrn_leds with all CRGB::Black
 //    returns: none
 //
 // blink_phase - ignored
@@ -178,9 +178,9 @@ long int sawtooth_phase(int btn_pressed) {
 
 void sawtooth_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
 
-  // pause pattern - all CRGB:Black
+  // pause pattern - all CRGB::Black
   for (long int i = 0; i < NUM_LEDS; i++) {
-    ptrn_leds[i] = CRGB:Black;
+    ptrn_leds[i] = CRGB::Black;
   }
 
 } // end sawtooth_pause_pattern()
@@ -196,11 +196,11 @@ void sawtooth_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
 void sawtooth_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   static const int led_on_array_per_call[SAWTOOTH_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 
-  // blink pattern - all CRGB:Black except one CRGB:Red
+  // blink pattern - all CRGB::Black except one CRGB::Red
   for (long int i = 0; i < NUM_LEDS; i++) {
-    ptrn_leds[i] = CRGB:Black;
+    ptrn_leds[i] = CRGB::Black;
   }
-  ptrn_leds[led_on_array_per_call[blink_phase]] = CRGB:Red;
+  ptrn_leds[led_on_array_per_call[blink_phase]] = CRGB::Red;
 
 } // end sawtooth_blink_pattern()
 
