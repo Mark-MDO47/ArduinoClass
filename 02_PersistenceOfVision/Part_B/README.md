@@ -38,7 +38,7 @@ const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 
 ## Reminder
 The connections do not change; this is just here for a reminder.
 
-Once you have made these changes, connect up the LED stick and try it out. Remember:
+Remember:
 - red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
 - black wire is for Ground between Arduino and LED stick (GND)
 - white wire is for serial_data output from Arduino to LED stick (IN)
