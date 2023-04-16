@@ -158,9 +158,10 @@ Now our one-time **setup()** code is starting to be a little more complex. I am 
 ```C
 #define DPIN_LED_OUT 3 // this pin drives the external LED
 #define DPIN_BTN_IN  5 // this pin is used to sense the external button
+static int loop_count = 0;
 
 void setup() {
-  static int loop_count = 0;
+  pinMode(LED_BUILTIN, OUTPUT); // initialize digital pin LED_BUILTIN as an output.
   pinMode(DPIN_LED_OUT, OUTPUT);      // digital OUTPUT means we control voltage on pin, HIGH or LOW
   pinMode(DPIN_BTN_IN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
@@ -177,7 +178,7 @@ void setup() {
 The **loop()** code is also more complex. I tried to write it in a simple style; we will discuss it in the class.
 ```C
 void loop() {
-  int btn_val = digitalRead(DPIN_BTN_IN)) {
+  int btn_val = digitalRead(DPIN_BTN_IN);
 
   if (HIGH == btn_val) { // push button to STOP light blinking
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
@@ -197,7 +198,7 @@ void loop() {
   } else {
     Serial.print("DOWN (STOP)");
   } // end if statement on btn_val
-  Serial.print("Serial.print(" loop_count: "); Serial.println(loop_count);
+  Serial.print(" loop_count: "); Serial.println(loop_count);
 }
 ```
 
