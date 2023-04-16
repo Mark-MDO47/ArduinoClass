@@ -2,23 +2,19 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
+* [Cleanup](#cleanup "Cleanup")
+* [Button](#button "Button")
 * [Sawtooth](#sawtooth "Sawtooth")
 * [Reminder](#reminder "Reminder")
 
 We will use a slightly modified FastLED example program **Sawtooth** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
-## Sawtooth
+## Cleanup
 Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE
 
-We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
-Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
-At this point we repeat.
+The first thing we should do is get rid of the commented-out unused calls to **FastLED.addLeds** in the **setup()** routine. These are good documentation of how to make the calls for lots of different types of RGB LEDs, but they just clutter up our code.
 
-There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
-
-Here is a method I might use to do this. First, definitions of variables that must remain the same value between calls to **loop()**; these are placed prior to either **setup()** or **loop()**.
-
-I will use some of the variables from BlinkWithoutDelay to handle the timing
+Next we should use some of the variables from BlinkWithoutDelay to handle the timing. These can go prior to **setup()**.
 
 ```C
 // Variables will change:
@@ -27,14 +23,82 @@ I will use some of the variables from BlinkWithoutDelay to handle the timing
 unsigned long previousMillis = 0;        // will store last time LED was updated
 
 // constants won't change:
-const long interval = 50;           // interval at which to blink (milliseconds)
+const long interval = 40;           // interval at which to blink (milliseconds); 25 blinks per second
+```
+I adjusted the value of **interval** to give 25 blinks per second; a little faster than the 24 frames per second required to make movies appear to move.
+
+Now we adjust the **loop()** code to use the BlinkWithoutDelay method.
+```C
+void loop() {
+  // check to see if it's time to "blink" the LED strip; that is, if the difference
+  // between the current time and last time you blinked the LED is bigger than
+  // the interval at which you want to blink the LED.
+  unsigned long currentMillis = millis();
+
+  // TODO - handle the button input
+
+  if (currentMillis - previousMillis >= interval) {
+    // save the last time you blinked the LED
+    previousMillis = currentMillis;
+
+    // TODO - blink the LEDs
+  }
+} // end loop()
 ```
 
-Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
+## Button
+We create the routine to handle the button.<br>
+This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs we could return a bitmask with the status.<br>
+I just couldn't bring myself to do that for the simple **setup()** routine, but will do it for **loop()**.<br>
+Our plan is that when the button is pressed the LED sawtooth pattern goes back to the start and waits for button release.
+
+I should mention that there is such a thing as contact bounce, which we could handle in the button routine. I chose not to pay attention to this for our simple project. If you want to see more on that topic look in the Arduino IDE under
+- **File** -> **Examples** -> **02.Digital** -> **Debounce**
+
+Here is the definition of our button pin; it goes with the other definitions before the **setup()** routine
+```C
+const int button_pin = 3;     // the number of the pushbutton pin
+```
+Here is code to add in the setup routine
+```C
+  // initialize the pushbutton pin as an input with pullup:
+  pinMode(button_pin, INPUT_PULLUP);
+```
+
+Here is our routine to handle button input. Place it before **setup()** so that **loop()** will see 
+
+```C
+int handle_button(int btn_pin) {
+  return(digitalRead(btn_pin)); // the pushbutton status; pressed==LOW, not-pressed==HIGH
+}
+```
+
+Finally in **loop()** we replace **// TODO - handle the button input** with this
+
+```C
+  // the pushbutton status; pressed==LOW, not-pressed==HIGH
+  int button_up = handle_button(button_pin);
+```
+
+## Sawtooth
+We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
+Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
+At this point we repeat.
+
+There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
+
+Here is a method I might use to do this. First, definitions of variables that must remain the same value between calls to **loop()**; these are placed prior to either **setup()** or **loop()**.
+
+**FIXME use static, put in LED routine** Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
 ```C
 #define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
 const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
+## TO DO
+To Do
+- add call to routine to handle LEDs
+  - modularize with reset_pattern() and next_pattern()
+
 ## Reminder
 The connections do not change; this is just here for a reminder.
 
