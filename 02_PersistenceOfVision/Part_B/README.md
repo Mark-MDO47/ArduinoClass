@@ -50,9 +50,9 @@ void loop() {
 ## Button
 [Top](#notes "Top")<br>
 We create the routine to handle the button.<br>
-This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs we could return a bitmask with the status.<br>
-I just couldn't bring myself to do that for the simple **setup()** routine, but will do it for **loop()**.<br>
-Our plan is that when the button is pressed the LED sawtooth pattern goes back to the start and waits for button release.
+This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs we could return a bitmask with the status of all the inputs.<br>
+I just couldn't bring myself to do the modularization for the simple **setup()** routine, but will do it for **loop()**.<br>
+Our plan is that when the button is pressed the LED sawtooth pattern goes back to the start and waits for button release. The button routine merely returns the status of the button; the LED routines will do what they want with that status.
 
 I should mention that there is such a thing as contact bounce, which we could handle in the button routine. I chose not to pay attention to this for our simple project. If you want to see more on that topic look in the Arduino IDE under
 - **File** -> **Examples** -> **02.Digital** -> **Debounce**
