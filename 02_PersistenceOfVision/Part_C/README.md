@@ -49,15 +49,46 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 } // end oval_blink_pattern()
 ```
 ## Variation
-Why should we always us Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
+Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
 
-The answer is YES!
+The answer is YES! They have two routines that would work for this purpose:
+- fill_rainbow
+- fill_gradient
+- see https://fastled.io/docs/3.1/group___colorutils.html
 
-For starters, we want to limit the total current if we are going use colors that have all three colors active.
+Up until now we have limited the current by having only one of the three color LEDs active.  Now we are going to use colors that have all three colors active. We use BRIGHTMAX and FastLED.setBrightness() to limit the current draw.
 
+Put this up with the other #define statements
+```C
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
+#define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
+#define FASTLED_RAINBOWHUEROTATE 500 // rotate hues every 500th color pick
+```
 
-  FastLED.setBrightness(BRIGHTMAX); // we will do our own power management
+Put this immediately after the last #define statement
+```C
+static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
+static uint8_t gHue = 0; // rotating "base color"
+static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+static uint16_t next_rainbow = 0;
+```
+
+And put this into **setup()** after **FastLED.addLeds**
+```C
+  FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
+  fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+```
+Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_leds[i] = CRGB::Red;** with the following
+```C
+    ptrn_leds[i] = rainbow_array[next_rainbow++];
+    if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+    gHue_rotate_countdown -= 1;
+    if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+      gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE:
+      gHue += 4; // rotating "base color"
+      fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+    }
+```
 
 ## Reminder
 [Top](#notes "Top")<br>
