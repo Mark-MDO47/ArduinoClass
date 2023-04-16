@@ -146,7 +146,7 @@ Just prior to **handle_leds()**, add the new routines for the Sawtooth pattern.
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// sawtooth_phase(btn_pressed) - determine the state of a single button, HIGH or LOW
+// sawtooth_phase(btn_pressed) - determine the state of what the phase of pattern generation is
 //    returns: long int with either value >= 0 phase to blink or value < 0 paused
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
@@ -175,6 +175,8 @@ long int sawtooth_phase(int btn_pressed) {
 // ptrn_leds   - where to store the pattern
 
 void sawtooth_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
+
+  // pause pattern - all CRGB:Black
   for (long int i = 0; i < NUM_LEDS; i++) {
     ptrn_leds[i] = CRGB:Black;
   }
@@ -192,6 +194,7 @@ void sawtooth_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
 void sawtooth_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   static const int led_on_array_per_call[SAWTOOTH_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 
+  // blink pattern - all CRGB:Black except one CRGB:Red
   for (long int i = 0; i < NUM_LEDS; i++) {
     ptrn_leds[i] = CRGB:Black;
   }
