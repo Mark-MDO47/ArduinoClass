@@ -2,14 +2,18 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
+* [Cleanup](#cleanup "Cleanup")
 * [Sawtooth](#sawtooth "Sawtooth")
 * [Reminder](#reminder "Reminder")
 
 We will use a slightly modified FastLED example program **Sawtooth** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
-## Sawtooth
+## Cleanup
 Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE
 
+The first thing we should do is get rid of the 
+
+## Sawtooth
 We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
 Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
 At this point we repeat.
