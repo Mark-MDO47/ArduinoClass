@@ -7,7 +7,7 @@
 We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
 ## Blink
-Copy the code or the file from here and put it in a directoy named Blink and open it with the Arduino IDE
+Copy the code or the file from here and put it in a directory named FastLEDBlink with filename FastLEDBlink.ino and open it with the Arduino IDE
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
 Take a look at the code. You should be able to identify the steps before and in **setup()** we talked about earlier
