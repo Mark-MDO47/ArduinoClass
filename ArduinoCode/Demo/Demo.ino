@@ -5,9 +5,9 @@
 /*
  * Modified by Mark Olson for his Arduino class https://github.com/Mark-MDO47/ArduinoClass
  * 
- * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
+ * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_D
  * 
- * Persistence of Vision Oval pattern
+ * Demo Reel 100
  */
 
 #include <FastLED.h>
@@ -61,14 +61,14 @@ CRGB fastled_array[NUM_LEDS];
 const long interval = 40;           // interval at which to blink (milliseconds); 25 blinks per second
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// oval_phase(btn_pressed) - determine the state of what the phase of pattern generation is
+// ptrn_phase(btn_pressed) - determine the state of what the phase of pattern generation is
 //    returns: long int with either value >= 0 phase to blink or value < 0 paused
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
 //       btn_pressed LOW means reset to start of pattern and wait for btn_pressed HIGH
 //       note that ONLY this routine interprets btn_pressed
 
-long int oval_phase(int btn_pressed) {
+long int ptrn_phase(int btn_pressed) {
   static long int current_phase = -1;
 
   if (LOW == btn_pressed) {
@@ -79,34 +79,34 @@ long int oval_phase(int btn_pressed) {
   }
   
   return(current_phase);
-} // end oval_phase()
+} // end ptrn_phase()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// oval_pause_pattern(blink_phase, ptrn_leds) - 
+// ptrn_pause_pattern(blink_phase, ptrn_leds) - 
 //    fills ptrn_leds with all CRGB:Black
 //    returns: none
 //
 // blink_phase - ignored
 // ptrn_leds   - where to store the pattern
 
-void oval_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
+void ptrn_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
 
   // pause pattern - all CRGB::Black
   for (long int i = 0; i < NUM_LEDS; i++) {
     ptrn_leds[i] = CRGB::Black;
   }
 
-} // end oval_pause_pattern()
+} // end ptrn_pause_pattern()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// oval_blink_pattern(blink_phase, ptrn_leds) - 
+// ptrn_blink_pattern(blink_phase, ptrn_leds) - 
 //    fills ptrn_leds with next pattern based on blink_phase
 //    returns: none
 //
 // blink_phase - long int, range 0-13
 // ptrn_leds   - where to store the pattern
 
-void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
+void ptrn_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
   unsigned int bits = pattern_bits[blink_phase];
 
@@ -126,29 +126,29 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
     bits <<= 1;
   }
 
-} // end oval_blink_pattern()
+} // end ptrn_blink_pattern()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// oval_fill_pattern(btn_pressed, ptrn_leds) - 
+// ptrn_fill_pattern(btn_pressed, ptrn_leds) - 
 //    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
 // ptrn_leds   - where to store the pattern
 
-int oval_fill_pattern(int btn_pressed, CRGB * ptrn_leds) {
+int ptrn_fill_pattern(int btn_pressed, CRGB * ptrn_leds) {
   int did_blink = LOW;
-  long int blink_phase = oval_phase(btn_pressed);
+  long int blink_phase = ptrn_phase(btn_pressed);
 
   if (blink_phase < 0) {
-    oval_pause_pattern(blink_phase, ptrn_leds);
+    ptrn_pause_pattern(blink_phase, ptrn_leds);
     did_blink = LOW;
   } else {
-    oval_blink_pattern(blink_phase, ptrn_leds);
+    ptrn_blink_pattern(blink_phase, ptrn_leds);
     did_blink = HIGH;
   }
 
   return(did_blink);
-} // end oval_fill_pattern
+} // end ptrn_fill_pattern
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle_leds(...) - get the pattern and then display on LEDs
@@ -159,7 +159,7 @@ int oval_fill_pattern(int btn_pressed, CRGB * ptrn_leds) {
 //       the pattern routines (in this case Oval) know what to do with btn_pressed
 
 int handle_leds(int btn_pressed) {
-  int did_blink = oval_fill_pattern(btn_pressed, fastled_array); // fill the pattern into RAM
+  int did_blink = ptrn_fill_pattern(btn_pressed, fastled_array); // fill the pattern into RAM
 
   FastLED.show(); // show the pattern on LEDs
 
