@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [Cleanup](#cleanup "Cleanup")
 * [Button](#button "Button")
+* [LEDs](#leds "LEDs")
 * [Sawtooth](#sawtooth "Sawtooth")
 * [Reminder](#reminder "Reminder")
 
@@ -70,6 +71,12 @@ Here is code to add in the setup routine
 Here is our routine to handle button input. Place it before **setup()** so that **loop()** will see 
 
 ```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_button(btn_pin) - determine the state of a single button or any digital input, HIGH or LOW
+//    returns: int with either value HIGH or LOW
+//
+// btn_pin is the pin number of the digital pin we sense for the button, range 1-13 inclusive
+
 int handle_button(int btn_pin) {
   return(digitalRead(btn_pin)); // the pushbutton status; pressed==LOW, not-pressed==HIGH
 } // end handle_button()
@@ -81,6 +88,34 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
   // the pushbutton status; pressed==LOW, not-pressed==HIGH
   int button_up = handle_button(button_pin);
 ```
+
+## LEDs
+[Top](#notes "Top")<br>
+We create the routine to handle the LED Stick.<br>
+This is a more complex routine, since we want it to be able to handle the Sawtooth pattern and the other patterns in Part-C and Part-D.
+
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_leds_phase(...) - determine the state of a single button, HIGH or LOW
+//    returns: long int with either value >= 0 phase to blink or value < 0 paused
+//
+// btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+
+long int handle_leds_phase(int btn_pressed) {
+  // TODO
+} // end handle_leds_phase()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_leds(...) - determine the state of a single button, HIGH or LOW
+//    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
+//
+// btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+
+int handle_leds(int btn_pressed) {
+  long int blink_phase = handle_leds_phase(btn_pressed);
+} // end handle_leds()
+```
+
 
 ## Sawtooth
 [Top](#notes "Top")<br>
