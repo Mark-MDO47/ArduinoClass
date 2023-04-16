@@ -2,35 +2,38 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [Blink](#blink "Blink")
+* [Sawtooth](#sawtooth "Sawtooth")
 
-We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
+We will use a slightly modified FastLED example program **Sawtooth** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
-## Blink
-Copy the code or the file from here and put it in a directoy named Blink and open it with the Arduino IDE
-- https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
+## Sawtooth
+Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE
 
-Take a look at the code. You should be able to identify the steps before and in **setup()** we talked about earlier
-- Line 05: include the FastLED file (**#include <FastLED.h>**)
-- Line 14: tell it what pin is to be used for serial communication
-- Line 08: tell it how many LEDs are in the string attached to that pin
-- Implicit in Line 23: tell it what order the three bytes go onto the data line: RGB, RBG, GBR, etc.
-- Line 18: use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
-- Line 23: use **FastLED.addLeds(...)** to point at fastled_array and give it the information about pin, number of LEDs, and color order.
+We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
+Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
+At this point we repeat.
 
-And you should be able to identify the code in **loop()**
-- Lines 66 and 70: fill array "leds" with the RGB colors we want for each LED (they used a different name than we will)
-- Lines 67 and 71: call FastLED.show() to send the color commands to the LED strip
+There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
 
-Of course I cannot resist putting my fingers in the gears so we will make just a few changes.
-- Line 08: change definition for NUM_LEDS from 1 to 8
-- Line 14: change definition for DATA_PIN from 3 to 7
-- Line 66: we will fill all 8 locations, we want the first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue
-  - you can use loops if you want or just set them one at a time
-- Line 70: we will fill all 8 locations with CRGB::Black
-  - you can use a loop if you want or just set them one at a time
+Here is a method I might use to do this. First, definitions of variables that must remain the same value between calls to **loop()**; these are placed prior to either **setup()** or **loop()**.
 
-The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command.
+I will use some of the variables from BlinkWithoutDelay to handle the timing
+
+```C
+// Variables will change:
+// Generally, you should use "unsigned long" for variables that hold time
+// The value will quickly become too large for an int to store
+unsigned long previousMillis = 0;        // will store last time LED was updated
+
+// constants won't change:
+const long interval = 50;           // interval at which to blink (milliseconds)
+```
+
+Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
+```C
+#define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
+const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
+```
 
 Once you have made these changes, connect up the LED stick and try it out. Remember:
 - red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
