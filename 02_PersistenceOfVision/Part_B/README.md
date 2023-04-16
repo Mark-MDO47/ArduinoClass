@@ -67,12 +67,12 @@ I should mention that there is such a thing as contact bounce, which we could ha
 
 Here is the definition of our button pin; it goes with the other definitions before the **setup()** routine
 ```C
-const int button_pin = 3;     // the number of the pushbutton pin
+#define BUTTON_PIN 3 // the number of the pushbutton pin
 ```
 Here is code to add in the setup routine
 ```C
   // initialize the pushbutton pin as an input with pullup:
-  pinMode(button_pin, INPUT_PULLUP);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
 ```
 
 Here is our routine to handle button input. Place it before **setup()** so that **loop()** will see 
@@ -93,7 +93,7 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
 
 ```C
   // the pushbutton status; pressed==LOW, not-pressed==HIGH
-  int button_up = handle_button(button_pin);
+  int button_up = handle_button(BUTTON_PIN);
 ```
 
 ## LEDs
