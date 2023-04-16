@@ -156,7 +156,7 @@ We want to make it so that the first blink we light up only the first LED, the s
 Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
 At this point we repeat.
 
-There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be qualified to work on it before they touch my code; they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
+There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on my code then obviously they should be qualified to work on it before they touch my code; they should be aware of every nook and cranny of the C and C++ language specifications and be able to figure out how it works even if there are no comments and my variable names are characters from a Humphrey Bogart movie mixed with Goldilocks and the three bears. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to make it easy to figure it out as quickly as possible.
 
 Here is a method I might use to do this. 
 
@@ -179,6 +179,7 @@ void sawtooth_pause_pattern(long int blink_phase) {
   for (long int i = 0; i < NUM_LEDS; i++) {
     fastled_array[i] = CRGB:Black;
   }
+
 } // end sawtooth_pause_pattern()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,6 +196,7 @@ void sawtooth_blink_pattern(long int blink_phase) {
     fastled_array[i] = CRGB:Black;
   }
   fastled_array[led_on_array_per_call[blink_phase]] = CRGB:Red;
+
 } // end sawtooth_blink_pattern()
 ```
 
