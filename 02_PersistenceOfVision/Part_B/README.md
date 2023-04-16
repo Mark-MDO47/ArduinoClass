@@ -48,6 +48,8 @@ void loop() {
 } // end loop()
 ```
 
+The definition **#define CLOCK_PIN 13** is expected to be unused in our code since our LED Strip does not use a clock; you can comment it out or delete it.
+
 Finally, we change the LED array name from leds to fastled_array.<br>
 Partially I just want you to be aware that the name is arbitrary. Also I want you to see you could have multiple fastled_array data structures to build the patterns; we just need to remember that for any I/O pin the data will always come from the array passed in the **FastLED.addLeds** call. Thus if other arrays are used to build the pattern, it is necessary to copy the final pattern into that array associated with the I/O pin.
 
