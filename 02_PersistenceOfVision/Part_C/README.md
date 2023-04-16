@@ -107,6 +107,8 @@ Still cannot spell Oval...
 [Top](#notes "Top")<br>
 I wasn't really planning on this but I suddenly realized I could turn this into a "Hello World!" program.
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HelloWorldPattern.png "Image of Oval Hello World pattern; each step left-to-right is a blink")
+
 Change
 ```C
 // Mark-MDO47 Oval pattern
