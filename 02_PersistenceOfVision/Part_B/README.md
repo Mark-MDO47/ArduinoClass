@@ -69,13 +69,14 @@ Here is our routine to handle button input. Place it before **setup()** so that 
 
 ```C
 int handle_button(int btn_pin) {
-  return(digitalRead(btn_pin));  // the pushbutton status; pressed==LOW, not-pressed==HIGH
+  return(digitalRead(btn_pin)); // the pushbutton status; pressed==LOW, not-pressed==HIGH
 }
 ```
 
 Finally in **loop()** we replace **// TODO - handle the button input** with this
 
 ```C
+  // the pushbutton status; pressed==LOW, not-pressed==HIGH
   int button_up = handle_button(button_pin);
 ```
 
@@ -88,16 +89,15 @@ There are many ways to code this, some of them elegant. I have gradually come to
 
 Here is a method I might use to do this. First, definitions of variables that must remain the same value between calls to **loop()**; these are placed prior to either **setup()** or **loop()**.
 
-**FIXME** Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
+**FIXME use static, put in LED routine** Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
 ```C
 #define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
 const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
 ## TO DO
 To Do
-- just one init call
-- add BlinkWithoutDelay code to loop()
-- add calls to routines to handle button and LEDs
+- add call to routine to handle LEDs
+  - modularize with reset_pattern() and next_pattern()
 
 ## Reminder
 The connections do not change; this is just here for a reminder.
