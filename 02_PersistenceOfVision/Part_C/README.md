@@ -53,6 +53,12 @@ Why should we always us Black and Red? Does FastLED have an excellent method to 
 
 The answer is YES!
 
+For starters, we want to limit the total current if we are going use colors that have all three colors active.
+
+#define BRIGHTMAX 40 // set to 250 for MUCH brighter
+
+  FastLED.setBrightness(BRIGHTMAX); // we will do our own power management
+
 ## Reminder
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
