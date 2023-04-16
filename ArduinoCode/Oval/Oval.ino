@@ -25,8 +25,19 @@
 // Mark-MDO47 we will use a button
 #define BUTTON_PIN 3 // Mark-MDO47 we use pin 3 for button
 
-// Mark-MDO47 Oval pattern repeat count
+// Mark-MDO47 Oval pattern
 #define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+
+// Mark-MDO47 additions for rainbow colors
+#define BRIGHTMAX 40 // set to 250 for MUCH brighter
+#define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
+#define FASTLED_RAINBOWHUEROTATE 500 // rotate hues every 500th color pick
+
+// Mark-MDO47 additions for rainbow colors
+static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
+static uint8_t gHue = 0; // rotating "base color"
+static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+static uint16_t next_rainbow = 0;
 
 // Variables will change:
 // Generally, you should use "unsigned long" for variables that hold time
@@ -93,8 +104,16 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x80 & bits))
        ptrn_leds[i] = CRGB::Black;
-    else
-       ptrn_leds[i] = CRGB::Red;
+    else {
+      ptrn_leds[i] = rainbow_array[next_rainbow++];
+      if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+      gHue_rotate_countdown -= 1;
+      if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+        gHue += 4; // rotating "base color"
+        fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+      }
+    }
     bits <<= 1;
   }
 
@@ -154,6 +173,8 @@ void setup() {
 
   // ## Clockless types ##
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(fastled_array, NUM_LEDS);  // GRB ordering is assumed
+  FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
+  fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
 }
 
 void loop() { 
