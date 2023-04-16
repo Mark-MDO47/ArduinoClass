@@ -91,7 +91,7 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
       if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
       gHue_rotate_countdown -= 1;
       if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
-        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE:
+        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
         gHue += 4; // rotating "base color"
         fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
       }
