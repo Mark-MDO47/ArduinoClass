@@ -101,14 +101,19 @@ This is a more complex routine, since we want it to be able to handle the Sawtoo
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
 //       btn_pressed LOW means reset to start of pattern and wait for btn_pressed HIGH
+//       note that ONLY this routine interprets btn_pressed
 
 long int handle_leds_phase(int btn_pressed) {
   static long int current_phase = -1;
+
   if (LOW == btn_pressed) {
     current_phase = -1; // reset pattern and pause
   } else {
     current_phase += 1;
     current_phase %= NUM_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
+  }
+  
+  return(current_phase);
 } // end handle_leds_phase()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,6 +121,8 @@ long int handle_leds_phase(int btn_pressed) {
 //    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+//       note that this routine does not know what to do with btn_pressed;
+//       handle_leds_phase() does that interpretation
 
 int handle_leds(int btn_pressed) {
   int did_blink = LOW;
