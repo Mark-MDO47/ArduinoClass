@@ -145,9 +145,11 @@ int handle_button(int btn_pin) {
 } // end handle_button()
 
 
-void setup() { 
-    // ## Clockless types ##
-    FastLED.addLeds<NEOPIXEL, DATA_PIN>(fastled_array, NUM_LEDS);  // GRB ordering is assumed
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+
+  // ## Clockless types ##
+  FastLED.addLeds<NEOPIXEL, DATA_PIN>(fastled_array, NUM_LEDS);  // GRB ordering is assumed
 }
 
 void loop() { 
