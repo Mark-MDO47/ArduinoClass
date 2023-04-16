@@ -72,7 +72,7 @@ Here is our routine to handle button input. Place it before **setup()** so that 
 ```C
 int handle_button(int btn_pin) {
   return(digitalRead(btn_pin)); // the pushbutton status; pressed==LOW, not-pressed==HIGH
-}
+} // end handle_button()
 ```
 
 Finally in **loop()** we replace **// TODO - handle the button input** with this
