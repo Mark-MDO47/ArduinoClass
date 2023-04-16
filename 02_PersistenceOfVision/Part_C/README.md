@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
+* [Hello World](#hello-world "Hello World")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
@@ -49,7 +50,8 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 } // end oval_blink_pattern()
 ```
 
-The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**
+The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**<br>
+Guess I cannot spell Oval...
 
 ## Rainbow
 [Top](#notes "Top")<br>
@@ -98,7 +100,57 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
     }
 ```
 
-The Oval.ino corresponding to the above is at GIT tag **OpalRainbow**
+The Oval.ino corresponding to the above is at GIT tag **OpalRainbow**<br>
+Still cannot spell Oval...
+
+## Hello World
+[Top](#notes "Top")<br>
+I wasn't really planning on this but I suddenly realized I could turn this into a "Hello World!" program.
+
+Change
+```C
+// Mark-MDO47 Oval pattern
+#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+```
+
+... to
+```C
+// Mark-MDO47 Oval pattern or Hello pattern
+// #define PATTERN_OVAL 1
+#define PATTERN_HELLO 1
+
+#ifdef PATTERN_HELLO
+#define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats
+static unsigned int hello_pattern[HELLO_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
+#else // PATTERN_OVAL
+#define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
+#endif // PATTERN_HELLO
+```
+
+Change
+```C
+    current_phase %= OVAL_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
+```
+
+... to
+```C
+    current_phase %= PTRN_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
+```
+
+Change
+```C
+  static unsigned int oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
+  unsigned int bits = oval_pattern_bits[blink_phase];
+```
+
+... to
+```C
+  unsigned int bits = pattern_bits[blink_phase];
+```
+
+The Oval.ino corresponding to the above is at GIT tag **OvalHelloWorld**
+Finally learned how to spell Oval...
 
 ## Reminder
 [Top](#notes "Top")<br>
