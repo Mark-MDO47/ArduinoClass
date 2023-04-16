@@ -96,13 +96,19 @@ This is a more complex routine, since we want it to be able to handle the Sawtoo
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_leds_phase(...) - determine the state of a single button, HIGH or LOW
+// handle_leds_phase(btn_pressed) - determine the state of a single button, HIGH or LOW
 //    returns: long int with either value >= 0 phase to blink or value < 0 paused
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+//       btn_pressed LOW means reset to start of pattern and wait for btn_pressed HIGH
 
 long int handle_leds_phase(int btn_pressed) {
-  // TODO
+  static long int current_phase = -1;
+  if (LOW == btn_pressed) {
+    current_phase = -1; // reset pattern and pause
+  } else {
+    current_phase += 1;
+    current_phase %= NUM_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
 } // end handle_leds_phase()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,10 +118,22 @@ long int handle_leds_phase(int btn_pressed) {
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
 
 int handle_leds(int btn_pressed) {
+  int did_blink = LOW;
   long int blink_phase = handle_leds_phase(btn_pressed);
+
+  if (blink_phase < 0) {
+    handle_leds_pause_pattern(blink_phase);
+    did_blink = LOW;
+  } else {
+    handle_leds_blink_pattern(blink_phase);
+    did_blink = HIGH;
+  }
+
+  return(did_blink); // HIGH if blink, LOW if pause
 } // end handle_leds()
 ```
 
+NOTE: we will define NUM_CALLS_THEN_REPEAT, handle_leds_pause_pattern() and handle_leds_blink_pattern() when we get to the Sawtooth pattern.
 
 ## Sawtooth
 [Top](#notes "Top")<br>
