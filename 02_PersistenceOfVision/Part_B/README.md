@@ -10,7 +10,8 @@
 We will use a slightly modified FastLED example program **Sawtooth** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
 ## Cleanup
-Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE
+[Top](#notes "Top")<br>
+Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE.
 
 The first thing we should do is get rid of the commented-out unused calls to **FastLED.addLeds** in the **setup()** routine. These are good documentation of how to make the calls for lots of different types of RGB LEDs, but they just clutter up our code.
 
@@ -47,6 +48,7 @@ void loop() {
 ```
 
 ## Button
+[Top](#notes "Top")<br>
 We create the routine to handle the button.<br>
 This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs we could return a bitmask with the status.<br>
 I just couldn't bring myself to do that for the simple **setup()** routine, but will do it for **loop()**.<br>
@@ -81,6 +83,7 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
 ```
 
 ## Sawtooth
+[Top](#notes "Top")<br>
 We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
 Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
 At this point we repeat.
@@ -100,6 +103,7 @@ To Do
   - modularize with reset_pattern() and next_pattern()
 
 ## Reminder
+[Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
 
 Remember:
