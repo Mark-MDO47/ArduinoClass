@@ -101,6 +101,8 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
 We create the routine to handle the LED Stick.<br>
 We want this routine to be able to handle the Sawtooth pattern and the other patterns in Part-C and Part-D.
 
+Put this routine just prior to **handle_button()**
+
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle_leds(...) - get the pattern and then display on LEDs
@@ -118,8 +120,12 @@ int handle_leds(int btn_pressed) {
   return(did_blink); // HIGH if blink, LOW if pause
 } // end handle_leds()
 ```
-
 NOTE: we will define sawtooth_fill_pattern() when we get to the Sawtooth pattern.
+
+Finally in **loop()** we replace **// TODO - blink the LEDs** with this
+```C
+  handle_leds(button_up); // generate pattern to display and display it
+```
 
 ## Sawtooth
 [Top](#notes "Top")<br>
@@ -215,6 +221,10 @@ int sawtooth_fill_pattern(int btn_pressed, CRGB * ptrn_leds) {
   return(did_blink);
 } // end sawtooth_fill_pattern
 ```
+
+For discussion - I am unsure if I want to pass fastled_array into handle_leds() or not, even though I am passing it into the Sawtooth pattern routines. Typically in FastLED programming such items are global. For the pattern routines I felt it would be nice to be able to generate into areas that were temporary storage so we could do more pattern manipulation.
+
+What do you think about this and why?
 
 ## Reminder
 [Top](#notes "Top")<br>
