@@ -48,10 +48,13 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 
 } // end oval_blink_pattern()
 ```
+
+The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**
+
 ## Variation
 Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
 
-The answer is YES! They have two routines that would work for this purpose:
+The answer is YES! They have two routines I know of that would work for this purpose:
 - fill_rainbow
 - fill_gradient
 - see https://fastled.io/docs/3.1/group___colorutils.html
