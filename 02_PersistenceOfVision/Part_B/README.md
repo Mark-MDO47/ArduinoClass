@@ -58,7 +58,7 @@ We can do a global search and replace in the Arduino IDE with one restriction. T
 ## Button
 [Top](#notes "Top")<br>
 We create the routine to handle the button.<br>
-This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs we could return a bitmask with the status of all the inputs.<br>
+This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs; we could return a bitmask with the status of all the inputs.<br>
 I just couldn't bring myself to do the modularization for the simple **setup()** routine, but will do it for **loop()**.<br>
 Our plan is that when the button is pressed the LED sawtooth pattern goes back to the start and waits for button release. The button routine merely returns the status of the button; the LED routines will do what they want with that status.
 
@@ -142,6 +142,7 @@ int handle_leds(int btn_pressed) {
     handle_leds_blink_pattern(blink_phase);
     did_blink = HIGH;
   }
+  FastLED.show();
 
   return(did_blink); // HIGH if blink, LOW if pause
 } // end handle_leds()
@@ -155,19 +156,39 @@ We want to make it so that the first blink we light up only the first LED, the s
 Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
 At this point we repeat.
 
-There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
+There are many ways to code this, some of them elegant. I have gradually come to the point of view that I want to make my code blindingly obvious. If someone other than myself is the next one to work on the code, then obviously they should be qualified to work on it before they touch my code; they should be aware of every nook and cranny of the C- and C++- language specifications and be able to figure out how it works even if my variable names are named from characters of a Humphrey Bogart movie. On the other hand, if I am the poor schlub who has to look at the code again, I know I won't remember in 6 months what the *** I was doing so I want to be able to figure it out as quickly as possible.
 
-Here is a method I might use to do this. First, definitions of variables that must remain the same value between calls to **loop()**; these are placed prior to either **setup()** or **loop()**.
+Here is a method I might use to do this. 
 
-**FIXME use static, put in LED routine** Then, also prior to either **setup()** or **loop()**, some definitions and variables to control our code.
+Prior to either **setup()** or **loop()**, some definitions to control our code.
 ```C
 #define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
+```
+
+Just prior to **loop()**, add the new routines for the Sawtooth pattern.
+
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_leds_pause_pattern(blink_phase) - 
+//    returns: none
+//    fills fastled_array with all CRGB:Black
+//
+// blink_phase - ignored
+
+void handle_leds_pause_pattern(long int blink_phase) {
+} // end handle_leds_pause_pattern()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_leds_blink_pattern(blink_phase) - 
+//    returns: none
+//    fills fastled_array with next pattern based on blink_phase
+//
+// blink_phase - long int, range 0-13
+
+handle_leds_blink_pattern(long int blink_phase) {
+} // end handle_leds_blink_pattern()
 const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
-## TO DO
-To Do
-- add call to routine to handle LEDs
-  - modularize with reset_pattern() and next_pattern()
 
 ## Reminder
 [Top](#notes "Top")<br>
