@@ -103,52 +103,23 @@ This is a more complex routine, since we want it to be able to handle the Sawtoo
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_leds_phase(btn_pressed) - determine the state of a single button, HIGH or LOW
-//    returns: long int with either value >= 0 phase to blink or value < 0 paused
-//
-// btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
-//       btn_pressed LOW means reset to start of pattern and wait for btn_pressed HIGH
-//       note that ONLY this routine interprets btn_pressed
-
-long int handle_leds_phase(int btn_pressed) {
-  static long int current_phase = -1;
-
-  if (LOW == btn_pressed) {
-    current_phase = -1; // reset pattern and pause
-  } else {
-    current_phase += 1;
-    current_phase %= NUM_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
-  }
-  
-  return(current_phase);
-} // end handle_leds_phase()
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_leds(...) - determine the state of a single button, HIGH or LOW
+// handle_leds(...) - get the pattern and then display on LEDs
 //    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
 //
 // btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
 //       note that this routine does not know what to do with btn_pressed;
-//       handle_leds_phase() does that interpretation
+//       the pattern routines (in this case Sawtooth) know what to do with btn_pressed
 
 int handle_leds(int btn_pressed) {
-  int did_blink = LOW;
-  long int blink_phase = handle_leds_phase(btn_pressed);
+  int did_blink = sawtooth_fill_pattern(btn_pressed); // fill the pattern into RAM
 
-  if (blink_phase < 0) {
-    sawtooth_pause_pattern(blink_phase);
-    did_blink = LOW;
-  } else {
-    sawtooth_blink_pattern(blink_phase);
-    did_blink = HIGH;
-  }
-  FastLED.show();
+  FastLED.show(); // show the pattern on LEDs
 
   return(did_blink); // HIGH if blink, LOW if pause
 } // end handle_leds()
 ```
 
-NOTE: we will define NUM_CALLS_THEN_REPEAT, sawtooth_pause_pattern() and sawtooth_blink_pattern() when we get to the Sawtooth pattern.
+NOTE: we will define SAWTOOTH_CALLS_THEN_REPEAT, sawtooth_pause_pattern() and sawtooth_blink_pattern() when we get to the Sawtooth pattern.
 
 ## Sawtooth
 [Top](#notes "Top")<br>
@@ -162,12 +133,33 @@ Here is a method I might use to do this.
 
 Prior to either **setup()** or **loop()**, some definitions to control our code.
 ```C
-#define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
+#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does 14 calls then repeats
 ```
 
 Just prior to **loop()**, add the new routines for the Sawtooth pattern.
 
 ```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// sawtooth_phase(btn_pressed) - determine the state of a single button, HIGH or LOW
+//    returns: long int with either value >= 0 phase to blink or value < 0 paused
+//
+// btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+//       btn_pressed LOW means reset to start of pattern and wait for btn_pressed HIGH
+//       note that ONLY this routine interprets btn_pressed
+
+long int sawtooth_phase(int btn_pressed) {
+  static long int current_phase = -1;
+
+  if (LOW == btn_pressed) {
+    current_phase = -1; // reset pattern and pause
+  } else {
+    current_phase += 1;
+    current_phase %= SAWTOOTH_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
+  }
+  
+  return(current_phase);
+} // end sawtooth_phase()
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // sawtooth_pause_pattern(blink_phase) - 
 //    fills fastled_array with all CRGB:Black
@@ -190,7 +182,7 @@ void sawtooth_pause_pattern(long int blink_phase) {
 // blink_phase - long int, range 0-13
 
 void sawtooth_blink_pattern(long int blink_phase) {
-  static const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
+  static const int led_on_array_per_call[SAWTOOTH_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 
   for (long int i = 0; i < NUM_LEDS; i++) {
     fastled_array[i] = CRGB:Black;
@@ -198,6 +190,27 @@ void sawtooth_blink_pattern(long int blink_phase) {
   fastled_array[led_on_array_per_call[blink_phase]] = CRGB:Red;
 
 } // end sawtooth_blink_pattern()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// sawtooth_fill_pattern(btn_pressed) - 
+//    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
+//
+// btn_pressed - the pushbutton status; pressed==LOW, not-pressed==HIGH
+
+int sawtooth_fill_pattern(int btn_pressed) {
+  int did_blink = LOW;
+  long int blink_phase = sawtooth_phase(btn_pressed);
+
+  if (blink_phase < 0) {
+    sawtooth_pause_pattern(blink_phase);
+    did_blink = LOW;
+  } else {
+    sawtooth_blink_pattern(blink_phase);
+    did_blink = HIGH;
+  }
+
+  return(did_blink);
+} // end sawtooth_fill_pattern
 ```
 
 ## Reminder
