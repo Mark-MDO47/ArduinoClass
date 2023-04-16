@@ -35,6 +35,12 @@ Then, also prior to either **setup()** or **loop()**, some definitions and varia
 #define NUM_CALLS_THEN_REPEAT 14 // the pattern does 14 calls then repeats
 const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
+## TO DO
+To Do
+- just one init call
+- add BlinkWithoutDelay code to loop()
+- add calls to routines to handle button and LEDs
+
 ## Reminder
 The connections do not change; this is just here for a reminder.
 
