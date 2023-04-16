@@ -136,10 +136,10 @@ int handle_leds(int btn_pressed) {
   long int blink_phase = handle_leds_phase(btn_pressed);
 
   if (blink_phase < 0) {
-    handle_leds_pause_pattern(blink_phase);
+    sawtooth_pause_pattern(blink_phase);
     did_blink = LOW;
   } else {
-    handle_leds_blink_pattern(blink_phase);
+    sawtooth_blink_pattern(blink_phase);
     did_blink = HIGH;
   }
   FastLED.show();
@@ -148,7 +148,7 @@ int handle_leds(int btn_pressed) {
 } // end handle_leds()
 ```
 
-NOTE: we will define NUM_CALLS_THEN_REPEAT, handle_leds_pause_pattern() and handle_leds_blink_pattern() when we get to the Sawtooth pattern.
+NOTE: we will define NUM_CALLS_THEN_REPEAT, sawtooth_pause_pattern() and sawtooth_blink_pattern() when we get to the Sawtooth pattern.
 
 ## Sawtooth
 [Top](#notes "Top")<br>
@@ -169,24 +169,24 @@ Just prior to **loop()**, add the new routines for the Sawtooth pattern.
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_leds_pause_pattern(blink_phase) - 
+// sawtooth_pause_pattern(blink_phase) - 
 //    returns: none
 //    fills fastled_array with all CRGB:Black
 //
 // blink_phase - ignored
 
-void handle_leds_pause_pattern(long int blink_phase) {
-} // end handle_leds_pause_pattern()
+void sawtooth_pause_pattern(long int blink_phase) {
+} // end sawtooth_pause_pattern()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_leds_blink_pattern(blink_phase) - 
+// sawtooth_blink_pattern(blink_phase) - 
 //    returns: none
 //    fills fastled_array with next pattern based on blink_phase
 //
 // blink_phase - long int, range 0-13
 
-handle_leds_blink_pattern(long int blink_phase) {
-} // end handle_leds_blink_pattern()
+sawtooth_blink_pattern(long int blink_phase) {
+} // end sawtooth_blink_pattern()
 const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
 
