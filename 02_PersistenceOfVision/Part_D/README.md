@@ -2,159 +2,30 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [Oval](#oval "Oval")
-* [Rainbow](#rainbow "Rainbow")
-* [Hello World](#hello-world "Hello World")
+* [Demo](#demo "Demo")
+* [Serial Port Commands](#serial-port-commands "Serial Port Commands")
 * [Reminder](#reminder "Reminder")
 
-We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
+We will continue with our modified FastLED example program from **Part_C** to perform our **Demo** pattern.
 
-## Oval
+## Demo
 [Top](#notes "Top")<br>
-The idea is to draw ovals, circles, and maybe eyes with our LED Stick.<br>
-Each step left-to-right is a "blink" in the following diagram.
-
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/OvalPattern.png "Image of Oval pattern; each step left-to-right is a blink")
+The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick.<br>
+- https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
 Here is where all our work organizing the code for Part B Sawtooth pays off. Except for changing Sawtooth to Oval, there are very few changes to make.
 
-Copy the Sawtooth.ino file into a directory named Oval with filename Oval.ino, then open it in the Arduino IDE.
+Copy the Oval.ino file into a directory named Demo with filename Demo.ino, then open it in the Arduino IDE.
 
 Now do global replaces with case sensitivity on as shown below:
 | Replace this | With this |
 | --- | --- |
-| sawtooth_ | oval_ |
-| Sawtooth | Oval |
-| SAWTOOTH | OVAL |
+| oval_ | ptrn_ |
 
-That wasn't too bad. Maybe we should have used "pattern_" instead so there wouldn't be so much of this.
+Now for the actual changes. 
 
-Now for the actual changes. First change the count to 34 
-- **#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats**
-
-The oval_blink_pattern() routine now looks like this
-```C
-void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
-  // oval_pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  static unsigned int oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
-  unsigned int bits = oval_pattern_bits[blink_phase];
-
-  for (long int i = 0; i < NUM_LEDS; i++) {
-    if (0 == (0x80 & bits))
-       ptrn_leds[i] = CRGB::Black;
-    else
-       ptrn_leds[i] = CRGB::Red;
-    bits <<= 1;
-  }
-
-} // end oval_blink_pattern()
-```
-
-The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**<br>
-Guess I cannot spell Oval...
-
-## Rainbow
+## Serial Port Commands
 [Top](#notes "Top")<br>
-Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
-
-The answer is YES! They have two routines I know of that would work for this purpose:
-- fill_rainbow
-- fill_gradient
-- see https://fastled.io/docs/3.1/group___colorutils.html
-
-Up until now we have limited the current by having only one of the three color LEDs active.  Now we are going to use colors that have all three colors active. We use BRIGHTMAX and FastLED.setBrightness() to limit the current draw.
-
-Put this up with the other #define statements
-```C
-#define BRIGHTMAX 40 // set to 250 for MUCH brighter
-#define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
-#define FASTLED_RAINBOWHUEROTATE 500 // rotate hues every 500th color pick
-```
-
-Put this immediately after the last #define statement
-```C
-static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
-static uint8_t gHue = 0; // rotating "base color"
-static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
-static uint16_t next_rainbow = 0;
-```
-
-And put this into **setup()** after **FastLED.addLeds**
-```C
-  FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
-  fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
-```
-Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_leds[i] = CRGB::Red;** with the following
-```C
-    if (0 == (0x80 & bits))
-       ptrn_leds[i] = CRGB::Black;
-    else {
-      ptrn_leds[i] = rainbow_array[next_rainbow++];
-      if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
-      gHue_rotate_countdown -= 1;
-      if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
-        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
-        gHue += 4; // rotating "base color"
-        fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
-      }
-    }
-```
-
-The Oval.ino corresponding to the above is at GIT tag **OpalRainbow**<br>
-Still cannot spell Oval...
-
-## Hello World
-[Top](#notes "Top")<br>
-I wasn't really planning on this but I suddenly realized I could turn this into a "Hello World!" program.
-
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HelloWorldPattern.png "Image of Oval Hello World pattern; each step left-to-right is a blink")
-
-Change
-```C
-// Mark-MDO47 Oval pattern
-#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
-```
-
-... to
-```C
-// Mark-MDO47 Oval pattern or Hello pattern
-// #define PATTERN_OVAL 1
-#define PATTERN_HELLO 1
-
-#ifdef PATTERN_HELLO
-#define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats
-static unsigned int  pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
-#else // PATTERN_OVAL
-#define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
-static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
-#endif // PATTERN_HELLO
-```
-
-Change
-```C
-    current_phase %= OVAL_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
-```
-
-... to
-```C
-    current_phase %= PTRN_CALLS_THEN_REPEAT; // loop through the number of calls before repeat
-```
-
-Change
-```C
-  // oval_pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  static unsigned int oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
-  unsigned int bits = oval_pattern_bits[blink_phase];
-```
-
-... to
-```C
-  // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  unsigned int bits = pattern_bits[blink_phase];
-```
-
-The Oval.ino corresponding to the above is at GIT tag **OvalHelloWorld**
-Finally learned how to spell Oval...
 
 ## Reminder
 [Top](#notes "Top")<br>
