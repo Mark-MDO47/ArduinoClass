@@ -3,7 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Oval](#oval "Oval")
-* [Variation](#variation "Variation")
+* [Rainbow](#rainbow "Rainbow")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
@@ -51,7 +51,8 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 
 The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**
 
-## Variation
+## Rainbow
+[Top](#notes "Top")<br>
 Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
 
 The answer is YES! They have two routines I know of that would work for this purpose:
@@ -83,13 +84,17 @@ And put this into **setup()** after **FastLED.addLeds**
 ```
 Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_leds[i] = CRGB::Red;** with the following
 ```C
-    ptrn_leds[i] = rainbow_array[next_rainbow++];
-    if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
-    gHue_rotate_countdown -= 1;
-    if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
-      gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE:
-      gHue += 4; // rotating "base color"
-      fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+    if (0 == (0x80 & bits))
+       ptrn_leds[i] = CRGB::Black;
+    else {
+      ptrn_leds[i] = rainbow_array[next_rainbow++];
+      if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+      gHue_rotate_countdown -= 1;
+      if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE:
+        gHue += 4; // rotating "base color"
+        fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+      }
     }
 ```
 
