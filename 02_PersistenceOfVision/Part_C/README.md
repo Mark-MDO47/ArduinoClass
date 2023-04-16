@@ -98,6 +98,8 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
     }
 ```
 
+The Oval.ino corresponding to the above is at GIT tag **OpalRainbow**
+
 ## Reminder
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
