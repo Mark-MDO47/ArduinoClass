@@ -170,24 +170,33 @@ Just prior to **loop()**, add the new routines for the Sawtooth pattern.
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // sawtooth_pause_pattern(blink_phase) - 
-//    returns: none
 //    fills fastled_array with all CRGB:Black
+//    returns: none
 //
 // blink_phase - ignored
 
 void sawtooth_pause_pattern(long int blink_phase) {
+   for (long int i = 0; i < NUM_LEDS; i++) {
+      fastled_array[i] = CRGB:Black;
+   }
 } // end sawtooth_pause_pattern()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // sawtooth_blink_pattern(blink_phase) - 
-//    returns: none
 //    fills fastled_array with next pattern based on blink_phase
+//    returns: none
 //
 // blink_phase - long int, range 0-13
 
-sawtooth_blink_pattern(long int blink_phase) {
+void sawtooth_blink_pattern(long int blink_phase) {
+   const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
+   long int i;
+
+   for (i = 0; i < NUM_LEDS; i++) {
+      fastled_array[i] = CRGB:Black;
+   }
+   fastled_array[led_on_array_per_call[blink_phase]] = CRGB:Red;
 } // end sawtooth_blink_pattern()
-const int led_on_array_per_call[NUM_CALLS_THEN_REPEAT] = { 0, 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
 ```
 
 ## Reminder
