@@ -99,7 +99,7 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
 ## LEDs
 [Top](#notes "Top")<br>
 We create the routine to handle the LED Stick.<br>
-This is a more complex routine, since we want it to be able to handle the Sawtooth pattern and the other patterns in Part-C and Part-D.
+We want this routine to be able to handle the Sawtooth pattern and the other patterns in Part-C and Part-D.
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ int handle_leds(int btn_pressed) {
 } // end handle_leds()
 ```
 
-NOTE: we will define SAWTOOTH_CALLS_THEN_REPEAT, sawtooth_pause_pattern() and sawtooth_blink_pattern() when we get to the Sawtooth pattern.
+NOTE: we will define sawtooth_fill_pattern() when we get to the Sawtooth pattern.
 
 ## Sawtooth
 [Top](#notes "Top")<br>
@@ -136,7 +136,7 @@ Prior to either **setup()** or **loop()**, some definitions to control our code.
 #define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does 14 calls then repeats
 ```
 
-Just prior to **loop()**, add the new routines for the Sawtooth pattern.
+Just prior to **handle_leds()**, add the new routines for the Sawtooth pattern.
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
