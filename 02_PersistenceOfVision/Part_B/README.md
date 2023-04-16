@@ -7,11 +7,11 @@
 * [Sawtooth](#sawtooth "Sawtooth")
 * [Reminder](#reminder "Reminder")
 
-We will use a slightly modified FastLED example program **Sawtooth** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
+We will continue with our modified FastLED example program from **Part_A** to perform our **Sawtooth** pattern.
 
 ## Cleanup
 [Top](#notes "Top")<br>
-Copy the file from Part-A and put it in a directoy named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE.
+Copy the file from Part-A and put it in a directory named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE.
 
 The first thing we should do is get rid of the commented-out unused calls to **FastLED.addLeds** in the **setup()** routine. These are good documentation of how to make the calls for lots of different types of RGB LEDs, but they just clutter up our code.
 
