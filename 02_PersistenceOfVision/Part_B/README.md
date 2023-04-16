@@ -48,6 +48,13 @@ void loop() {
 } // end loop()
 ```
 
+Finally, we change the LED array name from leds to fastled_array.<br>
+Partially I just want you to be aware that the name is arbitrary. Also I want you to see you could have multiple fastled_array data structures to build the patterns; we just need to remember that for any I/O pin the data will always come from the array passed in the **FastLED.addLeds** call. Thus if other arrays are used to build the pattern, it is necessary to copy the final pattern into that array associated with the I/O pin.
+
+We can do a global search and replace in the Arduino IDE with one restriction. The IDE does allow the search/replace to be case sensitive but it does not allow it to replace only whole words or complete matches. If desired another editor could be used for this step, or else the "Find" and "Replace and Find" buttons can be used to ensure only desired changes are made.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Replace_leds_w_fastled_array.png "Image of replace dialog to change leds to fastled_array")
+
 ## Button
 [Top](#notes "Top")<br>
 We create the routine to handle the button.<br>
