@@ -44,8 +44,8 @@ For our purposes, we will use **Serial.available()** to detect when character(s)
 The basic flow is as follows. We make some definitions up in the **#define** and **variable definition** sections early in the code.
 
 ```C
-#define SERIAL_MAX_INPUT_LEN 250 // maximum number of characters to accept prior to calling it quits
-#define SERIAL_INPUT_BUF_LEN 255 // size of our actual buffer; room for terminating '\0' and a little extra
+#define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept prior to calling it quits
+#define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
 static int pattern_num = 0; // this is the result of handling commands - to change this number
 ```
@@ -94,9 +94,9 @@ void handle_serial_input() {
     } else if (serial_input_flushing) {
       if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break;
     } else {
-      if SERIAL_MAX_INPUT_LEN <= (serial_input_next_char_idx+1)) {
+      if (SERIAL_MAX_INPUT_LEN <= (serial_input_next_char_idx+1)) {
         serial_input_flushing = 1;
-      } else {
+      } else if (('0' <= inchar) && ('9' >= inchar)) {
         serial_input_buf[serial_input_next_char_idx++] = inchar;
       }
       if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break;
