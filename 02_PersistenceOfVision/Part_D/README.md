@@ -25,7 +25,57 @@ Now do global replaces with case sensitivity on as shown below:
 Now for the actual changes.
 
 Looking at the code for DemoReel100:
-- 
+- We know we do not need to use the line that says **FASTLED_USING_NAMESPACE** but it is OK to use it
+- We want the line **#define FRAMES_PER_SECOND  120**
+- We do not need anything from the **setup()** routine
+- We copy all the definitions and variables between **setup()** and **loop()** and put them at the end of our definitions and variables just before our **setup()**
+- We copy everything from **void rainbow()** to the end and put it before our **setup()**
+
+In **setup()** we add these lines near the end:
+```C
+  Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+  Serial.println(""); // print a blank line in case there is some junk from power-on
+  Serial.println("ArduinoClass init...");
+  Serial.println("Commands:");
+  Serial.println("0: rainbow");
+  Serial.println("1: rainbowWithGlitter");
+  Serial.println("2: confetti");
+  Serial.println("3: sinelon");
+  Serial.println("4: juggle");
+  Serial.println("5: bpm");
+  Serial.println("");
+```
+
+Our new **loop()** now looks like this (everything from DemoReel100 loop() except the last line):
+```C
+void loop() {
+  // Call the current pattern function once, updating the 'leds' array
+  gPatterns[gCurrentPatternNumber]();
+
+  // send the 'leds' array out to the actual LED strip
+  FastLED.show();  
+  // insert a delay to keep the framerate modest
+  FastLED.delay(1000/FRAMES_PER_SECOND); 
+
+  // do some periodic updates
+  EVERY_N_MILLISECONDS( 20 ) { gHue++; } // slowly cycle the "base color" through the rainbow
+}
+```
+
+What is this? I thought we would never call **delay()** in the **loop()**?
+  - the EVERY_N_MILLISECONDS macro from FastLED uses the millisecond counter behind the scenes
+  - **FastLED.delay()** does multiple **FastLED.show()** calls while delaying
+    - see https://github.com/FastLED/FastLED/issues/1206
+    - They do that so that the dithering algorithms can get more accurate colors
+
+I chose to go ahead with this approach because
+- FRAMES_PER_SECOND is 120; the delay won't be very long
+- We don't have anything that is that time critical
+- Everybody loves beautiful colors
+- And besides, rules are made to be broken
 
 ## Serial Port Commands
 [Top](#notes "Top")<br>
@@ -51,7 +101,6 @@ The basic flow is as follows. We make some definitions up in the **#define** and
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
-static int pattern_num = 0; // this is the result of handling commands - to change this number
 ```
 
 Before **setup()** we add these lines. (OK: not blindingly obvious but I will try to put in comments. Handling unformatted input from humans is tricky! If you can see how to break it up lets talk about it!)
@@ -67,8 +116,10 @@ Before **setup()** we add these lines. (OK: not blindingly obvious but I will tr
 // if input number is valid, store into pattern_num
 
 void handle_serial_input_command(char * inbuf) {
-   long int tmp = atoi(inbuf); 
-   pattern_num = 
+   long int tmp = atoi(inbuf);
+   if ((0 <= tmp) && (PATTERN_MAX_NUM >= tmp)) {
+     gCurrentPatternNumber = tmp;
+   }
 } // end handle_serial_input_command()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -117,26 +168,10 @@ void handle_serial_input() {
 } // end handle_serial_input()
 ```
 
-In **setup()** we add these lines near the end:
-
+In **setup()** we add these lines just before the first **Serial.println**
 ```C
-  Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
-
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
   while (Serial.available()) Serial.read(); // clear any startup junk from the serial queue
   memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer; good idea for zero-terminated strings
-  Serial.println(""); // print a blank line in case there is some junk from power-on
-  Serial.println("ArduinoClass init...");
-  Serial.println("Commands:");
-  Serial.println("0: rainbow");
-  Serial.println("1: rainbowWithGlitter");
-  Serial.println("2: confetti");
-  Serial.println("3: sinelon");
-  Serial.println("4: juggle");
-  Serial.println("5: bpm");
-  Serial.println("");
 ```
 
 In **loop()** near the front
