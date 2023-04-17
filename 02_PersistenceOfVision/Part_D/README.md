@@ -74,7 +74,7 @@ void handle_serial_input_command(char * inbuf) {
 // Only valid characters in command are decimal digits
 //
 // serial_input_buf - where to store the serial input command
-#define SERIAL_MAX_INPUT_INPUT_EACH_CALL 5 // maximum number of characters to read each call
+#define SERIAL_MAX_INPUT_INPUT_EACH_CALL 6 // maximum number of characters to read each call
 
 void handle_serial_input() {
   static int serial_input_flushing = 0;
