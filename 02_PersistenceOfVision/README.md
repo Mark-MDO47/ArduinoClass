@@ -15,7 +15,7 @@
 Louis Le Prince is generally credited to be the first person to record and show moving pictures. Yes, there is actually something that Thomas Edison did NOT invent.
 - https://en.wikipedia.org/wiki/Louis_Le_Prince
 
-The effect that allows us to enjoy movies is known as the persistence of vision: the human eye continues to "see" light for a short time after the light stops. You can try this by simply closing your eyes and seeing spots where the light was brightest. Over time it was discovered that a playback speed of 24 frames per second was fast enough to make the pictures appear to move.
+The effect that allows us to enjoy movies is known as the persistence of vision: the human vision system continues to "see" light for a short time after the light stops. You can try this by simply closing your eyes and seeing spots where the light was brightest. Over time it was discovered that a playback speed of 24 frames per second was fast enough to make the pictures appear to move.
 
 In this exercise we will build on the blinking LED exercise to create a simple persistence of vision wand consisting of 8 individually addressable color LEDs using the WS2811/WS2812B serial protocol.
 
