@@ -31,6 +31,7 @@ Looking at the code for DemoReel100:
 - We do not need anything from the **setup()** routine
 - We copy all the definitions and variables **except gHue** between **setup()** and **loop()** and put them just before our **setup()**
 - We copy everything from **void rainbow()** to the end and put it before our **setup()**
+- Change our variable name **fastled_array** to **leds**
 
 In **setup()** we add these lines near the end:
 ```C
