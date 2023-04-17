@@ -140,6 +140,9 @@ As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other 
 
 Here is what we do before **setup()**
 - We include the FastLED file (**#include <FastLED.h>**)
+- Either do or don't include a line that says FASTLED_USING_NAMESPACE
+  - NOTE: some of the FastLED examples use the macro FASTLED_USING_NAMESPACE. This is OK to use but does nothing on the Arduino Nano; it only takes effect on spark platforms.
+  - See https://github.com/FastLED/FastLED/issues/574
 - We tell it what pin is to be used for serial communication
   - We are not using the built-in USB serial port for FastLED; FastLED will take care of sending the serial data on a digital I/O pin for us.
 - We tell it how many LEDs are in the string attached to that pin
