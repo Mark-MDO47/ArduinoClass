@@ -29,7 +29,7 @@ Looking at the code for DemoReel100:
 - We know we do not need to use the line that says **FASTLED_USING_NAMESPACE** but it is OK to use it
 - We want the line **#define FRAMES_PER_SECOND  120**
 - We do not need anything from the **setup()** routine
-- We copy all the definitions and variables between **setup()** and **loop()** and put them just before our **setup()**
+- We copy all the definitions and variables **except gHue** between **setup()** and **loop()** and put them just before our **setup()**
 - We copy everything from **void rainbow()** to the end and put it before our **setup()**
 
 In **setup()** we add these lines near the end:
