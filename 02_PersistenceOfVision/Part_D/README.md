@@ -67,15 +67,19 @@ void loop() {
 
 What is this? I thought we would never call **delay()** in the **loop()**?
   - the EVERY_N_MILLISECONDS macro from FastLED uses the millisecond counter behind the scenes
-  - **FastLED.delay()** does multiple **FastLED.show()** calls while delaying
-    - see https://github.com/FastLED/FastLED/issues/1206
-    - They do that so that the dithering algorithms can get more accurate colors
+  - **FastLED.delay()** does multiple **FastLED.show()** calls while delaying; it is not **just** a delay()
+    - They do that so that FastLED dithering algorithms can generate better looking colors
+    - See https://github.com/FastLED/FastLED/issues/1206
+    - See https://en.wikipedia.org/wiki/Dither
+    - This gave me trouble in my FPGA project https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW
 
 I chose to go ahead with this approach because
 - FRAMES_PER_SECOND is 120; the delay won't be very long
 - We don't have anything that is that time critical
 - Everybody loves beautiful colors
 - And besides, rules are made to be broken
+
+In a following project we will be using a sonar range sounder which will throw a monkey wrench into this scheme. But for now, enjoy the show!
 
 ## Serial Port Commands
 [Top](#notes "Top")<br>
