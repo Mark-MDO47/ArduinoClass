@@ -124,7 +124,9 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 // constants won't change:
 const long interval = 40;           // interval at which to blink (milliseconds); 25 blinks per second
 
-  fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+pinMode(BUTTON_PIN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+
+fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
 ```
 
 Remove the following routines:
