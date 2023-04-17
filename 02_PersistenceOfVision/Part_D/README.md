@@ -50,7 +50,7 @@ static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for termina
 static int pattern_num = 0; // this is the result of handling commands - to change this number
 ```
 
-Before **setup()** we add these lines:
+Before **setup()** we add these lines (OK: not blindingly obvious but I will try to put in comments. If you can see how to break it up lets talk about it!)
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,22 +83,28 @@ void handle_serial_input() {
   long int inchar_count = 0;
 
   while (Serial.available()) {
+    // whether saving the characters or flushing the input queue, we always read characters.
     inchar = (char) Serial.read();
     inchar_count += 1;
     if (inChar == '\n') {
+      // again in either case, we process command if we see end of line
       handle_serial_input_command(serial_input_buf);
       memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer
       serial_input_next_char_idx = 0; // where to store the next character
       serial_input_flushing = 0; // no longer flushing
-      break;
+      break; // process only one command, return back to loop for next command
     } else if (serial_input_flushing) {
-      if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break;
+      if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break; // if flushing and max chars consumed, return back to loop()
     } else {
+      // here we are storing characters
       if (SERIAL_MAX_INPUT_LEN <= (serial_input_next_char_idx+1)) {
+        // already stored the max number of characters, now we are flushing
         serial_input_flushing = 1;
       } else if (('0' <= inchar) && ('9' >= inchar)) {
+        // room to store character and character is valid, store it
         serial_input_buf[serial_input_next_char_idx++] = inchar;
       }
+      // check if max chars consumed; if so return back to loop(), if more chars allowed, stay in our "while" loop
       if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break;
     } // end either process or flush characters
   } // end while serial input data available
