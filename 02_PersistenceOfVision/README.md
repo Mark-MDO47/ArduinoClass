@@ -46,6 +46,7 @@ There is a serial data protocol used to control this string of 8 LEDs.
 - That is it! There are some more details on this protocol in [Resources](#resources "Resources") for the curious. 
 
 I typically use the FastLED library to control these LEDs. It is a powerful library, but simple things are simple.
+- One thing to note is that mixing three colors of LEDs (RBG) is baked deeply into the FastLED library. It appears to be quite difficult to adjust it to handle other combinations such as RBGW.
 
 Because we are already using the USB serial port for debugging, we will dedicate a Digital pin as the "software" serial data line. FastLED will take care of using the Digital pin to send a serial data stream.
 
