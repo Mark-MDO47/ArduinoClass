@@ -10,7 +10,7 @@ We will continue with our modified FastLED example program from **Part_C** to pe
 
 ## Demo
 [Top](#notes "Top")<br>
-The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick.<br>
+The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick, and use USB Serial commands to choose the pattern.<br>
 - https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
 Here is where all our work organizing the code for Part B Sawtooth pays off. Except for changing Sawtooth to Oval, there are very few changes to make.
