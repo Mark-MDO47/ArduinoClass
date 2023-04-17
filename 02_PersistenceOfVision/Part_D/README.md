@@ -22,7 +22,10 @@ Now do global replaces with case sensitivity on as shown below:
 | --- | --- |
 | oval_ | ptrn_ |
 
-Now for the actual changes. 
+Now for the actual changes.
+
+Looking at the code for DemoReel100:
+- 
 
 ## Serial Port Commands
 [Top](#notes "Top")<br>
@@ -46,6 +49,7 @@ The basic flow is as follows. We make some definitions up in the **#define** and
 ```C
 #define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
+#define PATTERN_MAX_NUM 5 // 0-5 are patterns
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
 static int pattern_num = 0; // this is the result of handling commands - to change this number
 ```
@@ -63,6 +67,8 @@ Before **setup()** we add these lines. (OK: not blindingly obvious but I will tr
 // if input number is valid, store into pattern_num
 
 void handle_serial_input_command(char * inbuf) {
+   long int tmp = atoi(inbuf); 
+   pattern_num = 
 } // end handle_serial_input_command()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,8 +106,8 @@ void handle_serial_input() {
       if (SERIAL_MAX_INPUT_LEN <= (serial_input_next_char_idx+1)) {
         // already stored the max number of characters, now we are flushing
         serial_input_flushing = 1;
-      } else if (('0' <= inchar) && ('9' >= inchar)) {
-        // room to store character and character is valid, store it
+      } else if (isDigit(inchar)) {
+        // room to store character and character is a digit, store it
         serial_input_buf[serial_input_next_char_idx++] = inchar;
       }
       // check if max chars consumed; if so return back to loop(), if more chars allowed, stay in our "while" loop
@@ -122,7 +128,15 @@ In **setup()** we add these lines near the end:
   while (Serial.available()) Serial.read(); // clear any startup junk from the serial queue
   memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer; good idea for zero-terminated strings
   Serial.println(""); // print a blank line in case there is some junk from power-on
-  Serial.println(F("ArduinoClass init..."));
+  Serial.println("ArduinoClass init...");
+  Serial.println("Commands:");
+  Serial.println("0: rainbow");
+  Serial.println("1: rainbowWithGlitter");
+  Serial.println("2: confetti");
+  Serial.println("3: sinelon");
+  Serial.println("4: juggle");
+  Serial.println("5: bpm");
+  Serial.println("");
 ```
 
 In **loop()** near the front
