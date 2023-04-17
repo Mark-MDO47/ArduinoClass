@@ -3,6 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Demo](#demo "Demo")
+* [Cleanup](#cleanup "Cleanup")
 * [Serial Port Commands](#serial-port-commands "Serial Port Commands")
 * [Reminder](#reminder "Reminder")
 
@@ -81,9 +82,54 @@ I chose to go ahead with this approach because
 
 In a following project we will be using a sonar range sounder which will throw a monkey wrench into this scheme. But for now, enjoy the show!
 
+## Cleanup
+[Top](#notes "Top")<br>
+Putting in the code for DemoReel100, it becomes obvious that the structure of our program has changed and there are parts that are no longer needed.
+- We will not be using the button
+- We will not be using the patterns from Part-C and Part-D
+- We will not be using the counters for milliseconds from BlinkWithoutDelay
+
+Remove the following:
+```C
+#define BUTTON_PIN 3 // Mark-MDO47 we use pin 3 for button
+```
+
+Remove the following, along with any other patterns you might have added in Oval.
+```C
+// #define PATTERN_OVAL 1
+#define PATTERN_HELLO 1
+
+#ifdef PATTERN_HELLO
+#define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats
+static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
+#else // PATTERN_OVAL
+#define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
+#endif // PATTERN_HELLO
+```
+
+Remove the following:
+```C
+#define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
+#define FASTLED_RAINBOWHUEROTATE 500 // rotate hues every 500th color pick
+
+static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+static uint16_t next_rainbow = 0;
+
+// Generally, you should use "unsigned long" for variables that hold time
+// The value will quickly become too large for an int to store
+unsigned long previousMillis = 0;        // will store last time LED was updated
+```
+
+Remove the following routines:
+- ptrn_phase()
+- ptrn_blink_pattern()
+- ptrn_fill_pattern()
+- handle_leds()
+- handle_button()
+
 ## Serial Port Commands
 [Top](#notes "Top")<br>
-
 It is possible to use the built-in capability **serialEvent()**, which gets called automagically after **loop()** completes. Except the documentation says it doesn't happen for all Arduinos. And the documentation and sample program are really old.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadSerialEvent.png "Image of IDE loading SerialEvent example")
