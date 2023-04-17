@@ -50,7 +50,7 @@ static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for termina
 static int pattern_num = 0; // this is the result of handling commands - to change this number
 ```
 
-Before **setup()** we add these lines (OK: not blindingly obvious but I will try to put in comments. If you can see how to break it up lets talk about it!)
+Before **setup()** we add these lines. (OK: not blindingly obvious but I will try to put in comments. Handling unformatted input from humans is tricky! If you can see how to break it up lets talk about it!)
 
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
