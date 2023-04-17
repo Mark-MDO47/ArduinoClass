@@ -105,7 +105,7 @@ void handle_serial_input() {
 } // end handle_serial_input()
 ```
 
-In **setup()** we add these lines near the start:
+In **setup()** we add these lines near the end:
 
 ```C
   Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
