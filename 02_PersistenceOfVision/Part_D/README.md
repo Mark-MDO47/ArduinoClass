@@ -75,7 +75,7 @@ What is this? I thought we would never call **delay()** in the **loop()**?
 
 I chose to go ahead with this approach because
 - FRAMES_PER_SECOND is 120; the delay won't be very long
-- We don't have anything that is that time critical
+- We don't have anything that is super time critical
 - Everybody loves beautiful colors
 - And besides, rules are made to be broken
 
