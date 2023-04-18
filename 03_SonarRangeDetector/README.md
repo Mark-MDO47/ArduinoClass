@@ -1,8 +1,17 @@
 # NOTES
 
-## Speed of Sound
+**Table of Contents**
+* [Top](#notes "Top")
+* [HC-SR04 Ultrasonic Range Finder](#hc\-sr04-ultrasonic-range-finder "HC-SR04 Ultrasonic Range Finder")
+* [Speed of Sound](#speed-of-sound "Speed of Sound")
+* [Pros and Cons of HC-SR04](#pros-and-cons-of-hc\-sr04 "Pros and Cons of HC-SR04")
+* [Theremin](#theremin "Theremin")
+* [Cleanup First](#cleanup-first "Cleanup First")
+* [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
+* [Reminder](#reminder "Reminder")
 
-## HC-SR04 Ultrasonic Sensor
+
+## HC-SR04 Ultrasonic Range Finder
 I will be providing the parts to be used in this class for four workstations.
 
 The HC-SR04 can be found here (for example) for less than $2:
@@ -35,6 +44,7 @@ This delay may vary, but is about 200mSec on the modules that I have measured.
 This is required to prevent the module from hanging if there is no return echo.
 ```
 
+## Speed of Sound
 From https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml 
 ```
 Molecules at higher temperatures have more energy, thus they can vibrate faster. 
@@ -49,7 +59,7 @@ Data from https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml
 | 21 | 69.8 | 343.6 | 13,528 | 1,127 |
 | -1 | 30.2 | 330.4 | 13,008 | 1,084 |
 
-### Pros and Cons of HC-SR04
+## Pros and Cons of HC-SR04
 
 Many people have noted pros and cons of the HC-SR04, such as
 - https://github.com/shurik179/DualSonar
@@ -83,8 +93,8 @@ This code does the typical single-threaded wait for the return ECHO as seen in t
 
 This code does have a **setTimeout()** function if we want to prevent extremely long delays. The manual seems to imply that we would not want to sense the HC-SR04 more often than once every 60 milliseconds.
 
-## Theremin controller
-We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position.
+## Theremin
+We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position. Theremin was the English spelling of the last name of the inventor of the musical instrument.
 - https://en.wikipedia.org/wiki/Theremin
 
 Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the theremin on NBC Radio in 1930.
@@ -93,6 +103,28 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 
 Essentially, we will start with 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
 
-## Resources
+## Cleanup First
+This time we will delete the old code first, then add the new code.
 
+Copy 02 Part-D Demo.ino into a directory named Theremin and name the file Theremin.ino.
 
+We delete all the code relating to the USB serial port input; we will leave the code that prints in case we need it for debugging.
+
+## Ultrasonic Range Finder Code
+
+## Reminder
+[Top](#notes "Top")<br>
+The connections do not change; this is just here for a reminder.
+
+Remember:
+- red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
+- black wire is for Ground between Arduino and LED stick (GND)
+- white wire is for serial_data output from Arduino to LED stick (IN)
+
+Here is a protosupplies.com image of the LED stick detail showing labels
+
+![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
+
+Here is a reminder of our desired wiring
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
