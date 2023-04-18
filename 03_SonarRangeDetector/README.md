@@ -151,6 +151,43 @@ Picture of Arduino IDE starting Library Manager<br>
 Picture of Arduino IDE Library Manager showing Ultrasonic library is installed<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Ultrasonic.png "Image of Library Manager showing Ultrasonic is installed")
 
+Then put the following immediately either before or after the **#include "FastLED.h"**
+```C
+#include "Ultrasonic.h"
+```
+
+Near the other pin definitions place the following
+```C
+#define ULTRA_TRIG_PIN 13 // HC-SR04 Trigger digital pin
+#define ULTRA_ECHO_PIN 12 // HC-SR04 Trigger echo pin
+#define ULTRA_CM_PER_REGION 3 // HC-SR04 every 3 CM is a different pattern
+#define ULTRA_IGNORE_INITIAL_CM 3 // HC-SR04 ignore the first 3 CM since valid range starts at 2 CM
+```
+
+Before **setup()**
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_ultra() - process HC-SR04 data.
+//    returns: pattern number 0 <= num <= PATTERN_MAX_NUM
+//
+
+int handle_ultra() {
+  int pattern; // integer pattern number from 0 thru 5 inclusive
+  // get the range reading from the Ultrasonic sensor in centimeters
+  int ultra_dist=(ultrasonic.Ranging(CM));
+  
+  ultra_dist -= ULTRA_IGNORE_INITIAL_CM;
+  if (ultra_dist < 0) ultra_dist = 0;
+  pattern = ultra_dist / ULTRA_CM_PER_REGION;
+  if (pattern > 5) pattern = 5;
+
+  return(pattern);
+} // end handle_ultra()
+```
+
+```C
+  gCurrentPatternNumber = handle_ultra();
+```
 
 ## Reminder
 [Top](#notes "Top")<br>
