@@ -138,6 +138,12 @@ Remove the following routines:
 - handle_leds()
 - handle_button()
 
+If needed, move the following to just before **setup()**
+```C
+// List of patterns to cycle through.  Each is defined as a separate function below.
+typedef void (*SimplePatternList[])();
+SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm };
+```
 ## Serial Port Commands
 [Top](#notes "Top")<br>
 It is possible to use the built-in capability **serialEvent()**, which gets called automagically after **loop()** completes. Except the documentation says it doesn't happen for all Arduinos. And the documentation and sample program are really old.
