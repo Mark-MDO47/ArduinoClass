@@ -5,6 +5,7 @@
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
+* [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
@@ -155,6 +156,13 @@ Change
 
 The Oval.ino corresponding to the above is at GIT tag **OvalHelloWorld**
 Finally learned how to spell Oval...
+
+## Sawtooth Revisited
+
+As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 3 or 4. It will be good practice with hexadecimal and binary arithmetic.
+
+When you have done this, compare it with my implementation
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/Oval/Oval.ino
 
 ## Reminder
 [Top](#notes "Top")<br>
