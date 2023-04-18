@@ -7,6 +7,10 @@ I will be providing the parts to be used in this class for four workstations.
 
 The HC-SR04 can be found here (for example) for less than $2:
 - https://protosupplies.com/product/hc-sr04-ultrasonic-range-finder-module/
+- https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
+- https://www.tutorialspoint.com/arduino/arduino_ultrasonic_sensor.htm
+
+This is typically used to determine ranges of objects from 2cm - 400cm non-contact.
 
 Below is a picture of this detector from the protosupplies.com website:
 
@@ -64,7 +68,20 @@ There are some ways to mitigate these probems, such as using interrupts instead 
 or using NewPing library which allows one to use only one pin per sensor.
 ```
 
-Fortunately, the delay from the HC-SR04 gets shorter as the distance of the detected object gets closer. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function.
+Fortunately, the delay from the HC-SR04 gets shorter as the distance of the detected object gets closer. In this project we will use the HC-SR04 for short distances, and the long 200 millisecond timeout if there is no detected object won't bother us too much since we won't have time critical tasks when that happens. Thus we can use the standard PulseIn() function or equivalent.
+
+In fact we will use the Ultrasonic library to work with this sensor:
+- https://www.arduinolibraries.info/libraries/ultrasonic
+
+This code does the typical single-threaded wait for the return ECHO as seen in this code snippet:
+```C
+  previousMicros = micros();
+  while(!digitalRead(echo) && (micros() - previousMicros) <= timeout); // wait for the echo pin HIGH or timeout
+  previousMicros = micros();
+  while(digitalRead(echo)  && (micros() - previousMicros) <= timeout); // wait for the echo pin LOW or timeout
+```
+
+This code does have a **setTimeout()** function if we want to prevent extremely long delays
 
 ## Theremin controller
 We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position.
@@ -78,6 +95,4 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 
 ## Resources
 
-- Wikipedia - Speed of Sound
-- Wikipedia - Theremin
-- HC-SR04 - specifications
+
