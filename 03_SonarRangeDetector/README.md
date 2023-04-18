@@ -187,7 +187,7 @@ int handle_ultra() {
 
 Insert this at the start of **loop()**
 ```C
-  gCurrentPatternNumber = handle_ultra();
+  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
 ```
 
 ## Reminder
