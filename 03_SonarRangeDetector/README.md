@@ -108,7 +108,39 @@ This time we will delete the old code first, then add the new code.
 
 Copy 02 Part-D Demo.ino into a directory named Theremin and name the file Theremin.ino.
 
-We delete all the code relating to the USB serial port input; we will leave the code that prints in case we need it for debugging.
+We delete all the code relating to the USB serial port input; we will leave the code that prints in case we need it for debugging.<br>
+Delete these lines
+```C
+#define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
+#define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
+
+static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
+```
+
+Delete everything for routines
+- handle_serial_input_command()
+- handle_serial_input()
+
+Delete these lines in **setup()**
+```C
+  while (Serial.available()) Serial.read(); // clear any startup junk from the serial queue
+  memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer; good idea for zero-terminated strings
+
+  Serial.println("Commands:");
+  Serial.println("0: rainbow");
+  Serial.println("1: rainbowWithGlitter");
+  Serial.println("2: confetti");
+  Serial.println("3: sinelon");
+  Serial.println("4: juggle");
+  Serial.println("5: bpm");
+  Serial.println("");
+```
+
+Delete these lines in **loop()**
+```C
+  // process USB serial command characters if present
+  if (Serial.available()) handle_serial_input();
+```
 
 ## Ultrasonic Range Finder Code
 
