@@ -209,7 +209,7 @@ void handle_serial_input() {
     // whether saving the characters or flushing the input queue, we always read characters.
     inchar = (char) Serial.read();
     inchar_count += 1;
-    if (inChar == '\n') {
+    if (inchar == '\n') {
       // again in either case, we process command if we see end of line
       handle_serial_input_command(serial_input_buf);
       memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer
