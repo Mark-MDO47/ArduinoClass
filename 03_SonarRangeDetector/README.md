@@ -143,6 +143,14 @@ Delete these lines in **loop()**
 ```
 
 ## Ultrasonic Range Finder Code
+First we ensure that the Ultrasonic library is installed in the Arduino IDE
+
+Picture of Arduino IDE starting Library Manager<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_ManageLibraries.png "Image of IDE starting Library Manager")
+
+Picture of Arduino IDE Library Manager showing Ultrasonic library is installed<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Ultrasonic.png "Image of Library Manager showing Ultrasonic is installed")
+
 
 ## Reminder
 [Top](#notes "Top")<br>
