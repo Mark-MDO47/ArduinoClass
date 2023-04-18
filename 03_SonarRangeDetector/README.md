@@ -158,8 +158,8 @@ Then put the following immediately either before or after the **#include "FastLE
 
 Near the other pin definitions place the following
 ```C
-#define ULTRA_TRIG_PIN 13 // HC-SR04 Trigger digital pin
-#define ULTRA_ECHO_PIN 12 // HC-SR04 Trigger echo pin
+#define ULTRA_TRIG_PIN 12 // HC-SR04 Trigger digital pin
+#define ULTRA_ECHO_PIN 10 // HC-SR04 Trigger echo pin
 #define ULTRA_CM_PER_REGION 3 // HC-SR04 every 3 CM is a different pattern
 #define ULTRA_IGNORE_INITIAL_CM 3 // HC-SR04 ignore the first 3 CM since valid range starts at 2 CM
 ```
