@@ -185,6 +185,7 @@ int handle_ultra() {
 } // end handle_ultra()
 ```
 
+Insert this at the start of **loop()**
 ```C
   gCurrentPatternNumber = handle_ultra();
 ```
