@@ -81,7 +81,7 @@ This code does the typical single-threaded wait for the return ECHO as seen in t
   while(digitalRead(echo)  && (micros() - previousMicros) <= timeout); // wait for the echo pin LOW or timeout
 ```
 
-This code does have a **setTimeout()** function if we want to prevent extremely long delays
+This code does have a **setTimeout()** function if we want to prevent extremely long delays. The manual seems to imply that we would not want to sense the HC-SR04 more often than once every 60 milliseconds.
 
 ## Theremin controller
 We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position.
@@ -91,7 +91,7 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Theramin-Alexandra-Stepanoff-1930.jpg/220px-Theramin-Alexandra-Stepanoff-1930.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
 
-
+Essentially, we will start with 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
 
 ## Resources
 
