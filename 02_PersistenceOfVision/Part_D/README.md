@@ -85,7 +85,7 @@ In a following project we will be using a sonar range sounder which will throw a
 
 ## Cleanup
 [Top](#notes "Top")<br>
-Putting in the code for DemoReel100, it becomes obvious that the structure of our program has changed and there are parts that are no longer needed.
+Putting in the code for DemoReel100, it becomes obvious that the structure of our program has changed and there are parts that are no longer needed. When all this cleanup is completed, the code will verify again.
 - We will not be using the button
 - We will not be using the patterns from Part-C and Part-D
 - We will not be using the counters for milliseconds from BlinkWithoutDelay
