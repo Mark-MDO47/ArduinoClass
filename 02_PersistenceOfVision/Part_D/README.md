@@ -245,6 +245,8 @@ In **loop()** near the front
   if (Serial.available()) handle_serial_input();
 ```
 
+After these actions, Demo.ino should verify, compile and load succesfully.
+
 ## Reminder
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
