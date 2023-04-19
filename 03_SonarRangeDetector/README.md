@@ -45,7 +45,7 @@ This delay may vary, but is about 200mSec on the modules that I have measured.
 This is required to prevent the module from hanging if there is no return echo.
 ```
 
-This sequence is illustrated by the timing diagram from the sparkfun.com HC-SR04 spec. Note that the top line represents the Trigger signal from the Arduino, the middle line represents the ultrasonic sound emitted, and the bottom pulse represents the Echo signal returning to the Arduino. The top and bottom pulses are at TTL (Transistor to Transistor) voltage levels. The bottom pulse has text that says "TTL levers" but that is just a typo; it should say "TTL Levels". Where it says "range in proportion" it means that the time (width) of the HIGH pulse on the Echo signal when multiplied by a constant related to the speed of sound in air is the distance of the target from the HC-SR04. Our job will include measuring the time of the HIGH pulse and multiplying by that constant.<br>
+This sequence is illustrated by the timing diagram below from the sparkfun.com HC-SR04 spec. Note that the top line represents the Trigger signal from the Arduino, the middle line represents the ultrasonic sound emitted, and the bottom pulse represents the Echo signal returning to the Arduino. The top and bottom pulses are at TTL (Transistor to Transistor) voltage levels. The bottom pulse has text that says "TTL levers" but that is just a typo; it should say "TTL Levels". Where it says "range in proportion" it means that the time (width) of the HIGH pulse on the Echo signal when multiplied by a constant related to the speed of sound in air is the distance of the target from the HC-SR04. Our job will include measuring the time of the HIGH pulse and multiplying by that constant.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HC-SR04_Timing.png "sparkfun.com Image of HC-SR04 timing diagram")
 
 
@@ -110,9 +110,13 @@ Essentially, we will start with the *.ino file from 02 Part D and replace the US
 
 ## Circuit
 Here is the circuit for the Theremin project.
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector.pdf
+
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector.png" width="501" height="265" alt="Image of wiring diagram for Theremin (Sonar Range Detector)">
 
-I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes will be four wires to connect.
+I think you can figure out how I decided to connect the Arduino pins to the HC-SR04. If you have any questions please ask them in class to make sure everyone understands the rationale.
+
+I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect.
 
 ## Cleanup First
 This time we will delete the old code first, then add the new code.
@@ -128,7 +132,7 @@ Delete these lines
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
 ```
 
-Delete everything for routines
+Delete everything for the following routines
 - handle_serial_input_command()
 - handle_serial_input()
 
