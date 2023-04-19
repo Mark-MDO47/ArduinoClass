@@ -2,6 +2,34 @@
 
 I hope that this sparks your interest in doing fun electronics hobby projects! I may teach some classes on other parts of the hobby electronics and software world if there is interest. I am hoping to meet folks with interests in some of the hobbies I have.
 
+Here are a few potential projects on the web that have caught my eye
+- https://hackaday.io/discover
+- https://all3dp.com/2/arduino-projects-best-sites/
+- https://all3dp.com/2/most-useful-arduino-projects/
+- https://all3dp.com/2/best-arduino-alternatives/
+- https://www.instructables.com/DIY-Tinfoil-Ribbon-Speaker/
+- https://www.instructables.com/Galaxy-Mood-Lamp/
+- https://blog.arduino.cc/2022/04/06/the-o-clock-is-a-fun-way-to-check-the-current-time/
+- https://www.instructables.com/O-Clock/
+- https://www.instructables.com/Persistence-of-Vision-LED-Staff/
+- https://povstaff.readthedocs.io/en/latest/
+- https://learn.adafruit.com/pov-dotstar-double-staff
+- https://www.instructables.com/LED-Kaleidoscope-1/
+- https://www.instructables.com/The-Neopixel-LED-Vase/
+- https://www.instructables.com/How-to-Make-an-Old-school-Neon-Street-Sign/
+- https://blog.arduino.cc/2023/01/27/the-cwvox-is-a-simple-device-that-converts-voice-commands-into-morse-code-keying/
+- https://blog.arduino.cc/
+- https://shop.m5stack.com/collections/m5-controllers/products/esp32-basic-core-iot-development-kit-v2-6
+- https://randomnerdtutorials.com/esp32-over-the-air-ota-programming/
+- https://randomnerdtutorials.com/esp32-esp8266-- https-ssl-tls/
+- https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
+- https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
+- https://rntlab.com/module-1/welcome-build-web-servers/
+- https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
+- https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
+- https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/ - 
+- https://www.instructables.com/How-to-Assemble-a-PCB-With-Tiny-SMD-Parts/
+
 There are many types of Arduinos and many sensors that can connect to Arduinos and even other types of boards that serve similar purposes.
 
 Here are a few of my favorite boards
@@ -11,7 +39,7 @@ Here are a few of my favorite boards
 - One of the things that really excites me is the Nvidia Jetson Nano series of boards, with a CPU of the approximate power of the Raspberry Pi plus the adition of a powerful Nvidia Cuda engine similar to the Nvidia graphics boards that can be used for graphics processing or for Artificial Intelligence. Even the original versions of the lowest-end Jetson card has an astonishing 472 MegaFlops of 16-bit floating point!
 
 These are just a few of the devices I have used or will be using in my next projects
-- The YX5200 Audio Player which can drive speakers or headphones from files you place on its SD card slot. https://github.com/Mark-MDO47/AudioPlayer-YX5200
+- The YX5200 Audio Player which can drive speakers or headphones from sound files you place on its SD card slot. https://github.com/Mark-MDO47/AudioPlayer-YX5200
 - The KCX_BT_EMITTER Bluetooth Audio Transmitter that can take the audio from the YX5200 and send it to a bluetooth speaker. https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 - Lasers, beamsplitters, detectors, oh my!
 
