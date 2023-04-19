@@ -213,7 +213,14 @@ Insert this at the start of **loop()**
 [Top](#notes "Top")<br>
 I will bring to the class one or two large WS2812B disks such as this 241 LED WS2812B disk or maybe some 93 LED WS2812B disks. There will not be enough for each station but everyone will be able to modify NUM_LEDS in Theremin.ino and try it out. It really looks spectacular!
 
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
 
 However, this will definitely exceed the amount of power we want to pass through the Arduino chip so we will need to modify the circuit so power to the LEDs does not come from the Arduino.<br>
-For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. If we attach a 9V battery to the UBEC, it will be able to power the LED Disk.
+For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. If we attach a 9V battery to the UBEC, it will be able to power the LED Disk.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
+
+Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Strip; it will be similar for the LED Disks.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" height="265" alt="Image of wiring diagram for 03 Sonar Extra Fun">
+
+It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't need to do that.
+
