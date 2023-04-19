@@ -9,7 +9,7 @@
 * [Circuit](#circuit "Circuit")
 * [Cleanup First](#cleanup-first "Cleanup First")
 * [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
-* [Reminder](#reminder "Reminder")
+* [Extra Fun](#extra-fun "Extra Fun")
 
 
 ## HC-SR04 Ultrasonic Range Finder
@@ -118,6 +118,10 @@ I think you can figure out how I decided to connect the Arduino pins to the HC-S
 
 I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect.
 
+Here is a protosupplies.com image of the LED stick detail showing labels
+
+![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
+
 ## Cleanup First
 This time we will delete the old code first, then add the new code.
 
@@ -205,19 +209,11 @@ Insert this at the start of **loop()**
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
 ```
 
-## Reminder
+## Extra Fun
 [Top](#notes "Top")<br>
-The connections do not change; this is just here for a reminder.
+I will bring to the class one or two large WS2812B disks such as this 241 LED WS2812B disk or maybe some 93 LED WS2812B disks. There will not be enough for each station but everyone will be able to modify NUM_LEDS in Theremin.ino and try it out. It really looks spectacular!
 
-Remember:
-- red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
-- black wire is for Ground between Arduino and LED stick (GND)
-- white wire is for serial_data output from Arduino to LED stick (IN)
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
 
-Here is a protosupplies.com image of the LED stick detail showing labels
-
-![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
-
-Here is a reminder of our desired wiring
-
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
+However, this will definitely exceed the amount of power we want to pass through the Arduino chip so we will need to modify the circuit so power to the LEDs does not come from the Arduino.<br>
+For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. If we attach a 9V battery to the UBEC, it will be able to power the LED Disk.
