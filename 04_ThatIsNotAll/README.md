@@ -27,5 +27,5 @@ Some of the projects I have started but have been on hold the last two years whe
 I am also interested in music, especially classical and jazz.<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.
 
-Thank you and Enjoy!
+Thank you and Enjoy!<br>
 Mark
