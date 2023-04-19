@@ -21,7 +21,7 @@ Here are a few potential projects on the web that have caught my eye
 - https://blog.arduino.cc/
 - https://shop.m5stack.com/collections/m5-controllers/products/esp32-basic-core-iot-development-kit-v2-6
 - https://randomnerdtutorials.com/esp32-over-the-air-ota-programming/
-- https://randomnerdtutorials.com/esp32-esp8266-- https-ssl-tls/
+- https://randomnerdtutorials.com/esp32-esp8266--https-ssl-tls/
 - https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
 - https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
 - https://rntlab.com/module-1/welcome-build-web-servers/
