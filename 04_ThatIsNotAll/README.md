@@ -1,6 +1,6 @@
 # It is a wide world out there!
 
-I hope that this sparks your interest in doing fun electronics hobby projects! I may teach some classes on other parts of the hobby electronics and software world if there is interest.
+I hope that this sparks your interest in doing fun electronics hobby projects! I may teach some classes on other parts of the hobby electronics and software world if there is interest. I am hoping to meet folks with interests in some of the hobbies I have.
 
 There are many types of Arduinos and many sensors that can connect to Arduinos and even other types of boards that serve similar purposes.
 
@@ -22,6 +22,10 @@ Some of the projects I have started but have been on hold the last two years whe
 - https://github.com/Mark-MDO47/MyThinkstOpenCanary - use a Raspberry Pi to implement the open-source version of the Thinkst Canary and put a honey-pot on my home network to detect if bad guys are in there
 - Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" on with my Netgate SG3100 router appliance
 - Automate the updates and backups on my home network using Ansible
+
+# Non-Electronics Non-Software
+I am also interested in music, especially classical and jazz.<br>
+One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.
 
 Thank you and Enjoy!
 Mark
