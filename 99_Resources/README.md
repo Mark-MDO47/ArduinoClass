@@ -1,6 +1,17 @@
 # Resources
 
+**Table of Contents**
+* [Top](#resources "Top")
+* [Arduino IDE](#arduino-ide "Arduino IDE")
+* [The Computer Language used in the Arduino IDE](#the-computer-language-used-in-the-arduino-ide "The Computer Language used in the Arduino IDE")
+* [Arduino Nano and ATMEGA 328P](#arduino-nano-and-atmega-328p "Arduino Nano and ATMEGA 328P")
+* [My favorite Arduino variant - ESP32](#my-favorite-arduino-variant-\--esp32 "My favorite Arduino variant - ESP32")
+* [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
+* [KiCad](#kicad "KiCad")
+* [Projects on the Web](#projects-on-the-web "Projects on the Web")
+
 ## Arduino IDE
+[Top](#resources "Top")<br>
 It will be helpful to install the Arduino IDE on your laptop before the start of the class if you are planning to use your laptop to connect to the test systems during the class. At this time the latest version is 2.04 and can be installed on Windows, Macintosh, and Linux.
 - https://www.arduino.cc/en/software
 
@@ -9,12 +20,13 @@ If you have a Chromebook I have not found a way to install the latest version, b
 
 It is possible to use the "Arduino Cloud". This method is not used in this class.
 
-## The C/C++ Language used in the Arduino IDE
-
+## The Computer Language used in the Arduino IDE
+[Top](#resources "Top")<br>
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 - https://reference.arduino.cc/reference/en/
 
 ## Arduino Nano and ATMEGA 328P
+[Top](#resources "Top")<br>
 We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons.
 
 Lots of info on the Arduino Nano is found here (diagrams, not schematics)
@@ -26,7 +38,9 @@ The ATMEGA 328P chip used in the Arduino Nano is described here
 Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
 
-## My favorite Arduino clone - ESP32 (optional)
+## My favorite Arduino variant - ESP32
+[Top](#resources "Top")<br>
+Here is some documentation from the maker of the chipset and many modules for ESP32
 * https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html
 
 A few quotes from above:
@@ -44,7 +58,8 @@ On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be 
 
 Also, ESP32 modules are larger than an Arduino Nano and don't fit well on typical breadboards. I sometimes use two breadboards with space in between and put the ESP32 in the middle.
 
-## PROGMEM and "F" macro to save RAM (optional)
+## PROGMEM and F macro to save RAM
+[Top](#resources "Top")<br>
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
 - https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
@@ -67,8 +82,40 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
 
-## KiCad (optional)
+## KiCad
+[Top](#resources "Top")<br>
 I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
 This is not needed for the class but is a fantastic tool for those that are interested.
+
+## Projects on the Web
+[Top](#resources "Top")<br>
+Here are a few potential projects on the web that have caught my eye
+- https://hackaday.io/discover
+- https://all3dp.com/2/arduino-projects-best-sites/
+- https://all3dp.com/2/most-useful-arduino-projects/
+- https://all3dp.com/2/best-arduino-alternatives/
+- https://www.instructables.com/DIY-Tinfoil-Ribbon-Speaker/
+- https://www.instructables.com/Galaxy-Mood-Lamp/
+- https://blog.arduino.cc/2022/04/06/the-o-clock-is-a-fun-way-to-check-the-current-time/
+- https://www.instructables.com/O-Clock/
+- https://www.instructables.com/Persistence-of-Vision-LED-Staff/
+- https://povstaff.readthedocs.io/en/latest/
+- https://learn.adafruit.com/pov-dotstar-double-staff
+- https://www.instructables.com/LED-Kaleidoscope-1/
+- https://www.instructables.com/The-Neopixel-LED-Vase/
+- https://www.instructables.com/How-to-Make-an-Old-school-Neon-Street-Sign/
+- https://blog.arduino.cc/2023/01/27/the-cwvox-is-a-simple-device-that-converts-voice-commands-into-morse-code-keying/
+- https://blog.arduino.cc/
+- https://shop.m5stack.com/collections/m5-controllers/products/esp32-basic-core-iot-development-kit-v2-6
+- https://randomnerdtutorials.com/esp32-over-the-air-ota-programming/
+- https://randomnerdtutorials.com/esp32-esp8266-- https-ssl-tls/
+- https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
+- https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
+- https://rntlab.com/module-1/welcome-build-web-servers/
+- https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
+- https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
+- https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/ - 
+- https://www.instructables.com/How-to-Assemble-a-PCB-With-Tiny-SMD-Parts/
+
