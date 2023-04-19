@@ -36,7 +36,7 @@ Here are a few of my favorite boards
 - I have already mentioned that my current favorite Arduino is the ESP32 series which include WiFi and Bluetooth on board plus lots more RAM and Program memory and even dual CPUs for the brave!
 - There are boards with similar capabilities to the Arduino that contain small FPGAs (Field Programmable Gate Arrays) that can be programmed to do fast things such as video controllers.
 - There are boards similar to the Raspberry Pi that can run real versions of Linux or the stripped down versions such as the Raspberry Pi version of Linux
-- One of the things that really excites me is the Nvidia Jetson Nano series of boards, with a CPU of the approximate power of the Raspberry Pi plus the adition of a powerful Nvidia Cuda engine similar to the Nvidia graphics boards that can be used for graphics processing or for Artificial Intelligence. Even the original versions of the lowest-end Jetson card has an astonishing 472 MegaFlops of 16-bit floating point!
+- One of the things that really excites me is the Nvidia Jetson Nano series of boards, with a CPU of the approximate power of the Raspberry Pi plus the adition of a powerful Nvidia Cuda engine similar to the Nvidia graphics boards that can be used for graphics processing or for Artificial Intelligence. Even the original version of the lowest-end Jetson card has an astonishing 472 MegaFlops of 16-bit floating point!
 
 These are just a few of the devices I have used or will be using in my next projects
 - The YX5200 Audio Player which can drive speakers or headphones from sound files you place on its SD card slot. https://github.com/Mark-MDO47/AudioPlayer-YX5200
