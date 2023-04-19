@@ -68,7 +68,7 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
 
 ## KiCad (optional)
-I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
+I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
 This is not needed for the class but is a fantastic tool for those that are interested.
