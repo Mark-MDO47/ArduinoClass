@@ -6,6 +6,7 @@
 * [Speed of Sound](#speed-of-sound "Speed of Sound")
 * [Pros and Cons of HC-SR04](#pros-and-cons-of-hc\-sr04 "Pros and Cons of HC-SR04")
 * [Theremin](#theremin "Theremin")
+* [Circuit](#circuit "Circuit")
 * [Cleanup First](#cleanup-first "Cleanup First")
 * [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
 * [Reminder](#reminder "Reminder")
@@ -43,6 +44,10 @@ If an echo is not returned (no object detected), the module will still lower the
 This delay may vary, but is about 200mSec on the modules that I have measured.
 This is required to prevent the module from hanging if there is no return echo.
 ```
+
+This sequence is illustrated by the timing diagram from the sparkfun.com HC-SR04 spec. Note that the top line represents the Trigger signal from the Arduino, the middle line represents the ultrasonic sound emitted, and the bottom pulse represents the Echo signal returning to the Arduino. The top and bottom pulses are at TTL (Transistor to Transistor) voltage levels. The bottom pulse has text that says "TTL levers" but that is just a typo; it should say "TTL Levels". Where it says "range in proportion" it means that the width of the HIGH pulse on the Echo signal when multiplied by a constant related to the speed of sound in air is the distance of the target from the HC-SR04.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HC-SR04_Timing.png "sparkfun.com Image of HC-SR04 timing diagram")
+
 
 ## Speed of Sound
 From https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml 
@@ -101,7 +106,13 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Theramin-Alexandra-Stepanoff-1930.jpg/220px-Theramin-Alexandra-Stepanoff-1930.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
 
-Essentially, we will start with 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
+Essentially, we will start with the *.ino file from 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
+
+## Circuit
+Here is the circuit for the Theremin project.
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector.png" width="501" height="265" alt="Image of wiring diagram for Theremin (Sonar Range Detector)">
+
+I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes will be four wires to connect.
 
 ## Cleanup First
 This time we will delete the old code first, then add the new code.
