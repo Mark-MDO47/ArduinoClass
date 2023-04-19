@@ -54,7 +54,7 @@ Some of the projects I have started but have placed on hold the last two years w
 # Non-Electronics Non-Software
 I am also interested in music, especially classical and jazz.<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
-I got my low-end harpsichord in about 1979 (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 80 years.
+I got my low-end harpsichord in about 1979 (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
 
 Thank you and Enjoy!<br>
 Mark
