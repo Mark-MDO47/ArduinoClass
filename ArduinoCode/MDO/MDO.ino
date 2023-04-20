@@ -19,11 +19,11 @@
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
 // ground, and power), like the LPD8806 define both DATA_PIN and CLOCK_PIN
 // Clock pin only needed for SPI based chipsets when not using hardware SPI
-#define DATA_PIN 3 // DEBUG Mark-MDO47 we use pin 7 for LEDs
+#define DATA_PIN 3 // MDO-SPECIAL Mark-MDO47 we use pin 7 for LEDs
 // #define CLOCK_PIN 13 // Mark-MDO47 we don't use CLOCK_PIN with this LED Strip
 
 // Mark-MDO47 we will use a button
-#define BUTTON_PIN 4 // DEBUG Mark-MDO47 we use pin 3 for button
+#define BUTTON_PIN 4 // MDO-SPECIAL Mark-MDO47 we use pin 3 for button
 
 
 // Mark-MDO47 Sawtooth or Oval pattern or Hello pattern
@@ -71,7 +71,7 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 CRGB fastled_array[NUM_LEDS];
 
 // constants won't change:
-const long interval = 5;           // DEBUG interval at which to blink (milliseconds); 25 blinks per second
+const long interval = 5;           // MDO-SPECIAL interval at which to blink (milliseconds); 25 blinks per second
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // oval_phase(btn_pressed) - determine the state of what the phase of pattern generation is
