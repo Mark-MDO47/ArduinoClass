@@ -2,7 +2,7 @@
 For a Maker-Space Arduino class 2023<br>
 Author: Mark Olson
 
-For this class I will provide some Arduino "kits" for all the student stations. I have labeled them "Kit 1" through "Kit 6"; Kit 1 is intended for me and the others are available for the class. Each kit includes all the major components for all the projects of our class except the "Extra Fun" section of the 03_SonarRangeDetector, for which we will share some equipment that I will bring. The parts are still in the wrappers so if some do not work we will need to double up; maybe I would sacrifice my kit.
+For this class I will provide a "kit" for each student station. I have labeled them "Kit 1" through "Kit 6"; Kit 1 is intended for me and the others are available for the class. Each kit includes all the major components for all the projects of our class except the "Extra Fun" section of the 03_SonarRangeDetector, for which we will share some equipment that I will bring. The parts are still in the wrappers so if some do not work we will need to double up; maybe I would sacrifice my kit.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Kits_Class.png" width="300" alt="Image of Kits for Arduino Class">
 
@@ -21,7 +21,7 @@ These kits do not include the following. If you provide USB connections to your 
 - old style LED
 - push button
 - 200 Ohm resistor
-- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
+- large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 
 | Lesson | Description | Image |
 | --- | --- | --- |
