@@ -2,6 +2,7 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
+* [Smoke and Mirrors](#smoke-and-mirrors "Smoke and Mirrors")
 * [Cleanup](#cleanup "Cleanup")
 * [Button](#button "Button")
 * [LEDs](#leds "LEDs")
@@ -9,6 +10,10 @@
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_A** to perform our **Sawtooth** pattern.
+
+## Smoke and Mirrors
+
+I have found that if you are waving the LED Stick and also trying to see the pattern, looking in a mirror helps. I will bring a mirror for the class.
 
 ## Cleanup
 [Top](#notes "Top")<br>
@@ -25,9 +30,10 @@ Next we should use some of the variables from BlinkWithoutDelay to handle the ti
 unsigned long previousMillis = 0;        // will store last time LED was updated
 
 // constants won't change:
-const long interval = 40;           // interval at which to blink (milliseconds); 25 blinks per second
+const long interval = 5;           // interval at which to blink (milliseconds); 100 blinks per second so our arm doesn't get tired
 ```
-I adjusted the value of **interval** to give 25 blinks per second; a little faster than the 24 frames per second required to make movies appear to move.
+I adjusted the value of **interval** to give 100 "ON" blinks per second (every other blink is dark). This is much faster than the 24 frames per second required to make movies appear to move.<br>
+The effect we are trying for is a little different than movies, since our lights are moving. By having the blinks very rapid it means that we don't have to be so precise in our arm movement.
 
 Now we adjust the **loop()** code to use the BlinkWithoutDelay method.
 ```C
