@@ -15,7 +15,7 @@ Each of these kits costs about $8 today and I think you will experience that the
 | WS2812B RGB 8-LED Strip | < $2 |
 | HC-SR04 Sonar Range Detector | < $2 |
 
-These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects as I will bring all the restfor our use.
+These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects as I will bring all the rest for our use.
 - USB cables (I will have at least one available for the class)
 - connectors, clips and harnesses
 - old style LED
