@@ -246,11 +246,11 @@ An ESP32 module has MUCH more RAM and program storage than the original Arduinos
 
 On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
 
-The ESP32 is also physically bigger than the Arduino Nano and don't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
+The ESP32 is also physically wider than the Arduino Nano and don't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_1.png" width="150" alt="Overhead View of ESP32 on two breadboards">
-
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_2.png" width="150" alt="Side View of ESP32 on two breadboards">
+| Top View | Side View |
+| --- | --- |
+| <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_1.png" width="150" alt="Overhead View of ESP32 on two breadboards"> | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_2.png" width="150" alt="Side View of ESP32 on two breadboards"> |
 
 ### PROGMEM and "F" macro to save RAM
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
