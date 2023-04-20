@@ -94,7 +94,7 @@ Here from the above link is a diagram showing a simple battery circuit to light 
 ![alt text](https://pxt.azureedge.net/blob/2ebeedcf4108aa2a5ecc9b8b232cbb5960b2dfb6/static/cp/learn/pins-tutorial/devices/led-connection.jpg 
 "Adafruit.com Resistor and LED in circuit")
 
-We will use the breadboard and connectors I supply to implement the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3 or D03). The schematic symbol for the Light Emitting Diode (or any diode) has the arrow pointing from the positive side to the negative side. In the diagram below the left side of the LED is positive and the right side is negative.
+We will use the breadboard and connectors I supply to implement the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3 or D03). The schematic symbol for the Light Emitting Diode (or any diode) has the arrow pointing from the positive side to the negative side. In the diagram below, the left side of the LED is positive and the right side is negative.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of 01-Part-A: our external LED connections")
