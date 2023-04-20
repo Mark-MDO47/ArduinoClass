@@ -2,6 +2,18 @@
 For a Maker-Space Arduino class 2023<br>
 Author: Mark Olson
 
+For this class I will provide some Arduino "kits" for all the student stations. I have labeled them "Kit 1" through "Kit 6"; Kit 1 is intended for me and the others are available for the class. Each kit includes all the major components for all the projects of our class except the "Extra Fun" section of the 03_SonarRangeDetector, for which we will share some equipment that I will bring. The parts are still in the wrappers so if some do not work we will need to double up; maybe I would sacrifice my kit.
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Kits_Class.png" width="300" alt="Image of Kits for Arduino Class">
+
+Each of these kits cost about $8 today and I think you will experience that there are many exciting Arduino projects that can be performed inexpensively!
+
+These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects.
+- USB cables (I will have at least one available for the class)
+- connectors, clips and harnesses (I will provide)
+- a 200 Ohm resistor (I will provide)
+- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus the power to run them (I will provide some to switch between kits and try)
+
 | Lesson | Description | Image |
 | --- | --- | --- |
 | [00_InstallArduinoIDE](https://github.com/Mark-MDO47/ArduinoClass/tree/master/00_InstallArduinoIDE "00_InstallArduinoIDE") | Install the tools, discuss the language | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Blink.png" width="142" alt="Image of Arduino IDE"> |
