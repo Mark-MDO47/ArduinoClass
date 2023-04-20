@@ -27,8 +27,10 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 - Line 14: change definition for DATA_PIN from 3 to 7
 - Line 66: we will fill all 8 locations, we want the first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue
   - you can use loops if you want or just set them one at a time
+- Line 68: change delay to 5 instead of 500 
 - Line 70: we will fill all 8 locations with CRGB::Black
   - you can use a loop if you want or just set them one at a time
+- Line 72: change delay to 5 instead of 500 
 
 The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command.
 
