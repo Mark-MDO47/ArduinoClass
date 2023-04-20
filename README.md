@@ -26,7 +26,7 @@ Each of these kits costs about $8 today and I think you will experience that the
 | WS2812B RGB 8-LED Strip | < $2 |
 | HC-SR04 Sonar Range Detector | < $2 |
 
-Please try to bring a USB cable from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least one extra USB-A to USB Mini-B cable available for the class.
+Please try to bring a USB cable from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
 
 You should then be able to do all of the projects as I will bring all the following for our use.
 - connectors, clips, harnesses, and wires
