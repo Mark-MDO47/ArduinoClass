@@ -140,7 +140,7 @@ Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED libr
 If you haven't used FastLED with your Arduino IDE before you will probably need to load the library. This is easy! First start the Library Manager<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_ManageLibraries.png "Image of IDE starting Library Manager")
 
-If it is not installed, install it. Choose the library that says "By Daniel Garcia" Below is a picture of the Arduino IDE Library Manager showing FastLED library is installed<br>
+If FastLED is not installed, install it. Install the library that says "By Daniel Garcia". It is OK if there are several libraries that say something about FastLED, but be sure that the one by Daniel Garcia is installed too. Below is a picture of the Arduino IDE Library Manager showing FastLED library is installed<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_FastLED.png "Image of Library Manager showing FastLED is installed")
 
 As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
