@@ -1,5 +1,5 @@
 # ArduinoClass
-For the FabLab Arduino class 2023
+For a Maker-Space Arduino class 2023<br>
 Author: Mark Olson
 
 | Lesson | Description | Image |
