@@ -21,7 +21,7 @@ These kits do not include the following. If you provide USB connections to your 
 - old style LED
 - push button
 - 200 Ohm resistor
-- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus the power to run them (I will provide some to switch between student stations and try)
+- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 
 | Lesson | Description | Image |
 | --- | --- | --- |
