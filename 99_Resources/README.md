@@ -56,7 +56,7 @@ An ESP32 module has MUCH more RAM and program storage than the original Arduinos
 
 On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
 
-The ESP32 is also physically wider than the Arduino Nano and don't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
+The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
 
 | Top View | Side View |
 | --- | --- |
