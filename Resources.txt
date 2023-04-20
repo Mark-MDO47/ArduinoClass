@@ -27,3 +27,4 @@
 
 - https://www.instructables.com/Soldering-Through-Hole-Components/
 - https://www.instructables.com/Soldering-Surface-Mount-Components/
+- https://www.mattmillman.com/info/crimpconnectors/common-jst-connector-types/
