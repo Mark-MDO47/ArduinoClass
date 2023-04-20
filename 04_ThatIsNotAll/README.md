@@ -19,7 +19,7 @@ These are just a few of the devices I have used or will be using in my next proj
 - The YX5200 Audio Player which can drive speakers or headphones from sound files you place on its SD card slot. https://github.com/Mark-MDO47/AudioPlayer-YX5200
 - The KCX_BT_EMITTER Bluetooth Audio Transmitter that can take the audio from the YX5200 and send it to a bluetooth speaker. https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 - UBEC (Universal Battery Eliminator  Circuit) https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
-- RBG LEDs especially WS2812B and the FastLED library https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision
+- RGB LEDs especially WS2812B and the FastLED library https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision
 
 ## Projects I want to Restart
 Some of the projects I have started but have placed on hold the last two years when I was very busy are listed below. Maybe some of you would be interested in participating in one of these?
