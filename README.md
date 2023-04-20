@@ -18,7 +18,7 @@ Each of these kits costs about $8 today and I think you will experience that the
 These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects as I will bring all the rest for our use.
 - USB cables (I will have at least one available for the class)
 - connectors, clips and harnesses
-- old style LED
+- old style simple LED
 - push button
 - 200 Ohm resistor
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
