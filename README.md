@@ -6,13 +6,22 @@ For this class I will provide some Arduino "kits" for all the student stations. 
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Kits_Class.png" width="300" alt="Image of Kits for Arduino Class">
 
-Each of these kits cost about $8 today and I think you will experience that there are many exciting Arduino projects that can be performed inexpensively!
+Each of these kits costs about $8 today and I think you will experience that there are many exciting Arduino projects that can be performed inexpensively!
 
-These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects.
+| Part | Cost on March 2023 |
+| --- | --- |
+| Arduino Nano | $2.35 |
+| Solderless Breadboard | < $2 |
+| WS2812B RBG 8-LED Strip | < $2 |
+| HC-SR04 Sonar Range Detector | < $2 |
+
+These kits do not include the following. If you provide USB connections to your laptop, you should be able to do all of the projects as I will bring all the restfor our use.
 - USB cables (I will have at least one available for the class)
-- connectors, clips and harnesses (I will provide)
-- a 200 Ohm resistor (I will provide)
-- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus the power to run them (I will provide some to switch between kits and try)
+- connectors, clips and harnesses
+- old style LED
+- push button
+- 200 Ohm resistor
+- large RGB Color LED Disks (93 LEDs or 241 LEDs) plus the power to run them (I will provide some to switch between student stations and try)
 
 | Lesson | Description | Image |
 | --- | --- | --- |
