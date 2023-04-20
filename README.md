@@ -23,6 +23,8 @@ These kits do not include the following. If you provide USB connections to your 
 - 200 Ohm resistor
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 
+Below is the lesson plan for the class.
+
 | Lesson | Description | Image |
 | --- | --- | --- |
 | [00_InstallArduinoIDE](https://github.com/Mark-MDO47/ArduinoClass/tree/master/00_InstallArduinoIDE "00_InstallArduinoIDE") | Install the tools, discuss the venerable C/C++ language | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Blink.png" width="142" alt="Image of Arduino IDE"> |
