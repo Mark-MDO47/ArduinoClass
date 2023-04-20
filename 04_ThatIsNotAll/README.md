@@ -35,5 +35,12 @@ I am also interested in music, especially classical and jazz.<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
 I got my low-end harpsichord in about 1979 (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
 
+## Arduino Park the Car Helper
+Now just for a laugh - many years ago I saw a post from someone that said he was trying to use an Arduino to help park the car in the right position, and included pictures similar to but much better than the ones below.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ArduinoParkingHelper_1.jpg "Image 1 of Arduino project to help park the car")
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ArduinoParkingHelper_2.jpg "Image 1 of Arduino project to help park the car")
+
 Thank you and Enjoy!<br>
 Mark
