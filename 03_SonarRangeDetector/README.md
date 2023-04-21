@@ -118,10 +118,6 @@ I think you can figure out how I decided to connect the Arduino pins to the HC-S
 
 I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect.
 
-Here is a protosupplies.com image of the LED stick detail showing labels
-
-![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
-
 ## Cleanup First
 This time we will delete the old code first, then add the new code.
 
