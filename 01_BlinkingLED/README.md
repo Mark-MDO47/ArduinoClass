@@ -164,6 +164,8 @@ The screen itself looks like this:
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png "Arduino IDE Serial Monitor Screen")
 
+You may need to set the serial monitor to 115,200 baud to match what our **setup()** routine is going to do.
+
 Now our one-time **setup()** code is starting to be a little more complex. I am sure you can figure out what the new code does even if some techniques are unfamiliar to you.
 ```C
 #define DPIN_LED_OUT 3 // this pin drives the external LED
