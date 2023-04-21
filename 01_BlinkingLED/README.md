@@ -212,8 +212,14 @@ void loop() {
 }
 ```
 
-When we execute this program, the internal LED and the external LED blink; one is off when the other is on. The video at the following link shows what this looks like.
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The video at the following link shows what this looks like and the image below that shows the USB serial port messages.
 - https://youtube.com/shorts/qGxECSMQtAQ
+
+Image of 01_BlinkingLED Part B: USB messages Button DOWN<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_USBmsgs_ButtonDOWN.png "Image of 01_BlinkingLED Part B: USB messages Button DOWN")
+
+Image of 01_BlinkingLED Part B: USB messages Button UP<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_USBmsgs_ButtonUP.png "Image of 01_BlinkingLED Part B: USB messages Button UP")
 
 ### Some Arduino and C-language features not used above
 [Back to Top](#notes "Back to Top")
