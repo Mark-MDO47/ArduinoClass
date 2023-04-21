@@ -5,6 +5,7 @@
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
 * [WS2812B individually addressable color LEDs](#ws2812b-individually-addressable-color-leds "WS2812B individually addressable color LEDs")
 * [The Circuit](#the-circuit "The Circuit")
+  * [TLDR Power](#tldr-power "TLDR Power")
 * [The Code](#the-code "The Code")
   * [The Code - Timing Without Delays](#the-code-\--timing-without-delays "The Code - Timing Without Delays")
   * [The Code - FastLED](#the-code-\--fastled "The Code - FastLED")
@@ -60,14 +61,15 @@ The connections that we will make to the LED Stick are all on the upper left sid
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickSoldering.png "Image of 02_PersistanceOfVision: LED Stick Labeling")
 
 The explanation for this is too complicated for a poor SW hack like myself so I will just point out the relationship:<br>
-| Schematic | LED Stick |
-| --- | --- |
-| VSS | GND |
-| VDD | VCC |
-| DIN | IN |
+| Schematic | LED Stick | Purpose |
+| --- | --- | --- |
+| VSS | GND | Ground |
+| VDD | VCC | +5 Volts |
+| DIN | IN | Serial Data |
 
 Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
 
+### TLDR Power
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
   - calculate_max_brightness_for_power_vmA(lots of parameters)
@@ -92,7 +94,7 @@ Calculating wire size (Google for instance wire gauge ampacity 5v dc): the follo
 
 My plan is to use various software means to limit power to less than 21 milliamps or 0.85 watts. Looking up in the table referenced above, an AWG30 single-strand wire meeting the specs of the site could carry 142 milliamps. We are using multi stranded AWG30 but even so, I suspect that would be adequate. In fact I have used silicon coated multi stranded AWG30 to power an Arduino Nano plus two WS2812B 32 LED strands. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate and whether the electronics comes in contact with someone.
 
-For my Graduation Cap project I used AWG20 wire because it came in contact with my daughters when operating the caps.
+For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 wire for power and ground because it came in contact with my daughters when operating the caps.
 
 ## The Code
 Now our code discussion section is going to get a little more involved.
