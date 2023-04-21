@@ -61,11 +61,11 @@ The connections that we will make to the LED Stick are all on the upper left sid
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickSoldering.png "Image of 02_PersistanceOfVision: LED Stick Labeling")
 
 The explanation for this is too complicated for a poor SW hack like myself so I will just point out the relationship:<br>
-| Schematic | LED Stick | Purpose |
-| --- | --- | --- |
-| VSS | GND | Ground |
-| VDD | VCC | +5 Volts |
-| DIN | IN | Serial Data |
+| Wire Color | Schematic | LED Stick | Purpose |
+| --- | --- | --- | --- |
+| Black | VSS | GND | Ground |
+| Red | VDD | VCC | +5 Volts |
+| White | DIN | IN | Serial Data |
 
 Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
 
