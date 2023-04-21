@@ -48,10 +48,6 @@ Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of 02_PersistanceOfVision Part A: FastLED Blink.png")
 
-Here is a protosupplies.com image of the LED stick detail showing labels. Note that our LED stick will not have the right-angle connector extender.
-
-![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
-
 Here is a reminder of our desired wiring
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
