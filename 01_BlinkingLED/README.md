@@ -130,7 +130,8 @@ void loop() {
 }
 ```
 
-When we execute this program, the internal LED and the external LED blink; one is off when the other is on.
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on. The video at the following link shows what this looks like.
+- https://youtu.be/1KnZBuRA1MI
 
 ## Part B - Add Button and Display Messages on USB Serial Port
 [Back to Top](#notes "Back to Top")
@@ -210,6 +211,9 @@ void loop() {
   Serial.print(" loop_count: "); Serial.println(loop_count);
 }
 ```
+
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on. The video at the following link shows what this looks like.
+- https://youtube.com/shorts/qGxECSMQtAQ
 
 ### Some Arduino and C-language features not used above
 [Back to Top](#notes "Back to Top")
