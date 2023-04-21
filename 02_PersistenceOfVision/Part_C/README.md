@@ -51,9 +51,6 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 } // end oval_blink_pattern()
 ```
 
-The Oval.ino corresponding to the above is at GIT tag **OpalRedOnly**<br>
-Guess I cannot spell Oval...
-
 ## Rainbow
 [Top](#notes "Top")<br>
 Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
@@ -63,7 +60,7 @@ The answer is YES! They have two routines I know of that would work for this pur
 - fill_gradient
 - see https://fastled.io/docs/3.1/group___colorutils.html
 
-Up until now we have limited the current by having only one of the three color LEDs active.  Now we are going to use colors that have all three colors active. We use BRIGHTMAX and FastLED.setBrightness() to limit the current draw.
+Up until now we have limited the current draw by having only at most one of the three colors in each LED active.  Now we are going to use colors that have all three colors active. We use BRIGHTMAX and FastLED.setBrightness() to limit the current draw.
 
 Put this up with the other #define statements
 ```C
@@ -101,14 +98,13 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
     }
 ```
 
-The Oval.ino corresponding to the above is at GIT tag **OpalRainbow**<br>
-Still cannot spell Oval...
-
 ## Hello World
 [Top](#notes "Top")<br>
 I wasn't really planning on this but I suddenly realized I could turn this into a "Hello World!" program.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HelloWorldPattern.png "Image of Oval Hello World pattern; each step left-to-right is a blink")
+
+Copy the Oval.ino file into a directory named HelloWorld with filename HelloWorld.ino, then open it in the Arduino IDE.
 
 Change
 ```C
@@ -162,7 +158,7 @@ Finally learned how to spell Oval...
 As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 3 or 4. It will be good practice with hexadecimal and binary arithmetic.
 
 When you have done this, compare it with my implementation
-- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/Oval/Oval.ino
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/AllThreePatterns_RedOrRainbow/AllThreePatterns_RedOrRainbow.ino
 
 ## Reminder
 [Top](#notes "Top")<br>
