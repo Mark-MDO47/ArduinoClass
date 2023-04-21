@@ -70,6 +70,11 @@ The explanation for this is too complicated for a poor SW hack like myself so I 
 Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
 
 ### TLDR Power and Wires
+The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
+The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
+The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill, but it reminds me to discuss a little more about how to decide what guage of wire to use.
+
+
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
   - calculate_max_brightness_for_power_vmA(lots of parameters)
@@ -83,11 +88,7 @@ These LEDs use power that adds up. We can use this to estimate the power
   
 This calculates to about 42 milliamps per LED at max brightness WHITE.
 
-With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
-
-The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.
-The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
-The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill, but it reminds me to discuss a little more about how to decide what guage of wire to use.
+With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. At first in our projects I only use one color at a time on each LED and so limit power draw. Later, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
 
 Calculating wire size (Google for instance wire gauge ampacity 5v dc): the following link leads to information about power that can be safely passed through wire of different types and guages.
 - https://www.powerstream.com/Wire_Size.htm
