@@ -243,8 +243,8 @@ This is a video showing the sawtooth pattern in action.  My son (college graduat
 The sawtooth pattern appears better in person than in this video. I think there are at least these two main reasons:
 - the camera does not have the persistence of vision that humans do
 - the camera frame rate is less than the blink rate
+- 
 https://youtu.be/UdA5ehl802k
-
 
 ## Reminder
 [Top](#notes "Top")<br>
