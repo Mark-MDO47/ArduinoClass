@@ -98,6 +98,9 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
     }
 ```
 
+My version of this can be found here
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/Oval/Oval.ino
+
 ## Hello World
 [Top](#notes "Top")<br>
 I wasn't really planning on this but I suddenly realized I could turn this into a "Hello World!" program.
@@ -150,8 +153,8 @@ Change
   unsigned int bits = pattern_bits[blink_phase];
 ```
 
-The Oval.ino corresponding to the above is at GIT tag **OvalHelloWorld**
-Finally learned how to spell Oval...
+My version of this can be found here
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/HelloWorld/HelloWorld.ino
 
 ## Sawtooth Revisited
 
