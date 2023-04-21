@@ -87,14 +87,16 @@ These LEDs use power that adds up. We can use this to estimate the power
   
 This calculates to about 42 milliamps per LED at max brightness WHITE.
 
-With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. At first in our projects I only use one color at a time on each LED and so limit power draw. Later, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
+With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. At first in our projects I only use one color at a time on each LED and so limit power draw. Later, you will find that we set a parameter to limit the total power for each LED in the FastLED library. My plan is to use various software means to limit power to less than 168 milliamps or 0.84 watts, probably significantly less.
 
 Calculating wire size (Google for instance wire gauge ampacity 5v dc): the following link leads to information about power that can be safely passed through wire of different types and guages.
 - https://www.powerstream.com/Wire_Size.htm
 
-My plan is to use various software means to limit power to less than 21 milliamps or 0.85 watts. Looking up in the table referenced above, an AWG30 single-strand wire meeting the specs of the site could carry 142 milliamps. We are using multi stranded AWG30 but even so, I suspect that would be adequate. In fact I have used silicon coated multi stranded AWG30 to power an Arduino Nano plus two WS2812B 32 LED strands. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate and whether the electronics comes in contact with someone.
+Looking up in the table referenced above, an AWG30 single strand wire meeting the specs of the site could carry 860 milliamps. We are using multi stranded AWG30 so we would not expect the full 5X safety margin. Even so, I suspect that our AWG30 would be adequate. In fact I have used silicon coated multi stranded AWG30 to power two WS2812B 32 LED strands just due to ignorance of the issue. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate (the table gives resistance data) and whether the electronics comes in contact with someone.
 
-For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 wire for power and ground because it came in contact with my daughters when operating the caps.
+ An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously overkill, even though we are using multi stranded.
+
+For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
 ## The Code
 Now our code discussion section is going to get a little more involved.
