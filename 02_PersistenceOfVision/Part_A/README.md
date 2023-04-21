@@ -43,11 +43,11 @@ Below is an image of the LED Stick showing details of the connections between th
 Below is an image of the LED Stick and the end of its harness. The harness is long enough to wave through the air without risk of yanking the rest of the electronics along, as long as the rest of the electronics is held down so the mass of the harness doesn't pull it. The yellow nobs periodically along the harness are cable zip-ties. Note that the pin connectors have been solder-spliced onto the red, white and black wires and covered with heat shrink tubing; this is a more permanent way to insulate the wire than electrical tape, which degrades over time faster than the heat shrink tubing.
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickHarness.png "Image of 02_PersistanceOfVision Part A: LED Stick Harness")
 
-Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue) looks like, followed by an image of the color order.
+Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue) looks like, followed by an image of the color order. Because that observed color pattern matches our expected color pattern, we can be confident that the initialization call that was used in our **setup()** routine (the one that was not a comment) works for this LED stick.
 - https://youtu.be/HYfM1gHob98
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of 02_PersistanceOfVision Part A: FastLED Blink.png")
 
-Here is a reminder of our desired wiring
+Below is a reminder of our desired wiring
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
