@@ -7,7 +7,7 @@
  * 
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
  * 
- * Persistence of Vision Oval pattern
+ * Persistence of Vision AllThreePatterns_RedOrRainbow
  */
 
 #include <FastLED.h>
@@ -70,7 +70,7 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 CRGB fastled_array[NUM_LEDS];
 
 // constants won't change:
-const long interval = 40;           // interval at which to blink (milliseconds); 25 blinks per second
+const long interval = 5;           // interval at which to blink (milliseconds); 25 blinks per second
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // oval_phase(btn_pressed) - determine the state of what the phase of pattern generation is

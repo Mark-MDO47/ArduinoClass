@@ -7,7 +7,7 @@
  * 
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
  * 
- * Persistence of Vision Oval pattern
+ * Persistence of Vision MDO_AllThreePatterns
  */
 
 #include <FastLED.h>
@@ -32,9 +32,8 @@
 #define PATTERN_HELLO 1
 
 // Mark-MDO47 All RED or Rainbow pattern
-#define COLOR_ALL_RED 1
-// #define COLOR_RAINBOW 1
-
+// #define COLOR_ALL_RED 1
+#define COLOR_RAINBOW 1
 
 #ifdef PATTERN_HELLO
 #define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats

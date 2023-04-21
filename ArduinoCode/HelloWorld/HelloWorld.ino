@@ -7,7 +7,7 @@
  * 
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
  * 
- * Persistence of Vision Oval pattern
+ * Persistence of Vision Hello World! pattern
  */
 
 #include <FastLED.h>
@@ -26,17 +26,23 @@
 #define BUTTON_PIN 3 // Mark-MDO47 we use pin 3 for button
 
 
-// Mark-MDO47 Oval pattern or Hello pattern
+// Mark-MDO47 Hello pattern
 // #define PATTERN_OVAL 1
 #define PATTERN_HELLO 1
+
+// Mark-MDO47 All RED or Rainbow pattern
+// #define COLOR_ALL_RED 1
+#define COLOR_RAINBOW 1
 
 #ifdef PATTERN_HELLO
 #define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats
 static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
-#else // PATTERN_OVAL
+#endif // PATTERN_HELLO
+
+#ifdef PATTERN_OVAL
 #define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
 static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
-#endif // PATTERN_HELLO
+#endif // PATTERN_OVAL
 
 // Mark-MDO47 additions for rainbow colors
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
@@ -114,6 +120,10 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
     if (0 == (0x80 & bits))
        ptrn_leds[i] = CRGB::Black;
     else {
+#ifdef COLOR_ALL_RED
+      ptrn_leds[i] = CRGB::Red;
+#endif // COLOR_ALL_RED
+#ifdef COLOR_RAINBOW
       ptrn_leds[i] = rainbow_array[next_rainbow++];
       if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
       gHue_rotate_countdown -= 1;
@@ -122,6 +132,7 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
         gHue += 4; // rotating "base color"
         fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
       }
+#endif // COLOR_RAINBOW
     }
     bits <<= 1;
   }
