@@ -237,6 +237,8 @@ For discussion - I am unsure if I want to pass fastled_array into handle_leds() 
 
 What do you think about this and why?
 
+When running these persistence of vision projects, you will be waving your hand around with some electronics tied to the breadboard and the Arduino. You don't want the breadboard and Arduino to be waving around. I have found it to be a good practice to connect all the leads of the LED Stick to the breadboard and then, when waving it, use the other hand to hold down both the breadboard and the last few inches of the LED Stick leads where they are just about to connect to the breadboards.
+
 This is a video showing the sawtooth pattern in action.  My son (college graduate) Alpha-Tested the class for me and appears in this video by permission.<br>
 The sawtooth pattern appears better in person than in this video. I think there are at least these two main reasons:
 - the camera does not have the persistence of vision that humans do
