@@ -83,6 +83,17 @@ This calculates to about 42 milliamps per LED at max brightness WHITE.
 
 With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. Also, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
 
+The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.
+The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
+The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill, but it reminds me to discuss a little more about how to decide what guage of wire to use.
+
+Calculating wire size (Google for instance wire gauge ampacity 5v dc): the following link leads to information about power that can be safely passed through wire of different types and guages.
+- https://www.powerstream.com/Wire_Size.htm
+
+My plan is to use various software means to limit power to less than 21 milliamps or 0.85 watts. Looking up in the table referenced above, an AWG30 single-strand wire meeting the specs of the site could carry 142 milliamps. We are using multi stranded AWG30 but even so, I suspect that would be adequate. In fact I have used silicon coated multi stranded AWG30 to power an Arduino Nano plus two WS2812B 32 LED strands. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate and whether the electronics comes in contact with someone.
+
+For my Graduation Cap project I used AWG20 wire because it came in contact with my daughters when operating the caps.
+
 ## The Code
 Now our code discussion section is going to get a little more involved.
 
