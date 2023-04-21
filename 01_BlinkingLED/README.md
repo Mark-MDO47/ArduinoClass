@@ -104,6 +104,9 @@ We will use the breadboard and connectors I supply to implement the following ci
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of 01-Part-A: our external LED connections")
 
+Here is an example of the above circuit implemented on a breadboard. Note that the wire from the black clip on Arduino pin "GND" goes to the horizontal row 3 on the breadboard, connecting to the negative pin of the LED. Also the wire from the green clip on Arduino pin "D3" goes to the horizontal row 10 on the breadboard, and the signal runs across to the resistor on row 10 which connects to row 1 which is the positive pin of the LED.
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_setup.png "Image of 01_BlinkingLED Part A implementation")
+
 Here are the changes we will make to the standard Blink program; first in (or before) **setup()**:
 
 ```C
