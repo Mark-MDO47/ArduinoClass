@@ -199,22 +199,25 @@ Now we understand
 
 Now the question is: what are we trying to do?
 
-The ultimate goal is to have a wand we can wave that makes our eyes see patterns. We will use the button to stop and restart the patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
+The ultimate goal is to make a wand that we can wave that makes our eyes see patterns. We will use the button to stop and restart the patterns. Although much more elaborate possibilities could be pursued, the plan for this project is to implement a few different patterns depending on how much time we want to spend on it
 - Blink - talk to just the first LED, make sure we know the color order
   - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 - Sawtooth - a triangular wave bouncing from top to bottom and back
 - Oval - a pattern that appears to be a set of ovals; maybe even appear to be a bubble-blower
+- Hello World! - a late entry but a classic!
 - DemoReel - Mark Kriegsman's classic DemoReel100.ino
   - https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
-The LED pattern code for Sawtooth and Oval will pretty much done from scratch using the FastLED library. The LED pattern code for Blink and DemoReel will be derived from example FastLED code. DemoReel will show some of the incredible capabilities of the FastLED library for generating beautiful patterns with little code.
+The LED pattern code for Sawtooth, Oval, and Hello World will pretty much done from scratch using the FastLED library. The LED pattern code for Blink and DemoReel will be derived from example FastLED code. DemoReel will show some of the incredible capabilities of the FastLED library for generating beautiful patterns with little code.
+
+The coding method for Sawtooth and Oval/Hello are different. This is done on purpose to show examples of manipulating the data to produce desired patterns. The final version of Oval.ino will be able to produce any of the patterns Sawtooth, Oval, or Hello World and either use rainbow colors or all red.
 
 So I will split this into four projects:
 | Part | Title | Link |
 | --- | --- | --- |
 | Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md |
 | Part B | Sawtooth | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md |
-| Part C | Oval | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
+| Part C | Oval and Hello World! | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
 | Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md |
 
 ## Resources
