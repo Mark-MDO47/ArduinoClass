@@ -25,12 +25,11 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 - https://learn.adafruit.com/pov-dotstar-double-staff
 
 ## WS2812B individually addressable color LEDs
-We will be using this color LED stick
+We will be using this color LED Stick
 - https://protosupplies.com/product/ws2812-addressable-rgb-led-stick-module/
 
-Here is an image from https://protosupplies.com:
-
-![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-In-Operation.jpg "protosupplies.com picture of RGB 8 LED Stick Module in operation")
+Here is an image of the LED Stick that we will be using:<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of WS2812B RGB LED Stick")
 
 Note: the WS in WS2812B stands for Worldsemi. Search this page for WS2812B and see the chip that implements all the magic in this project.
 - http://www.world-semi.com/
