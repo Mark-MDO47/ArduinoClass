@@ -9,6 +9,7 @@
 * [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
+* [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
@@ -123,3 +124,30 @@ Here are a few potential projects on the web that have caught my eye
 - https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/
 - https://www.instructables.com/How-to-Assemble-a-PCB-With-Tiny-SMD-Parts/
 
+## TLDR Power and Wires
+The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
+The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
+The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
+
+
+These LEDs use power that adds up. We can use this to estimate the power
+- http://fastled.io/docs/3.1/group___power.html<br>
+  - calculate_max_brightness_for_power_vmA(lots of parameters)
+     
+| https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp |
+| --- |
+| static const uint8_t gRed_mW   = 16 * 5; // 16mA @ 5v = 80mW |
+| static const uint8_t gGreen_mW = 11 * 5; // 11mA @ 5v = 55mW |
+| static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW |
+| static const uint8_t gDark_mW  =  1 * 5; //  1mA @ 5v =  5mW |
+  
+This calculates to about 42 milliamps per LED at max brightness WHITE.
+
+With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst case through the Arduino Nano should be OK. If it got to be many more than that I would use a separate power source for the LEDs. At first in our projects I only use one color at a time on each LED and so limit power draw. Later, you will find that we set a parameter to limit the total power for each LED in the FastLED library.
+
+Calculating wire size (Google for instance wire gauge ampacity 5v dc): the following link leads to information about power that can be safely passed through wire of different types and guages.
+- https://www.powerstream.com/Wire_Size.htm
+
+My plan is to use various software means to limit power to less than 21 milliamps or 0.85 watts. Looking up in the table referenced above, an AWG30 single-strand wire meeting the specs of the site could carry 142 milliamps. We are using multi stranded AWG30 but even so, I suspect that would be adequate. In fact I have used silicon coated multi stranded AWG30 to power an Arduino Nano plus two WS2812B 32 LED strands. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate and whether the electronics comes in contact with someone.
+
+For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 wire for power and ground because it came in contact with my daughters when operating the caps.
