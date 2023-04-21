@@ -246,7 +246,7 @@ The sawtooth pattern appears better in person than in this video. I think there 
 
 https://youtu.be/UdA5ehl802k
 
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartB_Sawtooth.png "Image that somewhat captures the persistence of vision effect")
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartB_Sawtooth.png" width="411" alt="Image that somewhat captures the persistence of vision effect">
 
 ## Reminder
 [Top](#notes "Top")<br>
