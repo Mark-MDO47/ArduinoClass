@@ -3,6 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Blink](#blink "Blink")
+* [Wiring](#wiring "Wiring")
 
 We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
@@ -32,7 +33,8 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 
 The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command.
 
-Once you have made these changes, connect up the LED stick and try it out. Remember:
+## Wiring
+Connect up the LED stick and try it out. Remember:
 - red wire is for 5 Volts from Arduino to LED stick (VCC)
 - black wire is for Ground between Arduino and LED stick (GND)
 - white wire is for serial_data output from Arduino to LED stick (IN)
