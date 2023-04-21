@@ -69,7 +69,7 @@ With the Arduino connected to the USB port on your computer, use the button circ
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
 
-We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube of connecting LEDs to a solderless breadboard can be found at this link:
+We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
 
 A good guide to solderless breadboards can be found at this link:
@@ -214,7 +214,7 @@ void loop() {
 }
 ```
 
-When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The video at the following link shows what this looks like and the image below that shows the USB serial port messages. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The youtube video at the following link shows what this looks like and the image below that shows the USB serial port messages. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://youtube.com/shorts/qGxECSMQtAQ
 
 Image of 01_BlinkingLED Part B: USB messages Button DOWN<br>
