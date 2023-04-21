@@ -168,14 +168,11 @@ When you have done this, compare it with my implementation
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
 
-Remember:
-- red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
-- black wire is for Ground between Arduino and LED stick (GND)
-- white wire is for serial_data output from Arduino to LED stick (IN)
-
-Here is a protosupplies.com image of the LED stick detail showing labels
-
-![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
+| Wire Color | Schematic | LED Stick | Purpose |
+| --- | --- | --- | --- |
+| Black | VSS | GND | Ground |
+| Red | VDD | VCC | +5 Volts |
+| White | DIN | IN | Serial Data |
 
 Here is a reminder of our desired wiring
 
