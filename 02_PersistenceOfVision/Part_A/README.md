@@ -33,9 +33,15 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command.
 
 Once you have made these changes, connect up the LED stick and try it out. Remember:
-- red wire is for 5 Volts from Arduino to LED stick (4-7VDC)
+- red wire is for 5 Volts from Arduino to LED stick (VCC)
 - black wire is for Ground between Arduino and LED stick (GND)
 - white wire is for serial_data output from Arduino to LED stick (IN)
+
+Below is an image of the LED Stick showing details of the connections between the colored wires and the LED Stick. Apologies for my soldering technique. You can see that the colors of the wire match the list above.
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickSoldering.png "Image of 02_PersistanceOfVision Part A: LED Stick Soldering")
+
+Below is an image of the LED Stick and the end of its harness. The harness is long enough to wave through the air without risk of yanking the rest of the electronics along, as long as the rest of the electronics is held down so the mass of the harness doesn't pull it. Note that the pin connectors have been solder-spliced onto the red, white and black wires and covered with heat shrink tubing; this is a more permanent way to insulate the wire than electrical tape, which degrades over time faster than the heat shrink tubing.
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickHarness.png "Image of 02_PersistanceOfVision Part A: LED Stick Harness")
 
 Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue) looks like, followed by an image of the color order.
 - https://youtu.be/HYfM1gHob98
