@@ -37,6 +37,11 @@ Once you have made these changes, connect up the LED stick and try it out. Remem
 - black wire is for Ground between Arduino and LED stick (GND)
 - white wire is for serial_data output from Arduino to LED stick (IN)
 
+Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue) looks like, followed by an image of the color order.
+- https://youtu.be/HYfM1gHob98
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of 02_PersistanceOfVision Part A: FastLED Blink.png")
+
 Here is a protosupplies.com image of the LED stick detail showing labels. Note that our LED stick will not have the right-angle connector extender.
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-With-Right-Angle-Header.jpg "protosupplies.com image LED stick detail showing labels")
