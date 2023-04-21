@@ -54,16 +54,26 @@ Because we are already using the USB serial port for debugging, we will dedicate
 The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf
 
-Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="750" alt="Image of wiring diagram for Persistence of Vision">
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="501" height="265" alt="Image of wiring diagram for Persistence of Vision">
+The connections that we will make to the LED Stick are all on the upper left side of the schematic. The labels on the schematic are VSS, VDD, and DIN. However, the labels on our stick are GND, VCC and IN.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickSoldering.png "Image of 02_PersistanceOfVision: LED Stick Labeling")
+
+The explanation for this is too complicated for a poor SW hack like myself so I will just point out the relationship:<br>
+| Schematic | LED Stick |
+| --- | --- |
+| VSS | GND |
+| VDD | VCC |
+| DIN | IN |
+
+Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
 
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
   - calculate_max_brightness_for_power_vmA(lots of parameters)
      
- | https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp |
- | --- |
+| https://github.com/FastLED/FastLED/blob/master/power_mgt.cpp |
+| --- |
 | static const uint8_t gRed_mW   = 16 * 5; // 16mA @ 5v = 80mW |
 | static const uint8_t gGreen_mW = 11 * 5; // 11mA @ 5v = 55mW |
 | static const uint8_t gBlue_mW  = 15 * 5; // 15mA @ 5v = 75mW |
