@@ -214,7 +214,7 @@ void loop() {
 }
 ```
 
-When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The video at the following link shows what this looks like and the image below that shows the USB serial port messages.
+When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The video at the following link shows what this looks like and the image below that shows the USB serial port messages. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://youtube.com/shorts/qGxECSMQtAQ
 
 Image of 01_BlinkingLED Part B: USB messages Button DOWN<br>
