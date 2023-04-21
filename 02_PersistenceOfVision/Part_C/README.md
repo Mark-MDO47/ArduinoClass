@@ -17,9 +17,12 @@ Each step left-to-right is a "blink" in the following diagram.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/OvalPattern.png "Image of Oval pattern; each step left-to-right is a blink")
 
-Here is where all our work organizing the code for Part B Sawtooth pays off. Except for changing Sawtooth to Oval, there are very few changes to make.
+Note: this spreadsheet helps with calculations for the patterns (does the so-called bit-busting).
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Pattern_Calcs.xlsx
 
 Copy the Sawtooth.ino file into a directory named Oval with filename Oval.ino, then open it in the Arduino IDE.
+
+Here is where all our work organizing the code for Part B Sawtooth pays off. Except for changing Sawtooth to Oval, there are very few changes to make.
 
 Now do global replaces with case sensitivity on as shown below:
 | Replace this | With this |
@@ -28,7 +31,7 @@ Now do global replaces with case sensitivity on as shown below:
 | Sawtooth | Oval |
 | SAWTOOTH | OVAL |
 
-That wasn't too bad. Maybe we should have used "pattern_" instead so there wouldn't be so much of this.
+That wasn't too bad. Maybe we should have used "pattern_" instead if oval_ and sawtooth_ so there wouldn't be so much of this.
 
 Now for the actual changes. First change the count to 34 
 - **#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats**
