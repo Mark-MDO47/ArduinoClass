@@ -3,7 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
-* [WS2811 and WS2812B individually addressable color LEDs](#ws2811-and-ws2812b-individually-addressable-color-leds "WS2811 and WS2812B individually addressable color LEDs")
+* [WS2812B individually addressable color LEDs](#ws2812b-individually-addressable-color-leds "WS2812B individually addressable color LEDs")
 * [The Circuit](#the-circuit "The Circuit")
 * [The Code](#the-code "The Code")
   * [The Code - Timing Without Delays](#the-code-\--timing-without-delays "The Code - Timing Without Delays")
@@ -17,14 +17,14 @@ Louis Le Prince is generally credited to be the first person to record and show 
 
 The effect that allows us to enjoy movies is known as the persistence of vision: the human vision system continues to "see" light for a short time after the light stops. You can try this by simply closing your eyes and seeing spots where the light was brightest. Over time it was discovered that a playback speed of 24 frames per second was fast enough to make the pictures appear to move.
 
-In this exercise we will build on the blinking LED exercise to create a simple persistence of vision wand consisting of 8 individually addressable color LEDs using the WS2811/WS2812B serial protocol.
+In this exercise we will build on the blinking LED exercise to create a simple persistence of vision wand consisting of 8 individually addressable color LEDs using the WS2812B serial protocol.
 
 Much more elaborate versions of this wand (and some beautiful pictures and movies) can be found in these links:
 - https://www.instructables.com/Persistence-of-Vision-LED-Staff/
 - https://povstaff.readthedocs.io/en/latest/
 - https://learn.adafruit.com/pov-dotstar-double-staff
 
-## WS2811 and WS2812B individually addressable color LEDs
+## WS2812B individually addressable color LEDs
 We will be using this color LED stick
 - https://protosupplies.com/product/ws2812-addressable-rgb-led-stick-module/
 
@@ -32,7 +32,7 @@ Here is an image from https://protosupplies.com:
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2020/09/WS2812-RGB-8-LED-Stick-Module-In-Operation.jpg "protosupplies.com picture of RGB 8 LED Stick Module in operation")
 
-Note: the WS in WS2811 and WS2812B stands for Worldsemi. Search this page for WS2812B and see the chip that implements all the magic in this project.
+Note: the WS in WS2812B stands for Worldsemi. Search this page for WS2812B and see the chip that implements all the magic in this project.
 - http://www.world-semi.com/
 - http://www.world-semi.com/ws2812-family/
 
@@ -143,7 +143,7 @@ If you haven't used FastLED with your Arduino IDE before you will probably need 
 If FastLED is not installed, install it. Install the library that says "By Daniel Garcia". It is OK if there are several libraries that say something about FastLED, but be sure that the one by Daniel Garcia is installed too. Below is a picture of the Arduino IDE Library Manager showing FastLED library is installed<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_FastLED.png "Image of Library Manager showing FastLED is installed")
 
-As mentioned, these WS2811/WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
+As mentioned, these WS2812B LEDs use just power/ground/serialdata. Other LEDs use power/ground/serialdata/clock. There are some differences in the exact approach for those other LEDs compared to ours.
 
 Here is what we do before **setup()**
 - We include the FastLED file (**#include <FastLED.h>**)
@@ -209,7 +209,7 @@ Then the high-level serial output protocol as seen by each of the LEDs in the ar
 
 ![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
 
-In summary, there is a serial data protocol used to control strings of WS2811/WS2812B RGB LEDs.
+In summary, there is a serial data protocol used to control strings of WS2812B RGB LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
   - The actual color order can vary; I determine it by experimentation.
   - This allows 256 levels (0-255) for each of the colors Red/Green/Blue.
