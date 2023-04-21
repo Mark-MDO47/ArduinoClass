@@ -5,7 +5,7 @@
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
 * [WS2812B individually addressable color LEDs](#ws2812b-individually-addressable-color-leds "WS2812B individually addressable color LEDs")
 * [The Circuit](#the-circuit "The Circuit")
-  * [TLDR Power](#tldr-power "TLDR Power")
+  * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 * [The Code](#the-code "The Code")
   * [The Code - Timing Without Delays](#the-code-\--timing-without-delays "The Code - Timing Without Delays")
   * [The Code - FastLED](#the-code-\--fastled "The Code - FastLED")
@@ -69,7 +69,7 @@ The explanation for this is too complicated for a poor SW hack like myself so I 
 
 Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
 
-### TLDR Power
+### TLDR Power and Wires
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
   - calculate_max_brightness_for_power_vmA(lots of parameters)
