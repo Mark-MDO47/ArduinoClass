@@ -72,8 +72,7 @@ Note that the connections from one LED to another are internal to the LED stick,
 ### TLDR Power and Wires
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
 The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
-The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill, but it reminds me to discuss a little more about how to decide what guage of wire to use.
-
+The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
 
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
