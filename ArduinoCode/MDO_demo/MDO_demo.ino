@@ -7,7 +7,7 @@
  * 
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_D
  * 
- * Demo Reel 100
+ * MDO Demo Reel 100
  */
 
 #include <FastLED.h>
@@ -19,7 +19,7 @@
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
 // ground, and power), like the LPD8806 define both DATA_PIN and CLOCK_PIN
 // Clock pin only needed for SPI based chipsets when not using hardware SPI
-#define DATA_PIN 7 // Mark-MDO47 we use pin 7 for LEDs
+#define DATA_PIN 3 // MDO-SPECIAL Mark-MDO47 we use pin 7 for LEDs
 // #define CLOCK_PIN 13 // Mark-MDO47 we don't use CLOCK_PIN with this LED Strip
 
 // Mark-MDO47 FastLED definitions
