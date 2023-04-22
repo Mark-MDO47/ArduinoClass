@@ -16,7 +16,7 @@ The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick, 
 
 Here is where all our work organizing the code for Part B Sawtooth pays off. Except for changing Sawtooth to Oval, there are very few changes to make.
 
-Copy the latest .ino file from Part C (either HelloWorld.ino or AllThreePatterns_RedOrRainbow.ino, depending on whether you did the extra credit) into a directory named Demo with filename Demo.ino, then open it in the Arduino IDE.
+Copy the latest .ino file from Part C (either HelloWorld.ino or AllThreePatterns_RedOrRainbow.ino, depending on whether you did the extra credit) into a directory named DemoReel with filename DemoReel.ino, then open it in the Arduino IDE.
 
 Now do global replaces with case sensitivity on as shown below:
 | Replace this | With this |
@@ -247,7 +247,7 @@ In **loop()** near the front
   if (Serial.available()) handle_serial_input();
 ```
 
-After these actions, Demo.ino should verify, compile and load succesfully.
+After these actions, DemoReel.ino should verify, compile and load succesfully.
 
 ## Reminder
 [Top](#notes "Top")<br>
