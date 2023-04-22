@@ -124,7 +124,7 @@ static uint16_t next_rainbow = 0;
 unsigned long previousMillis = 0;        // will store last time LED was updated
 
 // constants won't change:
-const long interval = 5;           // interval at which to blink (milliseconds); 25 blinks per second
+const long interval = 5;           // interval at which to blink (milliseconds)
 
 static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
 
