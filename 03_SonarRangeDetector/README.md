@@ -45,7 +45,7 @@ This delay may vary, but is about 200mSec on the modules that I have measured.
 This is required to prevent the module from hanging if there is no return echo.
 ```
 
-This sequence is illustrated by the timing diagram below from the sparkfun.com HC-SR04 spec. Note that the top line represents the Trigger signal from the Arduino, the middle line represents the ultrasonic sound emitted, and the bottom pulse represents the Echo signal returning to the Arduino. The top and bottom pulses are at TTL (Transistor to Transistor) voltage levels. The bottom pulse has text that says "TTL levers" but that is just a typo; it should say "TTL Levels". Where it says "range in proportion" it means that the time (width) of the HIGH pulse on the Echo signal when multiplied by a constant related to the speed of sound in air is the distance of the target from the HC-SR04. Our job will include measuring the time of the HIGH pulse and multiplying by that constant.<br>
+This sequence is illustrated by the timing diagram below from the sparkfun.com HC-SR04 spec. Note that the top line represents the Trigger signal from the Arduino, the middle line represents the ultrasonic sound emitted, and the bottom pulse represents the Echo signal returning to the Arduino. The top and bottom pulses are at TTL (Transistor to Transistor) voltage levels. The bottom pulse has text that says "TTL lever" but that is just a typo; it should say "TTL Level". Where it says "range in proportion" it means that the time (width) of the HIGH pulse on the Echo signal when multiplied by a constant related to the speed of sound in air is the distance of the target from the HC-SR04. Our job will include measuring the time of the HIGH pulse and getting it multiplyied by that constant.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HC-SR04_Timing.png "sparkfun.com Image of HC-SR04 timing diagram")
 
 
@@ -205,9 +205,11 @@ Insert this at the start of **loop()**
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
 ```
 
+Now compile, load and run the code. As you move your hand closer and farther away from the HC-SR04 you should see the patterns displayed change. The first and last ranges are bigger, but in the middle the width of the range for a particular pattern is about 3 cm or a little bigger than 1 inch.
+
 ## Extra Fun
 [Top](#notes "Top")<br>
-I will bring to the class one or two large WS2812B disks such as this 241 LED WS2812B disk or maybe some 93 LED WS2812B disks. There will not be enough for each station but everyone will be able to modify NUM_LEDS in Theremin.ino and try it out. It really looks spectacular!
+I will bring to the class one or two large WS2812B disks such as this 241 LED WS2812B disk or maybe some 93 LED WS2812B disks. There will not be enough for each station but everyone will be able to modify NUM_LEDS in Theremin.ino and try it out, based on the number of LEDs in the disk. It really looks spectacular!
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
 
@@ -220,4 +222,3 @@ Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" height="265" alt="Image of wiring diagram for 03 Sonar Extra Fun">
 
 It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't need to do that.
-
