@@ -121,7 +121,7 @@ I left the button circuit in. We will not use it, so if you wish you can remove 
 ## Cleanup First
 This time we will delete the old code first, then add the new code.
 
-Copy 02 Part-D Demo.ino into a directory named Theremin and name the file Theremin.ino.
+Copy 02 Part-D DemoReel.ino into a directory named Theremin and name the file Theremin.ino.
 
 We delete all the code relating to the USB serial port input; we will leave the code that prints in case we need it for debugging.<br>
 Delete these lines
