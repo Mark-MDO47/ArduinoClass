@@ -236,8 +236,8 @@ However, this will definitely exceed the amount of power we want to pass through
 For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. If we attach a 9V battery to the UBEC, it will be able to power the LED Disk.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
 
-Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Strip; it will be similar for the LED Disks.
+Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Disk. Note that I connect the ground for both UBEC and Arduino power but not the power; I don't want the Arduino power from the USB to "fight" against a slight difference with the UBEC power.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" height="265" alt="Image of wiring diagram for 03 Sonar Extra Fun">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" alt="Image of wiring diagram for 03 Sonar Extra Fun">
 
 It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't need to do that.
