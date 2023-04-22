@@ -11,6 +11,7 @@
  */
 
 #include <FastLED.h>
+#include <Ultrasonic.h>
 
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
@@ -21,6 +22,15 @@
 // Clock pin only needed for SPI based chipsets when not using hardware SPI
 #define DATA_PIN 7 // Mark-MDO47 we use pin 7 for LEDs
 // #define CLOCK_PIN 13 // Mark-MDO47 we don't use CLOCK_PIN with this LED Strip
+
+// Ultrasonic HC_SR04 definitions
+#define ULTRA_TRIG_PIN 12 // HC-SR04 Trigger digital pin
+#define ULTRA_ECHO_PIN 10 // HC-SR04 Trigger echo pin
+#define ULTRA_CM_PER_REGION 3 // HC-SR04 every 3 CM is a different pattern
+#define ULTRA_IGNORE_INITIAL_CM 3 // HC-SR04 ignore the first 3 CM since valid range starts at 2 CM
+
+// instantiate my HC-SR04 data object
+Ultrasonic my_ultra = Ultrasonic(ULTRA_TRIG_PIN, ULTRA_ECHO_PIN); // default timeout is 20 milliseconds
 
 // Mark-MDO47 FastLED definitions
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
@@ -98,6 +108,26 @@ void juggle() {
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
 SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm };
+char * gPatternStrings[6] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
+int gPrevPattern = -1;
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_ultra() - process HC-SR04 data.
+//    returns: pattern number 0 <= num <= PATTERN_MAX_NUM
+//
+
+int handle_ultra() {
+  int pattern; // integer pattern number from 0 thru 5 inclusive
+  // get the range reading from the Ultrasonic sensor in centimeters
+  int ultra_dist=(my_ultra.read(CM));
+  
+  ultra_dist -= ULTRA_IGNORE_INITIAL_CM;
+  if (ultra_dist < 0) ultra_dist = 0;
+  pattern = ultra_dist / ULTRA_CM_PER_REGION;
+  if (pattern > 5) pattern = 5;
+
+  return(pattern);
+} // end handle_ultra()
 
 void setup() { 
   // ## Clockless types ##
@@ -114,6 +144,11 @@ void setup() {
 }
 
 void loop() {
+  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+  }
 
   // Call the current pattern function once, updating the 'leds' array
   gPatterns[gCurrentPatternNumber]();
