@@ -12,7 +12,7 @@ Here are a few of my favorite boards
 - I have already mentioned that my current favorite Arduino is the ESP32 series which include WiFi and Bluetooth on board plus lots more RAM and Program memory and even dual CPUs for the brave! You can also update your program over WiFi and even debug over WiFi.
 - There are boards with similar capabilities to the Arduino that contain small FPGAs (Field Programmable Gate Arrays) that can be programmed to do fast things such as video controllers.
 - There are boards similar to the Raspberry Pi that can run real versions of Linux or the stripped down versions such as the Raspberry Pi version of Linux
-- One of the things that really excites me is the Nvidia Jetson Nano series of boards, with a CPU of the approximate power of the Raspberry Pi plus the adition of a powerful Nvidia Cuda engine similar to the Nvidia graphics boards that can be used for graphics processing or for Artificial Intelligence. Even the original version of the lowest-end Jetson card has an astonishing 472 MegaFlops of 16-bit floating point!
+- One of the things that really excites me is the Nvidia Jetson Nano series of boards, with a CPU of the approximate power of the Raspberry Pi plus the addition of a powerful Nvidia Cuda engine similar to the Nvidia graphics boards that can be used for graphics processing or for Artificial Intelligence. Even the original version of the lowest-end Jetson card has an astonishing 472 MegaFlops of 16-bit floating point!
 
 ## Favorite Devices
 These are just a few of the devices I have used or will be using in my next projects
@@ -26,14 +26,14 @@ Some of the projects I have started but have placed on hold the last two years w
 - https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW - use a low-cost Lattice iCE40 Verilog FPGA to convert the FastLED WS2812b **RGB** serial stream to drive an SK6812 **RGBW** strip
 - https://github.com/Mark-MDO47/FastLED - alternatively, hack the FastLED library to use the hardware features of the ESP32 (normally used on infrared controllers) so it can drive an SK6812 **RGBW** strip
 - https://github.com/Mark-MDO47/Cartoonify - use an Nvidia Jetson Nano to make a camera that uses AI to identify objects in the picture, match that with a hand-drawn cartoon from the Google quickdraw dataset, and print that cartoon on a thermal printer instead of the original picture
-- https://github.com/Mark-MDO47/MyThinkstOpenCanary - use a Raspberry Pi to implement the open-source version of the Thinkst Canary and put a honey-pot on my home network to detect if bad guys are in there
+- https://github.com/Mark-MDO47/MyThinkstOpenCanary - use a Raspberry Pi to implement the open-source version of the Thinkst Canary and put a honey-pot on your home network to detect if bad guys are in there
+- Automate the updates and backups on your home network using Ansible
 - Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" on with my Netgate SG3100 router appliance
-- Automate the updates and backups on my home network using Ansible
 
 ## Non-Electronics Non-Software
 I am also interested in music, especially classical and jazz.<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
-I got my low-end harpsichord in about 1979 (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
+I got my low-end harpsichord in about 1979 by trading it for an MGB (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
 
 ## Arduino Park the Car Helper
 Now just for a laugh - many years ago I saw a post from someone that said he was trying to use an Arduino to help park the car in the right position, and included pictures similar to but much better than the ones below.
