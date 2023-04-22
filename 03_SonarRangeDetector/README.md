@@ -180,6 +180,16 @@ Near the other pin definitions place the following
 #define ULTRA_ECHO_PIN 10 // HC-SR04 Trigger echo pin
 #define ULTRA_CM_PER_REGION 3 // HC-SR04 every 3 CM is a different pattern
 #define ULTRA_IGNORE_INITIAL_CM 3 // HC-SR04 ignore the first 3 CM since valid range starts at 2 CM
+
+// instantiate my HC-SR04 data object
+Ultrasonic my_ultra = Ultrasonic(ULTRA_TRIG_PIN, ULTRA_ECHO_PIN); // default timeout is 20 milliseconds
+
+```
+
+After the line **SimplePatternList gPatterns = { rainbow, ... };**
+```C
+char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
+int gPrevPattern = -1;
 ```
 
 Before **setup()**
@@ -192,7 +202,7 @@ Before **setup()**
 int handle_ultra() {
   int pattern; // integer pattern number from 0 thru 5 inclusive
   // get the range reading from the Ultrasonic sensor in centimeters
-  int ultra_dist=(ultrasonic.Ranging(CM));
+  int ultra_dist=(my_ultra.read(CM));
   
   ultra_dist -= ULTRA_IGNORE_INITIAL_CM;
   if (ultra_dist < 0) ultra_dist = 0;
@@ -201,14 +211,20 @@ int handle_ultra() {
 
   return(pattern);
 } // end handle_ultra()
+
 ```
 
-Insert this at the start of **loop()**
+Insert this at the start of **loop()** before the line that says **gPatterns[gCurrentPatternNumber]();**
 ```C
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+  }
+
 ```
 
-Now compile, load and run the code. As you move your hand closer and farther away from the HC-SR04 you should see the patterns displayed change. The first and last ranges are bigger, but in the middle the width of the range for a particular pattern is about 3 cm or a little bigger than 1 inch.
+Now compile, load and run the code. As you move your hand closer and farther away from the HC-SR04 you should see the patterns displayed change. The first and last ranges are bigger, but in the middle the width of the range for a particular pattern is about 3 cm or a little bigger than 1 inch. You can start the serial monitor and it will tell you which pattern is displaying.
 
 ## Extra Fun
 [Top](#notes "Top")<br>
