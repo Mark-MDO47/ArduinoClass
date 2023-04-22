@@ -118,7 +118,7 @@ int ledState = LOW;             // ledState used to set the LED
 unsigned long previousMillis = 0;        // will store last time LED was updated
 
 // constants won't change:
-const long interval = 50;           // interval at which to blink (milliseconds)
+const long interval = 5;           // interval at which to blink (milliseconds)
 ```
 The rules for C and C++ on scope and persistence actually have a lot more detail to them, but this will do for now. One item that I find particularly disturbing is that the definition of the **static** keyword has now diverged between C and C++; I think this is a bad trend.
 
