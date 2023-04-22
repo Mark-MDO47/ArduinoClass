@@ -163,8 +163,11 @@ First we ensure that the Ultrasonic library is installed in the Arduino IDE
 Picture of Arduino IDE starting Library Manager<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_ManageLibraries.png "Image of IDE starting Library Manager")
 
-Picture of Arduino IDE Library Manager showing Ultrasonic library is installed<br>
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Ultrasonic.png "Image of Library Manager showing Ultrasonic is installed")
+Picture of Arduino IDE Library Manager showing Ultrasonic library is NOT installed<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Ultrasonic.png "Image of Library Manager showing Ultrasonic is not installed")
+
+Picture of Arduino IDE Library Manager showing Ultrasonic library IS installed<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Ultrasonic_installed.png "Image of Library Manager showing Ultrasonic is installed")
 
 Then put the following immediately either before or after the **#include "FastLED.h"**
 ```C
