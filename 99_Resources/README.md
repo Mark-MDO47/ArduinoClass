@@ -5,6 +5,7 @@
 * [Arduino IDE](#arduino-ide "Arduino IDE")
 * [The Computer Language used in the Arduino IDE](#the-computer-language-used-in-the-arduino-ide "The Computer Language used in the Arduino IDE")
 * [Arduino Nano and ATMEGA 328P](#arduino-nano-and-atmega-328p "Arduino Nano and ATMEGA 328P")
+* [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [My favorite Arduino variant - ESP32](#my-favorite-arduino-variant-\--esp32 "My favorite Arduino variant - ESP32")
 * [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
 * [KiCad](#kicad "KiCad")
@@ -38,6 +39,27 @@ The ATMEGA 328P chip used in the Arduino Nano is described here
 
 Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
+
+## Solderless Breadboard
+We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+- https://www.youtube.com/watch?v=UvS9Wf2BoyE
+
+A good guide to solderless breadboards can be found at this link:
+- https://protosupplies.com/guide-to-solderless-breadboards/
+
+Here from the above link is an image of a typical solderless breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
+
+It might be worthwhile to look the above image over in detail; we will be using this breadboard in this class. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
+
+Something that may help, again from that protosupplies.com article about breadboards, is the following image of a breadboard from the inside, showing the metal that connects the pins on the top of the breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Contacts-Back-Side-2.jpg "Image of typical solderless breadboard from protosupplies.com")
+
+Be aware that a circuit laid out on such a solderless breadboard can then be transferred to a solderable breadboard PCB board fairly easily. See the comparison between these two below.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
 
 ## My favorite Arduino variant - ESP32
 [Top](#resources "Top")<br>
