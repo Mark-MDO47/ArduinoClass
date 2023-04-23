@@ -74,7 +74,7 @@ void loop() {
 
   // Turn the LEDs on, then pause
   // Mark-MDO47 first four LEDs red, next 3 green, last one blue
-  for (i = 0; i < 3; i++) {
+  for (i = 0; i < 4; i++) {
     leds[i] = CRGB::Red;
   }
   for (i = 4; i < 7; i++) {
