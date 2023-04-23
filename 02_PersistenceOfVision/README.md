@@ -26,7 +26,7 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 - https://learn.adafruit.com/pov-dotstar-double-staff
 
 ## WS2812B individually addressable color LEDs
-We will be using this color LED Stick
+We will be using this color LED Stick; it is contained in the Student "Kit".
 - https://protosupplies.com/product/ws2812-addressable-rgb-led-stick-module/
 
 Here is an image of the LED Stick that we will be using:<br>
