@@ -88,6 +88,12 @@ Here from the above link is an image of a typical solderless breadboard.
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
 
+It might be worthwhile to look the above image over in detail; we will be using this breadboard in this class. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
+
+Something that may help, again from that protosupplies.com article about breadboards, is the following image of a breadboard from the inside, showing the metal that connects the pins on the top of the breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Contacts-Back-Side-2.jpg "Image of typical solderless breadboard from protosupplies.com")
+
 Be aware that a circuit laid out on such a solderless breadboard can then be transferred to a solderable breadboard PCB board fairly easily. See the comparison between these two below.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
