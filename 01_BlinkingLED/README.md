@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
+* [Now It Runs Whenever you Turn On Power](#now-it-runs-whenever-you-turn-on-power "Now It Runs Whenever you Turn On Power")
 * [Part A - Add an external LED](#part-a-\--add-an-external-led "Part A - Add an external LED")
 * [Part B - Add Button and Display Messages on USB Serial Port](#part-b-\--add-button-and-display-messages-on-usb-serial-port "Part B - Add Button and Display Messages on USB Serial Port")
 * [Resources](#resources "Resources")
@@ -65,6 +66,14 @@ With the Arduino connected to the USB port on your computer, use the button circ
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_CompileAndRun.png "Arduino IDE compile-load-run button")
 
 **CONGRATULATIONS!** You have executed your first Arduino program!
+
+## Now It Runs Whenever you Turn On Power
+
+Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off, and then plug the cord in again you will see that it is still running that Blink program.
+
+This is how you can include an Arduino into your projects. You don't have to connect to a computer and program it each time; it will remember the last program you loaded.
+
+You also can but don't have to power the Arduino through the USB port; there is a pin marked VIN and if you provide 5 volts on that pin and connect ground to one of the GND pins, the program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
 
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
