@@ -13,9 +13,9 @@
 
 
 ## HC-SR04 Ultrasonic Range Finder
-I will be providing the parts to be used in this class for five workstations.
+The Student Kit for this class contains an HC-SR04 for use in this class.
 
-The HC-SR04 can be found here (for example) for less than $2:
+If you want one for your home, the HC-SR04 can be found here (for example) for less than $2:
 - https://protosupplies.com/product/hc-sr04-ultrasonic-range-finder-module/
 - https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf
 - https://www.tutorialspoint.com/arduino/arduino_ultrasonic_sensor.htm
