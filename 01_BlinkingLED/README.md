@@ -53,15 +53,15 @@ In the Arduino IDE, choose menu **File** -> **Examples** -> **01.Basics** -> **B
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlink.png "Arduino IDE loading Blink example program")
 
 In the **setup()** function you will find a "pinMode" call; this sets the internal "pin" to OUTPUT mode so we can turn the internal LED on and off.
-- LED_BUILTIN is a symbol for the "pin" number that controls the builtin LED; this symbol will automaticall be correct on any Arduino.
+- LED_BUILTIN is a symbol for the "pin" number that controls the built-in LED on the Arduino. This LED_BUILTIN symbol will automatically be correct when compiling for any Arduino.
 
 The **setup()** function is called only once, before ever calling the **loop()** function.
 
-In the **loop()** function you will find that it delays 1000 milliseconds, turns the LED **ON**, delays 1000 milliseconds, and turns the LED **OFF**.
+In the **loop()** function for the example Blink program you will find that it delays 1000 milliseconds, turns the LED **ON**, delays 1000 milliseconds, and turns the LED **OFF**.
 
 Because the **loop()** function is called over and over, this will continue until you stop it by reprogramming or powering off the Arduino Nano.
 
-With the Arduino connected to the USB port on your computer, use the button circled in red below to compile, load, and run the Blink example program. The on-board LED should blink.
+With the Arduino connected to the USB port on your computer, use the button circled in red in the image below to compile, load, and run the Blink example program. The on-board LED should blink.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_CompileAndRun.png "Arduino IDE compile-load-run button")
 
@@ -69,16 +69,16 @@ With the Arduino connected to the USB port on your computer, use the button circ
 
 ## Now It Runs Whenever you Turn On Power
 
-Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
+Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off completely, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
 
 This is how you can include an Arduino into your projects. You don't have to connect to a computer and program it each time; it will remember the last program you loaded.
 
-You also can but don't have to power the Arduino through the USB port. Another way to do this is the Arduino pin marked VIN. If you provide 5 volts on that pin and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
+You also can but don't have to power the Arduino through the USB port. Another way to power the Arduino is to use the Arduino pin marked VIN. If you provide 5 volts on VIN and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
 
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
 
-We will be using a solderless breadboard to implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
 
 A good guide to solderless breadboards can be found at this link:
