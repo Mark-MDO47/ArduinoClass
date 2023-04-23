@@ -13,7 +13,7 @@
 
 
 ## HC-SR04 Ultrasonic Range Finder
-I will be providing the parts to be used in this class for four workstations.
+I will be providing the parts to be used in this class for five workstations.
 
 The HC-SR04 can be found here (for example) for less than $2:
 - https://protosupplies.com/product/hc-sr04-ultrasonic-range-finder-module/
