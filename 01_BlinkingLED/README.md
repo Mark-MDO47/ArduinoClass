@@ -69,11 +69,11 @@ With the Arduino connected to the USB port on your computer, use the button circ
 
 ## Now It Runs Whenever you Turn On Power
 
-Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off, and then plug the cord in again you will see that it is still running that Blink program.
+Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
 
 This is how you can include an Arduino into your projects. You don't have to connect to a computer and program it each time; it will remember the last program you loaded.
 
-You also can but don't have to power the Arduino through the USB port; there is a pin marked VIN and if you provide 5 volts on that pin and connect ground to one of the GND pins, the program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
+You also can but don't have to power the Arduino through the USB port. Another way to do this is the Arduino pin marked VIN. If you provide 5 volts on that pin and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
 
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
