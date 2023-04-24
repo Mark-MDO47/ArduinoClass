@@ -10,6 +10,14 @@
  * Persistence of Vision MDO_AllThreePatterns
  */
 
+ // connections:
+// 
+// Nano pin 5V      LEDstick VCC
+// Nano pin GND     LEDstick GND
+// Nano pin D-3     LEDstick DIN
+//
+// Nano pin D-5     Button
+
 #include <FastLED.h>
 
 // How many leds in your strip?

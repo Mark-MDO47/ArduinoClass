@@ -10,6 +10,12 @@
  * Demo Reel 100
  */
 
+ // connections:
+// 
+// Nano pin 5V      LEDstick VCC
+// Nano pin GND     LEDstick GND
+// Nano pin D-7     LEDstick DIN
+
 #include <FastLED.h>
 
 // How many leds in your strip?

@@ -10,6 +10,17 @@
  * Theremin
  */
 
+ // connections:
+// 
+// Nano pin 5V      LEDstick VCC
+// Nano pin GND     LEDstick GND
+// Nano pin D-7     LEDstick DIN
+//
+// Nano pin 5V      SR04 VCC
+// Nano pin GND     SR04 GND
+// Nano pin D-12    SR04 Trig
+// Nano pin D-10    SR04 Echo
+
 #include <FastLED.h>
 #include <Ultrasonic.h>
 

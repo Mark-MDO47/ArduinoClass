@@ -31,6 +31,10 @@
  * Added an external LED
  */
 
+// Nano pin D-3     old-style LED
+//
+// Nano pin D-5     Button
+
 #define DPIN_LED_OUT 3 // in case we want to move it, only need to change this
 #define DPIN_BTN_IN  5 // this pin is used to sense the external button
 static int loop_count = 0;
