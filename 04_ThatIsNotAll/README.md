@@ -31,9 +31,12 @@ Some of the projects I have started but have placed on hold the last two years w
 - Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" on with my Netgate SG3100 router appliance
 
 ## Non-Electronics Non-Software
-I am also interested in music, especially classical and jazz.<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
-I got my low-end harpsichord in about 1979 by trading it for an MGB (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
+- I got my low-end harpsichord in about 1979 by trading it for an MGB (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
+
+Another project of interest is "fake" radio tubes - look something like vacuum tubes and glow, probably by using a single WS2812B RGB LED.
+- https://www.instructables.com/LED-Vacuum-Tubes/
+- Also I have been gifted a few real vacuum tubes and will put LEDs on the bottom of them
 
 ## Arduino Park the Car Helper
 Now just for a laugh - many years ago I saw a post from someone that said he was trying to use an Arduino to help park the car in the right position, and included pictures similar to but much better than the ones below.
