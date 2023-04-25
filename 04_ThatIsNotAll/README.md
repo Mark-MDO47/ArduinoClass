@@ -32,7 +32,7 @@ Some of the projects I have started but have placed on hold the last two years w
 
 ## Non-Electronics Non-Software
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
-- I got my low-end harpsichord in about 1979 by trading it for an MGB (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
+- I got my low-end harpsichord in about 1979 by trading my MGB for it (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
 
 Another project of interest is "fake" radio tubes - look something like vacuum tubes and glow, probably by using a single WS2812B RGB LED.
 - https://www.instructables.com/LED-Vacuum-Tubes/
