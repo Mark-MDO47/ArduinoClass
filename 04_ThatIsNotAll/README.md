@@ -39,7 +39,7 @@ Another project of interest is "fake" radio tubes - look something like vacuum t
 - Also I have been gifted a few real vacuum tubes and will put LEDs on the bottom of them
 
 ## Arduino Park the Car Helper
-Now just for a laugh - many years ago I saw a post from someone that said he was trying to use an Arduino to help park the car in the right position, and included pictures similar to but much better than the ones below.
+Now just for a laugh - many years ago I saw a post from someone that said they were trying to use an Arduino to help park the car in the right position.  That post included pictures similar to but much better than the ones below.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ArduinoParkingHelper_1.jpg "Image 1 of Arduino project to help park the car")
 
