@@ -105,12 +105,12 @@ long gInterval = 5;           // interval at which to blink (milliseconds)
 void show_menu_options() {
   Serial.println(""); Serial.println("Menu Choices:");
   for (int i = 0; i < MENU_CHOICES_NUM; i++) {
-     Serial.print(i); Serial.println(gMenuChoices[i]);
+     Serial.println(gMenuChoices[i]);
   }
   Serial.println("");
   Serial.print("Interval: "); Serial.print(gInterval); Serial.println(" millisec");
   Serial.print("Colors: "); Serial.println( COLORS_ALL_RED == gRedOrRainbow ? "All Red" : "Rainbow" );
-  Serial.print("Pattern: "); Serial.println( gPatternToShow );
+  Serial.print("Pattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
 } // end show_menu_options()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,8 +252,8 @@ void handle_serial_input_command(char * inbuf) {
      gPatternToShow = tmp-MENU_FIRST_PATTERN;
    } else {
      Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
-     show_menu_options();
    }
+   show_menu_options();
 } // end handle_serial_input_command()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
