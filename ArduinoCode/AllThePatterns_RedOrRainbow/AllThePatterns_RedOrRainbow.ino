@@ -59,11 +59,12 @@ static unsigned int * gPatternsBits[PATTERN_MAX_NUM]   = { sawtooth_pattern_bits
 static char * gPatternsNames[PATTERN_MAX_NUM]   = { "Sawtooth", "Oval", "HelloWorld!" };
 static int gPatternsRepeat[PATTERN_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL_CALLS_THEN_REPEAT, HELLO_CALLS_THEN_REPEAT };
 int gPatternToShow = 0;
-#define COLORS_ALL_RED 0
+#define COLORS_ALL_ONE 0
 #define COLORS_RAINBOW 1
-int gRedOrRainbow = COLORS_ALL_RED; // 0 = RED, 1 = RAINBOW
+int gOneOrRainbow = COLORS_ALL_ONE; // 0 = ALL_ONE, 1 = RAINBOW
+CRGB gTheOneColor = CRGB::Red;
 
-#define MENU_CHOICES_NUM 11
+#define MENU_CHOICES_NUM 14
 static char * gMenuChoices[MENU_CHOICES_NUM] = {
   " 0 set interval 1 ms",
   " 1 set interval 3 ms",
@@ -71,19 +72,25 @@ static char * gMenuChoices[MENU_CHOICES_NUM] = {
   " 3 set interval 10 ms",
   " 4 set interval 20 ms",
   " 5 set interval 40 ms",
-  " 6 set colors ALL RED",
+  " 6 set colors ALL ONE",
   " 7 set colors RAINBOW",
-  " 8 set pattern Sawtooth",
-  " 9 set pattern Oval",
-  "10 set pattern HelloWorld!",
+  " 8 set the one color RED",
+  " 9 set the one color GREEN",
+  "10 set the one color BLUE",
+  "11 set pattern Sawtooth",
+  "12 set pattern Oval",
+  "13 set pattern HelloWorld!",
 };
-#define MENU_FIRST_MSEC    0
-#define MENU_LAST_MSEC     5
-#define MENU_FIRST_COLOR   6
-#define MENU_LAST_COLOR    7
-#define MENU_FIRST_PATTERN 8
+#define MENU_FIRST_MSEC           0
+#define MENU_LAST_MSEC            5
+#define MENU_FIRST_COLOR_PATTERN  6
+#define MENU_LAST_COLOR_PATTERN   7
+#define MENU_FIRST_COLOR_CHOICE   8
+#define MENU_LAST_COLOR_CHOICE   10
+#define MENU_FIRST_PATTERN       11
 #define MENU_LAST_PATTERN (MENU_FIRST_PATTERN+PATTERN_MAX_NUM-1)
-static int menu_msec_counts[] = { 1, 3, 5, 10, 20, 40 };
+static int gMenuMsecCounts[] = { 1, 3, 5, 10, 20, 40 };
+CRGB gTheColorChoices[] = { CRGB::Red, CRGB::Green, CRGB::Blue };
 
 #define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
@@ -109,7 +116,7 @@ void show_menu_options() {
   }
   Serial.println("");
   Serial.print("Interval: "); Serial.print(gInterval); Serial.println(" millisec");
-  Serial.print("Colors: "); Serial.println( COLORS_ALL_RED == gRedOrRainbow ? "All Red" : "Rainbow" );
+  Serial.print("Colors: "); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All Red" : "Rainbow" );
   Serial.print("Pattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
 } // end show_menu_options()
 
@@ -166,9 +173,9 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
     if (0 == (0x80 & bits))
        ptrn_leds[i] = CRGB::Black;
     else {
-      if (COLORS_ALL_RED == gRedOrRainbow) {
-         ptrn_leds[i] = CRGB::Red;
-      } else if (COLORS_RAINBOW == gRedOrRainbow) {
+      if (COLORS_ALL_ONE == gOneOrRainbow) {
+         ptrn_leds[i] = gTheOneColor;
+      } else if (COLORS_RAINBOW == gOneOrRainbow) {
         ptrn_leds[i] = rainbow_array[next_rainbow++];
         if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
         gHue_rotate_countdown -= 1;
@@ -177,7 +184,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
           gHue += 4; // rotating "base color"
           fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
         }
-      } // end if <color_scheme> == gRedOrRainbow
+      } // end if <color_scheme> == gOneOrRainbow
     } // end if this LED is not black
     bits <<= 1;
   } // end for all LEDs/bits
@@ -243,9 +250,11 @@ int handle_button(int btn_pin) {
 void handle_serial_input_command(char * inbuf) {
    long int tmp = atoi(inbuf);
    if ((MENU_FIRST_MSEC <= tmp) && (MENU_LAST_MSEC >= tmp)) {
-     gInterval = menu_msec_counts[tmp-MENU_FIRST_MSEC];
-   } else if ((MENU_FIRST_COLOR <= tmp) && (MENU_LAST_COLOR >= tmp)) {
-     gRedOrRainbow = tmp-MENU_FIRST_COLOR;
+     gInterval = gMenuMsecCounts[tmp-MENU_FIRST_MSEC];
+   } else if ((MENU_FIRST_COLOR_PATTERN <= tmp) && (MENU_LAST_COLOR_PATTERN >= tmp)) {
+     gOneOrRainbow = tmp-MENU_FIRST_COLOR_PATTERN;
+   } else if ((MENU_FIRST_COLOR_CHOICE <= tmp) && (MENU_LAST_COLOR_CHOICE >= tmp)) {
+     gTheOneColor = gTheColorChoices[tmp-MENU_FIRST_COLOR_CHOICE];
    } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
      gPatternToShow = tmp-MENU_FIRST_PATTERN;
    } else {
