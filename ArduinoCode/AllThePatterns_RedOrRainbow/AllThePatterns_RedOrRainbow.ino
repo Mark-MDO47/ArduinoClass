@@ -61,8 +61,11 @@ static int gPatternsRepeat[PATTERN_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL
 int gPatternToShow = 0;
 #define COLORS_ALL_ONE 0
 #define COLORS_RAINBOW 1
+static int gMenuMsecCounts[] = { 1, 3, 5, 10, 20, 40 };
 int gOneOrRainbow = COLORS_ALL_ONE; // 0 = ALL_ONE, 1 = RAINBOW
-CRGB gTheOneColor = CRGB::Red;
+CRGB gTheColorChoices[] = { CRGB::Red, CRGB::Green, CRGB::Blue };
+static char * gTheColorStrings[] = { "Red", "Green", "Blue" };
+int gTheOneColorIndex = 0;
 
 #define MENU_CHOICES_NUM 14
 static char * gMenuChoices[MENU_CHOICES_NUM] = {
@@ -89,8 +92,6 @@ static char * gMenuChoices[MENU_CHOICES_NUM] = {
 #define MENU_LAST_COLOR_CHOICE   10
 #define MENU_FIRST_PATTERN       11
 #define MENU_LAST_PATTERN (MENU_FIRST_PATTERN+PATTERN_MAX_NUM-1)
-static int gMenuMsecCounts[] = { 1, 3, 5, 10, 20, 40 };
-CRGB gTheColorChoices[] = { CRGB::Red, CRGB::Green, CRGB::Blue };
 
 #define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
@@ -116,8 +117,9 @@ void show_menu_options() {
   }
   Serial.println("");
   Serial.print("Interval: "); Serial.print(gInterval); Serial.println(" millisec");
-  Serial.print("Colors: "); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All Red" : "Rainbow" );
-  Serial.print("Pattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
+  Serial.print("Color Pattern: "); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All One Color" : "Rainbow" );
+  Serial.print("The One Color: ");  Serial.println(gTheColorStrings[gTheOneColorIndex]);
+  Serial.print("POVPattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
 } // end show_menu_options()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,7 +176,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
        ptrn_leds[i] = CRGB::Black;
     else {
       if (COLORS_ALL_ONE == gOneOrRainbow) {
-         ptrn_leds[i] = gTheOneColor;
+         ptrn_leds[i] = gTheColorChoices[gTheOneColorIndex];
       } else if (COLORS_RAINBOW == gOneOrRainbow) {
         ptrn_leds[i] = rainbow_array[next_rainbow++];
         if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
@@ -254,7 +256,7 @@ void handle_serial_input_command(char * inbuf) {
    } else if ((MENU_FIRST_COLOR_PATTERN <= tmp) && (MENU_LAST_COLOR_PATTERN >= tmp)) {
      gOneOrRainbow = tmp-MENU_FIRST_COLOR_PATTERN;
    } else if ((MENU_FIRST_COLOR_CHOICE <= tmp) && (MENU_LAST_COLOR_CHOICE >= tmp)) {
-     gTheOneColor = gTheColorChoices[tmp-MENU_FIRST_COLOR_CHOICE];
+     gTheOneColorIndex = tmp-MENU_FIRST_COLOR_CHOICE;
    } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
      gPatternToShow = tmp-MENU_FIRST_PATTERN;
    } else {
