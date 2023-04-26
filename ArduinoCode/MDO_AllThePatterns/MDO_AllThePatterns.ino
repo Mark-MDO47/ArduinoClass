@@ -166,23 +166,21 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
     if (0 == (0x80 & bits))
        ptrn_leds[i] = CRGB::Black;
     else {
-#ifdef COLOR_ALL_RED
-      ptrn_leds[i] = CRGB::Red;
-#endif // COLOR_ALL_RED
-#ifdef COLOR_RAINBOW
-      ptrn_leds[i] = rainbow_array[next_rainbow++];
-      if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
-      gHue_rotate_countdown -= 1;
-      if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
-        gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
-        gHue += 4; // rotating "base color"
-        fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
-      }
-#endif // COLOR_RAINBOW
-    }
+      if (COLORS_ALL_RED == gRedOrRainbow) {
+         ptrn_leds[i] = CRGB::Red;
+      } else if (COLORS_RAINBOW == gRedOrRainbow) {
+        ptrn_leds[i] = rainbow_array[next_rainbow++];
+        if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+        gHue_rotate_countdown -= 1;
+        if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+          gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+          gHue += 4; // rotating "base color"
+          fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+        }
+      } // end if <color_scheme> == gRedOrRainbow
+    } // end if this LED is not black
     bits <<= 1;
-  }
-
+  } // end for all LEDs/bits
 } // end ptrn_blink()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
