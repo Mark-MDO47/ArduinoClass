@@ -7,7 +7,13 @@
  * 
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
  * 
- * Persistence of Vision AllThreePatterns_RedOrRainbow
+ * We are using an Arduino Nano with a USB mini-B connector
+ *            V3.0 ATmega328P 5V 16M CH340 Compatible to Arduino Nano V3
+ *            32Kbyte Flash (program storage), 2Kbyte SRAM, 1Kbyte EEPROM
+ *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
+ *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
+ *
+ * Persistence of Vision AllThePatterns
  */
 
  // connections:
@@ -19,6 +25,7 @@
 // Nano pin D-3     Button
 
 #include <FastLED.h>
+#include <EEPROM.h>          // to store configuration info
 
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
