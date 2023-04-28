@@ -357,7 +357,7 @@ At the end of **setup()**
   show_menu_options();
 ```
 
-Fix up some routines to use the configuration info: first replace the code in ptrn_blink() with this:
+Replace the code in **ptrn_blink()** with this:
 ```C
 void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
