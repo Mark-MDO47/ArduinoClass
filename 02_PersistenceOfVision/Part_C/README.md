@@ -161,13 +161,38 @@ My version of this can be found here
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/HelloWorld/HelloWorld.ino
 
 ## Sawtooth Revisited
-
+[Top](#notes "Top")<br>
 As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 5 or 6. It will be good practice with hexadecimal and binary arithmetic.
 
 When you have done this, compare it with my implementation
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino
 
 ## All the Patterns - Extra Credit
+[Top](#notes "Top")<br>
+We have made a program that can be edited and compiled to do any of the three patterns. Now I want to expand it to allow selecting options from the USB serial port while the code is running:
+- select the pattern to display
+- select whether to use the Rainbow colors or a single-color
+  - select which color (Red, Green, or Blue) to use if using single-color
+- select how long to wait between blinks
+
+In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections.
+
+### EEPROM
+These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
+- FLASH memory (no acronym) was an offshoot of EEPROM. It is usually erasable and writeable in blocks of many bytes.
+- EEPROM typically has fewer read/write cycles than EEPROM and is usually erasable and writeable in blocks of one byte.
+- SRAM (Static Random Access Memory) is, in the Arduino, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
+
+In Arduino practice:
+- FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on PROGMEM and F macro in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
+- SRAM is used for variables that change often
+- EEPROM is used to save things that are
+  - changed during program execution
+  - need to be remembered the next time the program runs
+
+
+
+
 
 ## Reminder
 [Top](#notes "Top")<br>
