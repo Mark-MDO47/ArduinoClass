@@ -409,7 +409,7 @@ void eeprom_init_from_ram() {
   } else { // this was the last byte before checksum
     eeprom_store_with_chksum(EEPROM_OFFSET_gPatternToShow, gPatternToShow);
   } // end if this was the last byte before checksum
-}; // end eeprom_factory_init(configToProc)
+} // end eeprom_factory_init(configToProc)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ram_init_from_eeprom()
@@ -444,7 +444,7 @@ void setup() {
   Serial.println(""); // print a blank line in case there is some junk from power-on
   Serial.println("ArduinoClass init...");
   show_menu_options();
-}
+} // end setup()
 
 void loop() { 
   // check to see if it's time to "blink" the LED strip; that is, if the difference
@@ -464,4 +464,4 @@ void loop() {
 
     handle_leds(button_up); // Mark-MDO47 generate pattern to display and display it
   }
-}
+} // end loop()
