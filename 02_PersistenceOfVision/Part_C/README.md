@@ -201,7 +201,7 @@ Then we do some replaces:
 | oval_pause_pattern | ptrn_pause |
 | oval_blink_pattern | ptrn_blink |
 | oval_fill_pattern | ptrn_fill |
-
+| PTRN_CALLS_THEN_REPEAT | gPatternsRepeat[gPatternToShow] |
 
 Next we add definitions to allow the controlling configuration variables and USB serial port menus
 ```C
@@ -248,6 +248,163 @@ static char * gMenuChoices[MENU_CHOICES_NUM] = {
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
 ```
+
+We add code to show the menus and currently selected options, and also to accept new options
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// show_menu_options() - print the menu options
+//    returns: nothing
+void show_menu_options() {
+  Serial.println(""); Serial.println("Menu Choices:");
+  for (int i = 0; i < MENU_CHOICES_NUM; i++) {
+     Serial.println(gMenuChoices[i]);
+  }
+  Serial.println("");
+  Serial.print("Interval: "); Serial.print(gInterval); Serial.println(" millisec");
+  Serial.print("Color Pattern: "); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All One Color" : "Rainbow" );
+  Serial.print("The One Color: ");  Serial.println(gTheColorStrings[gTheOneColorIndex]);
+  Serial.print("POVPattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
+} // end show_menu_options()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_serial_input_command(inbuf) - process serial input command (decimal number).
+//    returns: nothing
+//
+// inbuf - pointer to start of zero-terminated string, no linefeed ('\n')
+//         expected to be a decimal number
+//
+// if input number is valid, store into pattern_num
+
+void handle_serial_input_command(char * inbuf) {
+   long int tmp = atoi(inbuf);
+   if ((MENU_FIRST_MSEC <= tmp) && (MENU_LAST_MSEC >= tmp)) {
+     gInterval = gMenuMsecCounts[tmp-MENU_FIRST_MSEC];
+   } else if ((MENU_FIRST_COLOR_PATTERN <= tmp) && (MENU_LAST_COLOR_PATTERN >= tmp)) {
+     gOneOrRainbow = tmp-MENU_FIRST_COLOR_PATTERN;
+   } else if ((MENU_FIRST_COLOR_CHOICE <= tmp) && (MENU_LAST_COLOR_CHOICE >= tmp)) {
+     gTheOneColorIndex = tmp-MENU_FIRST_COLOR_CHOICE;
+   } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
+     gPatternToShow = tmp-MENU_FIRST_PATTERN;
+   } else {
+     Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
+   }
+   eeprom_init_from_ram(); // store any new config in EEPROM
+   show_menu_options();
+} // end handle_serial_input_command()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_serial_input_command(inbuf) - process serial input command (decimal number).
+//    returns: nothing
+//
+// inbuf - pointer to start of zero-terminated string, no linefeed ('\n')
+//         expected to be a decimal number
+//
+// if input number is valid, store into pattern_num
+
+void handle_serial_input_command(char * inbuf) {
+   long int tmp = atoi(inbuf);
+   if ((MENU_FIRST_MSEC <= tmp) && (MENU_LAST_MSEC >= tmp)) {
+     gInterval = gMenuMsecCounts[tmp-MENU_FIRST_MSEC];
+   } else if ((MENU_FIRST_COLOR_PATTERN <= tmp) && (MENU_LAST_COLOR_PATTERN >= tmp)) {
+     gOneOrRainbow = tmp-MENU_FIRST_COLOR_PATTERN;
+   } else if ((MENU_FIRST_COLOR_CHOICE <= tmp) && (MENU_LAST_COLOR_CHOICE >= tmp)) {
+     gTheOneColorIndex = tmp-MENU_FIRST_COLOR_CHOICE;
+   } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
+     gPatternToShow = tmp-MENU_FIRST_PATTERN;
+   } else {
+     Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
+   }
+   // TODO FIXME add code to put configuration into EEPROM
+   show_menu_options();
+} // end handle_serial_input_command()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_serial_input() - process serial input. When a command is received, call handle_serial_input_command() 
+//    returns: nothing
+//
+// Process SERIAL_MAX_INPUT_INPUT_EACH_CALL characters at a time, in case we are reading characters from a machine.
+// End of command is signaled by the character '\n'
+// Only valid characters in command are decimal digits
+//
+// serial_input_buf - where to store the serial input command
+#define SERIAL_MAX_INPUT_INPUT_EACH_CALL 6 // maximum number of characters to read each call
+
+void handle_serial_input() {
+  static int serial_input_flushing = 0;
+  static long int serial_input_next_char_idx = 0; // where to store the next character
+  char inchar;
+  long int inchar_count = 0;
+
+  while (Serial.available()) {
+    // whether saving the characters or flushing the input queue, we always read characters.
+    inchar = (char) Serial.read();
+    inchar_count += 1;
+    if (inchar == '\n') {
+      // again in either case, we process command if we see end of line
+      handle_serial_input_command(serial_input_buf);
+      memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer
+      serial_input_next_char_idx = 0; // where to store the next character
+      serial_input_flushing = 0; // no longer flushing
+      break; // process only one command, return back to loop for next command
+    } else if (serial_input_flushing) {
+      if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break; // if flushing and max chars consumed, return back to loop()
+    } else {
+      // here we are storing characters
+      if (SERIAL_MAX_INPUT_LEN <= (serial_input_next_char_idx+1)) {
+        // already stored the max number of characters, now we are flushing
+        serial_input_flushing = 1;
+      } else if (isDigit(inchar)) {
+        // room to store character and character is a digit, store it
+        serial_input_buf[serial_input_next_char_idx++] = inchar;
+      }
+      // check if max chars consumed; if so return back to loop(), if more chars allowed, stay in our "while" loop
+      if (SERIAL_MAX_INPUT_INPUT_EACH_CALL <= inchar_count) break;
+    } // end either process or flush characters
+  } // end while serial input data available
+} // end handle_serial_input()
+```
+
+At the end of **setup()**
+```C
+  Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+  while (Serial.available()) Serial.read(); // clear any startup junk from the serial queue
+  memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer; good idea for zero-terminated strings
+
+  Serial.println(""); // print a blank line in case there is some junk from power-on
+  Serial.println("ArduinoClass init...");
+  show_menu_options();
+```
+
+Fix up some routines to use the configuration info: first replace the code in ptrn_blink() with this:
+```C
+void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
+  // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
+  unsigned int bits = gPatternsBits[gPatternToShow][blink_phase];
+  for (long int i = 0; i < NUM_LEDS; i++) {
+    if (0 == (0x80 & bits))
+       ptrn_leds[i] = CRGB::Black;
+    else {
+      if (COLORS_ALL_ONE == gOneOrRainbow) {
+         ptrn_leds[i] = gTheColorChoices[gTheOneColorIndex];
+      } else if (COLORS_RAINBOW == gOneOrRainbow) {
+        ptrn_leds[i] = rainbow_array[next_rainbow++];
+        if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+        gHue_rotate_countdown -= 1;
+        if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+          gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+          gHue += 4; // rotating "base color"
+          fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+        }
+      } // end if <color_scheme> == gOneOrRainbow
+    } // end if this LED is not black
+    bits <<= 1;
+  } // end for all LEDs/bits
+} // end ptrn_blink()
+```
+
 
 ### EEPROM
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
@@ -392,11 +549,11 @@ After these additions, there are only two changes to make.
 At the start of **setup()** add:
 ```C
   // either initialize EEPROM configuration info or initialize RAM from EEPROM configuration info
-  eeprom_check_init();
-  ram_init_from_eeprom();
+  eeprom_check_init(); // see if EEPROM checksum is good; if not update EEPROM from RAM
+  ram_init_from_eeprom(); // update RAM from EEPROM
 ```
 
-In **handle_serial_input_command()** just before **show_menu_options();** add:
+In **handle_serial_input_command()** replace line **// TODO FIXME add code to put configuration into EEPROM** with:
 ```C
    eeprom_init_from_ram(); // store any new config in EEPROM
 ```
