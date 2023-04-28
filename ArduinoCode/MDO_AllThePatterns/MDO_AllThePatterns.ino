@@ -25,6 +25,15 @@
 // Nano pin D-4     Button
 
 #include <FastLED.h>
+#include <EEPROM.h>          // to store configuration info
+
+#define EEPROM_OFFSET_gInterval         0x0
+#define EEPROM_OFFSET_gOneOrRainbow     0x1
+#define EEPROM_OFFSET_gTheOneColorIndex 0x2
+#define EEPROM_OFFSET_gPatternToShow    0x3
+#define EEPROM_LAST_NON_CHKSM           0xE // EEPROM address of last non-checksum data
+#define EEPROM_INVERTED_CHKSM           0xF // EEPROM address of checksum data
+#define EEPROM_BYTES_PER_CONFIG (EEPROM_INVERTED_CHKSM+1)
 
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
@@ -268,6 +277,7 @@ void handle_serial_input_command(char * inbuf) {
    } else {
      Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
    }
+   eeprom_init_from_ram(); // store new config in EEPROM
    show_menu_options();
 } // end handle_serial_input_command()
 
@@ -316,7 +326,107 @@ void handle_serial_input() {
   } // end while serial input data available
 } // end handle_serial_input()
 
-void setup() { 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// eeprom_store_if_change(offset, byteValue) - write byte to EEPROM if it is different than current EEPROM
+//    we don't want to write EEPROM unless needed
+// offset - where to store the byte in EEPROM, offset from gEepromConfigStart
+// byteValue - byte value to store at that offset in EEPROM configuration
+//
+void eeprom_store_if_change(int offset, uint8_t byteValue) {
+  uint8_t nowValue;
+
+  nowValue = EEPROM.read(offset);
+  if (nowValue != byteValue) {
+    EEPROM.write(offset, byteValue);
+  } // if we needed to write to EEPROM
+} // end eeprom_store_if_change()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// eeprom_check_init - check if EEPROM has valid values; if not, copy current RAM values to it
+//    we use a very crude checksum approach
+//
+void eeprom_check_init() {
+  uint8_t invChksumValue;
+  uint8_t nowValue;
+
+  // read RBG non-checksum bytes from EEPROM and calculate checksum; compare with stored checksum
+  invChksumValue = eeprom_calc_inverted_checksum();
+  nowValue = EEPROM.read(EEPROM_INVERTED_CHKSM);
+  if (nowValue != invChksumValue) {
+    // checksum does not match; factory reset our EEPROM configuration area
+    Serial.println(F("eeprom_check_init: checksum bad; re-initialize"));
+    eeprom_init_from_ram();
+  } // end if checksum does not match
+} // end eeprom_check_init()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// eeprom_calc_inverted_checksum() - calculate the inverted checksum of EEPROM
+//    we use a very crude checksum approach
+//
+uint8_t eeprom_calc_inverted_checksum() {
+  int offset;
+  uint8_t chksumValue; // non-inverted checksum
+  uint8_t byteValue;
+
+  // read config non-checksum bytes from EEPROM and calculate checksum
+  for (offset = chksumValue = 0; offset <= EEPROM_LAST_NON_CHKSM; offset++) {
+    byteValue = EEPROM.read(offset);
+    chksumValue += byteValue;
+  } // end caclulate checksum
+  return((uint8_t) (~chksumValue));
+} // end eeprom_calc_inverted_checksum()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// eeprom_store_with_chksum(offset, byteValue) - store byteValue at EEPROM address and update checksum
+//    we use a very crude checksum approach
+// offset - where to store the byte in EEPROM, offset from gEepromConfigStart
+// byteValue - byte value to store at that offset in EEPROM configuration
+//
+void eeprom_store_with_chksum(int offset, uint8_t byteValue) {
+  uint8_t nowValue;
+  uint8_t invChksumValue;
+
+  eeprom_store_if_change(offset, byteValue);
+  invChksumValue = eeprom_calc_inverted_checksum();
+  eeprom_store_if_change(EEPROM_INVERTED_CHKSM, invChksumValue);
+} // end eeprom_store_with_chksum()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// eeprom_init_from_ram()
+//   set EEPROM configuration to current state
+//
+void eeprom_init_from_ram() {
+
+  eeprom_store_if_change(EEPROM_OFFSET_gInterval,         gInterval);
+  eeprom_store_if_change(EEPROM_OFFSET_gOneOrRainbow,     gOneOrRainbow);
+  eeprom_store_if_change(EEPROM_OFFSET_gTheOneColorIndex, gTheOneColorIndex);
+  if (EEPROM_OFFSET_gPatternToShow < EEPROM_LAST_NON_CHKSM) {
+    eeprom_store_if_change(EEPROM_OFFSET_gPatternToShow,  gPatternToShow);
+    for (uint8_t offset = 0; offset < EEPROM_LAST_NON_CHKSM; offset++) {
+      eeprom_store_if_change(offset, 0); // zero fill the rest
+    } // end fill with zero to one less than LAST_NON_CHKSM
+    eeprom_store_with_chksum(EEPROM_LAST_NON_CHKSM, 0); // last non-checksum
+  } else { // this was the last byte before checksum
+    eeprom_store_with_chksum(EEPROM_OFFSET_gPatternToShow, gPatternToShow);
+  } // end if this was the last byte before checksum
+}; // end eeprom_factory_init(configToProc)
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ram_init_from_eeprom()
+//   set EEPROM configuration to current state
+//
+void ram_init_from_eeprom() {
+  gInterval         = EEPROM.read(EEPROM_OFFSET_gInterval);
+  gOneOrRainbow     = EEPROM.read(EEPROM_OFFSET_gOneOrRainbow);
+  gTheOneColorIndex = EEPROM.read(EEPROM_OFFSET_gTheOneColorIndex);
+  gPatternToShow    = EEPROM.read(EEPROM_OFFSET_gPatternToShow);
+} // end ram_init_from_eeprom()
+
+void setup() {
+  // if needed, initialize EEPROM variables
+  eeprom_check_init();
+  ram_init_from_eeprom();
+
   pinMode(BUTTON_PIN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
   // ## Clockless types ##
