@@ -27,7 +27,6 @@
 // Nano pin D-13    SR04 Trig
 // Nano pin D-12    SR04 Echo
 
-
 #include <FastLED.h>
 #include <Ultrasonic.h>
 
@@ -126,8 +125,9 @@ void juggle() {
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
 SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm };
-char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
-int gPrevPattern = -1;
+char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist(cm): ", "1 rainbowWithGlitter dist(cm): ", "2 confetti dist(cm): ", "3 sinelon dist(cm): ", "4 juggle dist(cm): ", "5 bpm dist(cm): " };
+int gPrevPattern = -1; // previous pattern number
+int gUltraDistance = 0; // latest measured distance in centimeters
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle_ultra() - process HC-SR04 data.
@@ -137,9 +137,10 @@ int gPrevPattern = -1;
 int handle_ultra() {
   int pattern; // integer pattern number from 0 thru 5 inclusive
   // get the range reading from the Ultrasonic sensor in centimeters
-  int ultra_dist=(my_ultra.read(CM));
+  int ultra_dist;
   
-  ultra_dist -= ULTRA_IGNORE_INITIAL_CM;
+  gUltraDistance= (my_ultra.read(CM));
+    ultra_dist = gUltraDistance - ULTRA_IGNORE_INITIAL_CM;
   if (ultra_dist < 0) ultra_dist = 0;
   pattern = ultra_dist / ULTRA_CM_PER_REGION;
   if (pattern > 5) pattern = 5;
@@ -165,7 +166,7 @@ void loop() {
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
   if (gPrevPattern != gCurrentPatternNumber) {
     gPrevPattern = gCurrentPatternNumber;
-    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+    Serial.print(gPatternStrings[gCurrentPatternNumber]); Serial.println(gUltraDistance);
   }
 
   // Call the current pattern function once, updating the 'leds' array

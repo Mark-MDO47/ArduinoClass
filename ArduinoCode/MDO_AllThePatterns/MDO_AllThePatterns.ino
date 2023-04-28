@@ -262,7 +262,7 @@ int handle_button(int btn_pin) {
 // inbuf - pointer to start of zero-terminated string, no linefeed ('\n')
 //         expected to be a decimal number
 //
-// if input number is valid, store into pattern_num
+// if input number is valid, store new configuration info and put it in EEPROM, then show menu
 
 void handle_serial_input_command(char * inbuf) {
    long int tmp = atoi(inbuf);
@@ -277,7 +277,7 @@ void handle_serial_input_command(char * inbuf) {
    } else {
      Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
    }
-   eeprom_init_from_ram(); // store new config in EEPROM
+   eeprom_init_from_ram(); // store any new config in EEPROM
    show_menu_options();
 } // end handle_serial_input_command()
 
@@ -423,9 +423,9 @@ void ram_init_from_eeprom() {
 } // end ram_init_from_eeprom()
 
 void setup() {
-  // if needed, initialize EEPROM variables
-  eeprom_check_init();
-  ram_init_from_eeprom();
+  // either initialize EEPROM configuration info or initialize RAM from EEPROM configuration info
+  eeprom_check_init(); // see if EEPROM checksum is good; if not update EEPROM from RAM
+  ram_init_from_eeprom(); // update RAM from EEPROM
 
   pinMode(BUTTON_PIN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
 
