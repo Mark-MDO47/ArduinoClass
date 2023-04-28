@@ -179,6 +179,67 @@ We have made a program that can be edited and compiled to do any of the three pa
 
 In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections. As the chicken said while crossing the road, "I have my reasons".
 
+### Pattern Code
+I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.
+
+First we convert the patterns to use separate mnemonics and remove the #ifdef statements that compile only one of them:
+```C
+#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does this many calls then repeats
+static unsigned int sawtooth_pattern_bits[SAWTOOTH_CALLS_THEN_REPEAT] = { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40 };
+
+#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does this many calls then repeats
+static unsigned int oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
+
+#define HELLO_CALLS_THEN_REPEAT 55 // the HELLO WORLD! pattern does this many calls then repeats
+static unsigned int hello_pattern_bits[HELLO_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFE, 0x01, 0x0E, 0x01, 0xFE, 0x00, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
+```
+
+Next we add definitions to allow the controlling configuration variables and USB serial port menus
+```C
+#define PATTERN_MAX_NUM 3 // 0-2 are patterns
+static unsigned int * gPatternsBits[PATTERN_MAX_NUM]   = { sawtooth_pattern_bits, oval_pattern_bits, hello_pattern_bits };
+static char * gPatternsNames[PATTERN_MAX_NUM]   = { "Sawtooth", "Oval", "HelloWorld!" };
+static int gPatternsRepeat[PATTERN_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL_CALLS_THEN_REPEAT, HELLO_CALLS_THEN_REPEAT };
+int gPatternToShow = 0;
+#define COLORS_ALL_ONE 0
+#define COLORS_RAINBOW 1
+static int gMenuMsecCounts[] = { 1, 3, 5, 10, 20, 40 };
+int gOneOrRainbow = COLORS_ALL_ONE; // 0 = ALL_ONE, 1 = RAINBOW
+CRGB gTheColorChoices[] = { CRGB::Red, CRGB::Green, CRGB::Blue };
+static char * gTheColorStrings[] = { "Red", "Green", "Blue" };
+int gTheOneColorIndex = 0;
+
+#define MENU_CHOICES_NUM 14
+static char * gMenuChoices[MENU_CHOICES_NUM] = {
+  " 0 set interval 1 ms",
+  " 1 set interval 3 ms",
+  " 2 set interval 5 ms",
+  " 3 set interval 10 ms",
+  " 4 set interval 20 ms",
+  " 5 set interval 40 ms",
+  " 6 set colors ALL ONE",
+  " 7 set colors RAINBOW",
+  " 8 set the one color RED",
+  " 9 set the one color GREEN",
+  "10 set the one color BLUE",
+  "11 set pattern Sawtooth",
+  "12 set pattern Oval",
+  "13 set pattern HelloWorld!",
+};
+#define MENU_FIRST_MSEC           0
+#define MENU_LAST_MSEC            5
+#define MENU_FIRST_COLOR_PATTERN  6
+#define MENU_LAST_COLOR_PATTERN   7
+#define MENU_FIRST_COLOR_CHOICE   8
+#define MENU_LAST_COLOR_CHOICE   10
+#define MENU_FIRST_PATTERN       11
+#define MENU_LAST_PATTERN (MENU_FIRST_PATTERN+PATTERN_MAX_NUM-1)
+
+#define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
+#define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
+static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
+```
+
 ### EEPROM
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
