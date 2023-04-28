@@ -274,7 +274,7 @@ void show_menu_options() {
 // inbuf - pointer to start of zero-terminated string, no linefeed ('\n')
 //         expected to be a decimal number
 //
-// if input number is valid, store into pattern_num
+// if input number is valid, store new configuration info and put it in EEPROM, then show menu
 
 void handle_serial_input_command(char * inbuf) {
    long int tmp = atoi(inbuf);
@@ -290,32 +290,6 @@ void handle_serial_input_command(char * inbuf) {
      Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
    }
    eeprom_init_from_ram(); // store any new config in EEPROM
-   show_menu_options();
-} // end handle_serial_input_command()
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// handle_serial_input_command(inbuf) - process serial input command (decimal number).
-//    returns: nothing
-//
-// inbuf - pointer to start of zero-terminated string, no linefeed ('\n')
-//         expected to be a decimal number
-//
-// if input number is valid, store into pattern_num
-
-void handle_serial_input_command(char * inbuf) {
-   long int tmp = atoi(inbuf);
-   if ((MENU_FIRST_MSEC <= tmp) && (MENU_LAST_MSEC >= tmp)) {
-     gInterval = gMenuMsecCounts[tmp-MENU_FIRST_MSEC];
-   } else if ((MENU_FIRST_COLOR_PATTERN <= tmp) && (MENU_LAST_COLOR_PATTERN >= tmp)) {
-     gOneOrRainbow = tmp-MENU_FIRST_COLOR_PATTERN;
-   } else if ((MENU_FIRST_COLOR_CHOICE <= tmp) && (MENU_LAST_COLOR_CHOICE >= tmp)) {
-     gTheOneColorIndex = tmp-MENU_FIRST_COLOR_CHOICE;
-   } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
-     gPatternToShow = tmp-MENU_FIRST_PATTERN;
-   } else {
-     Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
-   }
-   // TODO FIXME add code to put configuration into EEPROM
    show_menu_options();
 } // end handle_serial_input_command()
 
