@@ -181,7 +181,11 @@ We have made a program that can be edited and compiled to do any of the three pa
 In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections. As the chicken said while crossing the road, "I have my reasons".
 
 ### Pattern Code
-I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.
+I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.<br>
+The basic idea is:
+- show_menu_options() will show what the possible commands are
+- handle_serial_input_command() will accept a command and set the appropriate configuration
+- ptrn_blink() will look at the configuration and do what it says
 
 First we convert the patterns to use separate mnemonics and remove the #ifdef statements that compile only one of them:
 ```C
