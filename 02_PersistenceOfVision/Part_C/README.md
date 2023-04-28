@@ -161,10 +161,10 @@ My version of this can be found here
 
 ## Sawtooth Revisited
 
-As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 3 or 4. It will be good practice with hexadecimal and binary arithmetic.
+As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 5 or 6. It will be good practice with hexadecimal and binary arithmetic.
 
 When you have done this, compare it with my implementation
-- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/AllThePatterns/AllThePatterns.ino
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino
 
 ## Reminder
 [Top](#notes "Top")<br>
