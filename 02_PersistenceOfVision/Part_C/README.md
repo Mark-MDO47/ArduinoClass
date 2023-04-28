@@ -175,23 +175,32 @@ We have made a program that can be edited and compiled to do any of the three pa
   - select which color (Red, Green, or Blue) to use if using single-color
 - select how long to wait between blinks
 
-In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections.
+In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections. As the chicken said while crossing the road, "I have my reasons".
 
 ### EEPROM
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
-- FLASH memory (no acronym) was an offshoot of EEPROM. It is usually erasable and writeable in blocks of many bytes.
-- EEPROM typically has fewer read/write cycles than EEPROM and is usually erasable and writeable in blocks of one byte.
-- SRAM (Static Random Access Memory) is, in the Arduino, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
+- FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
+- EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte.
+- SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
+
+Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3.
 
 In Arduino practice:
 - FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on PROGMEM and F macro in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
-- SRAM is used for variables that change often
+- SRAM is used for variables that change often. If you write **static int xxx;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
 - EEPROM is used to save things that are
   - changed during program execution
   - need to be remembered the next time the program runs
 
+The Arduino EEPROM interface is simplicity itself:
+- early in the *.ino (maybe after #include <FastLED.h>) file put the line **#include <EEPROM.h>**
+- when you want to write a byte to EEPROM, call **EEPROM.write(address, byteValue);**
+- when you want to read a byte from EEPROM, call **readValue = EEPROM.read(address);**
 
+Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its write/erase cycles before FLASH will. In Arduino, the EEPROM is specified to handle 100,000 write/erase cycles for each position (byte). EEPROM reads are unlimited. However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therfore I don't want to push it. As you will see, I use a simple routine I wrote called **eeprom_store_if_change** that first reads the EEPROM byte and if it is the same value we were about to write it skips the write.
 
+When the Arduino powers up, how will it know if the parameters stored in EEPROM are valid or if it is a new Arduino out of the bag and the values are random? To handle this I store a simple checksum along with the parameters in EEPROM. If the EEPROM checksum doesn't match the EEPROM configuration data then I store a fresh set of configuration data in EEPROM.
+Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it behaves crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good configuration data in EEPROM. Later I can either leave the expectation at this new value or change it back.
 
 
 ## Reminder
