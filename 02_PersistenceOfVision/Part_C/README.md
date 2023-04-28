@@ -7,6 +7,8 @@
 * [Hello World](#hello-world "Hello World")
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
+  * [EEPROM]("eeprom "EEPROM")
+  * [EEPROM Code]("eeprom-code "EEPROM Code")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
