@@ -6,6 +6,7 @@
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
+* [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
@@ -165,6 +166,8 @@ As an exercise to the reader, see if you can add a third pattern that is the Saw
 
 When you have done this, compare it with my implementation
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino
+
+## All the Patterns - Extra Credit
 
 ## Reminder
 [Top](#notes "Top")<br>
