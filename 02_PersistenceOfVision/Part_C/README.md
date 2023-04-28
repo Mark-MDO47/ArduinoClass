@@ -181,6 +181,7 @@ We have made a program that can be edited and compiled to do any of the three pa
 In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections. As the chicken said while crossing the road, "I have my reasons".
 
 ### Pattern Code
+[Top](#notes "Top")<br>
 I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.<br>
 The basic idea is:
 - show_menu_options() will show what the possible commands are
@@ -386,6 +387,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
 
 
 ### EEPROM
+[Top](#notes "Top")<br>
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte.
@@ -411,6 +413,7 @@ When the Arduino powers up, how will it know if the parameters stored in EEPROM 
 Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it behaves crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good configuration data in EEPROM. Later I can either leave the expectation at this new value or change it back.
 
 ### EEPROM CODE
+[Top](#notes "Top")<br>
 We add the following after **#include <FastLED.h>**
 ```C
 #include <EEPROM.h>          // to store configuration info
