@@ -27,6 +27,14 @@
 #include <FastLED.h>
 #include <EEPROM.h>          // to store configuration info
 
+#define EEPROM_OFFSET_gInterval         0x0
+#define EEPROM_OFFSET_gOneOrRainbow     0x1
+#define EEPROM_OFFSET_gTheOneColorIndex 0x2
+#define EEPROM_OFFSET_gPatternToShow    0x3
+#define EEPROM_LAST_NON_CHKSM           0xE // EEPROM address of last non-checksum data
+#define EEPROM_INVERTED_CHKSM           0xF // EEPROM address of checksum data
+#define EEPROM_BYTES_PER_CONFIG (EEPROM_INVERTED_CHKSM+1)
+
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
 
