@@ -132,7 +132,7 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   unsigned int bits = pattern_bits[blink_phase];
 
   for (long int i = 0; i < NUM_LEDS; i++) {
-    if (0 == (0x80 & bits))
+    if (0 == (0x01 & bits))
        ptrn_leds[i] = CRGB::Black;
     else {
 #ifdef COLOR_ALL_RED
@@ -149,7 +149,7 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
       }
 #endif // COLOR_RAINBOW
     }
-    bits <<= 1;
+    bits >>= 1;
   }
 
 } // end oval_blink_pattern()
