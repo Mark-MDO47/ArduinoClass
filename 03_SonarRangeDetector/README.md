@@ -214,7 +214,7 @@ int handle_ultra() {
 
 ```
 
-Insert this at the start of **loop()** before the line that says **gPatterns[gCurrentPatternNumber]();**
+Insert this at the start of **loop()** before the line that says **gPatterns\[gCurrentPatternNumber\]();**
 ```C
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
   if (gPrevPattern != gCurrentPatternNumber) {
