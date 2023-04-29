@@ -22,9 +22,9 @@ If you want one for your home, the HC-SR04 can be found here (for example) for l
 
 This is typically used to determine ranges of objects from 2cm - 400cm non-contact.
 
-Below is a picture of this detector from the protosupplies.com website:
+Below is a picture of one of these detectors from our Kit:
 
-<img src="https://protosupplies.com/wp-content/uploads/2019/08/HC-SR04-Ultrasonic-Range-Finder.jpg" width="640" height="480">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HC-SR04_Image.png" width="640" alt="HC-SR04 Ultrasonic Range Finder image">
 
 This description also comes from the protosupplies.com website:
 ```
