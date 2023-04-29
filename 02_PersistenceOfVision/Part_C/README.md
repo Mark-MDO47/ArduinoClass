@@ -48,11 +48,11 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   unsigned int bits = oval_pattern_bits[blink_phase];
 
   for (long int i = 0; i < NUM_LEDS; i++) {
-    if (0 == (0x80 & bits))
+    if (0 == (0x01 & bits))
        ptrn_leds[i] = CRGB::Black;
     else
        ptrn_leds[i] = CRGB::Red;
-    bits <<= 1;
+    bits >>= 1;
   }
 
 } // end oval_blink_pattern()
@@ -364,7 +364,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
   unsigned int bits = gPatternsBits[gPatternToShow][blink_phase];
   for (long int i = 0; i < NUM_LEDS; i++) {
-    if (0 == (0x80 & bits))
+    if (0 == (0x01 & bits))
        ptrn_leds[i] = CRGB::Black;
     else {
       if (COLORS_ALL_ONE == gOneOrRainbow) {
@@ -380,7 +380,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
         }
       } // end if <color_scheme> == gOneOrRainbow
     } // end if this LED is not black
-    bits <<= 1;
+    bits >>= 1;
   } // end for all LEDs/bits
 } // end ptrn_blink()
 ```
