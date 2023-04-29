@@ -46,7 +46,7 @@ Below is an image of the LED Stick and the end of its harness. The harness is lo
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickHarness.png "Image of 02_PersistanceOfVision Part A: LED Stick Harness")
 
 Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue) looks like, followed by an image of the color order. Because that observed color pattern matches our expected color pattern, we can be confident that the initialization call that was used in our **setup()** routine (the one that was not a comment) works for this LED stick.
-- https://youtu.be/HYfM1gHob98
+- https://youtu.be/cnjk-xBvyEo
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of 02_PersistanceOfVision Part A: FastLED Blink.png")
 
