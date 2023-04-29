@@ -2,14 +2,14 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [Demo](#demo "Demo")
+* [DemoReel](#demoreel "DemoReel")
 * [Cleanup](#cleanup "Cleanup")
 * [Serial Port Commands](#serial-port-commands "Serial Port Commands")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_C** to perform our **Demo** pattern.
 
-## Demo
+## DemoReel
 [Top](#notes "Top")<br>
 The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick, and use USB Serial commands to choose the pattern.<br>
 - https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
