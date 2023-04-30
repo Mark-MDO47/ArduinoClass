@@ -27,7 +27,7 @@ Below is a picture of one of these detectors from our Kit:
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/HC-SR04_Image.png" width="640" alt="HC-SR04 Ultrasonic Range Finder image">
 
-This description also comes from the protosupplies.com website:
+This description comes from the protosupplies.com website:
 ```
 The way the HC-SR04 Ultrasonic Range Finder Module works is as follows:
 
@@ -109,7 +109,7 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Theramin-Alexandra-Stepanoff-1930.jpg/220px-Theramin-Alexandra-Stepanoff-1930.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
 
-Essentially, we will start with the *.ino file from 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
+Essentially, we will start with the DemoReel.ino file from 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
 
 ## Circuit
 [Top](#notes "Top")
@@ -120,9 +120,9 @@ Here is the circuit for the Theremin project.
 
 I think you can figure out how I decided to connect the Arduino pins to the HC-SR04. If you have any questions please ask them in class to make sure everyone understands the rationale.
 
-I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect.
+I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect to the HC-SR04.
 
-Here is an image showing how to connect to the HC-SR04.
+Here is an image showing how to connect to the HC-SR04 to the jumper wires.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_connections.png "Image of connections to HC-SR04 Ultrasonic Range Detector")
 
@@ -238,7 +238,7 @@ Insert this at the start of **loop()** before the line that says **gPatterns\[gC
 
 ```
 
-Now compile, load and run the code. As you move your hand closer and farther away from the HC-SR04 you should see the patterns displayed change. The first and last ranges are bigger, but in the middle the width of the range for a particular pattern is about 3 cm or a little bigger than 1 inch. You can start the serial monitor and it will tell you which pattern is displaying.
+Now compile, load and run the code. As you move your hand closer and farther away from the HC-SR04 you should see the patterns displayed change. The first and last ranges are bigger, but in the middle the width of the range for a particular pattern is about 6 cm or a little bigger than 2 inches. You can start the serial monitor and it will tell you which pattern is displaying.
 
 ## Extra Fun
 [Top](#notes "Top")<br>
