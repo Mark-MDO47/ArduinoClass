@@ -62,6 +62,10 @@ Be aware that a circuit laid out on such a solderless breadboard can then be tra
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
 
+## UBEC
+A UBEC (Universal Battery Eliminator Circuit) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
+
 ## My favorite Arduino variant - ESP32
 [Top](#resources "Top")<br>
 Here is some documentation from the maker of the chipset and many modules for ESP32
