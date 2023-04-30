@@ -249,6 +249,9 @@ In **loop()** near the front
 
 After these actions, DemoReel.ino should verify, compile and load succesfully.
 
+A youtube of this code showing the Sinelon pattern can be found here:
+- https://youtu.be/sXV3qn8dh8o
+
 ## Reminder
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
