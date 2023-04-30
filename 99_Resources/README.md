@@ -18,7 +18,7 @@
 It will be helpful to install the Arduino IDE on your laptop before the start of the class if you are planning to use your laptop to connect to the test systems during the class. At this time the latest version is 2.04 and can be installed on Windows, Macintosh, and Linux.
 - https://www.arduino.cc/en/software
 
-If you have a Chromebook I have not found a way to install the latest version, but the older version 1.8.19 can be installed on modern Chromebooks and will work fine for this class. Search for "Legacy IDE (1.8.X)" in the above link. The following YouTube describes this installation. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+If you have a Chromebook there doesn't seem to be a way to install the latest IDE version, but the older version 1.8.19 can be installed on modern Chromebooks and will work fine for this class. Search for "Legacy IDE (1.8.X)" in the above link. The following YouTube describes this installation. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=2cve6n4LZqI
 
 It is possible to use the "Arduino Cloud". This method is not used in this class.
@@ -89,27 +89,27 @@ The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on
 ## EEPROM to save configuration
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
-- EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte.
+- EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte. The Read-Only part seems strange, but the idea is that we can erase it and then program (write) it but we cannot write it in one step.
 - SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
 
-Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3.
+Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3. 1kbyte (lower case k) is often decimal 1,000. Sometimes, however, the person writing these numbers has a typo so be forewarned.
 
 In Arduino practice:
-- FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on PROGMEM and F macro in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
-- SRAM is used for variables that change often. If you write **static int xxx;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
+- FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on **PROGMEM and F macro** in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
+- SRAM is used for variables that change often during program execution. If you write **static int xxx = 5;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
 - EEPROM is used to save things that are
   - changed during program execution
-  - need to be remembered the next time the program runs
+  - the changed state needs to be remembered the next time the Arduino powers-on
 
 The Arduino EEPROM interface is simplicity itself:
-- early in the *.ino (maybe after #include <FastLED.h>) file put the line **#include <EEPROM.h>**
+- early in the *.ino file (maybe after #include <FastLED.h>) put the line **#include <EEPROM.h>**
 - when you want to write a byte to EEPROM, call **EEPROM.write(address, byteValue);**
 - when you want to read a byte from EEPROM, call **readValue = EEPROM.read(address);**
 
-Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its write/erase cycles before FLASH will. In Arduino, the EEPROM is specified to handle 100,000 write/erase cycles for each position (byte). EEPROM reads are unlimited. However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therfore I don't want to push it. As you will see, I use a simple routine I wrote called **eeprom_store_if_change** that first reads the EEPROM byte and if it is the same value we were about to write it skips the write. This is a very simple routine and I am sure you could easily write your own version of it. Otherwise you can use my version in https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns
+Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its erase/write cycles before FLASH will. In Arduino, the EEPROM is specified to handle 100,000 erase/write cycles for each position (byte). EEPROM reads are unlimited. However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therfore I don't want to push it. As you will see, I use a simple routine I wrote called **eeprom_store_if_change** that first reads the EEPROM byte and if it is the same value we were about to write it skips the write. This is a very simple routine and I am sure you could easily write your own version of it. Otherwise you can use my version in https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns
 
 When the Arduino powers up, how will it know if the parameters stored in EEPROM are valid or if it is a new Arduino out of the bag and the values are random? To handle this I store a simple checksum along with the parameters in EEPROM. If the EEPROM checksum doesn't match the EEPROM configuration data then I store a fresh set of configuration data in EEPROM.
-Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it behaves crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good configuration data in EEPROM. Later I can either leave the expectation at this new value or change it back.
+Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it acts crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good power-on configuration data in EEPROM. Later I can either leave the checksum expectation at this new value or change it back.
 
 ## PROGMEM and F macro to save RAM
 [Top](#resources "Top")<br>
@@ -140,7 +140,7 @@ Using PROGMEM for data storage of large tables is possible but a little more com
 I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
-This is not needed for the class but is a fantastic tool for those that are interested.
+This is not needed for the class but is a fantastic tool for those that are interested. There are many YouTube videos describing the basics of KiCad usage.
 
 ## Projects on the Web
 [Top](#resources "Top")<br>
