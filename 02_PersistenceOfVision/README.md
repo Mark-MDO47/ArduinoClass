@@ -24,6 +24,8 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 - https://www.instructables.com/Persistence-of-Vision-LED-Staff/
 - https://povstaff.readthedocs.io/en/latest/
 - https://learn.adafruit.com/pov-dotstar-double-staff
+- https://learn.adafruit.com/bike-wheel-pov-display
+- https://learn.adafruit.com/genesis-poi-dotstar-led-persistence-of-vision-poi
 
 ## WS2812B individually addressable color LEDs
 We will be using this color LED Stick; it is contained in the Student "Kit".
