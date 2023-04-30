@@ -543,6 +543,8 @@ In **handle_serial_input_command()** replace line **// TODO FIXME add code to pu
    eeprom_init_from_ram(); // store any new config in EEPROM
 ```
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartC_Oval_setup.png "Image of setup for 02_PersistanceOfVision Part C: Oval Setup")
+
 ## Reminder
 [Top](#notes "Top")<br>
 The connections do not change; this is just here for a reminder.
