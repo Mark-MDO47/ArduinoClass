@@ -246,9 +246,6 @@ I will bring to the class one or two large WS2812B disks such as this 241 LED WS
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
 
-A YouTube of this in operation on a 241 LED SW2812B disk can be seen here:
-- https://youtu.be/0KehSIJmKcs
-
 However, this will definitely exceed the amount of power we want to pass through the Arduino chip so we will need to modify the circuit so power to the LEDs does not come from the Arduino.<br>
 For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. If we attach a 9V battery to the UBEC, it will be able to power the LED Disk.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
@@ -262,3 +259,6 @@ It is often good practice to put some capacitors in the power circuit to smooth 
 Here is an image of the setup for the 241-LED disk
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_241LED_setup.png "Image of setup for 03 Sonar Range Detector with the 241-LED disk")
+
+A YouTube of this in operation on a 241 LED SW2812B disk can be seen here:
+- https://youtu.be/0KehSIJmKcs
