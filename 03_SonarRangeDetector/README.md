@@ -244,6 +244,8 @@ Now compile, load and run the code. As you move your hand closer and farther awa
 [Top](#notes "Top")<br>
 I will bring to the class one or two large WS2812B disks such as this 241 LED WS2812B disk or maybe some 93 LED WS2812B disks. There will not be enough for each station but everyone will be able to modify NUM_LEDS in Theremin.ino and try it out, based on the number of LEDs in the disk. It really looks spectacular!
 
+FYI at this time a 93 LED WS2812B disk is about $20 and a 241 LED WS2812B disk is about $28. A 5V 3A output UBEC is about $13 in a 5-pack.
+
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png "Image of 241 LED WS2812B disk")
 
 However, this will definitely exceed the amount of power we want to pass through the Arduino chip so we will need to modify the circuit so power to the LEDs does not come from the Arduino.<br>
