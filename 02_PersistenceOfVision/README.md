@@ -38,7 +38,7 @@ Note: the WS in WS2812B stands for Worldsemi. Search this page for WS2812B and s
 
 There is a serial data protocol used to control this string of 8 LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
-  - The actual color order can vary; I determine it by experimentation.
+  - The actual color order can vary; we will determine it by experimentation.
   - This allows 256 levels (0-255 for an unsigned 8-bit byte) for each of the colors Red/Green/Blue.
 - The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
 - Each LED "consumes" its 3-byte RGB command from the data and then passes all the rest of the data down the line until there is a stopage.
@@ -72,7 +72,7 @@ Note that the connections from one LED to another are internal to the LED stick,
 ### TLDR Power and Wires
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
 The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
-The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
+The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these class projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
 
 These LEDs use power that adds up. We can use this to estimate the power
 - http://fastled.io/docs/3.1/group___power.html<br>
@@ -94,7 +94,7 @@ Calculating wire size (Google for instance wire gauge ampacity 5v dc): the follo
 
 Looking up in the table referenced above, an AWG30 single strand wire meeting the specs of the site could carry 860 milliamps. We are using multi stranded AWG30 so we would not expect the full 5X safety margin. Even so, I suspect that our AWG30 would be adequate. In fact I have used silicon coated multi stranded AWG30 to power two WS2812B 32 LED strands just due to ignorance of the issue. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate (the table gives resistance data) and whether the electronics comes in contact with someone.
 
- An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously overkill, even though we are using multi stranded.
+ An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously AWG24 multi strand is overkill, even though we are using multi stranded.
 
 For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
@@ -120,7 +120,7 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 // constants won't change:
 const long interval = 5;           // interval at which to blink (milliseconds)
 ```
-The rules for C and C++ on scope and persistence actually have a lot more detail to them, but this will do for now. One item that I find particularly disturbing is that the definition of the **static** keyword has now diverged between C and C++; I think this is a bad trend.
+The rules for C and C++ on scope and persistence actually have a lot more detail to them, but this will do for now. One item that I find particularly disturbing is that the definition of the **static** keyword has now diverged between C and C++. This seems like a bad trend; C and C++ had been compatible for many years. It seems they could have defined a static_cpp or something if they wanted a variant.
 
 When we look at the new **loop()** code, we don't see any calls to **delay()** - it just runs straight through and uses the **millis()** clock to decide if it should set the LED pin HIGH or LOW. Usually it just passes through the loop with almost no delay and no change to the LED state. What is the advantage of this?
 ```C
@@ -219,7 +219,7 @@ The LED pattern code for Sawtooth, Oval, and Hello World will pretty much done f
 
 The coding method for Sawtooth and Oval/Hello are different. This is done on purpose to show examples of manipulating the data to produce desired patterns. The final version of Oval.ino will be able to produce any of the patterns Sawtooth, Oval, or Hello World and either use rainbow colors or all red.
 
-So I will split this into four projects:
+This Persistence of Vision exercise is split into four projects:
 | Part | Title | Link |
 | --- | --- | --- |
 | Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md |
@@ -243,7 +243,7 @@ Then the high-level serial output protocol as seen by each of the LEDs in the ar
 
 In summary, there is a serial data protocol used to control strings of WS2812B RGB LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
-  - The actual color order can vary; I determine it by experimentation.
+  - The actual color order can vary; we determine it by experimentation.
   - This allows 256 levels (0-255) for each of the colors Red/Green/Blue.
 - The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
 - Each LED "consumes" its 3-byte RGB command from the data and then sends all the rest of the data down the line.
