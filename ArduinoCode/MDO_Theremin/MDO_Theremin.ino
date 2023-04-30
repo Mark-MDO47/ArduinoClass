@@ -31,7 +31,7 @@
 #include <Ultrasonic.h>
 
 // How many leds in your strip?
-#define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
+#define NUM_LEDS 8 // Mark-MDO47 number of WS2812B LEDs
 
 // For led chips like WS2812, which have a data line, ground, and power, you just
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
@@ -43,7 +43,7 @@
 // Ultrasonic HC_SR04 definitions
 #define ULTRA_TRIG_PIN 13 // HC-SR04 Trigger digital pin
 #define ULTRA_ECHO_PIN 12 // HC-SR04 Trigger echo pin
-#define ULTRA_CM_PER_REGION 3 // HC-SR04 every 3 CM is a different pattern
+#define ULTRA_CM_PER_REGION 9 // HC-SR04 every this many CM is a different pattern
 #define ULTRA_IGNORE_INITIAL_CM 3 // HC-SR04 ignore the first 3 CM since valid range starts at 2 CM
 
 // instantiate my HC-SR04 data object
