@@ -256,7 +256,7 @@ Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" alt="Image of wiring diagram for 03 Sonar Extra Fun">
 
-It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't need to do that.
+It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't do that.
 
 Here is an image of the setup for the 241-LED disk
 
