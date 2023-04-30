@@ -163,6 +163,9 @@ Change
 My version of this can be found here
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/HelloWorld/HelloWorld.ino
 
+A YouTube of this code in operation demonstrating use of the button to stop and start can be found here
+- https://youtu.be/I-3vgafNRE8
+
 ## Sawtooth Revisited
 [Top](#notes "Top")<br>
 As an exercise to the reader, see if you can add a third pattern that is the Sawtooth pattern from before. It should only take a few lines of code, maybe 5 or 6. It will be good practice with hexadecimal and binary arithmetic.
