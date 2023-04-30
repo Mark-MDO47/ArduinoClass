@@ -122,6 +122,14 @@ I think you can figure out how I decided to connect the Arduino pins to the HC-S
 
 I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect.
 
+Here is an image showing how to connect to the HC-SR04.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_connections.png "Image of connections to HC-SR04 Ultrasonic Range Detector")
+
+Here is an image of the setup for the Sonar Range Detector project.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_8LED_setup.png "Image of setup for 03 Sonar Range Detector with the 8-LED strip")
+
 ## Cleanup First
 [Top](#notes "Top")
 This time we will delete the old code first, then add the new code.
@@ -250,3 +258,7 @@ Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" alt="Image of wiring diagram for 03 Sonar Extra Fun">
 
 It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't need to do that.
+
+Here is an image of the setup for the 241-LED disk
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_241LED_setup.png "Image of setup for 03 Sonar Range Detector with the 241-LED disk")
