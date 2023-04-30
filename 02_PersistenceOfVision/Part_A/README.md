@@ -50,6 +50,8 @@ Here is a youtube showing what the Blink pattern (first four CRGB::Red, the next
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink.png "Image of 02_PersistanceOfVision Part A: FastLED Blink.png")
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink_setup.png "Image of setup for 02_PersistanceOfVision Part A: FastLED Blink.png")
+
 This describes how the markings on the pads on the LED Stick correspond to the wire color I soldered on and to the naming convention of the schematic.
 
 | Wire Color | Schematic | LED Stick | Purpose |
