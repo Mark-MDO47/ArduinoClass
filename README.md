@@ -25,6 +25,9 @@ Each of these kits costs about $8 today and I think you will experience that the
 | Solderless Breadboard | < $2 | protosupplies.com |
 | WS2812B RGB 8-LED Strip | < $2 | protosupplies.com |
 | HC-SR04 Sonar Range Detector | < $2 | protosupplies.com |
+| Button | ~ $0.10 | amazon.com |
+| 200 Ohm resistor | ~ $0.10 | digikey.com |
+| LED | ~ $0.10 | amazon.com |
 
 Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
 
