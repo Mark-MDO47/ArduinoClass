@@ -33,9 +33,6 @@ Please try to bring a USB cable to connect from your laptop to the Arduino Nano.
 
 You should then be able to do all of the projects as I will bring all the following for our use.
 - connectors, clips, harnesses, and wires
-- old style simple LED
-- push button
-- 200 Ohm resistor
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 
 By the way, Kudos to my son Carl for Alpha-Testing this class. You will see some images and videos of his work and may even catch a glimpse of him or me in the videos.
