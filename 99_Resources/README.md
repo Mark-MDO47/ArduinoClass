@@ -12,7 +12,7 @@
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
 * [UBEC](#ubec "UBEC")
 * [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
-* [9 10K Ohm resistors one package](#9-10K-ohm-resistors-one-package "9 10K Ohm resistors one package")
+* [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
@@ -165,7 +165,7 @@ Be aware that a circuit laid out on such a solderless breadboard can then be tra
 This handy device allows the use of one component to give 10 individual pullups. This is handy for instance if your project has a lot of buttons.
 - https://www.digikey.com/en/products/detail/bourns-inc/4610X-AP1-103LF/3741070
 
-![alt text](https://media.digikey.com/photos/Bourns%20Photos/4610X%20SERIES.jpg "Image of 9 10K Ohm resistors one package")
+<img src="https://media.digikey.com/photos/Bourns%20Photos/4610X%20SERIES.jpg" width="150" alt="Image of 9 10K Ohm resistors one package">
 
 ## KiCad
 [Top](#resources "Top")<br>
@@ -173,6 +173,8 @@ I use the free schematic editor KiCad for capturing schematics (actually what I 
 - https://www.kicad.org/
 
 This is not needed for the class but is a fantastic tool for those that are interested. There are many YouTube videos describing the basics of KiCad usage.
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/KiCad_screen.png" width="300" alt="Image of KiCad Schematic Capture screen">
 
 ## Projects on the Web
 [Top](#resources "Top")<br>
