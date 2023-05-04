@@ -5,13 +5,14 @@
 * [Arduino IDE](#arduino-ide "Arduino IDE")
 * [The Computer Language used in the Arduino IDE](#the-computer-language-used-in-the-arduino-ide "The Computer Language used in the Arduino IDE")
 * [Arduino Nano and ATMEGA 328P](#arduino-nano-and-atmega-328p "Arduino Nano and ATMEGA 328P")
-* [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
-* [UBEC](#ubec "UBEC")
 * [My favorite Arduino variant - ESP32](#my-favorite-arduino-variant-\--esp32 "My favorite Arduino variant - ESP32")
-* [YX5200 Audio Player](#yx5200-audio-player "YX5200 Audio Player")
-* [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
 * [EEPROM to save configuration](#eeprom-to-save-configuration "EEPROM to save configuration")
 * [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
+* [YX5200 Audio Player](#yx5200-audio-player "YX5200 Audio Player")
+* [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
+* [UBEC](#ubec "UBEC")
+* [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
+* [9 10K Ohm resistors one package](#9-10K-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
@@ -43,48 +44,6 @@ The ATMEGA 328P chip used in the Arduino Nano is described here
 
 Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
-
-## Solderless Breadboard
-We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
-- https://www.youtube.com/watch?v=UvS9Wf2BoyE
-
-A good guide to solderless breadboards can be found at this link:
-- https://protosupplies.com/guide-to-solderless-breadboards/
-
-Here from the above link is an image of a typical solderless breadboard.
-
-![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
-
-It might be worthwhile to look the above image over in detail; we will be using this breadboard in this class. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
-
-Something that may help, again from that protosupplies.com article about breadboards, is the following image of a breadboard from the inside, showing the metal that connects the pins on the top of the breadboard.
-
-![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Contacts-Back-Side-2.jpg "Image of typical solderless breadboard from protosupplies.com")
-
-Be aware that a circuit laid out on such a solderless breadboard can then be transferred to a solderable breadboard PCB board fairly easily. See the comparison between these two below.
-
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
-
-## UBEC
-[Top](#resources "Top")<br>
-A UBEC (Universal Battery Eliminator Circuit) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
-
-## YX5200 Audio Player
-[Top](#resources "Top")<br>
-The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 in packs of 5.<br>
-Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
-- https://github.com/Mark-MDO47/AudioPlayer-YX5200
-
-![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
-
-## KCX_BT_EMITTER Bluetooth Audio Transmitter
-[Top](#resources "Top")<br>
-The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
-The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
-- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
-
-![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
 
 ## My favorite Arduino variant - ESP32
 [Top](#resources "Top")<br>
@@ -158,6 +117,55 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 ```
 
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
+
+## YX5200 Audio Player
+[Top](#resources "Top")<br>
+The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 in packs of 5.<br>
+Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
+- https://github.com/Mark-MDO47/AudioPlayer-YX5200
+
+![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
+
+## KCX_BT_EMITTER Bluetooth Audio Transmitter
+[Top](#resources "Top")<br>
+The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
+The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
+- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
+
+![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
+
+## UBEC
+[Top](#resources "Top")<br>
+A UBEC (Universal Battery Eliminator Circuit) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
+
+## Solderless Breadboard
+We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+- https://www.youtube.com/watch?v=UvS9Wf2BoyE
+
+A good guide to solderless breadboards can be found at this link:
+- https://protosupplies.com/guide-to-solderless-breadboards/
+
+Here from the above link is an image of a typical solderless breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
+
+It might be worthwhile to look the above image over in detail; we will be using this breadboard in this class. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
+
+Something that may help, again from that protosupplies.com article about breadboards, is the following image of a breadboard from the inside, showing the metal that connects the pins on the top of the breadboard.
+
+![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Contacts-Back-Side-2.jpg "Image of typical solderless breadboard from protosupplies.com")
+
+Be aware that a circuit laid out on such a solderless breadboard can then be transferred to a solderable breadboard PCB board fairly easily. See the comparison between these two below.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
+
+## 9 10K Ohm resistors one package
+[Top](#resources "Top")<br>
+This handy device allows the use of one component to give 10 individual pullups. This is handy for instance if your project has a lot of buttons.
+- https://www.digikey.com/en/products/detail/bourns-inc/4610X-AP1-103LF/3741070
+
+![alt text](https://media.digikey.com/photos/Bourns%20Photos/4610X%20SERIES.jpg "Image of 9 10K Ohm resistors one package")
 
 ## KiCad
 [Top](#resources "Top")<br>
