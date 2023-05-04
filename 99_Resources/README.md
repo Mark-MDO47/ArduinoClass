@@ -112,7 +112,7 @@ The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on
 
 ## EEPROM to save configuration
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
-- FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
+- FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many consecutive bytes.
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte. The Read-Only part seems strange, but the idea is that we can erase it and then program (write) it but we cannot write it in one step.
 - SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
 
