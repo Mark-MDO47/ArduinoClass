@@ -3,10 +3,10 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Smoke and Mirrors](#smoke-and-mirrors "Smoke and Mirrors")
-* [Cleanup](#cleanup "Cleanup")
-* [Button](#button "Button")
-* [LEDs](#leds "LEDs")
-* [Sawtooth](#sawtooth "Sawtooth")
+* [Code Cleanup](#code-cleanup "Code Cleanup")
+* [Code for Button](#code-for-button "Code for Button")
+* [Code for LEDs](#code-for-leds "Code for LEDs")
+* [Code for Sawtooth](#code-for-sawtooth "Code for Sawtooth")
 * [Reminder](#reminder "Reminder")
 
 We will continue with our modified FastLED example program from **Part_A** to perform our **Sawtooth** pattern.
@@ -15,7 +15,7 @@ We will continue with our modified FastLED example program from **Part_A** to pe
 
 I have found that if you are waving the LED Stick and also trying to see the pattern, looking in a mirror helps. I will bring a mirror for the class.
 
-## Cleanup
+## Code Cleanup
 [Top](#notes "Top")<br>
 Copy the file from Part-A and put it in a directory named Sawtooth, rename it to Sawtooth.ino, and open it with the Arduino IDE.
 
@@ -63,7 +63,7 @@ We can do a global search and replace in the Arduino IDE with one restriction. T
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_Replace_leds_w_fastled_array.png "Image of replace dialog to change leds to fastled_array")
 
-## Button
+## Code for Button
 [Top](#notes "Top")<br>
 We create the routine to handle the button.<br>
 This is an extremely simple routine and could actually be placed inline, but it is good practice to modularize your code and compartmentalize the knowledge needed. It could help in the future: if there are multiple inputs including more buttons and possibly other digital inputs; we could return a bitmask with the status of all the inputs.<br>
@@ -104,7 +104,7 @@ Finally in **loop()** we replace **// TODO - handle the button input** with this
   int button_up = handle_button(BUTTON_PIN);
 ```
 
-## LEDs
+## Code for LEDs
 [Top](#notes "Top")<br>
 We create the routine to handle the LED Stick.<br>
 We want this routine to be able to handle the Sawtooth pattern and the other patterns in Part-C and Part-D.
@@ -135,7 +135,7 @@ Finally in **loop()** we replace **// TODO - blink the LEDs** with this
   handle_leds(button_up); // generate pattern to display and display it
 ```
 
-## Sawtooth
+## Code for Sawtooth
 [Top](#notes "Top")<br>
 We want to make it so that the first blink we light up only the first LED, the second blink light up only the second LED, and so on until the eighth blink light up only the eighth LED.
 Then we turn around. On the next blink we light up only the 7th LED, then the 6th, and so on until we light up the 2nd.
