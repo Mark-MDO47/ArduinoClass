@@ -132,7 +132,7 @@ Here is an image of the setup for the Sonar Range Detector project.
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_8LED_setup.png "Image of setup for 03 Sonar Range Detector with the 8-LED strip")
 
 ## Code
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 Below we modify the code to act as our "Theremin" for lights.
 
 ### Cleanup First
