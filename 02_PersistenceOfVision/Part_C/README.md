@@ -26,7 +26,7 @@ Each step left-to-right is a "blink" in the following diagram.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/OvalPattern.png "Image of Oval pattern; each step left-to-right is a blink")
 
-Note: this spreadsheet helps with calculations for the patterns (does the so-called bit-busting).
+Note: the following spreadsheet helps with calculations for the patterns (does the so-called bit-busting).
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Pattern_Calcs.xlsx
 
 Copy the Sawtooth.ino file into a directory named Oval with filename Oval.ino, then open it in the Arduino IDE.
