@@ -137,7 +137,7 @@ The information on commanding the KCX_BT_EMITTER to auto-pair to a specific spea
 
 ## UBEC
 [Top](#resources "Top")<br>
-A UBEC (Universal Battery Eliminator Circuit) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
+A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
 
 ## Solderless Breadboard
