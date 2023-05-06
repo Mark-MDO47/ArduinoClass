@@ -7,8 +7,9 @@
 * [Pros and Cons of HC-SR04](#pros-and-cons-of-hc\-sr04 "Pros and Cons of HC-SR04")
 * [Theremin](#theremin "Theremin")
 * [Circuit](#circuit "Circuit")
-* [Cleanup First](#cleanup-first "Cleanup First")
-* [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
+* [Code](#code "Code")
+  * [Cleanup First](#cleanup-first "Cleanup First")
+  * [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
 * [Extra Fun](#extra-fun "Extra Fun")
 
 
@@ -130,7 +131,11 @@ Here is an image of the setup for the Sonar Range Detector project.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_8LED_setup.png "Image of setup for 03 Sonar Range Detector with the 8-LED strip")
 
-## Cleanup First
+## Code
+[Top](#notes "Top")
+Below we modify the code to act as our "Theremin" for lights.
+
+### Cleanup First
 [Top](#notes "Top")
 This time we will delete the old code first, then add the new code.
 
@@ -170,7 +175,7 @@ Delete these lines in **loop()**
   if (Serial.available()) handle_serial_input();
 ```
 
-## Ultrasonic Range Finder Code
+### Ultrasonic Range Finder Code
 [Top](#notes "Top")
 First we ensure that the Ultrasonic library is installed in the Arduino IDE
 
