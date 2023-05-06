@@ -2,12 +2,12 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [Blink](#blink "Blink")
-* [Wiring](#wiring "Wiring")
+* [Code for FastLEDBlink](#code-for-fastledblink "Code for FastLEDBlink")
+* [Wiring for FastLEDBlink](#wiring-for-fastledblink "Wiring for FastLEDBlink")
 
 We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
-## Blink
+## Code for FastLEDBlink
 Copy the code or the file from here and put it in a directory named FastLEDBlink with filename FastLEDBlink.ino and open it with the Arduino IDE
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
@@ -16,8 +16,8 @@ Take a look at the code. You should be able to identify the steps before and in 
 - Line 14: tell it what pin is to be used for serial communication
 - Line 08: tell it how many LEDs are in the string attached to that pin
 - Implicit in Line 23: tell it what order the three bytes go onto the data line: RGB, RBG, GBR, etc.
-- Line 18: use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
-- Line 23: use **FastLED.addLeds(...)** to point at fastled_array and give it the information about pin, number of LEDs, and color order.
+- Line 18: use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. The name of the array **leds** is arbitrary; we could change it if we want but would need to change it everywhere.
+- Line 23: use **FastLED.addLeds(...)** to point at the array leds and give it the information about pin, number of LEDs, and color order.
 
 And you should be able to identify the code in **loop()**
 - Lines 66 and 70: fill array "leds" with the RGB colors we want for each LED (they used a different name than we will)
@@ -31,9 +31,9 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 - Line 70: we will fill all 8 locations with CRGB::Black
   - you can use a loop if you want or just set them one at a time
 
-The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command.
+The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command. This will let us confirm whether the NEOPIXEL initialization statement in **setup()** is the correct one for our LED strip or not.
 
-## Wiring
+## Wiring for FastLEDBlink
 Connect up the LED stick and try it out. Remember:
 - red wire is for 5 Volts from Arduino to LED stick (VCC)
 - black wire is for Ground between Arduino and LED stick (GND)
