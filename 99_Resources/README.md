@@ -129,7 +129,7 @@ Placing the audio files onto the SD card requires special care. Also there are m
 
 ## KCX_BT_EMITTER Bluetooth Audio Transmitter
 [Top](#resources "Top")<br>
-The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
+The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 and is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
 The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 
