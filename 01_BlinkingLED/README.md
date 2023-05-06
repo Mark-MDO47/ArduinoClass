@@ -31,6 +31,8 @@ These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SR
 The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide (for instance, if you only have USB C connectors). This USB connection provides both a serial port (for uploading and communication) and power/ground. The link below shows what many USB cables and sockets look like.
 - https://en.wikipedia.org/wiki/USB
 
+To minimize wear and tear on the Arduino Nano, after connecting the Arduino to the USB cable, one can disconnect at the PC or laptop side instead of the Arduino side.
+
 To connect your computer to the Arduino Nano
 - Connect the Arduino Nano to a USB port on your computer.
 - Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
@@ -81,16 +83,16 @@ With the Arduino connected to the USB port on your computer, use the button circ
 
 ## Now It Runs Whenever you Turn On Power
 
-Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let it power off completely, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
+Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let the Arduino power off completely, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
 
 This is how you can include an Arduino into your projects. You don't have to connect to a computer and program it each time; it will remember the last program you loaded.
 
-You also can but don't have to power the Arduino through the USB port. Another way to power the Arduino is to use the Arduino pin marked VIN. If you provide 5 volts on VIN and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation before doing this.
+You also can but don't have to power the Arduino through the USB port. Another way to power the Arduino is to use the Arduino pin marked VIN. If you provide 5 volts on VIN and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation for the correct voltage range before doing this.
 
 ## Part A - Add an external LED
 [Back to Top](#notes "Back to Top")
 
-We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
+We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires, jumpers, or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
 
 A good guide to solderless breadboards can be found at this link:
@@ -100,7 +102,7 @@ Here from the above link is an image of a typical solderless breadboard.
 
 ![alt text](https://protosupplies.com/wp-content/uploads/2018/12/Breadboard-Details.jpg "Image of typical solderless breadboard from protosupplies.com")
 
-It might be worthwhile to look the above image over in detail; we will be using this breadboard in this class. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
+If you have not worked with a solderless breadboard before, it might be worthwhile to look the above image over in detail. Try to find which pins distribute power and ground vertically (the long way on the breadboard), which pins distribute signals side-to-side, and how far the signals get distributed in these directions.
 
 Something that may help, again from that protosupplies.com article about breadboards, is the following image of a breadboard from the inside, showing the metal that connects the pins on the top of the breadboard.
 
@@ -115,7 +117,7 @@ One thing that will make your life easier (and mine too when I check the circuit
 - Wire that is **BLACK** connects to the ground side or return side of power; in this class that will be 0 Volts. A memory mnemonic is to remember that BLACK is COOL.
 - Other colors can be used for different signals. It might be good to us wire colors such as white, green, yellow, blue, etc. for signals (such as Arduino inputs and outputs) and to try to run the wire for a signal through its eventual connection to ground on the breadboard consistently using the same color.
 
-As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a 300 or 220 ohm resistor in series to prevent burning out the LED and prevent damaging the Arduino Nano.
+As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a resistor of about 200 to 300 Ohms in series with the LED to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
 
 Here from the above link is a diagram showing how to identify the polarity (+ and - pins) of an LED:
