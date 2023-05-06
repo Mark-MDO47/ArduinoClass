@@ -40,7 +40,7 @@ Now do global replaces with case sensitivity on as shown below:
 | Sawtooth | Oval |
 | SAWTOOTH | OVAL |
 
-That wasn't too bad. Maybe we should have used "pattern_" instead if oval_ and sawtooth_ so there wouldn't be so much of this.
+That wasn't too bad. Maybe we should have used "pattern_" instead of oval_ and sawtooth_ so there wouldn't be so much of this.
 
 Now for the actual changes. First change the count to 34 
 - **#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats**
@@ -63,9 +63,11 @@ void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
 } // end oval_blink_pattern()
 ```
 
+All done; you now have the all-red Oval pattern!
+
 ## Rainbow
 [Top](#notes "Top")<br>
-Why should we always use Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
+Why should we always use LED colors Black and Red? Does FastLED have an excellent method to vary colors in an interesting way?
 
 The answer is YES! They have two routines I know of that would work for this purpose:
 - fill_rainbow
@@ -109,6 +111,8 @@ Now we can make the changes in **oval_blink_pattern()**. Simply replace **ptrn_l
       }
     }
 ```
+
+All done; now you have the Rainbow version of the Oval pattern.
 
 My version of this can be found here
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/Oval/Oval.ino
@@ -164,6 +168,8 @@ Change
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
   unsigned int bits = pattern_bits[blink_phase];
 ```
+
+Now you have the Rainbow version of the Hello World! pattern.
 
 My version of this can be found here
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/HelloWorld/HelloWorld.ino
