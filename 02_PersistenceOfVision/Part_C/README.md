@@ -8,11 +8,16 @@
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
   * [Pattern Code](#pattern-code "Pattern Code")
-  * [EEPROM](#eeprom "EEPROM")
+  * [EEPROM Introduction](#eeprom-introduction "EEPROM Introduction")
   * [EEPROM Code](#eeprom-code "EEPROM Code")
 * [Reminder](#reminder "Reminder")
 
-We will continue with our modified FastLED example program from **Part_B** to perform our **Oval** pattern.
+We will continue with our modified FastLED example program from **Part_B**. We will do the following quick projects:
+- **Oval** - new Oval pattern - still all red
+- **Rainbow** - use Rainbow color scheme for Oval instead of all red
+- **Hello World!** - new Hello World! pattern
+- **Sawtooth Revisited** - rework the Sawtooth pattern using this new code
+- **All the Patterns - Extra Credit** - put it all together, add in EEPROM usage
 
 ## Oval
 [Top](#notes "Top")<br>
@@ -389,7 +394,7 @@ void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
 ```
 
 
-### EEPROM
+### EEPROM Introduction
 [Top](#notes "Top")<br>
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes.
