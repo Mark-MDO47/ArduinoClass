@@ -60,6 +60,6 @@ This describes how the markings on the pads on the LED Stick correspond to the w
 | Red | VDD | VCC | +5 Volts |
 | White | DIN | IN | Serial Data |
 
-Below is a reminder of our desired wiring
+Below is a schematic of our desired wiring. I have inserted the color scheme above into the schematic for clarity.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
