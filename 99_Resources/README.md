@@ -13,6 +13,7 @@
 * [UBEC](#ubec "UBEC")
 * [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
+* [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
@@ -61,7 +62,7 @@ Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
 
 An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. It has dual-CPUs for expert users.
 
-On the other hand, ESP32 modules work with 3.5V instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
+On the other hand, ESP32 modules work with 3.5V I/O instead of 5V so you need to be prepared to handle that. For instance I use the SN74HCT125N quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
 
 The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
 
@@ -166,6 +167,14 @@ This handy device allows the use of one component to give 10 individual pullups.
 - https://www.digikey.com/en/products/detail/bourns-inc/4610X-AP1-103LF/3741070
 
 <img src="https://media.digikey.com/photos/Bourns%20Photos/4610X%20SERIES.jpg" width="150" alt="Image of 9 10K Ohm resistors one package">
+
+## SN74HCT125N 3-state Buffer
+[Top](#resources "Top")<br>
+This chip can be used to provide fan-out for Arduino outputs. I also abuse it to use it to convert 3.5V outputs from an ESP32 into 5V outputs, especially when driving moderately fast serial interfaces such as a string of WS2812B LEDs. It is not really designed for this but it seems to work well.
+- https://www.digikey.com/en/products/detail/texas-instruments/SN74HCT125N/376860
+
+The version I use is a Dual In-Line Package (DIP) chip; the following is a generic image of a DIP chip from www.digikey.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.
+![alt text](https://media.digikey.com/Photos/Texas%20Instr%20Photos/Mfg_296~4040049~N~14.jpg "Image from www.digikey.com of a Dual In-Line Package chip such as the SN74HCT125N")
 
 ## KiCad
 [Top](#resources "Top")<br>
