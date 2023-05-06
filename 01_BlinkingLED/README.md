@@ -2,6 +2,7 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
+* [Introducing the Arduino Nano](#introducing-the-arduino-nano "Introducing the Arduino Nano")
 * [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
 * [Now It Runs Whenever you Turn On Power](#now-it-runs-whenever-you-turn-on-power "Now It Runs Whenever you Turn On Power")
@@ -9,18 +10,24 @@
 * [Part B - Add Button and Display Messages on USB Serial Port](#part-b-\--add-button-and-display-messages-on-usb-serial-port "Part B - Add Button and Display Messages on USB Serial Port")
 * [Resources](#resources "Resources")
 
-## Connect the Arduino Nano to the USB cable
+## Introducing the Arduino Nano
 [Back to Top](#notes "Back to Top")
 
 ![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
 The Student Kit includes an Arduino Nano clone. I will also bring some additional supporting hardware for use during the class.
 
+The Arduino is one of a class of open-source hardware single-module computers designed by an organization named Arduino. They build the genuine Arduino boards and make the designs avaliable. There are many companies either making clones (such as the ones in our Student Kit) or extending the family (such as the ESP32, currently my favorite Arduino variant).
+- https://www.arduino.cc/en/about
+- https://www.arduino.cc/en/hardware
+
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many bytes. FLASH is found in thumb drives, SD cards, and many other applications.
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte.
-- SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
+- SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written. It is somewhat faster to read than the FLASH or EEPROM and much much faster to write.
 
+## Connect the Arduino Nano to the USB cable
+[Back to Top](#notes "Back to Top")
 The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide (for instance, if you only have USB C connectors). This USB connection provides both a serial port (for uploading and communication) and power/ground. The link below shows what many USB cables and sockets look like.
 - https://en.wikipedia.org/wiki/USB
 
@@ -28,7 +35,7 @@ To connect your computer to the Arduino Nano
 - Connect the Arduino Nano to a USB port on your computer.
 - Start the Arduino IDE and in the menu **Tools** -> **Board: ...** select **Arduino Nano**.
 
-These are relatively old Arduino Nanos.
+The Student Kit boards are built from relatively old Arduino Nano designs.
 - In the Arduino IDE menu **Tools** -> **Processor** -> **ATmega328P** select **Old Bootloader**.
 - **Programmer** should then automatically be selected as **AVRISP mkll**.
 
