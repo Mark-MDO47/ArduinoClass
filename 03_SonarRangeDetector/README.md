@@ -257,7 +257,7 @@ For this purpose I often use a UBEC (Universal Battery Eliminator Circuit). This
 
 FYI at this time a 93 LED WS2812B disk is about $20 and a 241 LED WS2812B disk is about $28. A 5V 3A output UBEC is about $13 in a 5-pack.
 
-Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Disk. Note that I connect the ground for both UBEC and Arduino power but not the power; I don't want the Arduino power from the USB to "fight" against a slight difference with the UBEC power.
+Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Disk. The color scheme of the unmodified 241-LED ring is red/white/green not red/black/green; I put this indication on the image. Note also that I connect the ground for both UBEC and Arduino power but not the power; I don't want the Arduino power from the USB to "fight" against a slight difference with the UBEC power.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" alt="Image of wiring diagram for 03 Sonar Extra Fun">
 
