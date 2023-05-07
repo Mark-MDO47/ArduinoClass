@@ -27,7 +27,7 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 - Line 08: change definition for NUM_LEDS from 1 to 8
 - Line 14: change definition for DATA_PIN from 3 to 7
 - Line 66: we will fill all 8 locations, we want the first four CRGB::Red, the next three CRGB::Green and the last one CRGB::Blue
-  - you can use loops if you want or just set them one at a time
+  - you can use loops if you want or just set them one at a time (leds[0] through leds[7])
 - Line 70: we will fill all 8 locations with CRGB::Black
   - you can use a loop if you want or just set them one at a time
 
