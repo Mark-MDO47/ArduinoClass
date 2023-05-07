@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [Code for FastLEDBlink](#code-for-fastledblink "Code for FastLEDBlink")
 * [Wiring for FastLEDBlink](#wiring-for-fastledblink "Wiring for FastLEDBlink")
+* [Try It](#try-it "Try It")
 
 We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
@@ -30,6 +31,8 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
   - you can use loops if you want or just set them one at a time (leds[0] through leds[7])
 - Line 70: we will fill all 8 locations with CRGB::Black
   - you can use a loop if you want or just set them one at a time
+
+You can see how easy it is to use the FastLED library. This already puts you into a fairly small percentage of hobbyist Arduino users, to be able to use a sophisticated output device **and set it to do exactly what you want, not what some demo program uses**. Congratulations!
 
 The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command. This will let us confirm whether the NEOPIXEL initialization statement in **setup()** is the correct one for our LED strip or not.
 
@@ -63,3 +66,6 @@ This describes how the markings on the pads on the LED Stick correspond to the w
 Below is a schematic of our desired wiring. I have inserted the color scheme above into the schematic for clarity.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
+
+## Try It
+OK - you have done the code, you have wired it up and checked your wiring - go ahead and try it!
