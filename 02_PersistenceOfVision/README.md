@@ -38,7 +38,7 @@ Note: the WS in WS2812B stands for Worldsemi. Search this page for WS2812B and s
 - http://www.world-semi.com/
 - http://www.world-semi.com/ws2812-family/
 
-There is a serial data protocol used to control this string of 8 LEDs.
+There is a serial data protocol used to control this string of 8 WS2812B LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
   - The actual color order can vary; we will determine it by experimentation.
   - This allows 256 levels (0-255 for an unsigned 8-bit byte) for each of the colors Red/Green/Blue.
@@ -254,4 +254,3 @@ In summary, there is a serial data protocol used to control strings of WS2812B R
 - The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
 - Each LED "consumes" its 3-byte RGB command from the data and then sends all the rest of the data down the line.
 - If there is a stopage of data for a certain specified amount of time, the string resets and the first LED will consume the next RGB command.
-
