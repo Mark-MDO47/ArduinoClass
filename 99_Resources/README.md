@@ -17,6 +17,7 @@
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
+* [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
@@ -243,3 +244,23 @@ Looking up in the table referenced above, an AWG30 single strand wire meeting th
  An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously AWG24 multi strand is overkill, even though we are using multi stranded.
 
 For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
+
+## TLDR WS2812B Serial Protocol
+There is a serial data protocol used to control this string of 8 WS2812B LEDs.
+- 3 8-bit bytes per LED are sent to control Red/Green/Blue.
+  - The actual color order can vary; we will determine it by experimentation.
+  - This allows 256 levels (0-255 for an unsigned 8-bit byte) for each of the colors Red/Green/Blue.
+- The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
+- Each LED "consumes" its 3-byte RGB command from the data and then passes all the rest of the data down the line until there is a stopage.
+- If there is a stopage of data for a certain specified amount of time, the string resets and the each LED will consume a new 3-byte value for its next RGB command.
+
+The WS2812B protocol can be found in this spec:
+* https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
+
+A higher level depiction of this output protocol in action (taken from the spec) is shown here. First is the serial head-to-tail cascade architecture of the LEDs:
+
+![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
+
+Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "consumes" the first set of bytes and passes on the rest.
+
+![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
