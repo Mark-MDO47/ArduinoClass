@@ -107,13 +107,13 @@ For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded 
 Now our code discussion section is going to get a little more involved.
 
 ### The Code - Timing Without Delays
-Open another Example program - Blink Without Delay - and lets compare it with Blink.
+Open another Example program - Blink Without Delay - and let's compare it with Blink.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlinkWithoutDelay.png "Arduino IDE loading Blink Without Delay example program")
 
 The **setup()** code is essentially the same - just setting up the LED pin as OUTPUT.
 
-There are some new "state" variables, defined before (and outside) of **setup()** and **loop()** - this means that the values will remain unchanged between calls to **loop()**.
+There are some new "state" variables, defined before (and outside) of **setup()** and **loop()** - defining them this way means that the values will remain unchanged between calls to **loop()**.
 ```C
 // Variables will change:
 int ledState = LOW;             // ledState used to set the LED
@@ -125,7 +125,8 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 // constants won't change:
 const long interval = 5;           // interval at which to blink (milliseconds)
 ```
-The rules for C and C++ on scope and persistence actually have a lot more detail to them, but this will do for now. One item that I find particularly disturbing is that the definition of the **static** keyword has now diverged between C and C++. This seems like a bad trend; C and C++ had been compatible for many years. It seems they could have defined a static_cpp or something if they wanted a variant.
+The rules for C and C++ on scope and persistence actually have a lot more detail to them than I indicated above, but this will do for now.
+- One item that I find particularly disturbing is that the definition of the **static** keyword has now diverged between C and C++. This seems like a bad trend; C and C++ had been compatible for many years. It seems to me they could have defined a static_cpp or something if they wanted a variant.
 
 When we look at the new **loop()** code, we don't see any calls to **delay()** - it just runs straight through and uses the **millis()** clock to decide if it should set the LED pin HIGH or LOW. Usually it just passes through the loop with almost no delay and no change to the LED state. What is the advantage of this?
 ```C
@@ -147,11 +148,11 @@ When we look at the new **loop()** code, we don't see any calls to **delay()** -
   }
 ```
 
-This code design doesn't prevent the Arduino from doing other things (reading other sensors, controlling other devices) during the time we are waiting for the next **interval** to expire.
-- In the Blink code inside the **loop()** routine, the two **delay()** calls take almost 100% of the time. This is time during which the Arduino cannot be doing anything else.
-- In the "Blink Without Delay" code, the **loop()** code completes rapidly and is called again and again with only a few milliseconds in between loops. If there are other devices to handle and if the code for those devices is written in a similar manner, the Arduino can handle those also. It can do more than just Blink!
+In contrast to our previous **loop()** design, this code design doesn't prevent the Arduino from doing other things (reading other sensors, controlling other devices) during the time we are waiting for the next **interval** to expire.
+- In the "Blink" example code inside the **loop()** routine, the two **delay()** calls take almost 100% of the time. This is time during which the Arduino cannot be doing anything else.
+- In the "Blink Without Delay" example code, the **loop()** code completes rapidly and is called again and again with only a few milliseconds in between loops. If there are other devices to handle and if the code for those devices is written in a similar manner, the Arduino can handle those also. It can do more than just Blink!
 
-All this is caused because we are using the standard architecture for Arduino code, in which there are two routines **setup()** and **loop()** and no interrupts. If the system was multi-tasking either based on real-time interrupts or time slicing and if one task does a delay it doesn't prevent another task from running.
+All this is caused because we are using the standard architecture for Arduino code, in which there are two routines **setup()** and **loop()** and no interrupts. If the system was multi-tasking either based on real-time interrupts or time slicing, then if one task does a delay it doesn't prevent another task from running. In our Arduino standard architecture, a delay means nothing else in the software world is happening until the delay finishes.
 
 It is possible to enable and use interrupts in the Arduino, but this introduces complexities that sometimes cause trouble for the worlds best programmers - issues of code re-entrancy, software synchronization (i.e. semaphores), prioritization, non-deterministic latency, etc. The people who designed the Arduino chose to use this simpler architecture since the expected audience included many hobbyist and first-time programmers. This simpler architecture avoids many of the complexities mentioned above and thus helps to "keep us out of trouble". If you are more advanced, they do not prevent you from going further.
 - See attachInterrupt(), detachInterrupt(), interrupts(), and noInterrupts() in https://reference.arduino.cc/reference/en/.
@@ -169,7 +170,7 @@ Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED libr
 If you haven't used FastLED with your Arduino IDE before you will probably need to load the library. This is easy! First start the Library Manager<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_ManageLibraries.png "Image of IDE starting Library Manager")
 
-If FastLED is not installed, install it. Install the library that says "By Daniel Garcia". It is OK if there are several libraries that say something about FastLED, but be sure that the one by Daniel Garcia is installed too.
+If FastLED is not installed, install the library that says "By Daniel Garcia". It is OK if there are several libraries that say something about FastLED, but be sure that the one by Daniel Garcia is installed too.
 
 Below is a picture showing FastLED library **needs to be** installed<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_FastLED_needsInstall.png "Image of Library Manager showing FastLED needs to be installed")
