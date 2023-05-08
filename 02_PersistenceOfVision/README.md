@@ -69,7 +69,10 @@ The explanation for this is too complicated for a poor SW hack like myself so I 
 | Red | VDD | VCC | +5 Volts |
 | White | DIN | IN | Serial Data |
 
-Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to solder all those connections between LEDs.
+OK I looked it up. When NPN transistors were in vogue, Vcc (Positive) and Vee (ground) were for the Collector and Emitter, respectively. When FET logic took over, Vdd (positive) and Vss (ground) were for the Drain and and Source. When CMOS took over none of this made sense but apparently nobody was willing to change it again either.
+- If you want to be a fanatic about Vss, Vdd, Vcc, and Vee you can look in the 1963 IEEE standard 255-1963 "Letter Symbols for Semiconductor Devices" (IEEE Std 255-1963).
+
+Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to have to solder all those connections between LEDs!
 
 ### TLDR Power and Wires
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
