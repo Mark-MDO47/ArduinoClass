@@ -32,7 +32,7 @@ Of course I cannot resist putting my fingers in the gears so we will make just a
 - Line 70: we will fill all 8 locations with CRGB::Black
   - you can use a loop if you want or just set them one at a time
 
-You can see how easy it is to use the FastLED library. This already puts you into a fairly small percentage of hobbyist Arduino users, to be able to use a sophisticated output device **and set it to do exactly what you want, not what some demo program uses**. Congratulations!
+You can see how easy it is to use the FastLED library. This already puts you into a fairly small percentage of hobbyist Arduino users, to be able to use a sophisticated output device **and set it to do exactly what you want, not what some demo program does**. Congratulations!
 
 The reason I want to use all 8 LEDs is to make sure they all work. The reason I use different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command. This will let us confirm whether the NEOPIXEL initialization statement in **setup()** is the correct one for our LED strip or not.
 
