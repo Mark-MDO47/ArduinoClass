@@ -78,10 +78,17 @@ In C language scoping rules you can define a variable for use in the loop only w
 
 The **(0x01 & bits)** part of the code "masks" the least significant bit in bits. The "&" is the boolean AND operator; it operates bitwise on the two values. For each bit, if both corresponding bits in the two values are "1" then the resulting bit is "1"; otherwise the resulting bit is "0". There are other boolean operators too such as | for OR, ^ for EXCLUSIVE-OR, etc. Be aware that the operator && is a logical AND not the same as the boolean AND. Logical AND operates on the entire values and produces just one zero or non-zero result; boolean AND operates on each bit within the values and produces a result for each bit separately. A common mistake is to use && when you wanted to use &.
 
-After we have chosen red or black for this led, we shift the value in **bits** to the right with **bits >>= 1;**. The operator is the right-shift operator ">>"; it is used in a typical C language pattern where <opr> is any operator (such as >>, <<, +, -, *, /, and more) then
-- symbol <opr>= value;
+After we have chosen red or black for this led, we shift the value in **bits** to the right with **bits >>= 1;**. The operator is the right-shift operator ">>"; it is used in a typical C language pattern where {opr} is any operator (such as >>, <<, +, -, *, /, and more) then
+- symbol {opr}= value;
   - is the same as
-- symbol = symbol <opr> value;
+- symbol = symbol {opr} value;
+
+For example:
+- **i += 1;** is the same as **i = i + 1;**
+- **bits >>= 1;** is the same as **bits = bits >> 1;**
+
+This doesn't make much difference in these examples but here is an example where it cuts down on copy/paste errors:
+- **data_array[idx*5 % 17].another_array[idx2\*17 % 5][idx3] += 1;**
 
 Here is the way the loop operates when we start with bits = 0x18;
 | i | bits | (0x01 & bits) | color | bits >>= 1 |
