@@ -91,16 +91,16 @@ This doesn't make much difference in these examples but here is an example where
 - **data_array[idx*5 % 17].another_array[idx2\*17 % 5][idx3] += 1;**
 
 Here is the way the loop operates when we start with bits = 0x18;
-| i | bits | (0x01 & bits) | color | bits >>= 1 |
+| i | bits | (0x01 & bits) | store | bits >>= 1 |
 | --- | --- | --- | --- | --- |
-| 0 | 0b00011000 | 0 | BLACK | 0b00001100 |
-| 1 | 0b00001100 | 0 | BLACK | 0b00000110 |
-| 2 | 0b00000110 | 0 | BLACK | 0b00000011 |
-| 3 | 0b00000011 | 1 | RED | 0b00000001 |
-| 4 | 0b00000001 | 1 | RED | 0b00000000 |
-| 5 | 0b00000000 | 0 | BLACK | 0b00000000 |
-| 6 | 0b00000000 | 0 | BLACK | 0b00000000 |
-| 7 | 0b00000000 | 0 | BLACK | 0b00000000 |
+| 0 | 0b00011000 | 0 | ptrn_leds[0] = CRGB::Black; | 0b00001100 |
+| 1 | 0b00001100 | 0 | ptrn_leds[1] = CRGB::Black; | 0b00000110 |
+| 2 | 0b00000110 | 0 | ptrn_leds[2] = CRGB::Black; | 0b00000011 |
+| 3 | 0b00000011 | 1 | ptrn_leds[3] = CRGB::Red; | 0b00000001 |
+| 4 | 0b00000001 | 1 | ptrn_leds[4] = CRGB::Red; | 0b00000000 |
+| 5 | 0b00000000 | 0 | ptrn_leds[5] = CRGB::Black; | 0b00000000 |
+| 6 | 0b00000000 | 0 | ptrn_leds[6] = CRGB::Black; | 0b00000000 |
+| 7 | 0b00000000 | 0 | ptrn_leds[7] = CRGB::Black; | 0b00000000 |
  
 
 ## Oval
