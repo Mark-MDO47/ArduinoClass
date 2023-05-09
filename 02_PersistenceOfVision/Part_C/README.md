@@ -17,7 +17,7 @@ We will continue with our modified FastLED example program from **Part_B**. We w
 - **Rainbow** - use Rainbow color scheme for Oval instead of all red
 - **Hello World!** - new Hello World! pattern
 - **Sawtooth Revisited** - rework the Sawtooth pattern using this new code
-- **All the Patterns - Extra Credit** - put it all together, add in EEPROM usage
+- **All the Patterns - Extra Credit** - put it all together, choose pattern and blink rate, save configuration in EEPROM
 
 ## Oval
 [Top](#notes "Top")<br>
