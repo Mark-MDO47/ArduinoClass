@@ -2,7 +2,7 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [Decimal Binary Hexadecimal Oh My](#decimal-binary-hexadecimal-oh-my "Decimal Binary Hexadecimal Oh My")
+* [Decimal and Binary and Hexadecimal - Oh My](#decimal-and-binary-and-hexadecimal-\--oh-my "Decimal and Binary and Hexadecimal - Oh My")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
@@ -13,14 +13,16 @@
   * [EEPROM Code](#eeprom-code "EEPROM Code")
 * [Reminder](#reminder "Reminder")
 
-We will continue with our modified FastLED example program from **Part_B**. We will do the following quick projects:
+First we will take a look at **Decimal, Binary, and Hexadecimal** arithmetic, since we will be using some tricks in this realm to implement our patterns.
+
+Then we will continue with our modified FastLED example program from **Part_B**. We will do the following quick projects:
 - **Oval** - new Oval pattern - still all red
 - **Rainbow** - use Rainbow color scheme for Oval instead of all red
 - **Hello World!** - new Hello World! pattern
 - **Sawtooth Revisited** - rework the Sawtooth pattern using this new code
 - **All the Patterns - Extra Credit** - put it all together, choose pattern and blink rate, save configuration in EEPROM
 
-## Decimal Binary Hexadecimal Oh My
+## Decimal and Binary and Hexadecimal - Oh My
 When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
 
 We all are used to decimal arithmetic and the notation system based on powers of 10. If you see the decimal number 123 you know, starting from the right and moving left, that it is (3 times ten-to-the-power-zero) + (2 times ten-to-the-power-one) + (1 times ten-to-the-power-two). Since anything (let's ignore infinity and zero at this point) to the power zero is one, that means 123 is three plus twenty plus one hundred.
@@ -29,6 +31,10 @@ The same principle applies to binary but every digit is either one or zero and e
 
 The following short document goes over this in just a little more detail.
 - http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/HexNumSys.pdf
+
+And now a caution about octal. Octal arithmetic is similar to the above systems with digits confined to 0,1,2,3,4,5,6,7 and the positions based on powers of eight. The difficulty arises from the method the C language uses to flag that the digits should be interpreted as octal: if the number has all decimal digits and starts with zero, it is assumed to be octal.
+
+This means that in C language, 10 is ten decimal but 010 is eight decimal. In fact if you try to use 09, it will be flagged as an error because 9 is not an octal digit. Having compiler errors tell us when the compiler is misinterpretting our numbers is one thing, having it silently accept 010 as eight is quite another - so **programmor emptor**!
 
 ## Oval
 [Top](#notes "Top")<br>
