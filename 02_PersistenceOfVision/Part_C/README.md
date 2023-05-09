@@ -407,7 +407,7 @@ These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SR
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte.
 - SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
 
-Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3.
+Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand" since it is 2 to the power 10 and 1,000 is 10 to the power 3.
 
 In Arduino practice:
 - FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on PROGMEM and F macro in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
