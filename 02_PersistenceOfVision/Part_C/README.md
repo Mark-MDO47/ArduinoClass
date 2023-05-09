@@ -3,6 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Decimal and Binary and Hexadecimal - Oh My](#decimal-and-binary-and-hexadecimal-\--oh-my "Decimal and Binary and Hexadecimal - Oh My")
+  * [How do we use decimal and binary and hexadecimal numbers in the code](#how-do-we-use-decimal-and-binary-and-hexadecimal-numbers-in-the-code "How do we use decimal and binary and hexadecimal numbers in the code")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
@@ -88,8 +89,8 @@ Here is the way the loop operates when we start with bits = 0x18;
 | 0 | 0b00011000 | 0 | BLACK | 0b00001100 |
 | 1 | 0b00001100 | 0 | BLACK | 0b00000110 |
 | 2 | 0b00000110 | 0 | BLACK | 0b00000011 |
-| 3 | 0b00000011 | 0 | RED | 0b00000001 |
-| 4 | 0b00000001 | 0 | RED | 0b00000000 |
+| 3 | 0b00000011 | 1 | RED | 0b00000001 |
+| 4 | 0b00000001 | 1 | RED | 0b00000000 |
 | 5 | 0b00000000 | 0 | BLACK | 0b00000000 |
 | 6 | 0b00000000 | 0 | BLACK | 0b00000000 |
 | 7 | 0b00000000 | 0 | BLACK | 0b00000000 |
