@@ -53,7 +53,9 @@ i = 0b101111;
 
 There is more to learn, for instance negative numbers in twos-complement or ones-complement and how they behave, but the above will pretty much cover this class.
 
-In the **loop()** code for these patterns we will be doing some shifting and masking (boolean algebra) with hexadecimal numbers to decide which LEDs to light up. This is what the innermost loop in **Oval** looks like:
+### How do we use decimal and binary and hexadecimal numbers in the code
+
+In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking (boolean algebra) with hexadecimal numbers to decide which LEDs to light up. This is what the innermost loop in **Oval** looks like:
 ```C
   unsigned int bits = oval_pattern_bits[blink_phase];
 
@@ -65,8 +67,6 @@ In the **loop()** code for these patterns we will be doing some shifting and mas
     bits >>= 1;
   }
 ```
-
-### How do we use decimal and binary and hexadecimal numbers in the code
 
 **oval_pattern_bits** is an array of unsigned 8-bit bytes; the binary bits in each 8-bit byte correspond to whether we want to light up that LED in our LED Stick. The least significant bit corresponds to the LED closest to the wires; each bit after that corresponds to the next LED on the stick.
 
