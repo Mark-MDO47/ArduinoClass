@@ -2,6 +2,7 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
+* [Decimal Binary Hexadecimal Oh My](#decimal-binary-hexadecimal-oh-my "Decimal Binary Hexadecimal Oh My")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
@@ -18,6 +19,16 @@ We will continue with our modified FastLED example program from **Part_B**. We w
 - **Hello World!** - new Hello World! pattern
 - **Sawtooth Revisited** - rework the Sawtooth pattern using this new code
 - **All the Patterns - Extra Credit** - put it all together, choose pattern and blink rate, save configuration in EEPROM
+
+## Decimal Binary Hexadecimal Oh My
+When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
+
+We all are used to decimal arithmetic and the notation system based on powers of 10. If you see the decimal number 123 you know, starting from the right and moving left, that it is (3 times ten-to-the-power-zero) + (2 times ten-to-the-power-one) + (1 times ten-to-the-power-two). Since anything (let's ignore infinity and zero at this point) to the power zero is one, that means 123 is three plus twenty plus one hundred.
+
+The same principle applies to binary but every digit is either one or zero and every position is a power of two instead of a power of ten. Again, hexadecimal is the same principle but every digit is from zero to nine then a, b, c, d, e, or f representing 10, 11, 12, 13, 14 or 15; and every position is a power of sixteen instead of ten or two. It is pretty easy to convert binary to hexadecimal and back and hexadecimal has one fourth as many digits and binary.
+
+The following short document goes over this in just a little more detail.
+- http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/HexNumSys.pdf
 
 ## Oval
 [Top](#notes "Top")<br>
