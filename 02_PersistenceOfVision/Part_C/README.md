@@ -73,8 +73,7 @@ In the **loop()** code that we will be discussing for these patterns we will be 
 For instance, the first unsigned 8-bit byte in oval_pattern_bits is 0x18. This corresponds to 0b00011000.  This gets stored into **bits** at the beginning of the code if blink_phase is zero. The least significant bit is on the right and then we go right-to-left. If the bit is a 0 we set the LED black; if it is a 1 we set the LED red.
 
 There is a loop **for (long int i = 0; i < NUM_LEDS; i++) { ... }**. In our case, **NUM_LEDS** is 8 for our 8-LED stick. This is convenient since our data comes in 8-bit bytes, so this loop will loop over every bit in **bits** that corresponds to an LED.
-
-In C language scoping rules you can define a variable for use in the loop only within the () following the for as I did here with the variable "i". There are other places you can do this type of definition too, for instance inside any {}; that is where we defined "bits". Note: I didn't really need to use a long int for this loop, but it only slows the code down a little and I am too lazy to change it.
+- In C language scoping rules you can define a variable for use in the loop only within the () following the for as I did here with the variable "i". There are other places you can do this type of definition too, for instance inside any {}; that is where we defined "bits". Note: I didn't really need to use a long int for this loop, but it only slows the code down a little and I am too lazy to change it.
 
 The **(0x01 & bits)** part of the code "masks" the least significant bit in bits. The "&" is the boolean AND operator; it operates bitwise on the two values. For each bit, if both corresponding bits in the two values are "1" then the resulting bit is "1"; otherwise the resulting bit is "0". There are other boolean operators too such as | for OR, ^ for EXCLUSIVE-OR, etc. Be aware that the operator && is a logical AND not the same as the boolean AND. Logical AND operates on the entire values and produces just one zero or non-zero result; boolean AND operates on each bit within the values and produces a result for each bit separately. A common mistake is to use && when you wanted to use &.
 
@@ -102,7 +101,6 @@ Here is the way the loop operates when we start with bits = 0x18;
 | 6 | 0b00000000 | 0 | ptrn_leds[6] = CRGB::Black; | 0b00000000 |
 | 7 | 0b00000000 | 0 | ptrn_leds[7] = CRGB::Black; | 0b00000000 |
  
-
 ## Oval
 [Top](#notes "Top")<br>
 The idea is to draw ovals, circles, and maybe eyes with our LED Stick.<br>
