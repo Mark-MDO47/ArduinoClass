@@ -36,6 +36,20 @@ And now a caution about octal. Octal arithmetic is similar to the above systems 
 
 This means that in C language, 10 is ten decimal but 010 is eight decimal. In fact if you try to use 09, it will be flagged as an error because 9 is not an octal digit. Having compiler errors tell us when the compiler is misinterpretting our numbers is one thing, having it silently accept 010 as eight is quite another - so **programmor emptor**!
 
+So how do we specify integer constants in the various number systems?
+- decimal - just use decimal digits but do not start with zero. If you want the value zero, 0 octal = 0 decimal = 0.
+- octal - use octal digits and start with a zero
+- hexadecimal - use 0x followed by hexadecimal digits; OK to use either upper or lower case hex letters
+- binary - us 0b followed by binary digits
+
+The following statements cause identical values to be stored in "i":
+```C
+i =       47;
+i =      057;
+i =     0x2f;
+i = 0b101111;
+```
+
 ## Oval
 [Top](#notes "Top")<br>
 The idea is to draw ovals, circles, and maybe eyes with our LED Stick.<br>
