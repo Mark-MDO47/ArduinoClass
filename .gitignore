@@ -17,7 +17,7 @@
 *.pch
 
 # Libraries
-*.lib
+#     *.lib MDO47 want to save KiCad cache.lib files
 *.a
 *.la
 *.lo
