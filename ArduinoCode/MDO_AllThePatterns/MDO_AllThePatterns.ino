@@ -129,7 +129,7 @@ long gInterval = 5;           // interval at which to blink (milliseconds)
 // show_menu_options() - print the menu options
 //    returns: nothing
 void show_menu_options() {
-  Serial.println(""); Serial.println("Menu Choices:");
+  Serial.println(F("")); Serial.println(F("Menu Choices:"));
   for (int i = 0; i < MENU_CHOICES_NUM; i++) {
      Serial.println(gMenuChoices[i]);
   }
