@@ -332,6 +332,7 @@ void handle_serial_input() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // eeprom_store_if_change(offset, byteValue) - write byte to EEPROM if it is different than current EEPROM
 //    we don't want to write EEPROM unless needed
+//    this routine is just for debugging; use EEPROM.update() unless debugging
 // offset - where to store the byte in EEPROM, offset from gEepromConfigStart
 // byteValue - byte value to store at that offset in EEPROM configuration
 //
@@ -394,9 +395,9 @@ void eeprom_store_with_chksum(int offset, uint8_t byteValue) {
   uint8_t nowValue;
   uint8_t invChksumValue;
 
-  eeprom_store_if_change(offset, byteValue);
+  EEPROM.update(offset, byteValue);
   invChksumValue = eeprom_calc_inverted_checksum();
-  eeprom_store_if_change(EEPROM_INVERTED_CHKSM, invChksumValue);
+  EEPROM.update(EEPROM_INVERTED_CHKSM, invChksumValue);
 } // end eeprom_store_with_chksum()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,13 +412,13 @@ void eeprom_init_from_ram() {
   EEPROM_DEBUG_PRINT(F("   gTheOneColorIndex RAM: "));EEPROM_DEBUG_PRINT(gTheOneColorIndex); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gTheOneColorIndex));
   EEPROM_DEBUG_PRINT(F("   gPatternToShow    RAM: "));EEPROM_DEBUG_PRINT(gPatternToShow); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gPatternToShow)); EEPROM_DEBUG_PRINTLN(F(" "));
 
-  eeprom_store_if_change(EEPROM_OFFSET_gInterval,         gInterval);
-  eeprom_store_if_change(EEPROM_OFFSET_gOneOrRainbow,     gOneOrRainbow);
-  eeprom_store_if_change(EEPROM_OFFSET_gTheOneColorIndex, gTheOneColorIndex);
+  EEPROM.update(EEPROM_OFFSET_gInterval,         gInterval);
+  EEPROM.update(EEPROM_OFFSET_gOneOrRainbow,     gOneOrRainbow);
+  EEPROM.update(EEPROM_OFFSET_gTheOneColorIndex, gTheOneColorIndex);
   if (EEPROM_OFFSET_gPatternToShow < EEPROM_LAST_NON_CHKSM) {
-    eeprom_store_if_change(EEPROM_OFFSET_gPatternToShow,  gPatternToShow);
+    EEPROM.update(EEPROM_OFFSET_gPatternToShow,  gPatternToShow);
     for (uint8_t offset = EEPROM_OFFSET_gPatternToShow+1; offset < EEPROM_LAST_NON_CHKSM; offset++) {
-      eeprom_store_if_change(offset, 0); // zero fill the rest
+      EEPROM.update(offset, 0); // zero fill the rest
     } // end fill with zero to one less than LAST_NON_CHKSM
     eeprom_store_with_chksum(EEPROM_LAST_NON_CHKSM, 0); // last non-checksum
   } else { // this was the last byte before checksum
