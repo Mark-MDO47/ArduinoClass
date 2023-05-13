@@ -392,7 +392,7 @@ void handle_serial_input_command(char * inbuf) {
    } else {
      Serial.print(F("Error: number ")); Serial.print(tmp); Serial.println(F(" is not valid"));
    }
-   eeprom_init_from_ram(); // store any new config in EEPROM
+   // TODO FIXME add code to put configuration into EEPROM
    show_menu_options();
 } // end handle_serial_input_command()
 
@@ -651,7 +651,7 @@ void ram_init_from_eeprom() {
 
 After these additions, there are only two changes to make.
 
-At the start of **setup()** add:
+Near the start of **setup()** after **memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN)** add:
 ```C
   // either initialize EEPROM configuration info or initialize RAM from EEPROM configuration info
   eeprom_check_init(); // see if EEPROM checksum is good; if not update EEPROM from RAM
