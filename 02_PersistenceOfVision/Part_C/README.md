@@ -351,21 +351,23 @@ static char * gMenuChoices[MENU_CHOICES_NUM] = {
 static char serial_input_buf[SERIAL_INPUT_BUF_LEN]; // one character for terminating '\0'
 ```
 
-We add code to show the menus and currently selected options, and also to accept new options
+We add code to show the menus and currently selected options, and also to accept new options.<br>
+NOTE that we are using the **F()** macro to save strings in program memory instead of using precious Arduino RAM. 
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources#progmem-and-f-macro-to-save-ram
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // show_menu_options() - print the menu options
 //    returns: nothing
 void show_menu_options() {
-  Serial.println(""); Serial.println("Menu Choices:");
+  Serial.println(F("")); Serial.println(F("Menu Choices:"));
   for (int i = 0; i < MENU_CHOICES_NUM; i++) {
      Serial.println(gMenuChoices[i]);
   }
-  Serial.println("");
-  Serial.print("Interval: "); Serial.print(gInterval); Serial.println(" millisec");
-  Serial.print("Color Pattern: "); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All One Color" : "Rainbow" );
-  Serial.print("The One Color: ");  Serial.println(gTheColorStrings[gTheOneColorIndex]);
-  Serial.print("POVPattern: "); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
+  Serial.println(F(""));
+  Serial.print(F("Interval: ")); Serial.print(gInterval); Serial.println(" millisec");
+  Serial.print(F("Color Pattern: ")); Serial.println( COLORS_ALL_ONE == gOneOrRainbow ? "All One Color" : "Rainbow" );
+  Serial.print(F("The One Color: "));  Serial.println(gTheColorStrings[gTheOneColorIndex]);
+  Serial.print(F("POVPattern: ")); Serial.print( gPatternToShow ); Serial.print(" "); Serial.println(gPatternsNames[gPatternToShow]);
 } // end show_menu_options()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -388,7 +390,7 @@ void handle_serial_input_command(char * inbuf) {
    } else if ((MENU_FIRST_PATTERN <= tmp) && (MENU_LAST_PATTERN >= tmp)) {
      gPatternToShow = tmp-MENU_FIRST_PATTERN;
    } else {
-     Serial.print("Error: number "); Serial.print(tmp); Serial.println(" is not valid");
+     Serial.print(F("Error: number ")); Serial.print(tmp); Serial.println(F(" is not valid"));
    }
    eeprom_init_from_ram(); // store any new config in EEPROM
    show_menu_options();
@@ -440,7 +442,7 @@ void handle_serial_input() {
 } // end handle_serial_input()
 ```
 
-At the end of **setup()**
+At the beginning of **setup()**
 ```C
   Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
   while (!Serial) {
@@ -448,9 +450,12 @@ At the end of **setup()**
   }
   while (Serial.available()) Serial.read(); // clear any startup junk from the serial queue
   memset((void *)serial_input_buf, 0, SERIAL_INPUT_BUF_LEN); // clear buffer; good idea for zero-terminated strings
+```
 
-  Serial.println(""); // print a blank line in case there is some junk from power-on
-  Serial.println("ArduinoClass init...");
+At the end of **setup()**
+```C
+  Serial.println(F("")); // print a blank line in case there is some junk from power-on
+  Serial.println(F("ArduinoClass init..."));
   show_menu_options();
 ```
 
@@ -514,6 +519,9 @@ We add the following after **#include <FastLED.h>**
 ```C
 #include <EEPROM.h>          // to store configuration info
 
+#define EEPROM_DEBUG_PRINT(a)   // Serial.print((a))   // set to blank to remove EEPROM debug print statements
+#define EEPROM_DEBUG_PRINTLN(a) // Serial.println((a)) // set to blank to remove EEPROM debug print statements
+
 #define EEPROM_OFFSET_gInterval         0x0
 #define EEPROM_OFFSET_gOneOrRainbow     0x1
 #define EEPROM_OFFSET_gTheOneColorIndex 0x2
@@ -528,6 +536,7 @@ We add the following prior to **setup()**
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // eeprom_store_if_change(offset, byteValue) - write byte to EEPROM if it is different than current EEPROM
 //    we don't want to write EEPROM unless needed
+//    this routine is just for debugging; use EEPROM.update() unless debugging
 // offset - where to store the byte in EEPROM, offset from gEepromConfigStart
 // byteValue - byte value to store at that offset in EEPROM configuration
 //
@@ -535,9 +544,13 @@ void eeprom_store_if_change(int offset, uint8_t byteValue) {
   uint8_t nowValue;
 
   nowValue = EEPROM.read(offset);
+  EEPROM_DEBUG_PRINT(F("DEBUG eeprom_store_if_change BEFORE: want ")); EEPROM_DEBUG_PRINT(byteValue); EEPROM_DEBUG_PRINT(F(" have ")); EEPROM_DEBUG_PRINT(nowValue); EEPROM_DEBUG_PRINT(F(" offset ")); EEPROM_DEBUG_PRINTLN(offset);
+
   if (nowValue != byteValue) {
     EEPROM.write(offset, byteValue);
   } // if we needed to write to EEPROM
+
+  EEPROM_DEBUG_PRINT(F("DEBUG eeprom_store_if_change AFTER: want ")); EEPROM_DEBUG_PRINT(byteValue); EEPROM_DEBUG_PRINT(F(" have ")); EEPROM_DEBUG_PRINT(EEPROM.read(offset)); EEPROM_DEBUG_PRINT(F(" offset ")); EEPROM_DEBUG_PRINTLN(offset); EEPROM_DEBUG_PRINTLN(F(" "));
 } // end eeprom_store_if_change()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -551,6 +564,7 @@ void eeprom_check_init() {
   // read RBG non-checksum bytes from EEPROM and calculate checksum; compare with stored checksum
   invChksumValue = eeprom_calc_inverted_checksum();
   nowValue = EEPROM.read(EEPROM_INVERTED_CHKSM);
+  EEPROM_DEBUG_PRINT(F("eeprom_check_init: exp: ")); EEPROM_DEBUG_PRINT(invChksumValue); EEPROM_DEBUG_PRINT(F(" act: ")); EEPROM_DEBUG_PRINTLN(nowValue);
   if (nowValue != invChksumValue) {
     // checksum does not match; factory reset our EEPROM configuration area
     Serial.println(F("eeprom_check_init: checksum bad; re-initialize"));
@@ -572,7 +586,7 @@ uint8_t eeprom_calc_inverted_checksum() {
     byteValue = EEPROM.read(offset);
     chksumValue += byteValue;
   } // end caclulate checksum
-  return((uint8_t) (~chksumValue));
+  return((uint8_t) (~(chksumValue)));
 } // end eeprom_calc_inverted_checksum()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -585,9 +599,9 @@ void eeprom_store_with_chksum(int offset, uint8_t byteValue) {
   uint8_t nowValue;
   uint8_t invChksumValue;
 
-  eeprom_store_if_change(offset, byteValue);
+  EEPROM.update(offset, byteValue);
   invChksumValue = eeprom_calc_inverted_checksum();
-  eeprom_store_if_change(EEPROM_INVERTED_CHKSM, invChksumValue);
+  EEPROM.update(EEPROM_INVERTED_CHKSM, invChksumValue);
 } // end eeprom_store_with_chksum()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -596,18 +610,31 @@ void eeprom_store_with_chksum(int offset, uint8_t byteValue) {
 //
 void eeprom_init_from_ram() {
 
-  eeprom_store_if_change(EEPROM_OFFSET_gInterval,         gInterval);
-  eeprom_store_if_change(EEPROM_OFFSET_gOneOrRainbow,     gOneOrRainbow);
-  eeprom_store_if_change(EEPROM_OFFSET_gTheOneColorIndex, gTheOneColorIndex);
+  EEPROM_DEBUG_PRINTLN(F("DEBUG eeprom_init_from_ram BEFORE:"));
+  EEPROM_DEBUG_PRINT(F("   gInterval         RAM: "));EEPROM_DEBUG_PRINT(gInterval); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gInterval));
+  EEPROM_DEBUG_PRINT(F("   gOneOrRainbow     RAM: "));EEPROM_DEBUG_PRINT(gOneOrRainbow); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gOneOrRainbow));
+  EEPROM_DEBUG_PRINT(F("   gTheOneColorIndex RAM: "));EEPROM_DEBUG_PRINT(gTheOneColorIndex); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gTheOneColorIndex));
+  EEPROM_DEBUG_PRINT(F("   gPatternToShow    RAM: "));EEPROM_DEBUG_PRINT(gPatternToShow); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gPatternToShow)); EEPROM_DEBUG_PRINTLN(F(" "));
+
+  EEPROM.update(EEPROM_OFFSET_gInterval,         gInterval);
+  EEPROM.update(EEPROM_OFFSET_gOneOrRainbow,     gOneOrRainbow);
+  EEPROM.update(EEPROM_OFFSET_gTheOneColorIndex, gTheOneColorIndex);
   if (EEPROM_OFFSET_gPatternToShow < EEPROM_LAST_NON_CHKSM) {
-    eeprom_store_if_change(EEPROM_OFFSET_gPatternToShow,  gPatternToShow);
-    for (uint8_t offset = 0; offset < EEPROM_LAST_NON_CHKSM; offset++) {
-      eeprom_store_if_change(offset, 0); // zero fill the rest
+    EEPROM.update(EEPROM_OFFSET_gPatternToShow,  gPatternToShow);
+    for (uint8_t offset = EEPROM_OFFSET_gPatternToShow+1; offset < EEPROM_LAST_NON_CHKSM; offset++) {
+      EEPROM.update(offset, 0); // zero fill the rest
     } // end fill with zero to one less than LAST_NON_CHKSM
     eeprom_store_with_chksum(EEPROM_LAST_NON_CHKSM, 0); // last non-checksum
   } else { // this was the last byte before checksum
     eeprom_store_with_chksum(EEPROM_OFFSET_gPatternToShow, gPatternToShow);
   } // end if this was the last byte before checksum
+
+  EEPROM_DEBUG_PRINTLN(F("DEBUG eeprom_init_from_ram AFTER:"));
+  EEPROM_DEBUG_PRINT(F("   gInterval         RAM: "));EEPROM_DEBUG_PRINT(gInterval); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gInterval));
+  EEPROM_DEBUG_PRINT(F("   gOneOrRainbow     RAM: "));EEPROM_DEBUG_PRINT(gOneOrRainbow); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gOneOrRainbow));
+  EEPROM_DEBUG_PRINT(F("   gTheOneColorIndex RAM: "));EEPROM_DEBUG_PRINT(gTheOneColorIndex); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gTheOneColorIndex));
+  EEPROM_DEBUG_PRINT(F("   gPatternToShow    RAM: "));EEPROM_DEBUG_PRINT(gPatternToShow); EEPROM_DEBUG_PRINT(F(" EEPROM: ")); EEPROM_DEBUG_PRINTLN( EEPROM.read(EEPROM_OFFSET_gPatternToShow));
+  EEPROM_DEBUG_PRINTLN(F(" "));
 } // end eeprom_factory_init(configToProc)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
