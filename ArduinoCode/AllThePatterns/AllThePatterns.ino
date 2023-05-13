@@ -345,8 +345,7 @@ void eeprom_store_if_change(int offset, uint8_t byteValue) {
     EEPROM.write(offset, byteValue);
   } // if we needed to write to EEPROM
 
-  nowValue = EEPROM.read(offset); // DEBUG
-  EEPROM_DEBUG_PRINT(F("DEBUG eeprom_store_if_change AFTER: want ")); EEPROM_DEBUG_PRINT(byteValue); EEPROM_DEBUG_PRINT(F(" have ")); EEPROM_DEBUG_PRINT(nowValue); EEPROM_DEBUG_PRINT(F(" offset ")); EEPROM_DEBUG_PRINTLN(offset); EEPROM_DEBUG_PRINTLN(F(" "));
+  EEPROM_DEBUG_PRINT(F("DEBUG eeprom_store_if_change AFTER: want ")); EEPROM_DEBUG_PRINT(byteValue); EEPROM_DEBUG_PRINT(F(" have ")); EEPROM_DEBUG_PRINT(EEPROM.read(offset)); EEPROM_DEBUG_PRINT(F(" offset ")); EEPROM_DEBUG_PRINTLN(offset); EEPROM_DEBUG_PRINTLN(F(" "));
 } // end eeprom_store_if_change()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
