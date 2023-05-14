@@ -1,3 +1,5 @@
 (sym_lib_table
-  (lib (name mdoLibrary)(type Legacy)(uri D:/GitHub-Mark-MDO47/RubberBandGun/KiCad/mdoLibrary.lib)(options "")(descr ""))
+  (version 7)
+  (lib (name "mdoLibrary")(type "Legacy")(uri "D:/GitHub-Mark-MDO47/RubberBandGun/KiCad/mdoLibrary.lib")(options "")(descr ""))
+  (lib (name "01_BlinkingLED_A-rescue")(type "KiCad")(uri "${KIPRJMOD}/01_BlinkingLED_A-rescue.kicad_sym")(options "")(descr ""))
 )
