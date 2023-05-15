@@ -372,6 +372,7 @@ void step_single_color_value() {
 // BUTTON_PIN_GREEN_SCLR 5 // change the single color
 //
 // NOTE: we can use either USB Serial keyboard entry to change parameters or the buttons
+// ALSO NOTE: we don't do a complete job of debounce, but if you press and hold the button before release then it almost always works.
 
 void handle_buttons() {
   static int last_yellow = HIGH;
@@ -417,7 +418,7 @@ void handle_buttons() {
     last_green = HIGH;
   }
 
-} // end handle_button()
+} // end handle_buttons()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // eeprom_store_if_change(offset, byteValue) - write byte to EEPROM if it is different than current EEPROM
