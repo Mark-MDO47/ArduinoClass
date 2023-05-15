@@ -677,6 +677,211 @@ To make it easier to see the persistence of vision, I put our wand onto a piece 
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_schematic.png" width="1000" alt="Side view of Persistence of Vision Spinning Stick">
 
+Code changes were made to handle the four buttons.<br>
+After **// Nano pin D-7     LEDstick DIN** add<br>
+```C
+// Nano pin D-5     Button Yellow - change delay time
+// Nano pin D-4     Button Blue   - change pattern
+// Nano pin D-3     Button White  - change Rainbow or Single Color
+// Nano pin D-2     Button Green  - change the single color
+```
+
+After **#define DATA_PIN 7** add<br>
+```C
+// Buttons to experiment with conditions
+#define BUTTON_PIN_YELLOW_DLY 5 // change delay time
+#define BUTTON_PIN_BLUE_PTRN  4 // change pattern
+#define BUTTON_PIN_WHITE_RNBW 3 // change Rainbow or Single Color
+#define BUTTON_PIN_GREEN_SCLR 2 // change the single color
+```
+
+We will no longer use btn_pressed in this code<br>
+Replace the **ptrn_phase(btn_pressed)** routine and its comments with this<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ptrn_phase() - determine the state of what the phase of pattern generation is
+//    returns: long int with either value >= 0 phase to blink or value < 0 paused
+//
+
+long int ptrn_phase() {
+  static long int current_phase = -1;
+
+  current_phase += 1;
+  current_phase %= gPatternsRepeat[gPatternToShow]; // loop through the number of calls before repeat
+  
+  return(current_phase);
+} // end ptrn_phase()
+```
+
+Replace the **ptrn_fill(btn_pressed, ptrn_leds)** routine and its comments with this<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ptrn_fill(ptrn_leds) - 
+//    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
+//
+// ptrn_leds   - where to store the pattern
+
+int ptrn_fill(CRGB * ptrn_leds) {
+  int did_blink = LOW;
+  long int blink_phase = ptrn_phase();
+
+  ptrn_blink(blink_phase, ptrn_leds);
+  did_blink = HIGH;
+
+  return(did_blink);
+} // end ptrn_fill()
+```
+
+Replace the **handle_leds(...)** routine and its comments with this<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_leds(...) - get the pattern and then display on LEDs
+//    returns: int with either value HIGH==blinked the LEDs or LOW==did not blink
+//
+
+int handle_leds() {
+  int did_blink = ptrn_fill(fastled_array); // fill the pattern into RAM
+
+  FastLED.show(); // show the pattern on LEDs
+
+  return(did_blink); // HIGH if blink, LOW if pause
+} // end handle_leds()
+```
+
+Completely remove the **handle_button(btn_pin)** routine and its comments.
+
+After **handle_serial_input()**, add the following
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// step_delay_value() - button press to step through delay values
+//    returns: nothing
+
+void step_delay_value() {
+  for (int idx = 0; idx < (1+MENU_LAST_MSEC-MENU_FIRST_MSEC); idx += 1) {
+    if (gInterval == gMenuMsecCounts[idx]) {
+      // Serial.print(F("step idx ")); Serial.print(idx); Serial.print(F(" add-one "));
+      idx += 1;
+      // Serial.print(idx); Serial.print(F(" range-check "));
+      if (idx >= (1+MENU_LAST_MSEC-MENU_FIRST_MSEC)) idx = 0;
+      // Serial.println(idx);
+      gInterval = gMenuMsecCounts[idx];
+      break;
+    } // end if found current entry so set next entry
+  } // end for loop
+  eeprom_init_from_ram(); // store any new config in EEPROM
+  // show_menu_options(); // DEBUG
+} // end step_delay_value()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// step_pattern_value() - button press to step through pattern values
+//    returns: nothing
+
+void step_pattern_value() {
+  int idx = gPatternToShow + 1;
+  if (idx >= (1+MENU_LAST_PATTERN-MENU_FIRST_PATTERN)) idx = 0;
+  gPatternToShow = idx;
+  eeprom_init_from_ram(); // store any new config in EEPROM
+} // end step_pattern_value()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// step_rainbow_single_value() - button press to step through Rainbow or Single Color
+//    returns: nothing
+
+void step_rainbow_single_value() {
+  int idx = gOneOrRainbow + 1;
+  if (idx >= (1+MENU_LAST_COLOR_PATTERN-MENU_FIRST_COLOR_PATTERN)) idx = 0;
+  gOneOrRainbow = idx;
+  eeprom_init_from_ram(); // store any new config in EEPROM
+} // end step_rainbow_single_value()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// step_single_color_value() - button press to step through single color values
+//    returns: nothing
+
+void step_single_color_value() {
+  int idx = gTheOneColorIndex + 1;
+  if (idx >= (1+MENU_LAST_COLOR_CHOICE-MENU_FIRST_COLOR_CHOICE)) idx = 0;
+  gTheOneColorIndex = idx;
+  eeprom_init_from_ram(); // store any new config in EEPROM
+} // end step_single_color_value()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_buttons() - Handle the four buttons to change parameters
+//    returns: int with either value HIGH or LOW
+//
+// BUTTON_PIN_YELLOW_DLY 2 // change delay time
+// BUTTON_PIN_BLUE_PTRN  3 // change pattern
+// BUTTON_PIN_WHITE_RNBW 4 // change Rainbow or Single Color
+// BUTTON_PIN_GREEN_SCLR 5 // change the single color
+//
+// NOTE: we can use either USB Serial keyboard entry to change parameters or the buttons
+// ALSO NOTE: we don't do a complete job of debounce, but if you press and hold the button before release then it almost always works.
+
+void handle_buttons() {
+  static int last_yellow = HIGH;
+  static int last_blue = HIGH;
+  static int last_white = HIGH;
+  static int last_green = HIGH;
+
+  if (LOW == digitalRead(BUTTON_PIN_YELLOW_DLY)) {
+    if (HIGH == last_yellow) {
+      step_delay_value();
+    }
+    last_yellow = LOW;
+  } else {
+    last_yellow = HIGH;
+  }
+
+  if (LOW == digitalRead(BUTTON_PIN_BLUE_PTRN)) {
+    if (HIGH == last_blue) {
+      step_pattern_value();
+    }
+    last_blue = LOW;
+  } else {
+    last_blue = HIGH;
+  }
+
+
+  if (LOW == digitalRead(BUTTON_PIN_WHITE_RNBW)) {
+    if (HIGH == last_white) {
+      step_rainbow_single_value();
+    }
+    last_white = LOW;
+  } else {
+    last_white = HIGH;
+  }
+
+
+  if (LOW == digitalRead(BUTTON_PIN_GREEN_SCLR)) {
+    if (HIGH == last_green) {
+      step_single_color_value();
+    }
+    last_green = LOW;
+  } else {
+    last_green = HIGH;
+  }
+
+} // end handle_buttons()
+```
+
+In **setup()** replace the line **pinMode(BUTTON_PIN, INPUT_PULLUP);* with the following<br>
+```C
+  pinMode(BUTTON_PIN_YELLOW_DLY, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+  pinMode(BUTTON_PIN_BLUE_PTRN, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+  pinMode(BUTTON_PIN_WHITE_RNBW, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+  pinMode(BUTTON_PIN_GREEN_SCLR, INPUT_PULLUP); // digital INPUT_PULLUP means voltage HIGH unless grounded
+```
+
+In **loop()** replace the comment and line **int button_up = handle_button(BUTTON_PIN);** with the following:
+```C
+  // buttons will step through parameter options
+  handle_buttons();
+```
+
+In **loop()** replace the line **handle_leds(button_up);** with the following:
+```C
+    handle_leds(); // Mark-MDO47 generate pattern to display and display it
+```
 
 ## Reminder
 [Top](#notes "Top")<br>
