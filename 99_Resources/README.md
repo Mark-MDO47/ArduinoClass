@@ -16,6 +16,7 @@
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
+* [TLDR Decimal and Binary and Hexadecimal - Oh My](*tldr-decimal-and-binary-and-hexadecimal-\--oh-my "TLDR Decimal and Binary and Hexadecimal - Oh My")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 
@@ -216,6 +217,36 @@ Here are a few potential projects on the web that have caught my eye
 - https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
 - https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/
 - https://www.instructables.com/How-to-Assemble-a-PCB-With-Tiny-SMD-Parts/
+
+## TLDR Decimal and Binary and Hexadecimal - Oh My
+When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
+
+We all are used to decimal arithmetic and the notation system based on powers of 10. If you see the decimal number 123 you know, starting from the right and moving left, that it is (3 times ten-to-the-power-zero) + (2 times ten-to-the-power-one) + (1 times ten-to-the-power-two). Since anything (let's ignore infinity and zero at this point) to the power zero is one, that means 123 is three plus twenty plus one hundred.
+
+The same principle applies to binary but every digit is either one or zero and every position is a power of two instead of a power of ten. Again, hexadecimal is the same principle but every digit is from zero to nine then a, b, c, d, e, or f representing 10, 11, 12, 13, 14 or 15; and every position is a power of sixteen instead of ten or two. It is pretty easy to convert binary to hexadecimal and back and hexadecimal has one fourth as many digits and binary.
+
+The following short document goes over this in just a little more detail.
+- http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/HexNumSys.pdf
+
+And now a caution about octal. Octal arithmetic is similar to the above systems with digits confined to 0,1,2,3,4,5,6,7 and the positions based on powers of eight. The difficulty arises from the method the C language uses to flag that the digits should be interpreted as octal: if the number has all decimal digits and starts with zero, it is assumed to be octal.
+
+This means that in C language, 10 is ten decimal but 010 is eight decimal. In fact if you try to use 09, it will be flagged as an error because 9 is not an octal digit. Having compiler errors tell us when the compiler is misinterpretting our numbers is one thing, having it silently accept 010 as eight is quite another - so **programmor emptor**!
+
+So how do we specify integer constants in the various number systems?
+- decimal - just use decimal digits but do not start with zero. If you want the value zero, 0 octal = 0 decimal = 0.
+- octal - use octal digits and start with a zero
+- hexadecimal - use 0x followed by hexadecimal digits; OK to use either upper or lower case hex letters
+- binary - us 0b followed by binary digits
+
+The following statements cause identical values to be stored in "i":
+```C
+i =       47;
+i =      057;
+i =     0x2f;
+i = 0b101111;
+```
+
+There is more to learn, for instance negative numbers in twos-complement or ones-complement and how they behave, but the above will pretty much cover this class.
 
 ## TLDR Power and Wires
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
