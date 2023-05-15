@@ -184,9 +184,21 @@ The version I use is a Dual In-Line Package (DIP) chip; the following is a gener
 I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
-This is not needed for the class but is a fantastic tool for those that are interested. There are many YouTube videos describing the basics of KiCad usage.
+If you don't want to use this, don't worry - all the schematic wiring diagrams for the class are in PDF form in the various directories.
+
+KiCad is not needed for the class but is a fantastic tool for those that are interested. There are many YouTube videos describing the basics of KiCad usage.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/KiCad_screen.png" width="300" alt="Image of KiCad Schematic Capture screen">
+
+The official KiCad curated libraries can be found here:
+- https://kicad.github.io/
+- https://gitlab.com/kicad
+
+I also have a tendency to use some third-party KiCad symbol libraries, especially the DigiKey library. You can see all the "official" KiCad libraries available at this location:
+- https://www.kicad.org/libraries/third_party/
+
+Even all that is not enough for me! I have some of my own hand-generated schematic symbols in my KiCad 7.0.2 library mdoLibrary.kicad_sym; I also have this library in the KiCad 5.x format as mdoLibrary.lib. These are in this repository so you can find them to view the KiCad files included with this class.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad
 
 ## Projects on the Web
 [Top](#resources "Top")<br>
