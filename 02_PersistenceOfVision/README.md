@@ -20,7 +20,7 @@ The effect that allows us to enjoy movies is known as the persistence of vision:
 
 In this exercise we will build on the blinking LED exercise to create a simple persistence of vision wand consisting of 8 individually addressable color LEDs using the WS2812B serial protocol.
 
-For our persistence of vision projects, we will go faster than 24 blinks per second because we are not just trying to blend one complete frame (picture) into the next, we are trying to draw a frame in the eye with at most 8 dots per blink. Our "frame" might be 25 or 50 blinks.
+For our persistence of vision projects, we will go faster than 24 blinks per second because we are not just trying to blend one complete frame (picture) into the next, we are trying to draw a frame in the eye with at most 8 dots per blink. Our "frame" might be 25 or 50 blinks or more.
 
 Much more elaborate versions of this wand (and some beautiful pictures and movies) can be found in these links:
 - https://www.instructables.com/Persistence-of-Vision-LED-Staff/
