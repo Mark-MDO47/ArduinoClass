@@ -6,12 +6,13 @@
   * [How do we use decimal and binary and hexadecimal numbers in the code](#how-do-we-use-decimal-and-binary-and-hexadecimal-numbers-in-the-code "How do we use decimal and binary and hexadecimal numbers in the code")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
-* [Hello World](#hello-world "Hello World
+* [Hello World](#hello-world "Hello World")
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
   * [Pattern Code](#pattern-code "Pattern Code")
   * [EEPROM Introduction](#eeprom-introduction "EEPROM Introduction")
   * [EEPROM Code](#eeprom-code "EEPROM Code")
+  * [Persistence of Vision Spinning Stick](#persistence-of-vision-spinning-stick "Persistence of Vision Spinning Stick")
 * [Reminder](#reminder "Reminder")
 
 First we will take a look at **Decimal, Binary, and Hexadecimal** arithmetic, since we will be using some tricks in this realm to implement our patterns.
@@ -666,7 +667,7 @@ In **handle_serial_input_command()** replace line **// TODO FIXME add code to pu
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartC_Oval_setup.png "Image of setup for 02_PersistanceOfVision Part C: Oval Setup")
 
-## Persistence of Vision Spinning Stick
+### Persistence of Vision Spinning Stick
 [Top](#notes "Top")<br>
 To make it easier to see the persistence of vision, I put our wand onto a piece of wood with a handle on it. I added some buttons so I could experiment with different color schemes, patterns and interval rates without having to hook up to a USB cable. It is probably the ugliest and most ad-hoc persistence of vision wand in the universe, but it works!
 
