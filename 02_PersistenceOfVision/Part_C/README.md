@@ -6,7 +6,7 @@
   * [How do we use decimal and binary and hexadecimal numbers in the code](#how-do-we-use-decimal-and-binary-and-hexadecimal-numbers-in-the-code "How do we use decimal and binary and hexadecimal numbers in the code")
 * [Oval](#oval "Oval")
 * [Rainbow](#rainbow "Rainbow")
-* [Hello World](#hello-world "Hello World")
+* [Hello World](#hello-world "Hello World
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
   * [Pattern Code](#pattern-code "Pattern Code")
@@ -670,12 +670,17 @@ In **handle_serial_input_command()** replace line **// TODO FIXME add code to pu
 [Top](#notes "Top")<br>
 To make it easier to see the persistence of vision, I put our wand onto a piece of wood with a handle on it. I added some buttons so I could experiment with different color schemes, patterns and interval rates without having to hook up to a USB cable. It is probably the ugliest and most ad-hoc persistence of vision wand in the universe, but it works!
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="640" alt="Image of wiring diagram for Persistence of Vision">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_topView.png" width="640" alt="Top view of Persistence of Vision Spinning Stick">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="640" alt="Side view of Persistence of Vision Spinning Stick">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_schematic.png" width="1000" alt="Side view of Persistence of Vision Spinning Stick">
+https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_schematic.png
 
 
 ## Reminder
 [Top](#notes "Top")<br>
-The connections do not change; this is just here for a reminder.
+The connections for our normal projects (not extra credit) do not change; this is just here for a reminder.
 
 | Wire Color | Schematic | LED Stick | Purpose |
 | --- | --- | --- | --- |
