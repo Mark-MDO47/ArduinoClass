@@ -22,6 +22,7 @@ Then we will continue with our modified FastLED example program from **Part_B**.
 - **Hello World!** - new Hello World! pattern
 - **Sawtooth Revisited** - rework the Sawtooth pattern using this new code
 - **All the Patterns - Extra Credit** - put it all together, choose pattern and blink rate, save configuration in EEPROM
+- **Persistance of Vision Spinning Stick** - I put our project on a stick with a handle so I could spin it around; looks very cool!
 
 ## Decimal and Binary and Hexadecimal - Oh My
 When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
@@ -664,6 +665,13 @@ In **handle_serial_input_command()** replace line **// TODO FIXME add code to pu
 ```
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartC_Oval_setup.png "Image of setup for 02_PersistanceOfVision Part C: Oval Setup")
+
+## Persistence of Vision Spinning Stick
+[Top](#notes "Top")<br>
+To make it easier to see the persistence of vision, I put our wand onto a piece of wood with a handle on it. I added some buttons so I could experiment with different color schemes, patterns and interval rates without having to hook up to a USB cable. It is probably the ugliest and most ad-hoc persistence of vision wand in the universe, but it works!
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="640" alt="Image of wiring diagram for Persistence of Vision">
+
 
 ## Reminder
 [Top](#notes "Top")<br>
