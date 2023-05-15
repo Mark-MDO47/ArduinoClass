@@ -675,7 +675,6 @@ To make it easier to see the persistence of vision, I put our wand onto a piece 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="640" alt="Side view of Persistence of Vision Spinning Stick">
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_schematic.png" width="1000" alt="Side view of Persistence of Vision Spinning Stick">
-https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_schematic.png
 
 
 ## Reminder
