@@ -79,7 +79,7 @@ unsigned long previousMillis = 0;        // will store last time LED was updated
 CRGB fastled_array[NUM_LEDS];
 
 // constants won't change:
-const long interval = 5;           // interval at which to blink (milliseconds)
+const long interval = 1;           // interval at which to blink (milliseconds)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // oval_phase(btn_pressed) - determine the state of what the phase of pattern generation is
