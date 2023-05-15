@@ -16,7 +16,7 @@
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
-* [TLDR Decimal and Binary and Hexadecimal - Oh My](*tldr-decimal-and-binary-and-hexadecimal-\--oh-my "TLDR Decimal and Binary and Hexadecimal - Oh My")
+* [TLDR Decimal and Binary and Hexadecimal](*tldr-decimal-and-binary-and-hexadecimal "TLDR Decimal and Binary and Hexadecimal")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 
@@ -218,7 +218,7 @@ Here are a few potential projects on the web that have caught my eye
 - https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/
 - https://www.instructables.com/How-to-Assemble-a-PCB-With-Tiny-SMD-Parts/
 
-## TLDR Decimal and Binary and Hexadecimal - Oh My
+## TLDR Decimal and Binary and Hexadecimal
 When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
 
 We all are used to decimal arithmetic and the notation system based on powers of 10. If you see the decimal number 123 you know, starting from the right and moving left, that it is (3 times ten-to-the-power-zero) + (2 times ten-to-the-power-one) + (1 times ten-to-the-power-two). Since anything (let's ignore infinity and zero at this point) to the power zero is one, that means 123 is three plus twenty plus one hundred.
