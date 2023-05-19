@@ -9,7 +9,7 @@
 * [Hello World](#hello-world "Hello World")
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
-  * [Pattern Code](#pattern-code "Pattern Code")
+  * [Pattern Code and Serial Commands](#pattern-code-and-serial-commands "Pattern Code and Serial Commands")
   * [EEPROM Introduction](#eeprom-introduction "EEPROM Introduction")
   * [EEPROM Code](#eeprom-code "EEPROM Code")
   * [Persistence of Vision Spinning Stick](#persistence-of-vision-spinning-stick "Persistence of Vision Spinning Stick")
@@ -278,7 +278,7 @@ We have made a program that can be edited and compiled to do any of the three pa
 
 In addition, I want to save the current state of my selections in EEPROM (Electrically Erasable Programmable Read-only Memory) in the Arduino, so that the next time the Arduino is powered up it will start with those same selections. As the chicken said while crossing the road, "I have my reasons".
 
-### Pattern Code
+### Pattern Code and Serial Commands
 [Top](#notes "Top")<br>
 I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.<br>
 
