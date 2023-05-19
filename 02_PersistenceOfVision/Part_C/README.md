@@ -281,6 +281,21 @@ In addition, I want to save the current state of my selections in EEPROM (Electr
 ### Pattern Code
 [Top](#notes "Top")<br>
 I am just going to show the highlights of converting to use any of the patterns and the other menu options, not a line-by-line edit.<br>
+
+It is possible to use the built-in capability **serialEvent()**, which gets called automagically after **loop()** completes. Except the documentation says it doesn't happen for all Arduinos. And the documentation and sample program are really old.
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadSerialEvent.png "Image of IDE loading SerialEvent example")
+
+Because it is trivially easy to implement a similar capability ourselves, and it does not leave the reader wondering how in the world **serialEvent()** gets called, and I like my code to be blindingly obvious (see my comment in section Sawtooth in https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_B), I will once again suggest we poke our fingers in the gears.
+
+The goal is to read commands from the USB serial port. To do this and fit within our **setup()/loop()** architecture, we need to meet the following goals
+- it should be reasonably encapsulated (because I am lazy)
+- if there is nothing to do, we don't waste a lot of time figuring this out and just let **loop()** fall through to handling the next sensor or device
+- if there are characters to read, we should read them quickly and put them somewhere and then let **loop()** fall through...
+- when we detect end-of-command (linefeed or '\n'), we either notify the **loop()** code or call the processing routine ourselves
+
+For our purposes, we will use **Serial.available()** to detect when character(s) are available to read and **Serial.read()** to read a single character at a time. We do NOT want to use **Serial.readln()** because that would stop Arduino execution until we get a complete line.
+
 The basic idea is:
 - show_menu_options() will show what the possible commands are
 - handle_serial_input_command() will accept a command and set the appropriate configuration
