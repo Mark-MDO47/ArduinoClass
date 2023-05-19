@@ -202,6 +202,10 @@ Even all that is not enough for me! I have some of my own hand-generated schemat
 
 If you want to use KiCad to edit the schematic wiring diagrams for this class, I would recommend adding mdoLibrary.kicad_sym to your global libraries so you don't have to add it as a project-specific library for each of the schematics. To do this you may want to copy that small library to some permanent place on your disk drive so you don't need to worry why KiCad is complaining once you delete the class repository. I created a directory **C:\KiCad\V7\LocalLibraries** and put mdoLibrary.kicad_sym there. Then I added it into the global library using **Preferences** -> **Manage Symbol Libraries...** as seen below
 
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_ManageSymbolLibraries.png "Image of KiCad selecting Preferences - Manage Symbol Libraries")
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_AddSymbolLibraries.png "Image of KiCad after adding mdoLibrary.kicad_sym to global libraries")
+
 ## Projects on the Web
 [Top](#resources "Top")<br>
 Here are a few potential projects on the web that have caught my eye
