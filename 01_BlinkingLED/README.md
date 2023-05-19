@@ -11,8 +11,7 @@
 * [Resources](#resources "Resources")
 
 ## Introducing the Arduino Nano
-[Back to Top](#notes "Back to Top")
-
+[Back to Top](#notes "Back to Top")<br>
 ![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
 The Student Kit includes an Arduino Nano clone. I will also bring some additional supporting hardware for use during the class.
@@ -27,7 +26,7 @@ These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SR
 - SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written. It is somewhat faster to read than the FLASH or EEPROM and much much faster to write.
 
 ## Connect the Arduino Nano to the USB cable
-[Back to Top](#notes "Back to Top")
+[Back to Top](#notes "Back to Top")<br>
 The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide (for instance, if you only have USB C connectors). This USB connection provides both a serial port (for uploading and communication) and power/ground. The link below shows what many USB cables and sockets look like.
 - https://en.wikipedia.org/wiki/USB
 
@@ -44,6 +43,7 @@ The Student Kit boards are built from relatively old Arduino Nano designs.
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ConfigUSB.png "Configure USB port for old Arduino Nano")
 
 ## View an Empty Sketch (Arduino program)
+[Back to Top](#notes "Back to Top")<br>
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 
 An Arduino program (called a "sketch" in Arduino-speak) is typically stored with extension ".ino". If you save your program as fred.ino, you will find that it is saved in a directory named fred.
@@ -60,8 +60,7 @@ void loop() {
 ```
 
 ## Run the example Blink program
-[Back to Top](#notes "Back to Top")
-
+[Back to Top](#notes "Back to Top")<br>
 In the Arduino IDE, choose menu **File** -> **Examples** -> **01.Basics** -> **Blink**. This will bring up the starting point for our Blink exercise.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlink.png "Arduino IDE loading Blink example program")
@@ -82,7 +81,7 @@ With the Arduino connected to the USB port on your computer, use the button circ
 **CONGRATULATIONS!** You have executed your first Arduino program!
 
 ## Now It Runs Whenever you Turn On Power
-
+[Back to Top](#notes "Back to Top")<br>
 Now that you have loaded a program into the "Program Memory" of the Arduino, it stays there when you power-off or disconnect the Arduino. If you unplug the USB cord, let the Arduino power off completely, and then plug the cord in again you will see that it runs the Blink program again after a short bootup.
 
 This is how you can include an Arduino into your projects. You don't have to connect to a computer and program it each time; it will remember the last program you loaded.
@@ -279,6 +278,7 @@ There are many other ways we could re-arrange the printing to minimize calls to 
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
+[Back to Top](#notes "Back to Top")<br>
 We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons.
 
 Lots of info on the Arduino Nano is found here (diagrams, not schematics)
@@ -291,6 +291,7 @@ Mapping the ports to the internal registers is described here
 * https://www.arduino.cc/en/Reference/PortManipulation
 
 ### My favorite Arduino clone - ESP32
+[Back to Top](#notes "Back to Top")<br>
 * https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html
 
 A few quotes from above:
@@ -313,6 +314,7 @@ The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on
 | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_1.png" width="150" alt="Overhead View of ESP32 on two breadboards"> | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_2.png" width="150" alt="Side View of ESP32 on two breadboards"> |
 
 ### PROGMEM and "F" macro to save RAM
+[Back to Top](#notes "Back to Top")<br>
 The following references show how to save constant values such as strings in program memory instead of using precious Arduino RAM:
 - https://reference.arduino.cc/reference/en/language/variables/utilities/progmem/
 - https://www.instructables.com/Arduino-String-Manipulation-Using-Minimal-Ram/
