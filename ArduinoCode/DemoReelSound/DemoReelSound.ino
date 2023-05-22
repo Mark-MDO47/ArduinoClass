@@ -13,16 +13,89 @@
  *
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_D
  * 
- * Demo Reel 100
+ * Demo Reel 100 with Sonar Ranging (Theremin) and Sound
  */
 
  // connections:
 // 
 // Nano pin 5V      LEDstick VCC
 // Nano pin GND     LEDstick GND
-// Nano pin D-7     LEDstick DIN
+// Nano pin D-6     LEDstick DIN
+//
+// Nano pin 5V      SR04 VCC
+// Nano pin GND     SR04 GND
+// Nano pin D-12    SR04 Trig
+// Nano pin D-10    SR04 Echo
+//
+// Nano pin D-3     button
+//
+// Nano pin D-7     YX5200 TX
+// Nano pin D-8     YX5200 RX
+// Nano pin D-9     YX5200 BUSY
 
 #include <FastLED.h>
+
+#include "Arduino.h"
+#include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
+#include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
+SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
+DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
+void DFsetup();                                                // how to initialize myDFPlayer
+
+#define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
+#define DPIN_SWSRL_TX    7  // serial out - talk to DFPlayer audio player (YX5200)
+#define DPIN_AUDIO_BUSY  9  // digital input - signals when audio finishes
+
+#define mDEFAULT_EFCT_SND_VOL 25  // default volume - 25 is pretty good
+#define mDELAY_SOUNDACTV 250    // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
+ uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing mDELAY_SOUNDACTV
+ 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFsetup()
+void DFsetup() {
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+  
+  if (!myDFPlayer.begin(mySoftwareSerial, false, true)) {  // Use softwareSerial to communicate with mp3 player
+    Serial.println(F("Unable to begin DFPlayer:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card!"));
+    while(true){
+      delay(1);
+    }
+  }
+  myDFPlayer.EQ(DFPLAYER_EQ_BASS); // our speaker is quite small
+  myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD); // device is SD card
+  myDFPlayer.volume(mDEFAULT_EFCT_SND_VOL);  // Set volume value. From 0 to 30 - FIXME 25 is good
+  delay(3); // allow bluetooth connection to complete
+  Serial.println(F("DFPlayer Mini online."));
+} // end DFsetup()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// startEffectSound(tmpEfctSound, tmpSpecial) - start tmpEfctSound if it is valid
+//
+// tmpEfctSound is the sound file number. For our Arduino Class this is 1 through 8 inclusive
+//
+// Had lots of trouble with reliable operation using playMp3Folder. Came to conclusion
+//    that it is best to use the most primitive of YX5200 commands.
+// Also saw strong correlation of using YX5200 ACK and having even more unreliable
+//    operation, so turned that off in DFinit.
+// There is code checking DPIN_AUDIO_BUSY that can probably be removed now that the
+//    debugging for above is finished. We still need the delay but 250 millisec is probably overkill.
+// There is code checking myDFPlayer.available() that can maybe also be removed now
+//    that the dubugging for above is finished. Now that I am using myDFPlayer.play(),
+//    it only seems to trigger when I interrupt a playing sound by starting another.
+//    It is sort of interesting but not needed.
+//
+void  startEffectSound(uint16_t tmpEfctSound, uint16_t tmpSpecial) {
+  uint16_t idx;
+  bool prevHI;
+  uint16_t mySound = tmpEfctSound;
+
+  myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
+  // myDFPlayer.playMp3Folder(mySound); //play specific mp3 in SD:/MP3/####.mp3; File Name(0~9999) NOTE: this did not work reliably
+  state_timerForceSoundActv = millis() + mDELAY_SOUNDACTV; // handle YX5200 problem with interrupting play
+
+} // end startEffectSound
 
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
@@ -197,6 +270,11 @@ void setup() {
   Serial.println("4: juggle");
   Serial.println("5: bpm");
   Serial.println("");
+
+  mySoftwareSerial.begin(9600); // this is control to DFPlayer audio player
+  // initialize the DFPlayer audio player
+  DFsetup();
+
 }
 
 void loop() {
