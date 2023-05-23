@@ -38,6 +38,11 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
 #include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
+
+#define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
+#define DPIN_SWSRL_TX    7  // serial out - talk to DFPlayer audio player (YX5200)
+#define DPIN_AUDIO_BUSY  9  // digital input - signals when audio finishes
+
 SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
 DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
 void DFsetup();                                                // how to initialize myDFPlayer
@@ -53,70 +58,6 @@ void DFsetup();                                                // how to initial
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
  uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
  
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// DFstartEffectSound(tmpSoundNum, tmpVolume) - start tmpSoundNum if it is valid
-//
-// tmpSoundNum is the sound file number. For our Arduino Class this is 1 through 8 inclusive
-//
-// Had lots of trouble with reliable operation using playMp3Folder. Came to conclusion
-//    that it is best to use the most primitive of YX5200 commands.
-// Also saw strong correlation of using YX5200 ACK and having even more unreliable
-//    operation, so turned that off in DFinit.
-// The code checking DPIN_AUDIO_BUSY still needs the delay but 250 millisec is probably overkill.
-// There is code checking myDFPlayer.available() that can maybe also be removed now
-//    that the dubugging for above is finished. Now that I am using myDFPlayer.play(),
-//    it only seems to trigger when I interrupt a playing sound by starting another.
-//    It is sort of interesting but not needed.
-//
-void  DFstartEffectSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
-  uint16_t idx;
-  bool prevHI;
-  uint16_t mySound = tmpSoundNum;
-
-  myDFPlayer.volume(tmpVolume);  // Set volume value. From 0 to 30 - FIXME 25 is good
-  myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
-  // myDFPlayer.playMp3Folder(mySound); //play specific mp3 in SD:/MP3/####.mp3; File Name(0~9999) NOTE: this did not work reliably
-  state_timerForceSoundActv = millis() + SOUND_ACTIVE_PROTECT; // handle YX5200 problem with interrupting play
-
-} // end DFstartEffectSound()
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// DFcheckSoundDone()
-//
-// if we are past the "protected" period when we force SoundActv
-//   if current sound is done
-//     start the Cassini sound with background volume
-//
-uint8_t DFcheckSoundDone() {
-  if (millis() >= state_timerForceSoundActv) {
-    if (LOW == digitalRead(DPIN_AUDIO_BUSY)) {
-      DFstartEffectSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
-    }
-  }
-} // end DFcheckSoundDone()
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-// DFsetup()
-void DFsetup() {
-  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
-  
-  if (!myDFPlayer.begin(mySoftwareSerial, false, true)) {  // Use softwareSerial to communicate with mp3 player
-    Serial.println(F("Unable to begin DFPlayer:"));
-    Serial.println(F("1.Please recheck the connection!"));
-    Serial.println(F("2.Please insert the SD card!"));
-    while(true){
-      delay(1);
-    }
-  }
-  myDFPlayer.EQ(DFPLAYER_EQ_BASS); // our speaker is quite small
-  myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD); // device is SD card
-  myDFPlayer.volume(SOUND_DEFAULT_VOL);  // Set volume value. From 0 to 30 - FIXME 25 is good
-  delay(3); // allow bluetooth connection to complete
-  Serial.println(F("DFPlayer Mini online."));
-
-  DFstartEffectSound(SOUNDNUM_INTRO, SOUND_DEFAULT_VOL);
-} // end DFsetup()
-
 // How many leds in your strip?
 #define NUM_LEDS 8 // Mark-MDO47 we have 8 LEDs
 
@@ -142,10 +83,82 @@ static uint8_t gHue = 0; // rotating "base color"
 // Define the array of leds
 CRGB leds[NUM_LEDS];
 
-// constants won't change:
-
+// our current pattern number, from 0 thru 5 inclusive
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
+uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFstartSound(tmpSoundNum, tmpVolume) - start tmpSoundNum if it is valid
+//
+// tmpSoundNum is the sound file number. For our Arduino Class this is 1 through 8 inclusive
+//
+// Had lots of trouble with reliable operation using playMp3Folder. Came to conclusion
+//    that it is best to use the most primitive of YX5200 commands.
+// Also saw strong correlation of using YX5200 ACK and having even more unreliable
+//    operation, so turned that off in DFinit.
+// The code checking DPIN_AUDIO_BUSY still needs the delay but 250 millisec is probably overkill.
+// There is code checking myDFPlayer.available() that can maybe also be removed now
+//    that the dubugging for above is finished. Now that I am using myDFPlayer.play(),
+//    it only seems to trigger when I interrupt a playing sound by starting another.
+//    It is sort of interesting but not needed.
+//
+void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
+  uint16_t idx;
+  bool prevHI;
+  uint16_t mySound = tmpSoundNum;
+
+  myDFPlayer.volume(tmpVolume);  // Set volume value. From 0 to 30 - FIXME 25 is good
+  myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
+  // myDFPlayer.playMp3Folder(mySound); //play specific mp3 in SD:/MP3/####.mp3; File Name(0~9999) NOTE: this did not work reliably
+  state_timerForceSoundActv = millis() + SOUND_ACTIVE_PROTECT; // handle YX5200 problem with interrupting play
+
+} // end DFstartSound()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFcheckSoundDone()
+//
+// if pattern number changed
+//   interrupt sound and start sound to announce the new pattern
+// else if we are past the "protected" period when we force SoundActv because YX5200 doesn't respond immediately
+//   if current sound is done
+//     start the Cassini sound with background volume
+//
+void DFcheckSoundDone() {
+  if (0 != gPatternNumberChanged) {
+    DFstartSound(gCurrentPatternNumber+1, SOUND_DEFAULT_VOL);
+    gPatternNumberChanged = 0;
+  } else if (millis() >= state_timerForceSoundActv) {
+    if (LOW == digitalRead(DPIN_AUDIO_BUSY)) {
+      DFstartSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
+    }
+  }
+} // end DFcheckSoundDone()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFsetup()
+void DFsetup() {
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+  
+  if (!myDFPlayer.begin(mySoftwareSerial, false, true)) {  // Use softwareSerial to communicate with mp3 player
+    Serial.println(F("Unable to begin DFPlayer:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card!"));
+    while(true){
+      delay(1);
+    }
+  }
+  myDFPlayer.EQ(DFPLAYER_EQ_BASS); // our speaker is quite small
+  myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD); // device is SD card
+  myDFPlayer.volume(SOUND_DEFAULT_VOL);  // Set volume value. From 0 to 30 - FIXME 25 is good
+  delay(3); // allow bluetooth connection to complete
+  Serial.println(F("DFPlayer Mini online."));
+
+  DFstartSound(SOUNDNUM_INTRO, SOUND_DEFAULT_VOL);
+} // end DFsetup()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// The brilliant (no pun intended) Demo Reel 100 patterns!
 void rainbow() 
 {
   // FastLED's built-in rainbow generator
@@ -220,6 +233,7 @@ void handle_serial_input_command(char * inbuf) {
    long int tmp = atoi(inbuf);
    if ((0 <= tmp) && (PATTERN_MAX_NUM >= tmp)) {
      gCurrentPatternNumber = tmp;
+     gPatternNumberChanged = 1; // alerts the announcement of the pattern
    }
 } // end handle_serial_input_command()
 
@@ -302,6 +316,9 @@ void setup() {
 void loop() {
   // process USB serial command characters if present
   if (Serial.available()) handle_serial_input();
+
+  // whenever current sound is done, go back to Cassini
+  DFcheckSoundDone();
 
   // Call the current pattern function once, updating the 'leds' array
   gPatterns[gCurrentPatternNumber]();
