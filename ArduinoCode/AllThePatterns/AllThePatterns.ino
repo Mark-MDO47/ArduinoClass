@@ -67,6 +67,10 @@ static unsigned int oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x
 #define HELLO_CALLS_THEN_REPEAT 70 // the HELLO WORLD! pattern does this many calls then repeats
 static unsigned int hello_pattern_bits[HELLO_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFE, 0x01, 0x0E, 0x01, 0xFE, 0x00, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
+#define PEAS_CALLS_THEN_REPEAT 72 // the Whirled Peas! pattern does this many calls then repeats
+static unsigned int peas_pattern[PEAS_CALLS_THEN_REPEAT] = { 0xFE, 0x01, 0x0E, 0x01, 0xFE, 0x00, 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0x81, 0xFF, 0x81, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x90, 0x90, 0x60, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0x00, 0x1F, 0x68, 0x88, 0x68, 0x1F, 0x00, 0x00, 0x72, 0x89, 0x89, 0x46, 0x00, 0xF9, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+
+
 // Mark-MDO47 additions for rainbow colors
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
 #define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
@@ -78,10 +82,10 @@ static uint8_t gHue = 0; // rotating "base color"
 static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
 static uint16_t next_rainbow = 0;
 
-#define PATTERN_MAX_NUM 3 // 0-2 are patterns
-static unsigned int * gPatternsBits[PATTERN_MAX_NUM]   = { sawtooth_pattern_bits, oval_pattern_bits, hello_pattern_bits };
+#define PATTERN_MAX_NUM 4 // number of patterns
+static unsigned int * gPatternsBits[PATTERN_MAX_NUM]   = { sawtooth_pattern_bits, oval_pattern_bits, hello_pattern_bits, peas_pattern };
 static char * gPatternsNames[PATTERN_MAX_NUM]   = { "Sawtooth", "Oval", "HelloWorld!" };
-static int gPatternsRepeat[PATTERN_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL_CALLS_THEN_REPEAT, HELLO_CALLS_THEN_REPEAT };
+static int gPatternsRepeat[PATTERN_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL_CALLS_THEN_REPEAT, HELLO_CALLS_THEN_REPEAT, PEAS_CALLS_THEN_REPEAT };
 int gPatternToShow = 0;
 #define COLORS_ALL_ONE 0
 #define COLORS_RAINBOW 1
@@ -91,7 +95,16 @@ CRGB gTheColorChoices[] = { CRGB::Red, CRGB::Green, CRGB::Blue };
 static char * gTheColorStrings[] = { "Red", "Green", "Blue" };
 int gTheOneColorIndex = 0;
 
-#define MENU_CHOICES_NUM 14
+#define MENU_FIRST_MSEC           0
+#define MENU_LAST_MSEC            5
+#define MENU_FIRST_COLOR_PATTERN  6
+#define MENU_LAST_COLOR_PATTERN   7
+#define MENU_FIRST_COLOR_CHOICE   8
+#define MENU_LAST_COLOR_CHOICE   10
+#define MENU_FIRST_PATTERN       11
+#define MENU_LAST_PATTERN (MENU_FIRST_PATTERN+PATTERN_MAX_NUM-1)
+
+#define MENU_CHOICES_NUM (MENU_LAST_PATTERN+1)
 static char * gMenuChoices[MENU_CHOICES_NUM] = {
   " 0 set interval 1 ms",
   " 1 set interval 3 ms",
@@ -107,15 +120,8 @@ static char * gMenuChoices[MENU_CHOICES_NUM] = {
   "11 set pattern Sawtooth",
   "12 set pattern Oval",
   "13 set pattern HelloWorld!",
-};
-#define MENU_FIRST_MSEC           0
-#define MENU_LAST_MSEC            5
-#define MENU_FIRST_COLOR_PATTERN  6
-#define MENU_LAST_COLOR_PATTERN   7
-#define MENU_FIRST_COLOR_CHOICE   8
-#define MENU_LAST_COLOR_CHOICE   10
-#define MENU_FIRST_PATTERN       11
-#define MENU_LAST_PATTERN (MENU_FIRST_PATTERN+PATTERN_MAX_NUM-1)
+  "14 set pattern WhirledPeas!"
+}; // end gMenuChoices{}
 
 #define SERIAL_MAX_INPUT_LEN 5 // maximum number of characters to accept in one command; otherwise flush to next newline and process what we have
 #define SERIAL_INPUT_BUF_LEN (SERIAL_MAX_INPUT_LEN + 5) // size of our actual buffer; room for terminating '\0' and a little extra
