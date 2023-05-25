@@ -45,7 +45,39 @@ Some of the things to keep in mind:
 - When using the line-level outputs to the Bluetooth module, the correct ground must be used. There are two ground pins on the YX5200 and the documentation does not distinguish between them, but one works far better as audio-ground or analog-ground than the other.
 - The card can play MP3 files but there is a delay to start playing. It is much faster starting with WAV files.
 - There are many clones of this chip and it is hard to know when you order one which one you will get. Some of the more elaborate features don't work on some of the clones.
+- The BUSY line will not change to busy status immediately; it takes some milliseconds. My measurements are that it might take as few as 40 milliseconds, but that may depend on which YX5200 clone you are using. After starting a sound, I make the software pretend that the BUSY line is in busy status for 250 milliseconds before actually using the state of the line.
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
+The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver. It uses an earlier version of Bluetooth than the latest 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any earphones I have tried.
+
+I have a separate GitHub project describing how to use this module:
+- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
+
+Some of the things to keep in mind:
+- When it is freshly initialized, it will try to connect to the first Bluetooth audio receiver (speaker or earbuds or headphones) it finds. It can be paired with a specific device so it doesn't connect to some random speaker; to do that I use the "Programming Arduino" which allows me to see what Bluetooth devices it sees and to choose among them. It also allows removing devices from the list.
+- Once the KCX_BT_EMITTER has been paired with one or more devices, it will not connect to a random device but will wait to connect to one of the devices on its list.
+- It does take a few seconds to pair up with a device.
+- Unlike the YX5200, the KCX_BT_EMITTER has a power-ground (or digital-ground) and an audio-ground (or analog-ground) clearly distinguished in its documentation.
 
 ## The Code
+
+Curiously, before **setup()** we will:
+- Create the global object mySoftwareSerial to talk on our KCX_BT_EMITTER RX and TX pins.
+- Create the global object myDFPlayer to handle YX5200 communications using the above pins.
+
+In **setup()** we will:
+- Initialize the pin used to sense when the sound has completed.
+- Call our **DFsetup()** routine to
+  - connect to mySoftwareSerial
+  - initialize the YX5200 and set some parameters
+  - delay 3 seconds to allow the Bluetooth speaker to connect
+  - start playing the intro sound
+
+In **loop()** we will:
+- Set gPatternNumberChanged non-zero whenever the pattern number changes
+- Call our **DFcheckSoundDone()** routine to
+  - if the pattern changed, interrupt the current sound and announce the new pattern
+  - otherwise:
+    - handle the delay in believing the BUSY signal from YX5200 (see above in discussion on YX5200)
+    - if BUSY signal says sound completed, play the Cassini sound
+
