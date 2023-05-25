@@ -66,7 +66,7 @@ Some of the things to keep in mind:
 
 ## The Code
 [Top](#notes "Top")<br>
-We start from the final Theremin code from section 3 https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
+We start from the final Theremin code from section 3 https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector and name it ThereminSound.ino
 
 ### Code Outline
 [Top](#notes "Top")<br>
@@ -95,3 +95,24 @@ In **loop()** we will:
 ### Code Details
 [Top](#notes "Top")<br>
 
+After **#include <FastLED.h>** and **#include <Ultrasonic.h>** add
+```C
+#include "Arduino.h"
+#include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
+#include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
+
+#define DPIN_SWSRL_TX    8  // serial out - talk to DFPlayer audio player (YX5200)
+#define DPIN_SWSRL_RX    9  // serial in  - talk to DFPlayer audio player (YX5200)
+#define DPIN_AUDIO_BUSY 10  // digital input - signals when audio finishes
+
+SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
+DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
+void DFsetup();                                                // how to initialize myDFPlayer
+
+#define SOUNDNUM_INTRO   7 // our introduction
+#define SOUNDNUM_CASSINI 8 // Cassini Saturn sound - SPACE!!!
+#define SOUND_DEFAULT_VOL     25  // default volume - 25 is pretty good
+#define SOUND_BKGRND_VOL      20  // background volume
+#define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
+ uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
+```
