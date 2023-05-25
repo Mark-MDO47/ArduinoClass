@@ -122,21 +122,10 @@ NOTE: the BUSY column is "not busy" if LOW==DPIN_AUDIO_BUSY **and** the forceBus
 | gPatternNumberChanged | state_introSoundPlaying | BUSY | Action | Reason |
 | --- | --- | --- | --- | --- |
 | 0 | 1 | BUSY | no change | still playing intro |
-| 0 | 1 | BUSY | no change | still playing intro |
-| 0 | 1 | BUSY | no change | still playing intro |
-| 1 | 1 | BUSY | no change | still playing intro |
-| 1 | 1 | BUSY | no change | still playing intro |
 | 1 | 1 | BUSY | no change | still playing intro |
 | 0 | 1 | not busy | start Cassini | intro done, no new pattern |
 | 1 | 1 | not busy | start pattern | intro done, new pattern |
 | 0 | 0 | BUSY | no change | sound still playing, no new pattern |
-| 0 | 0 | BUSY | no change | sound still playing, no new pattern |
-| 0 | 0 | BUSY | no change | sound still playing, no new pattern |
-| 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
-| 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
 | 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
 | 0 | 0 | not busy | start Cassini | no sound playing, intro done, no new pattern |
 | 1 | 0 | not busy | start pattern | no sound playing, pattern changed |
-
-
-
