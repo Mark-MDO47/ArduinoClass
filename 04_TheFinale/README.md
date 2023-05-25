@@ -116,3 +116,24 @@ void DFsetup();                                                // how to initial
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
  uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 ```
+
+To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table:<br>
+| gPatternNumberChanged | state_introSoundPlaying | state_timerForceSoundActv | DPIN_AUDIO_BUSY | Action | Reason |
+| --- | --- | --- | --- | --- | --- |
+| 0 | 0 | 0 | NOTBUSY | start Cassini | no sound playing, intro done, no new pattern |
+| 1 | 0 | 0 | NOTBUSY | start pattern | no sound playing, pattern changed |
+| 0 | 1 | 0 | NOTBUSY | start Cassini | intro done, no new pattern |
+| 1 | 1 | 0 | NOTBUSY | start pattern | intro done, new pattern |
+| 0 | 0 | 1 | NOTBUSY | no change | sound still playing, no new pattern |
+| 1 | 0 | 1 | NOTBUSY | start pattern | pattern changed, interrupt |
+| 0 | 1 | 1 | NOTBUSY | no change | still playing intro |
+| 1 | 1 | 1 | NOTBUSY | no change | still playing intro |
+| 0 | 0 | 0 | BUSY | no change | sound still playing, no new pattern |
+| 1 | 0 | 0 | BUSY | start pattern | pattern changed, interrupt |
+| 0 | 1 | 0 | BUSY | no change | still playing intro |
+| 1 | 1 | 0 | BUSY | no change | still playing intro |
+| 0 | 0 | 1 | BUSY | no change | sound still playing, no new pattern |
+| 1 | 0 | 1 | BUSY | start pattern | pattern changed, interrupt |
+| 0 | 1 | 1 | BUSY | no change | still playing intro |
+| 1 | 1 | 1 | BUSY | no change | still playing intro |
+
