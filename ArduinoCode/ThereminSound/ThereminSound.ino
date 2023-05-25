@@ -54,9 +54,10 @@ void DFsetup();                                                // how to initial
 #define SOUND_BKGRND_VOL      20  // background volume
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
  uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
+uint8_t state_introSoundPlaying = 1; // we start with the intro sound
  
 // How many leds in your strip?
-#define NUM_LEDS 8 // Mark-MDO47 number of WS2812B LEDs
+#define NUM_LEDS 241 // Mark-MDO47 number of WS2812B LEDs
 
 // For led chips like WS2812, which have a data line, ground, and power, you just
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
@@ -122,21 +123,37 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DFcheckSoundDone()
 //
-// if pattern number changed
-//   interrupt sound and start sound to announce the new pattern
-// else if we are past the "protected" period when we force SoundActv because YX5200 doesn't respond immediately
-//   if current sound is done
-//     start the Cassini sound with background volume
+// notBusy means (LOW == digitalRead(DPIN_AUDIO_BUSY)) and (millis() >= state_timerForceSoundActv)
 //
 void DFcheckSoundDone() {
-  if (0 != gPatternNumberChanged) {
-    DFstartSound(gCurrentPatternNumber+1, SOUND_DEFAULT_VOL);
-    gPatternNumberChanged = 0;
-  } else if (millis() >= state_timerForceSoundActv) {
-    if (LOW == digitalRead(DPIN_AUDIO_BUSY)) {
-      DFstartSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
+  uint8_t myBusy = (LOW != digitalRead(DPIN_AUDIO_BUSY)) || (millis() < state_timerForceSoundActv);
+  uint8_t playNumber = 99; // this means don't change
+
+  if (0 != state_introSoundPlaying) { // intro still playing
+    if (0 == myBusy) { // can play a non-intro sound
+      if (0 != gPatternNumberChanged) { // start pattern sound
+        playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+      } else { // start Cassini sound
+        playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
+      } // end start a sound
+    } // end if can play a non-intro sound
+  } else { // intro done
+    if (0 != gPatternNumberChanged) { // always start new pattern number sound
+      playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+    } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
+      playNumber = SOUNDNUM_CASSINI;
     }
-  }
+  } // end if intro done
+
+  if (99 != playNumber) { // there is a new sound to play
+    gPatternNumberChanged = 0;
+    state_introSoundPlaying = 0;
+    if (SOUNDNUM_CASSINI == playNumber) {
+      DFstartSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
+    } else {
+      DFstartSound(gCurrentPatternNumber+1, SOUND_DEFAULT_VOL);
+    }
+  } // end if there is a new sound to play
 } // end DFcheckSoundDone()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,9 +274,12 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
+  // initialize the DFPlayer audio player
+  DFsetup();
+
   Serial.println(""); // print a blank line in case there is some junk from power-on
   Serial.println("ArduinoClass init...");
-}
+}  // end setup()
 
 void loop() {
   EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
