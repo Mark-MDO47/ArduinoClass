@@ -49,10 +49,11 @@ static uint8_t gHue = 0; // rotating "base color"
 // Define the array of leds
 CRGB leds[NUM_LEDS];
 
-// constants won't change:
-
+// our current pattern number, from 0 thru 5 inclusive
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// The brilliant (no pun intended) Demo Reel 100 patterns!
 void rainbow() 
 {
   // FastLED's built-in rainbow generator
