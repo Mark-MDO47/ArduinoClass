@@ -117,23 +117,26 @@ void DFsetup();                                                // how to initial
  uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 ```
 
-To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table:<br>
-| gPatternNumberChanged | state_introSoundPlaying | state_timerForceSoundActv | DPIN_AUDIO_BUSY | Action | Reason |
-| --- | --- | --- | --- | --- | --- |
-| 0 | 0 | 0 | NOTBUSY | start Cassini | no sound playing, intro done, no new pattern |
-| 1 | 0 | 0 | NOTBUSY | start pattern | no sound playing, pattern changed |
-| 0 | 1 | 0 | NOTBUSY | start Cassini | intro done, no new pattern |
-| 1 | 1 | 0 | NOTBUSY | start pattern | intro done, new pattern |
-| 0 | 0 | 1 | NOTBUSY | no change | sound still playing, no new pattern |
-| 1 | 0 | 1 | NOTBUSY | start pattern | pattern changed, interrupt |
-| 0 | 1 | 1 | NOTBUSY | no change | still playing intro |
-| 1 | 1 | 1 | NOTBUSY | no change | still playing intro |
-| 0 | 0 | 0 | BUSY | no change | sound still playing, no new pattern |
-| 1 | 0 | 0 | BUSY | start pattern | pattern changed, interrupt |
-| 0 | 1 | 0 | BUSY | no change | still playing intro |
-| 1 | 1 | 0 | BUSY | no change | still playing intro |
-| 0 | 0 | 1 | BUSY | no change | sound still playing, no new pattern |
-| 1 | 0 | 1 | BUSY | start pattern | pattern changed, interrupt |
-| 0 | 1 | 1 | BUSY | no change | still playing intro |
-| 1 | 1 | 1 | BUSY | no change | still playing intro |
+To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table.<br>
+NOTE: the BUSY column is "not busy" if LOW==DPIN_AUDIO_BUSY **and** the forceBusy timer has expired; otherwise it is "BUSY".<br>
+| gPatternNumberChanged | state_introSoundPlaying | BUSY | Action | Reason |
+| --- | --- | --- | --- | --- |
+| 0 | 1 | BUSY | no change | still playing intro |
+| 0 | 1 | BUSY | no change | still playing intro |
+| 0 | 1 | BUSY | no change | still playing intro |
+| 1 | 1 | BUSY | no change | still playing intro |
+| 1 | 1 | BUSY | no change | still playing intro |
+| 1 | 1 | BUSY | no change | still playing intro |
+| 0 | 1 | not busy | start Cassini | intro done, no new pattern |
+| 1 | 1 | not busy | start pattern | intro done, new pattern |
+| 0 | 0 | BUSY | no change | sound still playing, no new pattern |
+| 0 | 0 | BUSY | no change | sound still playing, no new pattern |
+| 0 | 0 | BUSY | no change | sound still playing, no new pattern |
+| 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
+| 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
+| 1 | 0 | BUSY | start pattern | pattern changed, interrupt |
+| 0 | 0 | not busy | start Cassini | no sound playing, intro done, no new pattern |
+| 1 | 0 | not busy | start pattern | no sound playing, pattern changed |
+
+
 
