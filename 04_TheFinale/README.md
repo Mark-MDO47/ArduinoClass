@@ -34,6 +34,17 @@ The interface between the two circuits consists of five wires on the new breadbo
 | Yellow | YX5200 Busy - used for Arduino to detect if current sound still being played |
 
 ### YX5200 Sound Module
+The YX5200 Sound Module uses a FAT-formatted SD (a.k.a. TF) card of up to 32 GByte to store numbered sound files to play. It outputs the sound on both speaker-level (less than 3 Watts) and line-level outputs. For this circuit we will use the line level outputs.
+
+I have a separate GitHub project describing how to use this module:
+- https://github.com/Mark-MDO47/AudioPlayer-YX5200
+
+Some of the things to keep in mind:
+- The way the files are stored on the SD card must be exactly right. If there was ever any file or directory placed on the SD card, it must first be FAT-formatted again before storing or changing files on the card. My GitHub page on this module includes a Python program copyem.py that helps with this.
+- There is a 1 KOhm resistor between the Arduino and the YX5200 RX pin. This is not optional. If this is left out then the commands sent on this line will be heard in the sound from the speaker.
+- When using the line-level outputs to the Bluetooth module, the correct ground must be used. There are two ground pins on the YX5200 and the documentation does not distinguish between them, but one works far better as audio-ground or analog-ground than the other.
+- The card can play MP3 files but there is a delay to start playing. It is much faster starting with WAV files.
+- There are many clones of this chip and it is hard to know when you order one which one you will get. Some of the more elaborate features don't work on some of the clones.
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
 
