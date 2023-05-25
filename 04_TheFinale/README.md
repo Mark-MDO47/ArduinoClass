@@ -24,6 +24,15 @@ The wiring schematic can be found here; an image is given below.
 
 In the image above, everything below the red line is on the new breadboard that I will bring along. The schematic includes the "Programming Arduino" page but we will not be using that in the class as I will already have paired the bluetooth speaker with our circuit.
 
+The interface between the two circuits consists of five wires on the new breadboard:
+| Color | Purpose |
+| --- | --- |
+| Red | 5V power from the battery circuit |
+| Black | Common Ground (digital) for all circuitry |
+| Green | YX5200 RX - used for Arduino to send serial commands to YX5200 |
+| Blue | YX5200 TX - used for Arduino to receive serial status from YX5200 |
+| Yellow | YX5200 Busy - used for Arduino to detect if current sound still being played |
+
 ### YX5200 Sound Module
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
