@@ -4,7 +4,7 @@
 - [Top](#notes "Top")
 - [The Idea](#the-idea "The Idea")
 - [The Circuit](#the-circuit "The Circuit")
-  - [YX5200 Sound Module](#the-circuit "YX5200 Sound Module")
+  - [YX5200 Sound Module](#yx5200-sound-module "YX5200 Sound Module")
   - [KCX_BT_EMITTER Bluetooth Sound Transmitter](#kcx_bt_emitter-bluetooth-sound-transmitter "KCX_BT_EMITTER Bluetooth Sound Transmitter")
 - [The Code](#the-code "The Code")
   - [Code Outline](#code-outline "Code Outline")
