@@ -1,4 +1,4 @@
-# The Finale - Theremin with Sound
+# Notes
 
 **Table of Contents**
 - [Top](#notes "Top")
@@ -7,14 +7,17 @@
   - [YX5200 Sound Module](#the-circuit "YX5200 Sound Module")
   - [KCX_BT_EMITTER Bluetooth Sound Transmitter](#kcx_bt_emitter-bluetooth-sound-transmitter "KCX_BT_EMITTER Bluetooth Sound Transmitter")
 - [The Code](#the-code "The Code")
+  - [Code Outline](#code-outline "Code Outline")
+  - [Code Details](#code-details "Code Details")
 
 ## The Idea
+[Top](#notes "Top")<br>
 Our Theremin, especially with the large LED disks, is pretty impressive. It can be a little dicey to hold your hand in the right place to see the pattern play out, but the USB Monitor will tell which pattern it is showing.
 
 In this project we will add a circuit to send sound to a Bluetooth speaker to tell us which pattern we are on. When the system powers on it will announce the project, state the pattern being displayed, and then provide background sound collected from Saturn's electromagnetic field by the Cassini mission. If the HC-SR04 detects that a different pattern has been selected, the sound will state the new pattern and then return to the Cassini sound.
 
 ## The Circuit
-
+[Top](#notes "Top")<br>
 The plan is that the circuit to implement the sound to the bluetooth will be on a different breadboard than the one containing the Theremin circuit. There will only be one of these so I will bring it around to the different stations so everyone can try it. In order to use it we will need the setup for the large LED disks including its separate power supply, so I will bring that around too.
 
 The wiring schematic can be found here; an image is given below.
@@ -34,6 +37,7 @@ The interface between the two circuits consists of five wires on the new breadbo
 | Yellow | YX5200 Busy - used for Arduino to detect if current sound still being played |
 
 ### YX5200 Sound Module
+[Top](#notes "Top")<br>
 The YX5200 Sound Module uses a FAT-formatted SD (a.k.a. TF) card of up to 32 GByte to store numbered sound files to play. It outputs the sound on both speaker-level (less than 3 Watts) and line-level outputs. For this circuit we will use the line level outputs.
 
 I have a separate GitHub project describing how to use this module:
@@ -48,6 +52,7 @@ Some of the things to keep in mind:
 - The BUSY line will not change to busy status immediately; it takes some milliseconds. My measurements are that it might take as few as 40 milliseconds, but that may depend on which YX5200 clone you are using. After starting a sound, I make the software pretend that the BUSY line is in busy status for 250 milliseconds before actually using the state of the line.
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
+[Top](#notes "Top")<br>
 The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver. It uses an earlier version of Bluetooth than the latest 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any earphones I have tried.
 
 I have a separate GitHub project describing how to use this module:
@@ -60,6 +65,12 @@ Some of the things to keep in mind:
 - Unlike the YX5200, the KCX_BT_EMITTER has a power-ground (or digital-ground) and an audio-ground (or analog-ground) clearly distinguished in its documentation.
 
 ## The Code
+[Top](#notes "Top")<br>
+We start from the final Theremin code from section 3 https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
+
+### Code Outline
+[Top](#notes "Top")<br>
+Below is an outline of the changes we will make
 
 Curiously, before **setup()** we will:
 - Create the global object mySoftwareSerial to talk on our KCX_BT_EMITTER RX and TX pins.
@@ -80,4 +91,7 @@ In **loop()** we will:
   - otherwise:
     - handle the delay in believing the BUSY signal from YX5200 (see above in discussion on YX5200)
     - if BUSY signal says sound completed, play the Cassini sound
+
+### Code Details
+[Top](#notes "Top")<br>
 
