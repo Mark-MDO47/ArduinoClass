@@ -92,6 +92,77 @@ uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 
+#define DFPRINTDETAIL 1 // if need detailed status from myDFPlayer (YX5200 communications)
+// #define DFPRINTDETAIL 0  // will not print detailed status from myDFPlayer
+#if DFPRINTDETAIL // routine to do detailed debugging
+  void DFprintDetail(uint8_t type, int value); // definition of call
+#else  // no DFPRINTDETAIL
+  #define DFprintDetail(type, value) // nothing at all
+#endif // #if DFPRINTDETAIL
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+#if DFPRINTDETAIL
+void DFprintDetail(uint8_t type, int value){
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerUSBInserted:
+      Serial.println("USB Inserted!");
+      break;
+    case DFPlayerUSBRemoved:
+      Serial.println("USB Removed!");
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      } // end switch (value)
+      break;
+    default:
+      break;
+  }  // end switch (type)
+} // end DFprintDetail()
+#endif // DFPRINTDETAIL
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DFstartSound(tmpSoundNum, tmpVolume) - start tmpSoundNum if it is valid
@@ -114,6 +185,13 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
   uint16_t mySound = tmpSoundNum;
 
   myDFPlayer.volume(tmpVolume);  // Set volume value. From 0 to 30 - FIXME 25 is good
+#if DFPRINTDETAIL
+  if (myDFPlayer.available()) {
+    Serial.print(F(" DFstartSound ln ")); Serial.print((uint16_t) __LINE__); Serial.println(F(" myDFPlayer problem after volume"));
+    DFprintDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  }
+#endif // DFPRINTDETAIL
+
   myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
   // myDFPlayer.playMp3Folder(mySound); //play specific mp3 in SD:/MP3/####.mp3; File Name(0~9999) NOTE: this did not work reliably
   state_timerForceSoundActv = millis() + SOUND_ACTIVE_PROTECT; // handle YX5200 problem with interrupting play
