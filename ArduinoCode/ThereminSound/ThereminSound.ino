@@ -352,6 +352,8 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
+  mySoftwareSerial.begin(9600); // this is control to DFPlayer audio player
+
   // initialize the DFPlayer audio player
   DFsetup();
 
