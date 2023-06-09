@@ -12,7 +12,6 @@
   * [Ultrasonic Range Finder Code](#ultrasonic-range-finder-code "Ultrasonic Range Finder Code")
 * [Extra Fun](#extra-fun "Extra Fun")
 
-
 ## HC-SR04 Ultrasonic Range Finder
 [Top](#notes "Top")
 The Student Kit for this class contains an HC-SR04 for use in this class.
