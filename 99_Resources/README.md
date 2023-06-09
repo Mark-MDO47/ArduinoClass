@@ -203,6 +203,11 @@ I also have a tendency to use some third-party KiCad symbol libraries, especiall
 Even all that is not enough for me! I have some of my own hand-generated schematic symbols in my KiCad 7.0.2 library mdoLibrary.kicad_sym. These are in this repository so you can find them to view the KiCad files included with this class.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad
 
+SnapEDA also has libraries with schematic symbols and footprints, plus a KiCad plugin to help search and load them. If you start making PCB boards this might be a useful addition.
+- https://www.snapeda.com/
+- https://www.snapeda.com/kicad/
+- https://blog.snapeda.com/2020/09/09/introducing-the-snapeda-kicad-plugin/
+
 If you want to use KiCad to edit the schematic wiring diagrams for this class, I would recommend adding mdoLibrary.kicad_sym to your global libraries so you don't have to add it as a project-specific library for each of the schematics. To do this you may want to copy that small library to some permanent place on your disk drive so you don't need to worry why KiCad is complaining once you delete the class repository. I created a directory **C:\KiCad\V7\LocalLibraries** and put mdoLibrary.kicad_sym there. Then I added it into the global library using **Preferences** -> **Manage Symbol Libraries...** as seen below
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_ManageSymbolLibraries.png "Image of KiCad selecting Preferences - Manage Symbol Libraries")
