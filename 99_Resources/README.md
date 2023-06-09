@@ -50,8 +50,12 @@ Mapping the ports to the internal registers is described here
 
 ## My favorite Arduino variant - ESP32
 [Top](#resources "Top")<br>
-Here is some documentation from the maker of the chipset and many modules for ESP32
+Here is some documentation from the maker of the chipset and many modules for ESP32; also some other tutorials on installing the ESP32 into the board manager for the Arduino IDE and installing the USB Serial Driver into Windows 10
 * https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html
+* https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
+* https://randomnerdtutorials.com/esp32-troubleshooting-guide
+* https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
+* https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=documentation
 
 A few quotes from above:
 - ESP32 is a single 2.4 GHz Wi-Fi-and-Bluetooth SoC (System On a Chip) designed by Espressif Systems.
