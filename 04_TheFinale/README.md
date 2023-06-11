@@ -374,7 +374,7 @@ void DFsetup() {
 void rainbow() 
 ```
 
-In the **setup()** routine before the following lines, add the new code
+In the **setup()** routine before the following lines, add the new code below it.<br>
 ```C
   Serial.println(""); // print a blank line in case there is some junk from power-on
   Serial.println("ArduinoClass init...");
@@ -383,9 +383,28 @@ In the **setup()** routine before the following lines, add the new code
 ```C
   pinMode(DPIN_AUDIO_BUSY,  INPUT_PULLUP); // HIGH when audio stops
 
-  mySoftwareSerial.begin(9600); // this is control to DFPlayer audio player
+  mySoftwareSerial.begin(9600); // this is control to YX5200 DFPlayer audio player
 
   // initialize the DFPlayer audio player
   DFsetup();
 ```
+In the **loop()** routine, replace the following lines with the lines below. Notice the addition of **gPatternNumberChanged = 1;** and **DFcheckSoundDone();**<br>
+```C
+  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    Serial.print(gPatternStrings[gCurrentPatternNumber]); Serial.println(gUltraDistance);
+  }
+```
 
+```C
+  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = handle_ultra(); }
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    gPatternNumberChanged = 1; // alerts the announcement of the pattern
+    Serial.print(gPatternStrings[gCurrentPatternNumber]); Serial.println(gUltraDistance);
+  }
+
+  // whenever current sound is done, go back to Cassini
+  DFcheckSoundDone();
+```
