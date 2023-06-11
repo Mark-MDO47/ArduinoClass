@@ -53,7 +53,7 @@ Some of the things to keep in mind:
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
 [Top](#notes "Top")<br>
-The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver. It uses an earlier version of Bluetooth than the latest 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any earphones I have tried.
+The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver. It uses an earlier version of Bluetooth than the latest 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried.
 
 I have a separate GitHub project describing how to use this module:
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
@@ -101,11 +101,12 @@ After **#include <FastLED.h>** and **#include <Ultrasonic.h>** add
 #include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
 #include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
 
-#define DPIN_SWSRL_TX    8  // serial out - talk to DFPlayer audio player (YX5200)
-#define DPIN_SWSRL_RX    9  // serial in  - talk to DFPlayer audio player (YX5200)
-#define DPIN_AUDIO_BUSY 10  // digital input - signals when audio finishes
+#define DPIN_SWSRL_TX    9  // serial out - talk to DFPlayer audio player (YX5200)
+#define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
+#define DPIN_AUDIO_BUSY 11  // digital input - HIGH when audio finishes
 
 SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
+              // SoftwareSerial(rxPin,         txPin,       inverse_logic)
 DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
 void DFsetup();                                                // how to initialize myDFPlayer
 
@@ -114,7 +115,8 @@ void DFsetup();                                                // how to initial
 #define SOUND_DEFAULT_VOL     25  // default volume - 25 is pretty good
 #define SOUND_BKGRND_VOL      20  // background volume
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
- uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
+uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
+uint8_t state_introSoundPlaying = 1; // we start with the intro sound
 ```
 
 To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table.<br>
