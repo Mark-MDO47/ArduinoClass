@@ -204,7 +204,7 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
 #endif // DFCHANGEVOLUME
 
   myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
-  Serial.print(F("DEBUG DFstartSound myDFPlayer.play(")); Serial.print((uint16_t) mySound); Serial.println(F(")"));
+  // Serial.print(F("DEBUG DFstartSound myDFPlayer.play(")); Serial.print((uint16_t) mySound); Serial.println(F(")"));
   state_timerForceSoundActv = millis() + SOUND_ACTIVE_PROTECT; // handle YX5200 problem with interrupting play
 
   if (init_minmax) {
@@ -213,10 +213,10 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
     diff_msec = now_msec - prev_msec;
     if (diff_msec > max_msec) {
       max_msec = diff_msec;
-      Serial.print(F("max_msec ")); Serial.println(max_msec);
+      // Serial.print(F("max_msec ")); Serial.println(max_msec);
     } else if (diff_msec < min_msec) {
       min_msec = diff_msec;
-      Serial.print(F("min_msec ")); Serial.println(min_msec);
+      // Serial.print(F("min_msec ")); Serial.println(min_msec);
     }
   }
   prev_msec = now_msec;
