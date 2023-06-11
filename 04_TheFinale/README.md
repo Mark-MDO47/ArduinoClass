@@ -118,7 +118,7 @@ void DFsetup();                                                // how to initial
 ```
 
 To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table.<br>
-NOTE: the myBusy column is "not busy" if LOW==DPIN_AUDIO_BUSY **and** the forceBusy timer has expired; otherwise it is "BUSY".<br>
+NOTE: the myBusy column is "not busy" if HIGH==DPIN_AUDIO_BUSY **and** the forceBusy timer has expired; otherwise it is "BUSY".<br>
 | gPatternNumberChanged | state_introSoundPlaying | myBusy | Action | Reason |
 | --- | --- | --- | --- | --- |
 | 0 | 1 | BUSY | no change | still playing intro |
