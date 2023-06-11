@@ -11,9 +11,9 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
- * https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
+ * https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
  * 
- * Theremin
+ * Theremin with sound
  */
 
  // connections:
@@ -27,11 +27,9 @@
 // Nano pin D-12    SR04 Trig
 // Nano pin D-10    SR04 Echo
 //
-// Nano pin D-3     button
-//
 // Nano pin D-8     YX5200 TX; Arduino RX
 // Nano pin D-9     YX5200 RX; Arduino TX
-// Nano pin D-11    YX5200 BUSY
+// Nano pin D-11    YX5200 BUSY; HIGH when audio finishes
 
 #include <FastLED.h>
 #include <Ultrasonic.h>
@@ -371,16 +369,16 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
   FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
 
-  pinMode(DPIN_AUDIO_BUSY,  INPUT_PULLUP); // HIGH when audio stops
-
   Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
+  pinMode(DPIN_AUDIO_BUSY,  INPUT_PULLUP); // HIGH when audio stops
+
   mySoftwareSerial.begin(9600); // this is control to DFPlayer audio player
 
-  // initialize the DFPlayer audio player
+  // initialize the YX5200 DFPlayer audio player
   DFsetup();
 
   Serial.println(""); // print a blank line in case there is some junk from power-on
