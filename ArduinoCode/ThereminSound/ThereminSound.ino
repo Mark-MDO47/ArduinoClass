@@ -53,7 +53,7 @@ void DFsetup();                                                // how to initial
 #define SOUNDNUM_CASSINI 8 // Cassini Saturn sound - SPACE!!!
 #define SOUND_DEFAULT_VOL     25  // default volume - 25 is pretty good
 #define SOUND_BKGRND_VOL      20  // background volume
-#define SOUND_ACTIVE_PROTECT 1000 // FIXME DEBUG  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
+#define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
 uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
  
