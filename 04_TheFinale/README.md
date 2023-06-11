@@ -99,7 +99,7 @@ Replace everything between the following two lines with the below code and comme
 - \* https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
 - #define NUM_LEDS 8 // Mark-MDO47 number of WS2812B LEDs
 
-```C
+```
  * https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
  * 
  * Theremin with sound
