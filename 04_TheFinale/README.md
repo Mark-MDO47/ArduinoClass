@@ -95,8 +95,36 @@ In **loop()** we will:
 ### Code Details
 [Top](#notes "Top")<br>
 
-After **#include <FastLED.h>** and **#include <Ultrasonic.h>** add
+Replace everything between the following two lines with the below code and comments
+- \* https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector
+- #define NUM_LEDS 8 // Mark-MDO47 number of WS2812B LEDs
+
 ```C
+ * https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ * 
+ * Theremin with sound
+ */
+
+ // connections:
+// 
+// Nano pin 5V      LEDstick VCC
+// Nano pin GND     LEDstick GND
+// Nano pin D-7     LEDstick DIN
+//
+// Nano pin 5V      SR04 VCC
+// Nano pin GND     SR04 GND
+// Nano pin D-12    SR04 Trig
+// Nano pin D-10    SR04 Echo
+//
+// Nano pin D-3     button
+//
+// Nano pin D-8     YX5200 TX; Arduino RX
+// Nano pin D-9     YX5200 RX; Arduino TX
+// Nano pin D-11    YX5200 BUSY
+
+#include <FastLED.h>
+#include <Ultrasonic.h>
+
 #include "Arduino.h"
 #include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
 #include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
@@ -117,6 +145,9 @@ void DFsetup();                                                // how to initial
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
 uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
+ 
+// How many leds in your strip?
+#define NUM_LEDS 241 // number of WS2812B LEDs
 ```
 
 To get the timing delay for BUSY and get intro to play and then pattern to be announced once and then Cassini to play until a new pattern, we use the following state table.<br>
