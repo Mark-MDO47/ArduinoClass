@@ -29,8 +29,8 @@
 //
 // Nano pin D-3     button
 //
-// Nano pin D-8     YX5200 TX
-// Nano pin D-9     YX5200 RX
+// Nano pin D-8     YX5200 TX; Arduino RX
+// Nano pin D-9     YX5200 RX; Arduino TX
 // Nano pin D-11    YX5200 BUSY
 
 #include <FastLED.h>
@@ -58,7 +58,7 @@ uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
  
 // How many leds in your strip?
-#define NUM_LEDS 241 // Mark-MDO47 number of WS2812B LEDs
+#define NUM_LEDS 241 // number of WS2812B LEDs
 
 // For led chips like WS2812, which have a data line, ground, and power, you just
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
