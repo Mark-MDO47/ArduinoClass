@@ -40,11 +40,12 @@
 #include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
 #include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
 
-#define DPIN_SWSRL_TX    8  // serial out - talk to DFPlayer audio player (YX5200)
-#define DPIN_SWSRL_RX    9  // serial in  - talk to DFPlayer audio player (YX5200)
-#define DPIN_AUDIO_BUSY 10  // digital input - signals when audio finishes
+#define DPIN_SWSRL_TX    9  // serial out - talk to DFPlayer audio player (YX5200)
+#define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
+#define DPIN_AUDIO_BUSY 11  // digital input - HIGH when audio finishes
 
 SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
+              // SoftwareSerial(rxPin,         txPin,       inverse_logic)
 DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
 void DFsetup();                                                // how to initialize myDFPlayer
 
@@ -52,8 +53,8 @@ void DFsetup();                                                // how to initial
 #define SOUNDNUM_CASSINI 8 // Cassini Saturn sound - SPACE!!!
 #define SOUND_DEFAULT_VOL     25  // default volume - 25 is pretty good
 #define SOUND_BKGRND_VOL      20  // background volume
-#define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
- uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
+#define SOUND_ACTIVE_PROTECT 1000 // FIXME DEBUG  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
+uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
  
 // How many leds in your strip?
@@ -92,8 +93,9 @@ uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 
-#define DFPRINTDETAIL 1 // if need detailed status from myDFPlayer (YX5200 communications)
-// #define DFPRINTDETAIL 0  // will not print detailed status from myDFPlayer
+#define DFCHANGEVOLUME 0 // zero does not change sound
+// #define DFPRINTDETAIL 1 // if need detailed status from myDFPlayer (YX5200 communications)
+#define DFPRINTDETAIL 0  // will not print detailed status from myDFPlayer
 #if DFPRINTDETAIL // routine to do detailed debugging
   void DFprintDetail(uint8_t type, int value); // definition of call
 #else  // no DFPRINTDETAIL
@@ -183,7 +185,15 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
   uint16_t idx;
   bool prevHI;
   uint16_t mySound = tmpSoundNum;
+  static uint8_t init_minmax = 2;
+  static uint32_t prev_msec;
+  static uint32_t max_msec = 0;
+  static uint32_t min_msec = 999999;
+  uint32_t diff_msec = 0;
+  uint32_t now_msec = millis();
 
+
+#if DFCHANGEVOLUME
   myDFPlayer.volume(tmpVolume);  // Set volume value. From 0 to 30 - FIXME 25 is good
 #if DFPRINTDETAIL
   if (myDFPlayer.available()) {
@@ -191,20 +201,36 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
     DFprintDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
 #endif // DFPRINTDETAIL
+#endif // DFCHANGEVOLUME
 
   myDFPlayer.play(mySound); //play specific mp3 in SD: root directory ###.mp3; number played is physical copy order; first one copied is 1
-  // myDFPlayer.playMp3Folder(mySound); //play specific mp3 in SD:/MP3/####.mp3; File Name(0~9999) NOTE: this did not work reliably
+  Serial.print(F("DEBUG DFstartSound myDFPlayer.play(")); Serial.print((uint16_t) mySound); Serial.println(F(")"));
   state_timerForceSoundActv = millis() + SOUND_ACTIVE_PROTECT; // handle YX5200 problem with interrupting play
 
+  if (init_minmax) {
+    init_minmax -= 1;
+  }  else {
+    diff_msec = now_msec - prev_msec;
+    if (diff_msec > max_msec) {
+      max_msec = diff_msec;
+      Serial.print(F("max_msec ")); Serial.println(max_msec);
+    } else if (diff_msec < min_msec) {
+      min_msec = diff_msec;
+      Serial.print(F("min_msec ")); Serial.println(min_msec);
+    }
+  }
+  prev_msec = now_msec;
 } // end DFstartSound()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DFcheckSoundDone()
 //
-// notBusy means (LOW == digitalRead(DPIN_AUDIO_BUSY)) and (millis() >= state_timerForceSoundActv)
+// notBusy means (HIGH == digitalRead(DPIN_AUDIO_BUSY)) && (millis() >= state_timerForceSoundActv)
+//    DPIN_AUDIO_BUSY goes HIGH when sound finished, but may take a while to start
+//    state_timerForceSoundActv is millisec count we have to wait for to before checking DPIN_AUDIO_BUSY
 //
 void DFcheckSoundDone() {
-  uint8_t myBusy = (LOW != digitalRead(DPIN_AUDIO_BUSY)) || (millis() < state_timerForceSoundActv);
+  uint8_t myBusy = (HIGH != digitalRead(DPIN_AUDIO_BUSY)) || (millis() < state_timerForceSoundActv);
   uint8_t playNumber = 99; // this means don't change
 
   if (0 != state_introSoundPlaying) { // intro still playing
@@ -345,7 +371,7 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
   FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
 
-  pinMode(DPIN_AUDIO_BUSY,  INPUT_PULLUP); // tells when audio stops
+  pinMode(DPIN_AUDIO_BUSY,  INPUT_PULLUP); // HIGH when audio stops
 
   Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
   while (!Serial) {
@@ -359,6 +385,7 @@ void setup() {
 
   Serial.println(""); // print a blank line in case there is some junk from power-on
   Serial.println("ArduinoClass init...");
+
 }  // end setup()
 
 void loop() {
