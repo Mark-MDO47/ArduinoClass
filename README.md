@@ -32,8 +32,9 @@ Each of these kits costs about $8 today and I think you will experience that the
 
 Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
 
-You should then be able to do all of the projects as I will bring all the following for our use.
+You should then be able to do all of the standard projects. For the extra credith projects I will bring all the following for our use, to be moved from station to station.
 - connectors, clips, harnesses, and wires
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
+- a breadboard with the sound circuitry for the finale project
 
 By the way, Kudos to my son Carl for Alpha-Testing this class. You will see some images and videos of his work and may even catch a glimpse of him or me in the videos.
