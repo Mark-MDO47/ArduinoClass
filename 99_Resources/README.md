@@ -208,6 +208,14 @@ I have included Fritzing images for most of the projects in this course. These g
 Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
 
+Fritzing does cost about $10 and can be found here.
+- https://fritzing.org
+
+If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there or in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
+- https://www.youtube.com/watch?v=0RDrw8WvYNQ "Fritzing Part Creation - Chapter9 - Using Photo and PDF" - my favorite Fritzing/InkScape parts tutorial
+- https://inkscape.org/ - where to get the free vector drawing program InkScape
+- https://fritzing.org/learning/tutorials/creating-custom-parts - the official source, though not completely up to date
+
 Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
