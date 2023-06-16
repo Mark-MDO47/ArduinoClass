@@ -117,7 +117,7 @@ Another way to turn a breadboard circuit into a PCB board is to use the "Fritzin
 One thing that will make your life easier (and mine too when I check the circuit) is to try and use some sort of color scheme in the wiring. This is a very common color scheme for wiring in hobbyist electronics and other Direct Current (DC) circuits:
 - Wire that is **RED** connects to the positive side or plus side of power; in this class that will be +5 Volts. A memory mnemonic is to remember that RED is HOT.
 - Wire that is **BLACK** connects to the ground side or return side of power; in this class that will be 0 Volts. A memory mnemonic is to remember that BLACK is COOL.
-- Other colors can be used for different signals. It might be good to us wire colors such as white, green, yellow, blue, etc. for signals (such as Arduino inputs and outputs) and to try to run the wire for a signal through its eventual connection to ground on the breadboard consistently using the same color.
+- Other colors can be used for different signals. It might be good to use wire colors such as white, green, yellow, blue, etc. for signals (such as Arduino inputs and outputs) and to try to run the wire for a signal through its eventual connection to ground on the breadboard consistently using the same color.
 
 As you undoubtedly know, LEDs are designed to be connected with positive voltage on the + side and ground or negative voltage on the - side. If this rule is not followed, the LED will either not work or burn up. Also you will need a resistor of about 200 to 300 Ohms in series with the LED to prevent burning out the LED and prevent damaging the Arduino Nano.
 - https://makecode.adafruit.com/learnsystem/pins-tutorial/devices/led-connections
