@@ -188,10 +188,10 @@ The version I use is a Dual In-Line Package (DIP) chip; the following is a gener
 ![alt text](https://media.digikey.com/Photos/Texas%20Instr%20Photos/Mfg_296~4040049~N~14.jpg "Image from www.digikey.com of a Dual In-Line Package chip such as the SN74HCT125N")
 
 ## Schematics and Fritzing
-[Top]resources "Top")<br>
+[Top](resources "Top")<br>
 
 ### Schematics
-[Top]resources "Top")<br>
+[Top](resources "Top")<br>
 Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
 
 Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
@@ -202,7 +202,7 @@ Example schematic wiring diagram showing a physical representation of an Arduino
 - I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
 
 ### Fritzing
-[Top]resources "Top")<br>
+[Top](resources "Top")<br>
 I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
 
 Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
