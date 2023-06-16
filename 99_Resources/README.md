@@ -14,6 +14,7 @@
 * [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
+* [Schematics and Fritzing](#schematics-and-fritzing "Schematics and Fritzing")
 * [KiCad](#kicad "KiCad")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Decimal and Binary and Hexadecimal](#tldr-decimal-and-binary-and-hexadecimal "TLDR Decimal and Binary and Hexadecimal")
