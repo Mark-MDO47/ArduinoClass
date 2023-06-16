@@ -181,7 +181,7 @@ This handy device allows the use of one component to give 10 individual pullups.
 
 ## SN74HCT125N 3-state Buffer
 [Top](#resources "Top")<br>
-This chip can be used to provide fan-out for Arduino outputs. I also abuse it to use it to convert 3.5V outputs from an ESP32 into 5V outputs, especially when driving moderately fast serial interfaces such as a string of WS2812B LEDs. It is not really designed for this but it seems to work well.
+This chip can be used to provide fan-out for Arduino outputs. I also abuse it to use it to convert 3.5V outputs from an ESP32 into 5V outputs, especially when driving moderately fast serial interfaces such as a string of WS2812B LEDs. It is not really designed for voltage conversion but it seems to work for me with the ESP32 outputs.
 - https://www.digikey.com/en/products/detail/texas-instruments/SN74HCT125N/376860
 
 The version I use is a Dual In-Line Package (DIP) chip; the following is an image from www.amazon.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.<br>
