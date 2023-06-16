@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [Arduino IDE](#arduino-ide "Arduino IDE")
 * [C and C++ Languages used in Arduino IDE](#c-and-cplusplus-languages-used-in-arduino-ide "C and C++ Languages used in Arduino IDE")
+* [Schematics and Fritzing](#schematics-and-fritzing "Schematics and Fritzing")
 * [KiCad - optional](#kicad-\--optional "KiCad - optional")
 * [Fritzing - optional](#fritzing-\--optional "Fritzing - optional")
 
@@ -22,6 +23,28 @@ It is possible to use the "Arduino Cloud". This method is not used in this class
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 - https://reference.arduino.cc/reference/en/
 
+## Schematics and Fritzing
+[Top](#notes "Top")<br>
+
+### Schematics
+Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
+
+Example schematic wiring diagram:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
+
+ I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations.
+- I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
+- I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
+
+### Fritzing
+I have included "Fritzing Breadboard" images for most of the projects in this course.
+
+Example Fritzing:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
+
+Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images as just a Fritzing, or the saved file for the Fritzing tool as just a Fritzing, or the saved generated special part for the tool as a Fritzing part. In my defense I offer the following quote from todays' Wikipedia entry:
+- "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
+
 ## KiCad - optional
 [Top](#notes "Top")<br>
 I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
@@ -30,10 +53,6 @@ I use the free schematic editor KiCad for capturing schematics. It can also do S
 This is not needed for the class but is a fantastic tool for those that are interested. See the larger KiCad discussion in the resources section for more details.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md
 
-Example schematic:<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
-
-
 ## Fritzing - optional
 [Top](#notes "Top")<br>
 I use the Fritzing tool **(costs about $10)** to generate depictions of our breadboard projects. This tool can also do simulations and can have a PCB board made with your breadboard project.
@@ -41,6 +60,3 @@ I use the Fritzing tool **(costs about $10)** to generate depictions of our brea
 
 This is not needed for the class but is a fun tool for those that are interested. See the larger Fritzing and InkScape discussion in the resources section for more details.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md
-
-Example Fritzing:<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
