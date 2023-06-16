@@ -32,22 +32,22 @@ Simple schematic diagrams are used throughout this course. These use special sym
 Example schematic wiring diagram:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
 
- I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations.
+ I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
 - I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
 - I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
 
 ### Fritzing
-I have included "Fritzing Breadboard" images for most of the projects in this course.
+I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
 
 Example Fritzing:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
 
-Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images as just a Fritzing, or the saved file for the Fritzing tool as just a Fritzing, or the saved generated special part for the tool as a Fritzing part. In my defense I offer the following quote from todays' Wikipedia entry:
+Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images as just a Fritzing, or the saved file for the Fritzing tool as just a Fritzing, or the saved generated special part for the tool as a Fritzing part. In my defense I offer the following quote from todays' Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
 ## KiCad - optional
 [Top](#notes "Top")<br>
-I use the free schematic editor KiCad for capturing schematics. It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
+I use the free schematic editor KiCad for capturing "schematic wiring diagrams". It can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
 This is not needed for the class but is a fantastic tool for those that are interested. See the larger KiCad discussion in the resources section for more details.
