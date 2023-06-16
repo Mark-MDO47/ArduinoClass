@@ -197,7 +197,11 @@ Simple schematic diagrams are used throughout this course. These use special sym
 Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
 
- I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
+Some tutorials to help you recognize common schematic symbols:
+- https://www.youtube.com/watch?v=Y3s6uY4oO5w "How to Identify Common Schematic Symbols - Another Teaching Moment | Digi-Key Electronics" - the basics, maybe all you need for this class
+- https://www.youtube.com/watch?v=-dzHDgJVJh4 "How to Read a Schematic - Another Teaching Moment | Digi-Key Electronics" - more in depth
+
+I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
 - I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
 - I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
 
