@@ -184,8 +184,8 @@ This handy device allows the use of one component to give 10 individual pullups.
 This chip can be used to provide fan-out for Arduino outputs. I also abuse it to use it to convert 3.5V outputs from an ESP32 into 5V outputs, especially when driving moderately fast serial interfaces such as a string of WS2812B LEDs. It is not really designed for this but it seems to work well.
 - https://www.digikey.com/en/products/detail/texas-instruments/SN74HCT125N/376860
 
-The version I use is a Dual In-Line Package (DIP) chip; the following is a generic image of a DIP chip from www.digikey.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.
-![alt text]([https://media.digikey.com/Photos/Texas%20Instr%20Photos/Mfg_296~4040049~N~14.jpg](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/SN74HCT125N.jpg) "Image from amazon.com of the SN74HCT125N")
+The version I use is a Dual In-Line Package (DIP) chip; the following is a generic image of a DIP chip from www.digikey.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/SN74HCT125N.jpg "Image from amazon.com of the SN74HCT125N")
 
 ## Schematics and Fritzing
 [Top](resources "Top")<br>
