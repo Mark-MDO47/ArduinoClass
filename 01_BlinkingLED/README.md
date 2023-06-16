@@ -180,9 +180,11 @@ Here is what our new circuit looks like. As before, I have added +/- symbols in 
 Below is an image of 01_BlinkingLED Part B setup. Notice that the button has four pins and is situated with two pins on horizontal rows 1 & 3 on the left side of the middle split and two on the same horizontal rows the right side. We found by experiment that when the button is pushed it connects the pins on opposite corners. Thus the blue wire from Arduino pin "D3" goes to "1A", connects to the upper left corner of the button, then to the lower right corner of the button which goes by orange wire to the the "-" power rail and from there all the way to the bottom of the "-" power rail and the black wire connecting to Arduino pin "GND".<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_setup.png "Image of 01_BlinkingLED Part B setup")
 
-Here is an image showing the buttons and the four pins on each one.
-![alt text](https://github.com/Mark-MDO47/GraduationCap2017/blob/master/Buttons/images/61yw6SpuXEL._SL1001_.jpg "Image of the buttons showing the four pins on each one")
+Here is a Fritzing for the same circuit. Note that once again there are variations between the implementation above and the Fritzing.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_Fritzing.png "Fritzing image of 01_BlinkingLED Part B implementation")
 
+Here is an image showing the buttons and the four pins on each one.
+<img src="https://github.com/Mark-MDO47/GraduationCap2017/blob/master/Buttons/images/61yw6SpuXEL._SL1001_.jpg" width="600" alt="Image of the buttons showing the four pins on each one">
 
 We will configure the input pin D05 as **INPUT_PULLUP**; this means that the Arduino Nano will connect it internally to the +5V "rail" using a resistance that minimizes power loss, probably about 5,000 or 10,000 ohms. This could be written as 5Kohm or 10Kohm.
 - When the switch is OPEN (disconnected or not pushed) then the voltage on the pin is HIGH (close to +5V) and will be sensed as HIGH.
