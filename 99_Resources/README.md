@@ -8,10 +8,10 @@
 * [My favorite Arduino variant - ESP32](#my-favorite-arduino-variant-\--esp32 "My favorite Arduino variant - ESP32")
 * [EEPROM to save configuration](#eeprom-to-save-configuration "EEPROM to save configuration")
 * [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
+* [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [YX5200 Audio Player](#yx5200-audio-player "YX5200 Audio Player")
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
 * [UBEC](#ubec "UBEC")
-* [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
 * [Schematics and Fritzing](#schematics-and-fritzing "Schematics and Fritzing")
@@ -130,27 +130,6 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
 
-## YX5200 Audio Player
-[Top](#resources "Top")<br>
-The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 in packs of 5.<br>
-Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
-- https://github.com/Mark-MDO47/AudioPlayer-YX5200
-
-![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
-
-## KCX_BT_EMITTER Bluetooth Audio Transmitter
-[Top](#resources "Top")<br>
-The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 and is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
-The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
-- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
-
-![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
-
-## UBEC
-[Top](#resources "Top")<br>
-A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
-
 ## Solderless Breadboard
 We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
@@ -171,6 +150,27 @@ Something that may help, again from that protosupplies.com article about breadbo
 Be aware that a circuit laid out on such a solderless breadboard can then be transferred to a solderable breadboard PCB board fairly easily. See the comparison between these two below.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Breadboard_Solderboard.png "Image of a solderless breadboard and a solderable breadboard PCB board")
+
+## YX5200 Audio Player
+[Top](#resources "Top")<br>
+The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 in packs of 5.<br>
+Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
+- https://github.com/Mark-MDO47/AudioPlayer-YX5200
+
+![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
+
+## KCX_BT_EMITTER Bluetooth Audio Transmitter
+[Top](#resources "Top")<br>
+The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 and is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
+The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
+- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
+
+![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
+
+## UBEC
+[Top](#resources "Top")<br>
+A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
 
 ## 9 10K Ohm resistors one package
 [Top](#resources "Top")<br>
