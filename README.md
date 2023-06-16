@@ -1,5 +1,5 @@
 # ArduinoClass
-For a Maker-Space Arduino class 2023<br>
+For an Arduino class 2023; FabLab will be first<br>
 Author: Mark Olson
 
 Below is the lesson plan for the class.
