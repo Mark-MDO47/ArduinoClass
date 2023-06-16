@@ -29,7 +29,7 @@ The Arduino IDE uses a variant of the C++ language. You can program in a C++ sty
 ### Schematics
 Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
 
-Example schematic wiring diagram:<br>
+Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
 
  I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
@@ -39,10 +39,10 @@ Example schematic wiring diagram:<br>
 ### Fritzing
 I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
 
-Example Fritzing:<br>
+Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
 
-Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images as just a Fritzing, or the saved file for the Fritzing tool as just a Fritzing, or the saved generated special part for the tool as a Fritzing part. In my defense I offer the following quote from todays' Wikipedia entry on "-ing":
+Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images as just a Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool as just a Fritzing, and the saved generated special part for the tool as a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
 ## KiCad - optional
