@@ -186,6 +186,28 @@ This chip can be used to provide fan-out for Arduino outputs. I also abuse it to
 The version I use is a Dual In-Line Package (DIP) chip; the following is a generic image of a DIP chip from www.digikey.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.
 ![alt text](https://media.digikey.com/Photos/Texas%20Instr%20Photos/Mfg_296~4040049~N~14.jpg "Image from www.digikey.com of a Dual In-Line Package chip such as the SN74HCT125N")
 
+## Schematics and Fritzing
+[Top]resources "Top")<br>
+
+### Schematics
+Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
+
+Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
+
+ I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
+- I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
+- I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
+
+### Fritzing
+I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
+
+Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
+
+Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
+- "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
+
 ## KiCad
 [Top](#resources "Top")<br>
 I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
