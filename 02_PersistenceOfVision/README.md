@@ -56,7 +56,7 @@ Because we are already using the USB serial port for debugging, we will dedicate
 
 ## The Circuit
 
-The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick.
+The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick. **This circuit will be used in parts A through D of this section.** We will make a variation of the circuit for the "Persistence of Vision Stick" in part C, not to be confused with the "LED stick"
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="750" alt="Image of wiring diagram for Persistence of Vision">
