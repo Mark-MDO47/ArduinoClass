@@ -26,13 +26,14 @@ Some of the projects I have started but have placed on hold the last two years w
 - https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW - use a low-cost Lattice iCE40 Verilog FPGA to convert the FastLED WS2812b **RGB** serial stream to drive an SK6812 **RGBW** strip
 - https://github.com/Mark-MDO47/FastLED - alternatively, hack the FastLED library to use the hardware features of the ESP32 (normally used on infrared controllers) so it can drive an SK6812 **RGBW** strip
 - https://github.com/Mark-MDO47/Cartoonify - use an Nvidia Jetson Nano to make a camera that uses AI to identify objects in the picture, match that with a hand-drawn cartoon from the Google quickdraw dataset, and print that cartoon on a thermal printer instead of the original picture
-- https://github.com/Mark-MDO47/MyThinkstOpenCanary - use a Raspberry Pi to implement the open-source version of the Thinkst Canary and put a honey-pot on your home network to detect if bad guys are in there
-- Automate the updates and backups on your home network using Ansible
-- Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" on with my Netgate SG3100 router appliance
+- https://github.com/Mark-MDO47/MyThinkstOpenCanary - use a Raspberry Pi to implement the open-source version of the Thinkst Canary and put a honey-pot on the home network to detect if bad guys are in there
+- Automate the updates and backups on the home network using Ansible
+- Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" to use my Netgate SG3100 router appliance
 
 ## Non-Electronics Non-Software
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
 - I got my low-end harpsichord in about 1979 by trading my MGB for it (interesting story - ask me sometime) and it was already second or third-hand when I got it. I estimate its age as about 70-80 years.
+- The felts that damp out the sound when the key is dropped need to be replaced. I finally found a felt wholesaler (!) and got some felt of the correct thickness so I can start on this.
 
 Another project of interest is "fake" radio tubes - look something like vacuum tubes and glow, probably by using a single WS2812B RGB LED.
 - https://www.instructables.com/LED-Vacuum-Tubes/
