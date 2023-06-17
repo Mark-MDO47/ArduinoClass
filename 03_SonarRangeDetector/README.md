@@ -112,11 +112,11 @@ Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the
 Essentially, we will start with the DemoReel.ino file from 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
 
 ## Circuit
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 Here is the circuit for the Theremin project.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector.pdf
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector.png" width="501" height="265" alt="Image of wiring diagram for Theremin (Sonar Range Detector)">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector.png" width="750" alt="Image of wiring diagram for Theremin (Sonar Range Detector)">
 
 I think you can figure out how I decided to connect the Arduino pins to the HC-SR04. If you have any questions please ask them in class to make sure everyone understands the rationale.
 
