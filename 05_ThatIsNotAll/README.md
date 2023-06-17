@@ -1,4 +1,4 @@
-# It is a wide world out there!
+# It is a wide world out there
 
 I hope that this sparks your interest in doing fun electronics hobby projects! I may teach some classes on other parts of the hobby electronics and software world if there is interest. I am hoping to meet folks with interests in some of the hobbies I have.
 
@@ -6,6 +6,14 @@ Before getting into some of the boards, modules and systems that I enjoy using, 
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources
 
 There are many types of Arduinos and many sensors that can connect to Arduinos and even other types of boards that serve similar purposes.
+
+**Table of Contents**
+* [Top](#it-is-a-wide-world-out-there "Top")
+* [Favorite Boards](#favorite-boards "Favorite Boards")
+* [Favorite Devices](#favorite-devices "Favorite Devices")
+* [Projects I want to Restart](#projects-i-want-to-restart "Projects I want to Restart")
+* [Non-Electronics Non-Software](#non\-electronics-non\-software "Non-Electronics Non-Software")
+* [Arduino Park the Car Helper](#arduino-park-the-car-helper "Arduino Park the Car Helper")
 
 ## Favorite Boards
 Here are a few of my favorite boards
