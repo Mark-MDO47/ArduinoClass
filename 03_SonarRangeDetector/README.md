@@ -118,6 +118,8 @@ Here is the circuit for the Theremin project.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector.png" width="750" alt="Image of wiring diagram for Theremin (Sonar Range Detector)">
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for the Sonar Range Detector">
+
 I think you can figure out how I decided to connect the Arduino pins to the HC-SR04. If you have any questions please ask them in class to make sure everyone understands the rationale.
 
 I left the button circuit in. We will not use it, so if you wish you can remove it. If you leave it in then the only changes in the circuit will be four wires to connect to the HC-SR04.
@@ -259,6 +261,8 @@ FYI at this time a 93 LED WS2812B disk is about $20 and a 241 LED WS2812B disk i
 Here is a wiring diagram for the LED Strip circuit with the UBEC supplying power to the LED Disk. The color scheme of the unmodified 241-LED ring is red/white/green not red/black/green; I put this indication on the image. Note also that I connect the ground for both UBEC and Arduino power but not the power; I don't want the Arduino power from the USB to "fight" against a slight difference with the UBEC power.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun.png" width="501" alt="Image of wiring diagram for 03 Sonar Extra Fun">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_ExtraFun_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for the Sonar Range Detector">
 
 It is often good practice to put some capacitors in the power circuit to smooth out the power when the load varies, but for this experiment we won't do that.
 
