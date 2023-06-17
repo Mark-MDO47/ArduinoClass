@@ -65,6 +65,9 @@ Below is a schematic of our desired wiring. I have inserted the color scheme abo
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
 
+Below is a Fritzing of our desired wiring.
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision">
+
 ## Try It
 OK - you have done the code, you have wired it up and checked your wiring - go ahead and try it!
 
