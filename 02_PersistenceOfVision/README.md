@@ -61,6 +61,9 @@ The circuit is simple; it is almost just a replacement of the LED from the previ
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="750" alt="Image of wiring diagram for Persistence of Vision">
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision">
+
+
 The connections that we will make to the LED Stick are all on the upper left side of the schematic. The labels on the schematic are VSS, VDD, and DIN. However, the labels on our stick are GND, VCC and IN.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_LEDstickSoldering.png "Image of 02_PersistanceOfVision: LED Stick Labeling")
 
