@@ -35,7 +35,7 @@ The same principle applies to binary but every digit is either one or zero and e
 The following short document goes over this in just a little more detail.
 - http://www.eecs.umich.edu/courses/eecs270/270lab/270_docs/HexNumSys.pdf
 
-And now a caution about octal. Octal arithmetic is similar to the above systems with digits confined to 0,1,2,3,4,5,6,7 and the positions based on powers of eight. The difficulty arises from the method the C language uses to flag that the digits should be interpreted as octal: if the number has all decimal digits and starts with zero, it is assumed to be octal.
+And now a caution about octal. Octal arithmetic is similar to the above systems with digits confined to 0,1,2,3,4,5,6,7 and the positions based on powers of eight. The difficulty arises from the method the C language uses to flag that the digits should be interpreted as octal: if the number has all **decimal** digits and starts with zero, it is assumed to be **octal**.
 
 This means that in C language, 10 is ten decimal but 010 is eight decimal. In fact if you try to use 09, it will be flagged as an error because 9 is not an octal digit. Having compiler errors tell us when the compiler is misinterpretting our numbers is one thing, having it silently accept 010 as eight is quite another - so **programmor emptor**!
 
@@ -57,7 +57,7 @@ There is more to learn, for instance negative numbers in twos-complement or ones
 
 ### How do we use decimal and binary and hexadecimal numbers in the code
 
-In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking (boolean algebra) with hexadecimal numbers to decide which LEDs to light up. This is what the innermost loop in **Oval** looks like:
+In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking with hexadecimal numbers to decide which LEDs to light up. Pro tip: this technique uses boolean algebra, the underlying basis of all modern digital computers There was a person named Boole who invented and developed it. This is what the innermost loop in **Oval** looks like:
 ```C
   unsigned int bits = oval_pattern_bits[blink_phase];
 
@@ -74,12 +74,12 @@ In the **loop()** code that we will be discussing for these patterns we will be 
 
 For instance, the first unsigned 8-bit byte in oval_pattern_bits is 0x18. This corresponds to 0b00011000.  This gets stored into **bits** at the beginning of the code if blink_phase is zero. The least significant bit is on the right and then we go right-to-left. If the bit is a 0 we set the LED black; if it is a 1 we set the LED red.
 
-There is a loop **for (long int i = 0; i < NUM_LEDS; i++) { ... }**. In our case, **NUM_LEDS** is 8 for our 8-LED stick. This is convenient since our data comes in 8-bit bytes, so this loop will loop over every bit in **bits** that corresponds to an LED.
-- In C language scoping rules you can define a variable for use in the loop only within the () following the for as I did here with the variable "i". There are other places you can do this type of definition too, for instance inside any {}; that is where we defined "bits". Note: I didn't really need to use a long int for this loop, but it only slows the code down a little and I am too lazy to change it.
+There is a loop **for (long int i = 0; i < NUM_LEDS; i++) { ... }**. In our case, **NUM_LEDS** is 8 for our 8-LED stick, so we want data arranged with eight bits per chunk. This is convenient since our data comes in 8-bit bytes, so this loop will loop over every bit in **bits** that corresponds to an LED.
+- In C language scoping rules you can define a variable for use only within the block of the for loop (usually this block is enclosed in "{}" but sometimes just a single statement) as I did here with the variable "i". There are other places you can do this type of definition too, for instance inside any {}; that is where we defined "bits". Note: I didn't really need to use a long int for this loop, but it only slows the code down a little and I am too lazy to change it.
 
-The **(0x01 & bits)** part of the code "masks" the least significant bit in bits. The "&" is the boolean AND operator; it operates bitwise on the two values. For each bit, if both corresponding bits in the two values are "1" then the resulting bit is "1"; otherwise the resulting bit is "0". There are other boolean operators too such as | for OR, ^ for EXCLUSIVE-OR, etc. Be aware that the operator && is a logical AND not the same as the boolean AND. Logical AND operates on the entire values and produces just one zero or non-zero result; boolean AND operates on each bit within the values and produces a result for each bit separately. A common mistake is to use && when you wanted to use &.
+The **(0x01 & bits)** part of the code "masks" the least significant bit in bits. The "&" is the boolean AND operator; it operates bitwise on the two values. For each bit, if both corresponding bits in the two values are "1" then the resulting bit is "1"; otherwise the resulting bit is "0". There are other boolean operators too such as | for OR, ^ for EXCLUSIVE-OR, etc. Be aware that the operator && is a logical AND not the same as the boolean AND. Logical AND operates on the entire values and produces just one zero or non-zero result; boolean AND operates on each bit within the values and produces a result for each bit separately. A common mistake is to use && when you wanted to use & or vice versa.
 
-After we have chosen red or black for this led, we shift the value in **bits** to the right with **bits >>= 1;**. The operator is the right-shift operator ">>"; it is used in a typical C language pattern where {opr} is any operator (such as >>, <<, +, -, *, /, and more) then
+After we have masked and looked at the least significant to choose red or black for this led, we shift the value in **bits** to the right with **bits >>= 1;**. The operator is the right-shift operator ">>"; it is used in a typical C language pattern where {opr} is any operator (such as >>, <<, +, -, *, /, and more) then
 - symbol {opr}= value;
   - is the same as
 - symbol = symbol {opr} value;
