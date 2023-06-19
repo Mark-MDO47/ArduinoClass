@@ -8,12 +8,12 @@
 * [Rainbow](#rainbow "Rainbow")
 * [Hello World](#hello-world "Hello World")
 * [Sawtooth Revisited](#sawtooth-revisited "Sawtooth Revisited")
+* [Reminder](#reminder "Reminder")
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
   * [Pattern Code and Serial Commands](#pattern-code-and-serial-commands "Pattern Code and Serial Commands")
   * [EEPROM Introduction](#eeprom-introduction "EEPROM Introduction")
   * [EEPROM Code](#eeprom-code "EEPROM Code")
   * [Persistence of Vision Spinning Stick](#persistence-of-vision-spinning-stick "Persistence of Vision Spinning Stick")
-* [Reminder](#reminder "Reminder")
 
 First we will take a look at **Decimal, Binary, and Hexadecimal** arithmetic, since we will be using some tricks in this realm to implement our patterns.
 
@@ -267,6 +267,22 @@ As an exercise to the reader, see if you can add a third pattern that is the Saw
 
 When you have done this, compare it with my implementation
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino
+
+## Reminder
+[Top](#notes "Top")<br>
+The connections for our normal projects (not extra credit) do not change; this is just here for a reminder.
+
+| Wire Color | Schematic | LED Stick | Purpose |
+| --- | --- | --- | --- |
+| Black | VSS | GND | Ground |
+| Red | VDD | VCC | +5 Volts |
+| White | DIN | IN | Serial Data |
+
+Here is a reminder of our desired wiring
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision">
 
 ## All the Patterns - Extra Credit
 [Top](#notes "Top")<br>
@@ -899,19 +915,3 @@ In **loop()** replace the line **handle_leds(button_up);** with the following:
 ```C
     handle_leds(); // Mark-MDO47 generate pattern to display and display it
 ```
-
-## Reminder
-[Top](#notes "Top")<br>
-The connections for our normal projects (not extra credit) do not change; this is just here for a reminder.
-
-| Wire Color | Schematic | LED Stick | Purpose |
-| --- | --- | --- | --- |
-| Black | VSS | GND | Ground |
-| Red | VDD | VCC | +5 Volts |
-| White | DIN | IN | Serial Data |
-
-Here is a reminder of our desired wiring
-
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision.png" width="1002" height="530" alt="Image of wiring diagram for Persistence of Vision">
-
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision">
