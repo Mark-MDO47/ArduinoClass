@@ -40,7 +40,7 @@
 #define BUTTON_PIN 3 // Mark-MDO47 we use pin 3 for button
 
 // Mark-MDO47 Sawtooth pattern repeat count
-#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does 14 calls then repeats
+#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does this many calls then repeats
 
 // Variables will change:
 // Generally, you should use "unsigned long" for variables that hold time

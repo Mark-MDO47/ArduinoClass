@@ -147,7 +147,7 @@ Here is a method I might use to do this.
 
 Prior to either **setup()** or **loop()**, some definitions to control our code.
 ```C
-#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does 14 calls then repeats
+#define SAWTOOTH_CALLS_THEN_REPEAT 14 // the Sawtooth pattern does this many calls then repeats
 ```
 
 Just prior to **handle_leds()**, add the new routines for the Sawtooth pattern.

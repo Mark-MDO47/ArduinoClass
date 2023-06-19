@@ -127,7 +127,7 @@ Now do global replaces with case sensitivity on as shown below:
 That wasn't too bad. Maybe we should have used "pattern_" instead of oval_ and sawtooth_ so there wouldn't be so much of this.
 
 Now for the actual changes. First change the count to 34 
-- **#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats**
+- **#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does this many calls then repeats**
 
 The oval_blink_pattern() routine now looks like this
 ```C
@@ -212,7 +212,7 @@ Copy the Oval.ino file into a directory named HelloWorld with filename HelloWorl
 Change
 ```C
 // Mark-MDO47 Oval pattern
-#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+#define OVAL_CALLS_THEN_REPEAT 34 // the Oval pattern does this many calls then repeats
 ```
 
 ... to
@@ -222,10 +222,10 @@ Change
 #define PATTERN_HELLO 1
 
 #ifdef PATTERN_HELLO
-#define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does 58 calls then repeats
+#define PTRN_CALLS_THEN_REPEAT 58 // the HELLO WORLD! pattern does this many calls then repeats
 static unsigned int  pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0xFF, 0x18, 0x18, 0x18, 0xFF, 0x00, 0xFF, 0x89, 0x89, 0x89, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x1E, 0x01, 0x1E, 0xE0, 0x00, 0x7E, 0x81, 0x81, 0x7E, 0x00, 0xFF, 0x98, 0x94, 0x63, 0x00, 0xFF, 0x01, 0x01, 0x01, 0x00, 0xFF, 0x81, 0x42, 0x3C, 0x00, 0xF9, 0x00 };
 #else // PATTERN_OVAL
-#define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does 34 calls then repeats
+#define PTRN_CALLS_THEN_REPEAT 34 // the Oval pattern does this many calls then repeats
 static unsigned int pattern_bits[PTRN_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
 #endif // PATTERN_HELLO
 ```
