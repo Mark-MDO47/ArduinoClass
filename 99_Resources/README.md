@@ -16,8 +16,10 @@
 * [UBEC](#ubec "UBEC")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
-* [Schematics and Fritzing](#schematics-and-fritzing "Schematics and Fritzing")
-* [KiCad](#kicad "KiCad")
+* [Schematics KiCad and Fritzing](#schematics-kicad-and-fritzing "Schematics KiCad and Fritzing")
+  * [Schematics](#schematics "Schematics")
+  * [KiCad](#kicad "KiCad")
+  * [Fritzing](#fritzing "Fritzing")
 * [Projects on the Web](#projects-on-the-web "Projects on the Web")
 * [TLDR Decimal and Binary and Hexadecimal](#tldr-decimal-and-binary-and-hexadecimal "TLDR Decimal and Binary and Hexadecimal")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
@@ -232,7 +234,7 @@ This chip can be used to provide fan-out for Arduino outputs. I also abuse it to
 The version I use is a Dual In-Line Package (DIP) chip; the following is an image from www.amazon.com. I find these DIP chips easier to work with than some of the surface-mount chip packages.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/SN74HCT125N.jpg "Image from www.amazon.com of the SN74HCT125N")
 
-## Schematics and Fritzing
+## Schematics KiCad and Fritzing
 [Top](resources "Top")<br>
 
 ### Schematics
@@ -249,24 +251,6 @@ Some tutorials to help you recognize common schematic symbols:
 I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
 - I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
 - I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
-
-### Fritzing
-[Top](resources "Top")<br>
-I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
-
-Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
-
-Fritzing does cost about $10 and can be found here.
-- https://fritzing.org
-
-If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there or in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
-- https://www.youtube.com/watch?v=0RDrw8WvYNQ "Fritzing Part Creation - Chapter9 - Using Photo and PDF" - my favorite Fritzing/InkScape parts tutorial
-- https://inkscape.org/ - where to get the free vector drawing program InkScape
-- https://fritzing.org/learning/tutorials/creating-custom-parts - the official source, though not completely up to date
-
-Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
-- "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
 ## KiCad
 [Top](#resources "Top")<br>
@@ -300,6 +284,25 @@ If you want to use KiCad to edit the schematic wiring diagrams for this class, I
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_ManageSymbolLibraries.png "Image of KiCad selecting Preferences - Manage Symbol Libraries")
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_AddSymbolLibraries.png "Image of KiCad after adding mdoLibrary.kicad_sym to global libraries")
+
+### Fritzing
+[Top](resources "Top")<br>
+I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
+
+Example Schematic and corresponding Fritzing with the same components and with the addition of the breadboard:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
+
+Fritzing does cost about $10 and can be found here.
+- https://fritzing.org
+
+If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there or in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
+- https://www.youtube.com/watch?v=0RDrw8WvYNQ "Fritzing Part Creation - Chapter9 - Using Photo and PDF" - my favorite Fritzing/InkScape parts tutorial
+- https://inkscape.org/ - where to get the free vector drawing program InkScape
+- https://fritzing.org/learning/tutorials/creating-custom-parts - the official source, though not completely up to date
+
+Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
+- "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
 ## Projects on the Web
 [Top](#resources "Top")<br>
