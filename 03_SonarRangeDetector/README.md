@@ -13,7 +13,7 @@
 * [Extra Fun](#extra-fun "Extra Fun")
 
 ## HC-SR04 Ultrasonic Range Finder
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 The Student Kit for this class contains an HC-SR04 for use in this class.
 
 If you want one for your home, the HC-SR04 can be found here (for example) for less than $2:
@@ -51,7 +51,7 @@ This sequence is illustrated by the timing diagram below from the sparkfun.com H
 
 
 ## Speed of Sound
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 From https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml 
 ```
 Molecules at higher temperatures have more energy, thus they can vibrate faster. 
@@ -67,7 +67,7 @@ Data from https://www.nde-ed.org/Physics/Sound/tempandspeed.xhtml
 | -1 | 30.2 | 330.4 | 13,008 | 1,084 |
 
 ## Pros and Cons of HC-SR04
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 Many people have noted pros and cons of the HC-SR04, such as
 - https://github.com/shurik179/DualSonar
 
@@ -101,7 +101,7 @@ This code does the typical single-threaded wait for the return ECHO as seen in t
 This code does have a **setTimeout()** function if we want to prevent extremely long delays. The manual seems to imply that we would not want to sense the HC-SR04 more often than once every 60 milliseconds.
 
 ## Theremin
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 We will use the HC-SR04 to detect the position of our hand and use that to control the light displays on our LED strip. This use of hand position is similar to the way the musical intrument Theremin controls the sound by detecting hand position. Theremin was the English spelling of the last name of the inventor of the musical instrument.
 - https://en.wikipedia.org/wiki/Theremin
 
@@ -137,7 +137,7 @@ Here is an image of the setup for the Sonar Range Detector project.
 Below we modify the code to act as our "Theremin" for lights.
 
 ### Cleanup First
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 This time we will delete the old code first, then add the new code.
 
 Copy 02 Part-D DemoReel.ino into a directory named Theremin and name the file Theremin.ino.
@@ -177,7 +177,7 @@ Delete these lines in **loop()**
 ```
 
 ### Ultrasonic Range Finder Code
-[Top](#notes "Top")
+[Top](#notes "Top")<br>
 First we ensure that the Ultrasonic library is installed in the Arduino IDE
 
 Picture of Arduino IDE starting Library Manager<br>
