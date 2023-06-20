@@ -21,8 +21,6 @@ Now do global replaces with case sensitivity on as shown below:
 | --- | --- |
 | oval_ | ptrn_ |
 
-Look at the start of the file and make sure the comments say something about 
-
 Now for the actual changes.
 
 Looking at the code for DemoReel100:
