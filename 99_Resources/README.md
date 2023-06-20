@@ -296,7 +296,7 @@ Example Schematic and corresponding Fritzing with the same components and with t
 Fritzing does cost about $10 and can be found here:
 - https://fritzing.org
 
-If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there or in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
+If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there nor in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
 - https://www.youtube.com/watch?v=0RDrw8WvYNQ "Fritzing Part Creation - Chapter9 - Using Photo and PDF" - my favorite Fritzing/InkScape parts tutorial
 - https://inkscape.org/ - where to get the free vector drawing program InkScape
 - https://fritzing.org/learning/tutorials/creating-custom-parts - the official source, though not completely up to date
