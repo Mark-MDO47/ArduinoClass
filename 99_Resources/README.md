@@ -10,6 +10,7 @@
 * [PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")
 * [Solderless Breadboard](#solderless-breadboard "Solderless Breadboard")
 * [YX5200 Audio Player](#yx5200-audio-player "YX5200 Audio Player")
+  * [Saturn Sounds from Cassini])#saturn-sounds-from-cassini "Saturn Sounds from Cassini")
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
 * [UBEC](#ubec "UBEC")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
@@ -158,6 +159,29 @@ Placing the audio files onto the SD card requires special care. Also there are m
 - https://github.com/Mark-MDO47/AudioPlayer-YX5200
 
 ![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
+
+### Saturn Sounds from Cassini
+Sounds from SPACE!!! Saturn is SO COOL!
+
+Some great science-fictiony sounds came from the Cassini space mission. Here is where you can get audio from the Cassini mission representing radio emissions from Saturn:
+- http://www-pw.physics.uiowa.edu/space-audio/cassini/SKR1/
+- http://www-pw.physics.uiowa.edu/space-audio/cassini/SKR1/SKR-03-324.wav
+
+You can find more about the Cassini mission here
+- https://solarsystem.nasa.gov/missions/cassini/overview/
+
+Attribution of external sounds found (in whole or in part, possibly altered) used in this class (see https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/Sounds):<br><br>
+<table border cellspacing="1" cellpadding="9">
+<tr><td><b>Tag</b></td><td><b>File Name</b></td><td><b>URL</b></td><td><b>Who</b></td></tr>
+<tr><td>N/A</td><td>SKR-03-324.wav</td><td>http://www-pw.physics.uiowa.edu/space-audio/cassini/SKR1/</td><td>NASA Cassini mission Radio and Plasma Wave Science</td></tr>
+</table>
+<br><br>
+<table border cellspacing="1" cellpadding="9">
+<tr><td><b>Tag</b></td><td><b>Name</b></td><td><b>URL</b></td>
+<tr><td>zero/1.0/</td><td>Creative Commons 0 License</td><td>https://creativecommons.org/publicdomain/zero/1.0/</td></tr>
+<tr><td>by/3.0/</td><td>Creative Commons Attribution License</td><td>https://creativecommons.org/licenses/by/3.0/</td></tr>
+<tr><td>by-nc/3.0/</td><td>Creative Commons Attribution Noncommercial License</td><td>https://creativecommons.org/licenses/by-nc/3.0/</td></tr>
+</table>
 
 ## KCX_BT_EMITTER Bluetooth Audio Transmitter
 [Top](#resources "Top")<br>
