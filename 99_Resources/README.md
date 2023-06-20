@@ -13,7 +13,7 @@
   * [Saturn Sounds from Cassini](#saturn-sounds-from-cassini "Saturn Sounds from Cassini")
   * [Text-to-Speech Robotic Sounds](#text\-to\-speech-robotic-sounds "Text-to-Speech Robotic Sounds")
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
-* [UBEC](#ubec "UBEC")
+* [UBEC Universal Battery Eliminator Circuit](#ubec-universal-battery-eliminator-circuit "UBEC Universal Battery Eliminator Circuit")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
 * [Schematics KiCad and Fritzing](#schematics-kicad-and-fritzing "Schematics KiCad and Fritzing")
@@ -214,9 +214,9 @@ The information on commanding the KCX_BT_EMITTER to auto-pair to a specific spea
 
 ![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
 
-## UBEC
+## UBEC Universal Battery Eliminator Circuit
 [Top](#resources "Top")<br>
-A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and thus reduce the current in the wires.<br>
+A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source and put the UBEC close to the circuit drawing the power and thus reduce the current in the wires between.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
 
 ## 9 10K Ohm resistors one package
