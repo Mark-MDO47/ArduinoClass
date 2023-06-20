@@ -49,6 +49,9 @@ You should then be able to do all of the standard projects. For the extra credit
 [Top](#arduino-class "Top")<br>
 Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
 
+The link below shows what many USB cables male and female connectors and sockets look like.
+- https://en.wikipedia.org/wiki/USB
+
 ## Kudos
 [Top](#arduino-class "Top")<br>
 By the way, Kudos to my son Carl for Alpha-Testing this class. You will see some images and videos of his work and may even catch a glimpse of him or me in the videos.
