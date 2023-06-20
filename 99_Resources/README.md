@@ -183,6 +183,26 @@ Attribution of external sounds found (in whole or in part, possibly altered) use
 <tr><td>by-nc/3.0/</td><td>Creative Commons Attribution Noncommercial License</td><td>https://creativecommons.org/licenses/by-nc/3.0/</td></tr>
 </table>
 
+### Text-to-Speech Robotic Sounds
+
+The final project Theremin with Sound speaks to you when you change patterns. Th
+I used the "original" **eSpeak** text-to-speech program version 1.48.04 to produce the speaking sounds with a robotic flavor, which I wanted.
+
+To complete the robotic flavor I used **Audacity** which can be found at https://www.audacityteam.org/
+
+The original eSpeak text to speech code and compiled versions can be found at http://espeak.sourceforge.net/
+- Kudos to (email) jonsd at users dot sourceforge dot net for creating eSpeak
+
+Note that eSpeak project is inactive since disappearance of Jonathan Duddington.
+
+Active development and support now happens in eSpeak NG project https://github.com/espeak-ng/espeak-ng, maintained by Reece H. Dunn.
+- Kudos to Reece H. Dunn for continuing the good work
+
+A web implementation of eSpeak can be found as below; it is great fun, and just one of many text-to-text and text-to-speech engines on the site. https://lingojam.com/RobotVoiceGenerator
+
+If you are interested in more details on Text-to-Speech Robotic Sounds and the processing involved see:
+- https://github.com/Mark-MDO47/AudioPlayer-YX5200
+
 ## KCX_BT_EMITTER Bluetooth Audio Transmitter
 [Top](#resources "Top")<br>
 The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER supports Bluetooth 4.1 and is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of updated versions supporting stereo and/or Bluetooth 5.x but have no experience with these.<br>
