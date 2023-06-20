@@ -1,7 +1,15 @@
-# ArduinoClass
+# Arduino Class
 For an Arduino class 2023; FabLab will be first<br>
 Author: Mark Olson
 
+**Table of Contents**
+* [Top](#arduino-class "Top")
+* [Lesson Plan](#lesson-plan "Lesson Plan")
+* [Parts Kit Provided](#parts-kit-provided "Parts Kit Provided")
+* [Please Bring USB Cable](#please-bring-usb-cable "Please Bring USB Cable")
+
+## Lesson Plan
+[Top](#arduino-class "Top")<br>
 Below is the lesson plan for the class.
 
 | Lesson | Description | Image |
@@ -14,6 +22,8 @@ Below is the lesson plan for the class.
 | [05_ThatIsNotAll](https://github.com/Mark-MDO47/ArduinoClass/tree/master/05_ThatIsNotAll "05_ThatIsNotAll") | These are a few of my favorite things...<br>Youtube: https://youtu.be/VJ-WH86G7Pg | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/MadScience_400.png" width="150" alt="Image of Mark with Mad Scientist Goggles"> |
 | [99_Resources](https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources "99_Resources") | Repository of class information. | <img src="https://lh3.googleusercontent.com/p/AF1QipNOe-jdALOFjO_PwiTpwXQfhZ7P1iPFawCwV-7A=s680-w680-h510" width="150" alt="Image of Long Room Library at Trinity College"> |
 
+## Parts Kit Provided
+[Top](#arduino-class "Top")<br>
 For this class I will provide a "kit" for each student station. I have labeled them "Kit 1" through "Kit 6"; Kit 1 is intended for me and the others are available for the class. Each kit includes all the major components for all the projects of our class except the "Extra Fun" section of the 03_SonarRangeDetector, for which we will share some extra equipment that I will bring. The Kit parts are still in the wrappers (except for the RGB LED Strips; I needed to solder on some wires) so if some do not work we will need to double up; maybe I would sacrifice my kit.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Kits_Class.png" width="300" alt="Image of Kits for Arduino Class">
@@ -30,11 +40,15 @@ Each of these kits costs about $8 today and I think you will experience that the
 | 200 Ohm resistor | ~ $0.10 | digikey.com |
 | LED | ~ $0.10 | amazon.com |
 
-Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
-
-You should then be able to do all of the standard projects. For the extra credith projects I will bring all the following for our use, to be moved from station to station.
+You should then be able to do all of the standard projects. For the extra credit projects I will bring all the following for our use, to be moved from station to station.
 - connectors, clips, harnesses, and wires
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 - a breadboard with the sound circuitry (YX5200 sound module and KCX_BT_EMITTER Bluetooth module) for the finale project
 
+## Please Bring USB Cable
+[Top](#arduino-class "Top")<br>
+Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
+
+## Kudos
+[Top](#arduino-class "Top")<br>
 By the way, Kudos to my son Carl for Alpha-Testing this class. You will see some images and videos of his work and may even catch a glimpse of him or me in the videos.
