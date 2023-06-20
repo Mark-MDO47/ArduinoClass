@@ -157,7 +157,7 @@ Be aware that a circuit laid out on such a solderless breadboard can then be tra
 
 ## YX5200 Audio Player
 [Top](#resources "Top")<br>
-The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 in packs of 5.<br>
+The YX5200 Audio Player can drive speakers or headphones from sound files you place on its SD card slot. About $2 each in packs of 5.<br>
 Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
 - https://github.com/Mark-MDO47/AudioPlayer-YX5200
 
@@ -293,7 +293,7 @@ Example Schematic and corresponding Fritzing with the same components and with t
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png" width="150" alt="Example KiCad schematic">
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Fritzing.png" width="150" alt="Example Fritzing Image">
 
-Fritzing does cost about $10 and can be found here.
+Fritzing does cost about $10 and can be found here:
 - https://fritzing.org
 
 If you are like me, even though Fritzing comes with a lot of parts in its library I need other parts that I cannot find there or in public libraries. Thus it is handy to know how to create new parts. Admittedly, I only create the "Breadboard" version of the part and do not create the Fritzing PCB footprint or worry about the schematic symbol. Because you will probably want to use a vector drawing program to create the image, even if starting from a picture, here are some good places to look to see how to create parts.
