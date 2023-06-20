@@ -27,7 +27,7 @@ These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SR
 
 ## Connect the Arduino Nano to the USB cable
 [Back to Top](#notes "Back to Top")<br>
-The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide (for instance, if you only have USB C connectors). This USB connection provides both a serial port (for uploading and communication) and power/ground. The link below shows what many USB cables and sockets look like.
+The Arduino Nano uses a USB Mini-B female and thus needs a cord from your laptop with a USB Mini-B Male connector. If your laptop has a USB A connection then I have cords you can use; otherwise please provide your own method to connect to either Mini-B directly or to bridge the gap to the USB A connector on the cord I can provide (for instance, if you only have USB C connectors). This USB connection provides both a serial port (for uploading and communication) and power/ground. The link below shows what many USB cables male and female connectors and sockets look like.
 - https://en.wikipedia.org/wiki/USB
 
 To minimize wear and tear on the Arduino Nano, after connecting the Arduino to the USB cable, one can disconnect at the PC or laptop side instead of the Arduino side.
