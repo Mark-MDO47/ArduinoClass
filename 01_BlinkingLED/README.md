@@ -89,8 +89,7 @@ This is how you can include an Arduino into your projects. You don't have to con
 You also can but don't have to power the Arduino through the USB port. Another way to power the Arduino is to use the Arduino pin marked VIN. If you provide 5 volts on VIN and connect ground to one of the GND pins, the last program will run again. Most Arduinos are able to run with a small range of voltages near 5 volts fed into the VIN pin; always be sure to check the documentation for the correct voltage range before doing this.
 
 ## Part A - Add an external LED
-[Back to Top](#notes "Back to Top")
-
+[Back to Top](#notes "Back to Top")<br>
 We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires, jumpers, or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
 
@@ -171,8 +170,7 @@ When we execute this program, the internal LED and the external LED blink; one i
 - https://youtu.be/c5UH3J40uWE
 
 ## Part B - Add Button and Display Messages on USB Serial Port
-[Back to Top](#notes "Back to Top")
-
+[Back to Top](#notes "Back to Top")<br>
 Now we will add a push button for digital input. We will also start using the USB serial port for diagnostic output - a fantastically useful diagnostic tool. Note that this USB serial port can also be used for input.
 
 Here is what our new circuit looks like. As before, I have added +/- symbols in red to make it clear which side of the LED is which.
@@ -270,9 +268,8 @@ Image of 01_BlinkingLED Part B: USB messages Button UP<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_USBmsgs_ButtonUP.png "Image of 01_BlinkingLED Part B: USB messages Button UP")
 
 ### Some Arduino and C-language features not used above
-[Back to Top](#notes "Back to Top")
-
-C-language has some useful but perhaps obscure features; I will just mention one here for those that want to explore further. It is possible to compress the code above a little using the **?:** operator. This takes a **Condition** and chooses one of two results separated by the **:**. For instance:
+[Back to Top](#notes "Back to Top")<br>
+C-language has some useful but perhaps obscure features; I will just mention one here for those that want to explore further. It is possible to compress the code above a little using the **?:** operator. This takes a **Condition** followed by the question mark **?** and chooses one of two results separated by the **:**. For instance:
 - Condition?X:Y
 
 If Condition is true then the resulting value is X : otherwise the resulting value is Y.
@@ -282,7 +279,7 @@ To use this to print either UP or DOWN we could say
   Serial.print((HIGH == btn_val) ? "Button UP   (GO)  " : "Button DOWN (STOP)");
 ```
 
-There are many other ways we could re-arrange the printing to minimize calls to the Serial.*() routines, or to minimize RAM usage, etc. One of these is use of the "F" macro to put strings into program memory instead of RAM - RAM can be precious when programming Arduino. If you are interested in some of these, see **PROGMEM and "F" macro** in the **Resources** section and/or talk with me after the class.
+There are many other ways we could re-arrange the printing to minimize calls to the Serial.*() routines, or to minimize RAM usage, etc. One of these is use of the "F" macro to put strings into program memory instead of RAM - RAM can be precious when programming Arduino. If you are interested in some of these, see **PROGMEM and "F" macro** in the **[Resources](#resources "Resources")** section below or in https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md and/or talk with me after the class.
 
 ## Resources
 ### Arduino Nano and ATMEGA 328P
