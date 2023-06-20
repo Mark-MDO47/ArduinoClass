@@ -93,7 +93,7 @@ These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SR
 Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3. 1kbyte (lower case k) is often decimal 1,000. Sometimes, however, the person writing these numbers has a typo so be forewarned.
 
 In Arduino practice:
-- FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on **PROGMEM and F macro** in https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources).
+- FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on **[PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")**).
 - SRAM is used for variables that change often during program execution. If you write **static int xxx = 5;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
 - EEPROM is used to save things that are
   - changed during program execution
