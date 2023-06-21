@@ -301,6 +301,10 @@ If you are like me, even though Fritzing comes with a lot of parts in its librar
 - https://inkscape.org/ - where to get the free vector drawing program InkScape
 - https://fritzing.org/learning/tutorials/creating-custom-parts - the official source, though not completely up to date
 
+There is a **FritzingCheckPart.py** python program. Be aware that it can make changes to your part, not just report issues! Make a copy of your part and check the copy, then choose the one you like better. Maybe it should be called **FritzingFixPart.py** as one wag said in the forum.
+- https://forum.fritzing.org/t/fritzingcheckpart-nitpicking/11096
+- https://github.com/vanepp/FritzingCheckPart
+
 Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
