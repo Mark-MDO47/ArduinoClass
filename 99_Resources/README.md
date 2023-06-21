@@ -305,6 +305,9 @@ There is a **FritzingCheckPart.py** python program. Be aware that it can make ch
 - https://forum.fritzing.org/t/fritzingcheckpart-nitpicking/11096
 - https://github.com/vanepp/FritzingCheckPart
 
+If you get deep into creating your own Fritzing parts, it might be worth looking over some of the parts of this tool. For instance, glancing through **FritzingTools.py** I found this comment.
+- Some part of Fritzing (probably the script to produce the gerber output) can't deal with inheritance. The case that drove this change (and the only translation currently being done) is to save the svg in Inkscape as optimized svg (rather than plain) at which point the stroke-width attribute is optimized in to copper0 or copper1 top level and inherited. The output geber missing the stroke-width parameter outputs an oversize nonplated through hole. To fix that we copy the stroke length in to the leaf nodes of all elements of copper0 or copper1 which should fix the problem and allow us to use optimised svg in Inkscape.
+
 Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
