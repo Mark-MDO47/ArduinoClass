@@ -84,6 +84,18 @@ The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on
 | --- | --- |
 | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_1.png" width="150" alt="Overhead View of ESP32 on two breadboards"> | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32_Breadboard_2.png" width="150" alt="Side View of ESP32 on two breadboards"> |
 
+Here are some repositories and YouTubes showing off some of the advantages of the ESP32 over older Arduino modules such as the Nano:
+- https://github.com/RalphBacon/228-Wireless-Over-the-Air-OTA-ESP32-updates - Elegant OTA (Over The Air) update can have username and password
+  - https://youtu.be/OaHzlBTUrRQ
+- https://github.com/RalphBacon/258-ESP32-Web-Enabled-with-OTA
+  - https://www.youtube.com/watch?v=6yiuImbqKYY
+- https://github.com/RalphBacon/260-ESP32-Web-Pages-Part-2
+  - https://youtu.be/7cfeWTsJxcE
+- https://github.com/RalphBacon/ESP32-Dual-Core-Programming
+  - https://youtu.be/jpVcCmh8sig
+
+For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/ with which includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal is about $25/year at this time (2023). There is a perpetual version which is a bit pricey at $200.
+
 ## EEPROM to save configuration
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many consecutive bytes.
