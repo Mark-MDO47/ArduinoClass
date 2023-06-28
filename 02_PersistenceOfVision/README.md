@@ -235,7 +235,7 @@ This Persistence of Vision exercise is split into four projects:
 | --- | --- | --- |
 | Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md |
 | Part B | Sawtooth | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md |
-| Part C | Oval and Hello World! | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
+| Part C | Oval and Hello World! plus Spinning Stick! | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
 | Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md |
 
 ## Resources
