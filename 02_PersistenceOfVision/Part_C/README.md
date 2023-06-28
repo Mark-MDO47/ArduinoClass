@@ -710,6 +710,12 @@ To make it easier to see the persistence of vision, I put our wand onto a piece 
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision Spinning Stick">
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_HelloWorld.jpg" width="1000" alt="Image of spinning LED Stick Blinking Hello World">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_WhirledPeas.jpg" width="1000" alt="Image of spinning LED Stick Blinking Whirled Peas">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_SawTooth.jpg" width="1000" alt="Image of spinning LED Stick Blinking Sawtooth">
+
 Code changes were made to handle the four buttons.<br>
 After **// Nano pin D-7     LEDstick DIN** add<br>
 ```C
