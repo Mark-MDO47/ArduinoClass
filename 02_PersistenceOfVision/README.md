@@ -9,7 +9,7 @@
 * [The Code](#the-code "The Code")
   * [The Code - Timing Without Delays](#the-code-\--timing-without-delays "The Code - Timing Without Delays")
   * [The Code - FastLED](#the-code-\--fastled "The Code - FastLED")
-  * [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing")
+* [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing")
 * [Resources](#resources "Resources")
 
 ## Human Vision Persistence
