@@ -26,6 +26,7 @@ Then we will continue with our modified FastLED example program from **Part_B**.
 - **Persistance of Vision Spinning Stick** - I put our project on a stick with a handle so I could spin it around; looks very cool!
 
 ## Decimal and Binary and Hexadecimal - Oh My
+[Top](#notes "Top")<br>
 When programming it eventually becomes necessary to understand decimal, binary, and hexadecimal arithmetic. It is not hard to understand but it does take some time to be proficient in it. Fortunately in this class we don't really need to be quick at it, we just need to be able to figure it out.
 
 We all are used to decimal arithmetic and the notation system based on powers of 10. If you see the decimal number 123 you know, starting from the right and moving left, that it is (3 times ten-to-the-power-zero) + (2 times ten-to-the-power-one) + (1 times ten-to-the-power-two). Since anything (let's ignore infinity and zero at this point) to the power zero is one, that means 123 is three plus twenty plus one hundred.
@@ -56,7 +57,7 @@ i = 0b101111;
 There is more to learn, for instance negative numbers in twos-complement or ones-complement and how they behave, but the above will pretty much cover this class.
 
 ### How do we use decimal and binary and hexadecimal numbers in the code
-
+[Top](#notes "Top")<br>
 In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking with hexadecimal numbers to decide which LEDs to light up. Pro tip: this technique uses boolean algebra, the underlying basis of all modern digital computers There was a person named Boole who invented and developed it. This is what the innermost loop in **Oval** looks like:
 ```C
   unsigned int bits = oval_pattern_bits[blink_phase];
