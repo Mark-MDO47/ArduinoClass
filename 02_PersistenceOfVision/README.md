@@ -13,6 +13,7 @@
 * [Resources](#resources "Resources")
 
 ## Human Vision Persistence
+[Top](#notes "Top")<br>
 Louis Le Prince is generally credited to be the first person to record and show moving pictures. Yes, there is actually something that Thomas Edison did NOT invent.
 - https://en.wikipedia.org/wiki/Louis_Le_Prince
 
@@ -30,6 +31,7 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 - https://learn.adafruit.com/genesis-poi-dotstar-led-persistence-of-vision-poi
 
 ## WS2812B individually addressable color LEDs
+[Top](#notes "Top")<br>
 We will be using this color LED Stick; it is contained in the Student "Kit".
 - https://protosupplies.com/product/ws2812-addressable-rgb-led-stick-module/
 
@@ -55,7 +57,7 @@ I typically use the FastLED library to control these LEDs. It is a powerful libr
 Because we are already using the USB serial port for debugging, we will dedicate a Digital pin as the "software" serial data line. FastLED will take care of using the Digital pin to send a serial data stream.
 
 ## The Circuit
-
+[Top](#notes "Top")<br>
 The circuit is simple; it is almost just a replacement of the LED from the previous [01_BlinkingLED](https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED "01_BlinkingLED") with the data pin from the RGB LED stick. There are also power and ground connections to the LED stick. **This circuit will be used in parts A through D of this section.** We will make a variation of the circuit for the "Persistence of Vision Stick" in part C, not to be confused with the "LED stick"
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf
 
@@ -80,6 +82,7 @@ OK I looked it up. When NPN transistors were in vogue, Vcc (positive) and Vee (g
 Note that the connections from one LED to another are internal to the LED stick, so we only need to connect to the first LED. This is a good thing to try to do when using these individually addressable RGB LEDs. If you get close to 400 LEDs in one project (as I have) then you really do not want to have to solder all those connections between LEDs!
 
 ### TLDR Power and Wires
+[Top](#notes "Top")<br>
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
 The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
 The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these class projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
@@ -109,9 +112,11 @@ Looking up in the table referenced above, an AWG30 single strand wire meeting th
 For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
 ## The Code
+[Top](#notes "Top")<br>
 Now our code discussion section is going to get a little more involved.
 
 ### The Code - Timing Without Delays
+[Top](#notes "Top")<br>
 Open another Example program - Blink Without Delay - and let's compare it with Blink.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlinkWithoutDelay.png "Arduino IDE loading Blink Without Delay example program")
@@ -168,6 +173,7 @@ In all my Arduino projects, I have not needed to use interrupts; I have always s
 In our subsequent code, we will be using this "Blink Without Delay" style of coding, since we will be adding other devices that need to be handled.
 
 ### The Code - FastLED
+[Top](#notes "Top")<br>
 Kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC Arduino FastLED library and examples!!! Unfortunately Daniel Garcia passed away in a tragic accident a few years ago but the library is still being actively maintained.
 - https://github.com/FastLED/FastLED
 - https://github.com/FastLED/FastLED/blob/master/examples
@@ -239,8 +245,10 @@ This Persistence of Vision exercise is split into four projects:
 | Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md |
 
 ## Resources
+[Top](#notes "Top")<br>
 
 ### WS2812B Protocol
+[Top](#notes "Top")<br>
 The WS2812B protocol can be found in this spec:
 * https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
 
