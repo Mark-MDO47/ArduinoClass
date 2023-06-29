@@ -9,6 +9,7 @@
 We will use a slightly modified FastLED example program **Blink** to make sure we are talking to the LED stick correctly and check that the order of colors to send matches what we need.
 
 ## Code for FastLEDBlink
+[Top](#notes "Top")<br>
 Copy the code or the file from here and put it in a directory named FastLEDBlink with filename FastLEDBlink.ino and open it with the Arduino IDE
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
@@ -35,6 +36,7 @@ Of course we cannot resist putting our fingers in the gears so we will make just
 **NOTE** The reason for us to use all 8 LEDs is to make sure they all work. The reason for different numbers of the three colors is so we can tell in one experiment if we have the right color order in the 3-byte color command. This will let us confirm whether the NEOPIXEL initialization statement in **setup()** is the correct one for our LED strip or not.
 
 ## Wiring for FastLEDBlink
+[Top](#notes "Top")<br>
 Connect up the LED stick and try it out. Remember:
 - red wire is for 5 Volts from Arduino to LED stick (VCC)
 - black wire is for Ground between Arduino and LED stick (GND)
@@ -69,6 +71,7 @@ Below is a Fritzing of our desired wiring.
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision">
 
 ## Try It
+[Top](#notes "Top")<br>
 OK - you have done the code, you have wired it up and checked your wiring - go ahead and try it!
 
 You can see how easy it is to use the FastLED library. Completion of this project already puts you into a fairly small percentage of hobbyist Arduino users, to be able to use a sophisticated output device **and set it to do exactly what you want, not what some demo program does**. Congratulations!
