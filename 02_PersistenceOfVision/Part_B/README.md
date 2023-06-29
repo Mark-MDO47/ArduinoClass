@@ -12,7 +12,7 @@
 We will continue with our modified FastLED example program from **Part_A** to perform our **Sawtooth** pattern.
 
 ## Smoke and Mirrors
-
+[Top](#notes "Top")<br>
 I have found that if you are waving the LED Stick and also trying to see the pattern, looking in a mirror helps. I will bring a mirror for the class.
 
 ## Code Cleanup
