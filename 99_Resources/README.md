@@ -97,6 +97,7 @@ Here are some repositories and YouTubes showing off some of the advantages of th
 For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/; this includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal is about $25/year at this time (2023). There is a perpetual version which is a bit pricier at $200.
 
 ## EEPROM to save configuration
+[Top](#resources "Top")<br>
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many consecutive bytes.
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte. The Read-Only part seems strange, but the idea is that we can erase it and then program (write) it but we cannot write it in one step.
@@ -147,6 +148,7 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 Using PROGMEM for data storage of large tables is possible but a little more complex. Read the docs or talk to me.
 
 ## Solderless Breadboard
+[Top](#resources "Top")<br>
 We will be using a solderless breadboard to rapidly implement parts of our circuit. Connections are made by plugging wires or components into the holes in the board. A youtube video of connecting LEDs to a solderless breadboard can be found at this link.  NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://www.youtube.com/watch?v=UvS9Wf2BoyE
 
@@ -176,6 +178,7 @@ Placing the audio files onto the SD card requires special care. Also there are m
 ![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
 
 ### Saturn Sounds from Cassini
+[Top](#resources "Top")<br>
 Sounds from SPACE!!! Saturn is SO COOL!
 
 Some great science-fictiony sounds came from the Cassini space mission. Here is where you can get audio from the Cassini mission representing radio emissions from Saturn:
@@ -199,8 +202,8 @@ Attribution of external sounds found (in whole or in part, possibly altered) use
 </table>
 
 ### Text-to-Speech Robotic Sounds
-
-The final project Theremin with Sound speaks to you when you change patterns. Th
+[Top](#resources "Top")<br>
+The final project "Theremin with Sound" speaks to you when you change patterns.<br>
 I used the "original" **eSpeak** text-to-speech program version 1.48.04 to produce the speaking sounds with a robotic flavor, which I wanted.
 
 To complete the robotic flavor I used **Audacity** which can be found at https://www.audacityteam.org/
@@ -385,6 +388,7 @@ i = 0b101111;
 There is more to learn, for instance negative numbers in twos-complement or ones-complement and how they behave, but the above will pretty much cover this class.
 
 ## TLDR Power and Wires
+[Top](#resources "Top")<br>
 The LED Sticks I ordered did not have pins on them for me to connect my jumpers to; I had to solder wires to them. I chose to use AWG24 wire for power and ground and AWG30 wire for the "serialdata" signal.<br>
 The silicon coated multi stranded AWG30 is my go-to for wiring up my projects. It carries enough current for most of the projects I do, is extremely flexible, and the silicon insulation doesn't melt or burn when I am soldering. It is available in an astonishing variety of colors and not too expensive.<br>
 The silicon coated multi stranded AWG24 wire for power and ground is in fact overkill for these projects, but it reminds me to discuss a little more about how to decide what guage of wire to use.
@@ -414,6 +418,7 @@ Looking up in the table referenced above, an AWG30 single strand wire meeting th
 For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
 ## TLDR WS2812B Serial Protocol
+[Top](#resources "Top")<br>
 There is a serial data protocol used to control this string of 8 WS2812B LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
   - The actual color order can vary; we will determine it by experimentation.
