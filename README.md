@@ -52,7 +52,8 @@ Here are some of the other items we will use in our "extra credit" projects:<br>
 | 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | |
 | "Spinning Stick" Persistence of Vision wand | |
 
-Here are some of the other things you might see in the class:
+Here are some of the other things you might see in the class:<br>
+| Part | Image |
 | --- | --- |
 | Park the Car box with 8 WS2812B LEDs | |
 | Graduation Cap with 372 WS2812B LEDs | |
