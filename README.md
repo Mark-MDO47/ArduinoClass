@@ -45,6 +45,21 @@ You should then be able to do all of the standard projects. For the extra credit
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 - a breadboard with the sound circuitry (YX5200 sound module and KCX_BT_EMITTER Bluetooth module) for the finale project
 
+Here are some of the other items we will use in our "extra credit" projects:<br>
+| Part | Image |
+| --- | --- |
+| Large (93 or 241 LED) WS2812B disk | |
+| 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | |
+| "Spinning Stick" Persistence of Vision wand | |
+
+Here are some of the other things you might see in the class:
+| --- | --- |
+| Park the Car box with 8 WS2812B LEDs | |
+| Graduation Cap with 372 WS2812B LEDs | |
+| SciFi Rubber Band Gun with 144 WS2812B LEDs and Bluetooth sound | |
+| SteamPunk Goggles with 64 WS2812B LEDs | |
+| "... neither confirm nor deny" Coaster | |
+
 ## Please Bring USB Cable
 [Top](#arduino-class "Top")<br>
 Please try to bring a USB cable to connect from your laptop to the Arduino Nano. The Nano has a USB Mini-B female so your cable should end in USB Mini-B male; for more information see the references in lesson 01_BlinkingLED. I will have at least enough USB-A to USB Mini-B cables available for the 5 student stations, but if your laptop uses USB-C or anything but USB-A you will need to cover the gap.
