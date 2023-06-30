@@ -110,19 +110,20 @@ Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be 
 In Arduino practice:
 - FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on **[PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")**).
 - SRAM is used for variables that change often during program execution. If you write **static int xxx = 5;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
-- EEPROM is used to save things that are
-  - changed during program execution
-  - the changed state needs to be remembered the next time the Arduino powers-on
+- EEPROM is used to save things:
+  - that are changed during program execution
+  - that the changed state needs to be remembered the next time the Arduino powers-on
 
 The Arduino EEPROM interface is simplicity itself:
-- early in the *.ino file (maybe after #include <FastLED.h>) put the line **#include <EEPROM.h>**
+- early in the *.ino file put the line **#include <EEPROM.h>**
 - when you want to read a byte from EEPROM, call **readValue = EEPROM.read(address);**
 - when you want to write a byte to EEPROM, call **EEPROM.update(address, byteValue);**
 - for other possibilities including dealing with data that is not just one byte in length, read https://docs.arduino.cc/learn/programming/eeprom-guide
 
-Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its erase/write cycles before FLASH will. In Arduino, the EEPROM is specified to handle 100,000 erase/write cycles for each position (byte). EEPROM reads are unlimited. However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therfore I don't want to push it. Also, writes to EEPROM take a few milliseconds which can slow down operation. Because of this I use **EEPROM.update(address, byteValue)** instead of **EEPROM.write(address, byteValue)**. The difference is that EEPROM.update() first reads the EEPROM (fast and doesn't consume erase/write cycles) and only does the write if it is not already that value.
+Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its erase/write cycles before FLASH will. In Arduino, EEPROM reads are unlimited. The Arduino EEPROM is specified to handle 100,000 erase/write cycles for each position (byte). However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therefore I don't want to push it. Also, writes to EEPROM take a few milliseconds which can slow down operation. Because of this I use **EEPROM.update(address, byteValue)** instead of **EEPROM.write(address, byteValue)**. The difference is that EEPROM.update() first reads the EEPROM (fast and doesn't consume erase/write cycles) and only does the write if it is not already that value.
 
 When the Arduino powers up, how will it know if the parameters stored in EEPROM are valid or if it is a new Arduino out of the bag and the values are random? To handle this I store a simple checksum along with the parameters in EEPROM. If the EEPROM checksum doesn't match the EEPROM configuration data then I store a fresh set of configuration data in EEPROM.
+
 Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it acts crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good power-on configuration data in EEPROM. Later I can either leave the checksum expectation at this new value or change it back.
 
 ## PROGMEM and F macro to save RAM
@@ -136,7 +137,7 @@ Here is a simple example of usage PROGMEM and "F" macro for Serial.print*():
 ```C
 #include "Arduino.h"
 
-#define USE_PROGMEM true                     // set true to keep big const items in FLASH (PROGMEM keyword)
+#define USE_PROGMEM 1                     // set non-zero to keep big const items in FLASH (PROGMEM keyword)
 
 
 // somewhere in your code 
