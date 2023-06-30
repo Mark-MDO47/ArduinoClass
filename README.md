@@ -51,6 +51,8 @@ Here are some of the other items we will use in our "extra credit" projects:<br>
 | Large (93 or 241 LED) WS2812B disk | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png" width="400" alt="Image of 241 LED WS2812B Disk"> |
 | 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC_PwrSetup.png" width="400" alt="Image of UBEC Power Setup"> |
 | "Spinning Stick" Persistence of Vision wand with 8 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="400" alt="Image of Sideview of Spinning Stick"> |
+| Bluetooth and Sound Circuitry | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/BluetoothAndSoundCircuitry.png" width="800" alt="Image of Bluetooth and Sound Circuitry"> |
+| Bluetooth Speaker | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/BluetoothSpeaker.png" width="800" alt="Image of Bluetooth Speaker"> |
 
 Here are some of the other things you might see in the class:<br>
 | Part | Image |
