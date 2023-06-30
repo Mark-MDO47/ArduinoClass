@@ -42,7 +42,9 @@ The Arduino IDE uses a variant of the C++ language. You can program in a C++ sty
 
 ## Arduino Nano and ATMEGA 328P
 [Top](#resources "Top")<br>
-We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons.
+We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons. Below is an image of an Arduino Nano from www.circuitstoday.com.
+
+![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
 
 Lots of info on the Arduino Nano is found here (diagrams, not schematics)
 * https://www.circuitstoday.com/arduino-nano-tutorial-pinout-schematics
