@@ -48,18 +48,18 @@ You should then be able to do all of the standard projects. For the extra credit
 Here are some of the other items we will use in our "extra credit" projects:<br>
 | Part | Image |
 | --- | --- |
-| Large (93 or 241 LED) WS2812B disk | |
-| 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | |
-| "Spinning Stick" Persistence of Vision wand | |
+| Large (93 or 241 LED) WS2812B disk | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png" width="800" alt="Image of 241 LED WS2812B Disk"> |
+| 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC_PwrSetup.png" width="800" alt="Image of UBEC Power Setup"> |
+| "Spinning Stick" Persistence of Vision wand with 8 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="800" alt="Image of Sideview of Spinning Stick"> |
 
 Here are some of the other things you might see in the class:<br>
 | Part | Image |
 | --- | --- |
-| Park the Car box with 8 WS2812B LEDs | |
-| Graduation Cap with 372 WS2812B LEDs | |
-| SciFi Rubber Band Gun with 144 WS2812B LEDs and Bluetooth sound | |
-| SteamPunk Goggles with 64 WS2812B LEDs | |
-| "... neither confirm nor deny" Coaster | |
+| Park the Car box with 8 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/KnowHow_ParkTheCar/blob/master/images/IMG07763_closed.png" width="800" alt="Image of Park-the-Car box"> |
+| Graduation Cap with 372 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/GraduationCap2017/blob/master/imagesFinal/IMG_09516_all.png" width="800" alt="Image of Graduation Cap"> |
+| SciFi Rubber Band Gun with 144 WS2812B LEDs and Bluetooth sound | <img src="https://github.com/Mark-MDO47/RubberBandGun/blob/master/3D_model/OrangeTop_854_641.jpg" width="800" alt="Image of SciFi Rubber Band Gun"> |
+| SteamPunk Goggles with 64 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/MarkMadScientistHead.png" width="800" alt="Image of SteamPunk Goggles"> |
+| "... neither confirm nor deny" Coaster | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/NeitherConfirmNorDeny.png" width="800" alt="Image that can neither be confirmed nor denied"> |
 
 ## Please Bring USB Cable
 [Top](#arduino-class "Top")<br>
