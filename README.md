@@ -6,6 +6,8 @@ Author: Mark Olson
 * [Top](#arduino-class "Top")
 * [Lesson Plan](#lesson-plan "Lesson Plan")
 * [Parts Kit Provided](#parts-kit-provided "Parts Kit Provided")
+* [Some other items used in the extra credit projects](#some-other-items-used-in-the-extra-credit-projects "Some other items used in the extra credit projects")
+* [Some other things you might see in the class](#some-other-things-you-might-see-in-the-class "Some other things you might see in the class")
 * [Please Bring USB Cable](#please-bring-usb-cable "Please Bring USB Cable")
 
 ## Lesson Plan
@@ -45,7 +47,10 @@ You should then be able to do all of the standard projects. For the extra credit
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
 - a breadboard with the sound circuitry (YX5200 sound module and KCX_BT_EMITTER Bluetooth module) for the finale project
 
-Here are some of the other items we will use in our "extra credit" projects:<br>
+## Some other items used in the extra credit projects
+[Top](#arduino-class "Top")<br>
+These will be provide to share between the stations.<br>
+
 | Part | Image |
 | --- | --- |
 | Large (93 or 241 LED) WS2812B disk | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png" width="400" alt="Image of 241 LED WS2812B Disk"> |
@@ -54,7 +59,10 @@ Here are some of the other items we will use in our "extra credit" projects:<br>
 | Bluetooth and Sound Circuitry | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/BluetoothAndSoundCircuitry.png" width="800" alt="Image of Bluetooth and Sound Circuitry"> |
 | Bluetooth Speaker | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/BluetoothSpeaker.png" width="800" alt="Image of Bluetooth Speaker"> |
 
-Here are some of the other things you might see in the class:<br>
+## Some other things you might see in the class
+[Top](#arduino-class "Top")<br>
+These will (probably) be present to play with in the class.
+
 | Part | Image |
 | --- | --- |
 | [Park the Car](https://github.com/Mark-MDO47/KnowHow_ParkTheCar "Park the Car") box with 8 WS2812B LEDs and HC-SR04 Ultrasonic Range Detector | <img src="https://github.com/Mark-MDO47/KnowHow_ParkTheCar/blob/master/images/IMG07763_closed.png" width="400" alt="Image of Park-the-Car box"> |
