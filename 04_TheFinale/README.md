@@ -55,14 +55,14 @@ Some of the things to keep in mind:
 
 ### KCX_BT_EMITTER Bluetooth Sound Transmitter
 [Top](#notes "Top")<br>
-The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver. It uses an earlier version of Bluetooth than the latest 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried.
+The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver.The KCX_BT_EMITTER Version 1.1 (and 1.2) used here conforms to an earlier version of Bluetooth than the latest Bluetooth 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried. This version of the KCX_BT_EMITTER is the one I am familiar with. I have heard rumors of an updated Version 1.7 supporting stereo and/or Bluetooth 5.x but have no experience with these, although I have ordered some and will be experimenting with them.
 
 I have a separate GitHub project describing how to use this module:
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 
 Some of the things to keep in mind:
-- When it is freshly initialized, it will try to connect to the first Bluetooth audio receiver (speaker or earbuds or headphones) it finds. It can be paired with a specific device so it doesn't connect to some random speaker; to do that I use the "Programming Arduino" which allows me to see what Bluetooth devices it sees and to choose among them. It also allows removing devices from the list.
-- Once the KCX_BT_EMITTER has been paired with one or more devices, it will not connect to a random device but will wait to connect to one of the devices on its list.
+- When it is freshly initialized, it will try to connect to the first Bluetooth audio receiver (speaker or earbuds or headphones) it finds. It can be paired with a specific device so it doesn't connect to some random speaker; to do that I use the "Programming Arduino" which allows me to see what Bluetooth devices it sees and to select among them for ones it will be allowed to connect with. The "Programming Arduino" can also remove devices from the allowed list.
+- Once the KCX_BT_EMITTER has been programmed to allow pairing with one or more devices, it will not connect to a random device but will wait to connect to one of the devices on its list.
 - It does take a few seconds to pair up with a device.
 - Unlike the YX5200, the KCX_BT_EMITTER has a power-ground (or digital-ground) and an audio-ground (or analog-ground) clearly distinguished in its documentation.
 
