@@ -427,8 +427,8 @@ There is a serial data protocol used to control this string of 8 WS2812B LEDs.
   - The actual color order can vary; we will determine it by experimentation.
   - This allows 256 levels (0-255 for an unsigned 8-bit byte) for each of the colors Red/Green/Blue.
 - The order of 3-byte RGB commands sent starts with data for the first LED in the string, then the second, etc.
-- Each LED "consumes" its 3-byte RGB command from the data and then passes all the rest of the data down the line until there is a stopage.
-- If there is a stopage of data for a certain specified amount of time, the string resets and the each LED will consume a new 3-byte value for its next RGB command.
+- Each LED "consumes" its 3-byte RGB command from the data and then passes all the rest of the data down the line until the data stream stops for at least 50 microseconds
+  - After this 50 microsecond stop, the string resets and the each LED including the first LED will be ready to start again, consuming a new 3-byte value for its next RGB command and passing the commands after the consumed one down the line of the string.
 
 The WS2812B protocol can be found in this spec:
 * https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf
