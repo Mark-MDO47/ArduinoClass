@@ -354,6 +354,7 @@ Here are a few potential projects on the web that have caught my eye
 - https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
 - https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
 - https://rntlab.com/module-1/welcome-build-web-servers/
+- https://thepi.io/how-to-use-your-raspberry-pi-as-a-wireless-access-point/
 - https://randomnerdtutorials.com/esp32-wireless-communication-protocols/#lora
 - https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/
 - https://www.instructables.com/The-Process-of-Designing-and-Ordering-a-PCB-Signal/
