@@ -72,7 +72,7 @@ The **setup()** function is called only once, before ever calling the **loop()**
 
 In the **loop()** function for the example Blink program you will find that it delays 1000 milliseconds, turns the LED **ON**, delays 1000 milliseconds, and turns the LED **OFF**.
 
-Because the **loop()** function is called over and over, this will continue until you stop it by reprogramming or powering off the Arduino Nano.
+Because the **loop()** function is called over and over, this will continue until you stop it by reprogramming, resetting, or powering off the Arduino Nano.
 
 With the Arduino connected to the USB port on your computer, use the button circled in red in the image below to compile, load, and run the Blink example program. The on-board LED should blink.
 
