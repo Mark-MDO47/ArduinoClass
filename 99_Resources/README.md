@@ -113,16 +113,14 @@ For ESP32 I personally use Microsoft Visual Studio Community with the extension 
 These Arduino Nanos have 32Kbyte of FLASH memory (program storage), 2Kbyte of SRAM, and 1Kbyte of EEPROM.
 - FLASH memory (no acronym) was an offshoot of EEPROM. For the Arduino Nano it is erasable and writeable in blocks of many consecutive bytes.
 - EEPROM (Electrically Eraseable Programmable Read-Only Memory) is, for the Arduino Nano, erasable and writeable in blocks of one byte. The Read-Only part seems strange, but the idea is that we can erase it and then program (write) it but we cannot write it in one step.
-- SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written.
+- SRAM (Static Random Access Memory) is, for the Arduino Nano, readable and writeable in blocks of one byte. There is typically no published limit on the number of times it can be read or written. Note that there is a difference between RAM, SRAM, DRAM, and other variants but in this class I will refer to them as either SRAM or RAM.
 
-Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand) since it is 2 to the power 10 and 1,000 is 10 to the power 3. 1kbyte (lower case k) is often decimal 1,000. Sometimes, however, the person writing these numbers has a typo so be forewarned.
+Note: 1Kbyte (capital K) typically means 1,024 bytes; 1,024 is considered to be the "binary thousand" since it is 2 to the power 10 and 1,000 is 10 to the power 3. 1kbyte (lower case k) is often decimal 1,000. Sometimes, however, the person writing these numbers has a typo so be forewarned.
 
 In Arduino practice:
 - FLASH memory is used to store the program code. It can also be used to store constant strings and other data (see section on **[PROGMEM and F macro to save RAM](#progmem-and-f-macro-to-save-ram "PROGMEM and F macro to save RAM")**).
 - SRAM is used for variables that change often during program execution. If you write **static int xxx = 5;** or **int func(int a) { int xxx; xxx = a+1; return(xxx); };**, then **xxx** will be in SRAM.
-- EEPROM is used to save things:
-  - that are changed during program execution
-  - that the changed state needs to be remembered the next time the Arduino powers-on
+- EEPROM is used to save things that are changed during program execution and that the changed state needs to be remembered the next time the Arduino powers-on.
 
 The Arduino EEPROM interface is simplicity itself:
 - early in the *.ino file put the line **#include <EEPROM.h>**
@@ -130,9 +128,9 @@ The Arduino EEPROM interface is simplicity itself:
 - when you want to write a byte to EEPROM, call **EEPROM.update(address, byteValue);**
 - for other possibilities including dealing with data that is not just one byte in length, read https://docs.arduino.cc/learn/programming/eeprom-guide
 
-Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its erase/write cycles before FLASH will. In Arduino, EEPROM reads are unlimited. The Arduino EEPROM is specified to handle 100,000 erase/write cycles for each position (byte). However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therefore I don't want to push it. Also, writes to EEPROM take a few milliseconds which can slow down operation. Because of this I use **EEPROM.update(address, byteValue)** instead of **EEPROM.write(address, byteValue)**. The difference is that EEPROM.update() first reads the EEPROM (fast and doesn't consume erase/write cycles) and only does the write if it is not already that value.
+Given that FLASH is written only when we change the program and EEPROM would be written while the program is running, it is likely that EEPROM will use up all its erase/write cycles before FLASH will. In Arduino, EEPROM **reads** are unlimited. The Arduino EEPROM is specified to handle 100,000 **erase/write** cycles for each position (byte). However, the Arduino Nanos I use are cheap $2 clones instead of the official Arduino Nano at close to $25; therefore I don't want to push the limits. Also, writes to EEPROM take a few milliseconds which can slow down operation. Because of this I use **EEPROM.update(address, byteValue)** instead of **EEPROM.write(address, byteValue)**. The difference is that EEPROM.update() first reads the EEPROM (fast and doesn't use up erase/write cycles) and only does the write if the EEPROM byte is not already the desired value.
 
-When the Arduino powers up, how will it know if the parameters stored in EEPROM are valid or if it is a new Arduino out of the bag and the values are random? To handle this I store a simple checksum along with the parameters in EEPROM. If the EEPROM checksum doesn't match the EEPROM configuration data then I store a fresh set of configuration data in EEPROM.
+When the Arduino powers up, how will it know if the parameters stored in EEPROM are valid or if it is a new Arduino out of the bag and the values are random? To handle this I store a simple checksum along with the parameters in EEPROM. If the EEPROM checksum doesn't match the EEPROM configuration data then I store a fresh set of configuration data in EEPROM. Doing this also makes it easy to provide a "factory reset" capability.
 
 Because I use a one-byte checksum (you could use a more elaborate checksum if you want) there is a one in 256 chance that random data will have a checksum that matches it. Because I am lazy, I accept that chance: if the first time I program an Arduino it acts crazy then I can either write something to the configuration value or I can one-time change the expected value of the checksum to be different (for example; 1 + the normal checksum) and then it will put good power-on configuration data in EEPROM. Later I can either leave the checksum expectation at this new value or change it back.
 
