@@ -235,7 +235,7 @@ If you are interested in more details on Text-to-Speech Robotic Sounds and the p
 ## KCX_BT_EMITTER Bluetooth Audio Transmitter
 [Top](#resources "Top")<br>
 The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth speaker. The KCX_BT_EMITTER Version 1.1 (and 1.2) supports Bluetooth 4.1 and is about $3.50 on Ebay or $1.50 on aliexpress.com. This is the one I am familiar with. I have heard rumors of an updated Version 1.7 supporting stereo and/or Bluetooth 5.x but have no experience with these, although I have ordered some and will be experimenting with them.<br>
-The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. There is a trick to getting a low-noise connection between this and the YX5200. I have pointers to details and a utility I wrote to help with commanding/pairing plus information on the low-noise connection in the following link.
+The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. Also there is a trick to getting a low-noise connection between this and the YX5200. I have pointers to these details and some utilities I wrote to help with commanding/pairing in the following link.
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 
 ![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
@@ -247,7 +247,7 @@ A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Cou
 
 ## 9 10K Ohm resistors one package
 [Top](#resources "Top")<br>
-This handy device allows the use of one component to give 10 individual pullups. This is handy for instance if your project has a lot of buttons.
+This handy device allows the use of one component to give 10 individual pullups. This is useful for instance if your project has a lot of buttons.
 - https://www.digikey.com/en/products/detail/bourns-inc/4610X-AP1-103LF/3741070
 
 <img src="https://media.digikey.com/photos/Bourns%20Photos/4610X%20SERIES.jpg" width="150" alt="Image of 9 10K Ohm resistors one package">
@@ -275,17 +275,17 @@ Some tutorials to help you recognize common schematic symbols:
 - https://www.youtube.com/watch?v=-dzHDgJVJh4 "How to Read a Schematic - Another Teaching Moment | Digi-Key Electronics" - more in depth
 
 I sometimes call my schematics "schematic wiring diagrams" because I don't quite follow the rules of the standards organizations, although I reserve the right to just call them schematics.
-- I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible, because when assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin.
-- I don't always follow the "rules" about placement of all input pins on one side and all output pins on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical pin placement somewhere other than the schematic.
+- I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible. When assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin, so this format of schematic is helpful to me.
+- I don't always follow the "rules" about placement of all chip input pins on one side and all chip output pins on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it annoying to have to figure out the physical pin placement somewhere other than the schematic.
 
 ## KiCad
 [Top](#resources "Top")<br>
-I use the free schematic editor KiCad for capturing schematics (actually what I do might better be called wiring diagrams). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
+I use the free schematic editor KiCad for capturing schematics (what I do might better be called wiring diagrams; see above). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
 
 If you don't want to use KiCad, don't worry - all the schematic wiring diagrams for the class are in PDF form in the various directories, and also in images in the description of each project.
 
-There are many YouTube videos describing the basics of KiCad usage.
+There are many YouTube videos describing the basics of KiCad usage. I recommend viewing a few of them if you want to start with KiCad. Most are quite good; I didn't really have a favorite. Be aware that KiCad version 6.0 was the start of some bit changes, so try to find videos using that or later. KiCad is currently (2023) at version 7.0.5.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/KiCad_screen.png" width="300" alt="Image of KiCad Schematic Capture screen">
 
