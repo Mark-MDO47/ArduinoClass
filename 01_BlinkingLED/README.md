@@ -7,7 +7,9 @@
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
 * [Now It Runs Whenever you Turn On Power](#now-it-runs-whenever-you-turn-on-power "Now It Runs Whenever you Turn On Power")
 * [Part A - Add an external LED](#part-a-\--add-an-external-led "Part A - Add an external LED")
+  * [Try it Part A](#try-it-part-a "Try it Part A")
 * [Part B - Add Button and Display Messages on USB Serial Port](#part-b-\--add-button-and-display-messages-on-usb-serial-port "Part B - Add Button and Display Messages on USB Serial Port")
+  * [Try it Part B](#try-it-part-b "Try it Part B")
 * [Resources](#resources "Resources")
 
 ## Introducing the Arduino Nano
@@ -166,7 +168,7 @@ void loop() {
 }
 ```
 
-### Try it
+### Try it Part A
 [Back to Top](#notes "Back to Top")<br>
 When we execute this program, the internal LED and the external LED blink; one is off when the other is on. The video at the following link shows what this looks like.
 - https://youtu.be/c5UH3J40uWE
@@ -260,7 +262,7 @@ void loop() {
 }
 ```
 
-### Try it
+### Try it Part B
 [Back to Top](#notes "Back to Top")<br>
 When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The youtube video (using a different Arduino Nano) at the following link shows what this looks like and the image below that shows the USB serial port messages. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://youtube.com/shorts/qGxECSMQtAQ
