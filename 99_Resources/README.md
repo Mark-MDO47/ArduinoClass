@@ -74,7 +74,18 @@ Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ESP32.png" width="475" height="476">
 
 Here is an article about how to choose which ESP32 module you want to use:
-* https://makeradvisor.com/esp32-development-boards-review-comparison/
+- https://makeradvisor.com/esp32-development-boards-review-comparison/
+
+One thing to keep in mind is that not all GPIO pins on an ESP32 are usable for every purpose. This article will take you through the basics. Don't worry - there are probably plenty of GPIO pins available for your project; just use the right ones!
+- https://randomnerdtutorials.com/esp32-pinout-reference-gpios/
+
+In particular, the following pins affect the way the ESP32 boots, so unless you want to affect booting don't attach them to peripherals that would pull them up or down. 
+- MTDI
+- GPIO0
+- GPIO2
+- MTDO
+- GPIO5
+
 
 An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. It has dual-CPUs for expert users.
 
