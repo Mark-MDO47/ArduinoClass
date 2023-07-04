@@ -166,6 +166,8 @@ void loop() {
 }
 ```
 
+### Try it
+[Back to Top](#notes "Back to Top")<br>
 When we execute this program, the internal LED and the external LED blink; one is off when the other is on. The video at the following link shows what this looks like.
 - https://youtu.be/c5UH3J40uWE
 
@@ -258,6 +260,8 @@ void loop() {
 }
 ```
 
+### Try it
+[Back to Top](#notes "Back to Top")<br>
 When we execute this program, the internal LED and the external LED blink; one is off when the other is on. When we push and hold the button, the blinking stops. When we release the button the blinking restarts. The youtube video (using a different Arduino Nano) at the following link shows what this looks like and the image below that shows the USB serial port messages. NOTE: to play youtube and keep this tab open you must right-click the link and select to play in a new tab.
 - https://youtube.com/shorts/qGxECSMQtAQ
 
