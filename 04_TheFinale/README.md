@@ -27,7 +27,7 @@ The wiring schematic can be found here; an image is given below.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelSound_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for for 04 The Finale - Theremin with Sound">
 
-In the image above, everything below the red line is on the new breadboard that I will bring along. The schematic includes the "Programming Arduino" page but we will not be using that in the class as I will already have paired the bluetooth speaker with our circuit.
+In the schematic wiring diagram above, everything below the red line is on the new breadboard that I will bring along. The schematic includes the "Programming Arduino" page but we will not be using that in the class as I will already have paired the bluetooth speaker with our circuit.  In the Fritzing image above, this portion of the circuit is inside the red dotted-line rectangle and is labeled "Bluetooth and Sound Circuitry.
 
 The interface between the two circuits consists of five wires on the new breadboard:
 | Color | Purpose |
