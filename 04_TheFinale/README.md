@@ -76,6 +76,9 @@ Some of the things to keep in mind:
 [Top](#notes "Top")<br>
 We start from the final Theremin code from section 3 https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector and name it ThereminSound.ino
 
+As mentioned above, I have directly copied the dfrobot.com DFPlayer library into the code area in the Arduino code section of this class GitHub page but alternatively the library is available in the library manager. I tend to keep my own copy of the library since I initially had to do significant debugging to learn how to communicate not just with the dfrobot.com version of the part but also with several of the different clones. It was convenient to be able to put debugging statements directly in the library to do that debugging, and I have continued the practice of having the library available for me to modify as desired. Note that there are also several alternative libraries for communicating with YX5200 parts.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound
+
 ### Code Outline
 [Top](#notes "Top")<br>
 Below is an outline of the changes we will make
