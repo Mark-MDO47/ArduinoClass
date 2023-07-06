@@ -47,10 +47,10 @@ I have a separate GitHub project describing how to use this module:
 
 Some of the things to keep in mind:
 - The library I use to control the YX5200 is written by dfrobot.com. I copied a version from their github page and put it directly in the directory with the *.ino file.
-  - https://github.com/DFRobot/DFRobotDFPlayerMini
-  - https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299
-  - https://www.dfrobot.com/product-1121.html
-  - It is also available in the library manager as seen below<br>
+  - https://github.com/DFRobot/DFRobotDFPlayerMini - the library
+  - https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299 - the DFRobot version of the part
+  - https://www.dfrobot.com/product-1121.html - includes some samples and projects for the part
+  - The dfrobot.com DFPlayer library is also available in the Arduino IDE Library Manager as seen below. There are other libraries available for controlling these parts but I don't have much experience with the others.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelSound_DFRobotLib.png" width="600" alt="Library Manager image of DFRobot library to control YX5200"><br>
 - The way the files are stored on the SD card must be exactly right. If there was ever any file or directory placed on the SD card, it must first be FAT-formatted again before storing or changing files on the card. My YX5200 GitHub page (see above) on this module includes a Python program copyem.py that helps with this.
 - There is a 1 KOhm resistor between the Arduino and the YX5200 RX pin. This is not optional. If this is left out then the commands sent on this line will be heard in the sound from the speaker.
