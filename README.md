@@ -68,7 +68,7 @@ These will (probably) be present to play with in the class.
 | [Park the Car](https://github.com/Mark-MDO47/KnowHow_ParkTheCar "Park the Car") box with 8 WS2812B LEDs and HC-SR04 Ultrasonic Range Detector | <img src="https://github.com/Mark-MDO47/KnowHow_ParkTheCar/blob/master/images/IMG07763_closed.png" width="400" alt="Image of Park-the-Car box"> |
 | [Graduation Cap](https://github.com/Mark-MDO47/GraduationCap2017 "Graduation Cap") with 372 WS2812B LEDs controlled by 4 Arduino Nanos | <img src="https://github.com/Mark-MDO47/GraduationCap2017/blob/master/imagesFinal/IMG_09516_all.png" width="400" alt="Image of Graduation Cap"> |
 | [SciFi Rubber Band Gun](https://github.com/Mark-MDO47/RubberBandGun "SciFi Rubber Band Gun") with 144 WS2812B LEDs and Bluetooth sound | <img src="https://github.com/Mark-MDO47/RubberBandGun/blob/master/3D_model/OrangeTop_854_641.jpg" width="400" alt="Image of SciFi Rubber Band Gun"> |
-| [SteamPunk Goggles](https://github.com/Mark-MDO47/Know-How-Arduino-SteamPunk-Goggles "SteamPunk Goggles") with 64 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/MarkMadScientistHead.png" width="300" alt="Image of SteamPunk Goggles"> |
+| [SteamPunk Goggles](https://github.com/Mark-MDO47/Know-How-Arduino-SteamPunk-Goggles "SteamPunk Goggles") with 32 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/MarkMadScientistHead.png" width="300" alt="Image of SteamPunk Goggles"> |
 | "... neither confirm nor deny" Coaster | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/NeitherConfirmNorDeny.png" width="400" alt="Image that can neither be confirmed nor denied"> |
 
 ## Please Bring USB Cable
