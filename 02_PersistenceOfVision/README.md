@@ -121,7 +121,7 @@ Looking up in the table referenced above, an AWG30 single strand wire meeting th
 
  An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously even multi strand AWG24 is overkill.
 
-For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
+For my Graduation Cap project with 372 WS2812B LEDs I used a higher voltage to reduce the current and AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
 ## The Code
 [Top](#notes "Top")<br>
