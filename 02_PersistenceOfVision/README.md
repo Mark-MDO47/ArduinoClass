@@ -31,6 +31,7 @@ Much more elaborate versions of this wand (and some beautiful pictures and movie
 - https://learn.adafruit.com/genesis-poi-dotstar-led-persistence-of-vision-poi
 
 ### Four Projects
+[Top](#notes "Top")<br>
 This Persistence of Vision exercise is split into four projects:
 | Part | Title | Link | Image |
 | --- | --- | --- | --- |
@@ -40,6 +41,7 @@ This Persistence of Vision exercise is split into four projects:
 | Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_241LED_setup.png" width="500" alt="Image of Sonar Range Detector"> |
 
 ### Why so Fast?
+[Top](#notes "Top")<br>
 For our persistence of vision projects, we will go faster than 24 blinks per second because we are not just trying to blend one complete frame (picture) into the next, we are trying to draw a frame in the eye with at most 8 dots per blink. Our "frame rate" might be 200 blinks per second or more. In Part C of this exercise we will demonstrate a spinning "Persistence of Vision Stick" and will be able to experiment with rates up to 1,000 times per second or as slow as 25 times per second so we can investigate this effect.
 
 ## WS2812B individually addressable color LEDs
