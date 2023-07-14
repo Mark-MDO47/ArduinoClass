@@ -18,6 +18,9 @@ In this project we will add a circuit to send sound to a Bluetooth speaker to te
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelSound_setup.jpg" width="750" alt="Image of Theremin with Speech Sound">
 
+Here is a video of this circuit in operation:
+- https://youtu.be/G7ARC0xHXRg
+
 ## The Circuit
 [Top](#notes "Top")<br>
 The plan is that the circuit to implement the sound to the bluetooth will be on a different breadboard than the one containing the Theremin circuit. There will only be one of these so I will bring it around to the different stations so everyone can try it. In order to use it we will need the setup for the large LED disks including its separate power supply, so I will bring that around too.
