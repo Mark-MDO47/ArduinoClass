@@ -237,12 +237,12 @@ The LED pattern code for Sawtooth, Oval, and Hello World will pretty much done f
 The coding method for Sawtooth and Oval/Hello are different. This is done on purpose to show examples of manipulating the data to produce desired patterns. The final version of Oval.ino will be able to produce any of the patterns Sawtooth, Oval, or Hello World and either use rainbow colors or all red.
 
 This Persistence of Vision exercise is split into four projects:
-| Part | Title | Link |
-| --- | --- | --- |
-| Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md |
-| Part B | Sawtooth | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md |
-| Part C | Oval and Hello World! plus Spinning Stick! | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md |
-| Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md |
+| Part | Title | Link | Image |
+| --- | --- | --- | --- |
+| Part A | Blink | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartA_FastLEDblink_setup.png" width="500" alt="Image of Fast LED Blink with LED Wand"> |
+| Part B | Sawtooth | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistanceOfVision_PartB_Sawtooth.png" width="500" alt="Image of SawTooth Persistence of Vision"> |
+| Part C | Oval and Hello World! plus Spinning Stick! | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_topView.png" width="500" alt="Image of Spinning Stick Persistence of Vision"><br><img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_HelloWorld.jpg" width="500" alt="Image of Spinning Stick Persistence of Vision"> |
+| Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_241LED_setup.png" width="500" alt="Image of Sonar Range Detector"> |
 
 ## Resources
 [Top](#notes "Top")<br>
