@@ -3,6 +3,7 @@
 **Table of Contents**
 * [Top](#notes "Top")
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
+  * [Four Projects](#four-projects "Four Projects")
   * [Why so Fast?](#why-so-fast "Why so Fast?")
 * [WS2812B individually addressable color LEDs](#ws2812b-individually-addressable-color-leds "WS2812B individually addressable color LEDs")
 * [The Circuit](#the-circuit "The Circuit")
@@ -22,6 +23,7 @@ The effect that allows us to enjoy movies is known as the persistence of vision:
 
 In this exercise we will build on the blinking LED exercise to create a simple persistence of vision wand consisting of 8 individually addressable color LEDs using the WS2812B serial protocol. We will then add an Ultrasonic Range Detector to control patterns for the LEDs.
 
+### Four Projects
 This Persistence of Vision exercise is split into four projects:
 | Part | Title | Link | Image |
 | --- | --- | --- | --- |
@@ -31,7 +33,6 @@ This Persistence of Vision exercise is split into four projects:
 | Part D | DemoReel | https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/03_SonarRangeDetector_241LED_setup.png" width="500" alt="Image of Sonar Range Detector"> |
 
 ### Why so Fast?
-
 For our persistence of vision projects, we will go faster than 24 blinks per second because we are not just trying to blend one complete frame (picture) into the next, we are trying to draw a frame in the eye with at most 8 dots per blink. Our "frame rate" might be 200 blinks per second or more. In Part C of this exercise we will demonstrate a spinning "Persistence of Vision Stick" and will be able to experiment with rates up to 1,000 times per second.
 
 Much more elaborate versions of this wand (and some beautiful pictures and movies) can be found in these links:
