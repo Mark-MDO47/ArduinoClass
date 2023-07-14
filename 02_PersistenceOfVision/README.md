@@ -117,7 +117,7 @@ With just 8 RGB LEDs the current draw of 336 milliamps (power 1.68 watts) worst 
 Calculating wire size (Google for instance wire gauge ampacity 5v dc): the following link leads to information about power that can be safely passed through wire of different types and guages.
 - https://www.powerstream.com/Wire_Size.htm
 
-Looking up in the table referenced above, an AWG30 single strand wire meeting the specs of the site could carry 860 milliamps. We are using multi stranded AWG30 so we would not expect the full 5X safety margin on our design limit of 168 milliamps. Even so, I suspect that our AWG30 would be adequate. In fact I have used silicon coated multi stranded AWG30 to power two WS2812B 32 LED strands just due to ignorance of the issue. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate (the table gives resistance data) and whether the electronics comes in contact with someone.
+Looking up in the table referenced above, an AWG30 single strand wire meeting the specs of the site could carry 860 milliamps. We are using multi stranded AWG30 so we would not expect the full 5X safety margin on our design limit of 168 milliamps. Even so, I suspect that our AWG30 would be adequate. In fact I have used silicon coated multi stranded AWG30 to power two WS2812B 16 LED strands just due to ignorance of the issue. The margin of safety you want depends on other things too, such as the voltage drop you can tolerate (the table gives resistance data) and whether the electronics comes in contact with someone.
 
  An AWG24 single strand wire meeting the specs of the site could carry 3,500 milliamps. Obviously even multi strand AWG24 is overkill.
 
