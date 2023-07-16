@@ -83,7 +83,7 @@ As C was adapted to more computer architectures, it was found to be useful to de
 ... in a universal way.
 By specifying the variable "bits" as "uint8_t" we can be sure we and the reader know what its representation in the processor is.
 Alternatively we could specify it as "unsigned char" but this is less general and not as intuitive.
-This becomes more important when we see that specifying a signed 16-bit integer on different processors could be "short int" or "int"
+This becomes more important when we see that a signed 16-bit integer on different processors could be "short int" or "int"
 ... but it is always "uint16_t".
 ```
 
