@@ -106,7 +106,7 @@ Here are some repositories and YouTubes showing off some of the advantages of th
 - https://github.com/RalphBacon/ESP32-Dual-Core-Programming
   - https://youtu.be/jpVcCmh8sig
 
-For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/; this includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal is about $25/year at this time (2023). There is a perpetual version which is a bit pricier at $200.
+For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/; this includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal one-PC is about $25/year at this time (2023); other licensing options are available.
 
 ## EEPROM to save configuration
 [Top](#resources "Top")<br>
