@@ -58,9 +58,9 @@ There is more to learn, for instance negative numbers in twos-complement or ones
 
 ### How do we use decimal and binary and hexadecimal numbers in the code
 [Top](#notes "Top")<br>
-In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking with hexadecimal numbers to decide which LEDs to light up. Pro tip: this technique uses boolean algebra, the underlying basis of all modern digital computers There was a person named Boole who invented and developed it. This is what the innermost loop in **Oval** looks like:
+In the **loop()** code that we will be discussing for these patterns we will be doing some shifting and masking with hexadecimal numbers to decide which LEDs to light up. Pro tip: this technique uses boolean algebra, the underlying basis of all modern digital computers There was a person named George Boole who invented and developed it. This is what the innermost loop in **Oval** looks like:
 ```C
-  unsigned int bits = oval_pattern_bits[blink_phase];
+  uint8_t bits = oval_pattern_bits[blink_phase];
 
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x01 & bits))
@@ -72,6 +72,20 @@ In the **loop()** code that we will be discussing for these patterns we will be 
 ```
 
 **oval_pattern_bits** is an array of unsigned 8-bit bytes; the binary bits in each 8-bit byte correspond to whether we want to light up that LED in our LED Stick. The least significant bit corresponds to the LED closest to the wires; each bit after that corresponds to the next LED on the stick.
+
+```
+NOTE:
+uint8_t is one typedef from a commonly used set of definitions.
+These allow specifying unsigned (uint...) or signed (sint...) integers of various multiples of 8 bits, known as a byte.
+When the C language was developed, it was specifically designed to work well with the PDP11 architecture
+... so such definitions as int had a specific number of bits and specific endian characteristics for bytes and words, etc.
+As C was adapted to more computer architectures, it was found to be useful to develop ways to specify these sorts of things
+... in a universal way.
+By specifying the variable "bits" as "uint8_t" we can be sure we and the reader know what its representation in the processor is.
+Alternatively we could specify it as "unsigned char" but this is less general and not as intuitive.
+This becomes more important when we see that specifying a signed 16-bit integer on different processors could be "short int" or "int"
+... but it is always "uint16_t".
+```
 
 For instance, the first unsigned 8-bit byte in oval_pattern_bits is 0x18. This corresponds to 0b00011000.  This gets stored into **bits** at the beginning of the code if blink_phase is zero. The least significant bit is on the right and then we go right-to-left. If the bit is a 0 we set the LED black; if it is a 1 we set the LED red.
 
@@ -135,7 +149,7 @@ The oval_blink_pattern() routine now looks like this
 void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   // oval_pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
   static uint8_t oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x50, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00 };
-  unsigned int bits = oval_pattern_bits[blink_phase];
+  uint8_t bits = oval_pattern_bits[blink_phase];
 
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x01 & bits))
@@ -245,13 +259,13 @@ Change
 ```C
   // oval_pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
   static uint8_t oval_pattern_bits[OVAL_CALLS_THEN_REPEAT] = { 0x18, 0x24, 0x42, 0x81, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00, 0x40, 0xA0, 0x48, 0x14, 0x08, 0x20, 0x53, 0x23, 0x00, 0x18, 0x24, 0x42, 0x81, 0x81, 0x99, 0xA5, 0xA5, 0x99, 0x81, 0x81, 0x42, 0x24, 0x18, 0x00 };
-  unsigned int bits = oval_pattern_bits[blink_phase];
+  uint8_t bits = oval_pattern_bits[blink_phase];
 ```
 
 ... to
 ```C
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  unsigned int bits = pattern_bits[blink_phase];
+  uint8_t bits = pattern_bits[blink_phase];
 ```
 
 Now you have the Rainbow version of the Hello World! pattern.
@@ -497,7 +511,7 @@ Replace the code in **ptrn_blink()** with this:
 ```C
 void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  unsigned int bits = gPatternsBits[gPatternToShow][blink_phase];
+  uint8_t bits = gPatternsBits[gPatternToShow][blink_phase];
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x01 & bits))
        ptrn_leds[i] = CRGB::Black;
