@@ -81,7 +81,7 @@ When the C language was developed, it was specifically designed to work well wit
 ... so such definitions as int had a specific number of bits and specific endian characteristics for bytes and words, etc.
 As C was adapted to more computer architectures, it was found to be useful to develop ways to specify these sorts of things
 ... in a universal way.
-By specifying the variable "bits" as "uint8_t" we can be sure we and the reader know what its representation in the processor is.
+By specifying the variable "bits" as "uint8_t" we can be sure we and the reader know what its size in the processor is.
 Alternatively we could specify it as "unsigned char" but this is less general and not as intuitive.
 This becomes more important when we see that a signed 16-bit integer on different processors could be "short int" or "int"
 ... but it is always "uint16_t".
