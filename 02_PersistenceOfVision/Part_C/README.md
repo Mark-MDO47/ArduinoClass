@@ -718,6 +718,8 @@ In **handle_serial_input_command()** replace line **// TODO FIXME add code to pu
 To make it easier to see the persistence of vision, I put our wand onto a piece of wood with a handle on it. I added some buttons so I could experiment with different color schemes, patterns and interval rates without having to hook up to a USB cable. It is probably the ugliest and most ad-hoc persistence of vision wand in the universe, but it works!
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision_stick.pdf
 
+Oh and by the way, I may have added a flag pattern - see if you can find it!
+
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_topView.png" width="640" alt="Top view of Persistence of Vision Spinning Stick">
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="640" alt="Side view of Persistence of Vision Spinning Stick">
