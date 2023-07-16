@@ -193,7 +193,7 @@ void ptrn_pause(long int blink_phase, CRGB * ptrn_leds) {
 
 void ptrn_blink(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  unsigned int bits = gPatternsBits[gPatternToShow][blink_phase];
+  uint8_t bits = gPatternsBits[gPatternToShow][blink_phase];
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x01 & bits))
        ptrn_leds[i] = CRGB::Black;

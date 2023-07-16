@@ -136,7 +136,7 @@ void oval_pause_pattern(long int blink_phase, CRGB * ptrn_leds) {
 
 void oval_blink_pattern(long int blink_phase, CRGB * ptrn_leds) {
   // pattern_bits one bit per LED to be on. Most Significant bit is first LED, etc.
-  unsigned int bits = pattern_bits[blink_phase];
+  uint8_t bits = pattern_bits[blink_phase];
 
   for (long int i = 0; i < NUM_LEDS; i++) {
     if (0 == (0x01 & bits))
