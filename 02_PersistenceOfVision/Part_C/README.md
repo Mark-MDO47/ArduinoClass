@@ -728,7 +728,11 @@ Oh and by the way, I may have added a flag pattern - see if you can find it!
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_Fritzing.png" width="750" alt="Fritzing image of wiring diagram for Persistence of Vision Spinning Stick">
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_Oval.jpg" width="1000" alt="Image of spinning LED Stick Blinking Oval">
+
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_HelloWorld.jpg" width="1000" alt="Image of spinning LED Stick Blinking Hello World">
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_Flag.jpg" width="1000" alt="Image of spinning LED Stick Blinking Flag">
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WhirlingStick_WhirledPeas.jpg" width="1000" alt="Image of spinning LED Stick Blinking Whirled Peas">
 
