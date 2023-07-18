@@ -90,7 +90,7 @@ static uint16_t next_rainbow = 0;
 
 static uint8_t * gPatternsBits[PATTERN_1BIT_MAX_NUM]   = { sawtooth_pattern_bits, oval_pattern_bits, hello_pattern_bits, peas_pattern_bits };
 static uint8_t * g_RWB_pattern_bits[3] = { flag_pattern_bits_red, flag_pattern_bits_white, flag_pattern_bits_blue };
-static CRGB g_RWB_colors[3] = { CRGB::Red, CRGB::White, CRGB::Blue };
+static CRGB g_RWB_colors[3] = { CRGB::Red, CRGB::White/3, CRGB::Blue };
 static const char * gPatternsNames[PATTERN_1BIT_MAX_NUM+PATTERN_3BIT_MAX_NUM]   = { "Sawtooth", "Oval", "HelloWorld!", "Whirled Peas!", "Flag" };
 static int gPatternsRepeat[PATTERN_1BIT_MAX_NUM+PATTERN_3BIT_MAX_NUM] = { SAWTOOTH_CALLS_THEN_REPEAT, OVAL_CALLS_THEN_REPEAT, HELLO_CALLS_THEN_REPEAT, PEAS_CALLS_THEN_REPEAT, FLAG_CALLS_THEN_REPEAT };
 int gPatternToShow = 0;
