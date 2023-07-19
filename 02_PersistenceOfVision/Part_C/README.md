@@ -720,6 +720,8 @@ To make it easier to see the persistence of vision, I put our wand onto a piece 
 
 Oh and by the way, I may have added a flag pattern - see if you can find it!
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/FlagPattern.png" width="300" alt="Flag Pattern showing R, W, and B colors">
+
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_topView.png" width="640" alt="Top view of Persistence of Vision Spinning Stick">
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="640" alt="Side view of Persistence of Vision Spinning Stick">
