@@ -122,6 +122,12 @@ NOTE: the myBusy column is "not busy" if HIGH==DPIN_AUDIO_BUSY **and** the force
 | 0 | 0 | not busy | start Cassini | no sound playing, intro done, no new pattern |
 | 1 | 0 | not busy | start pattern | no sound playing, pattern changed |
 
+One aspect of the Sonar Range Finder is that it is easy to get your hand near the region separating two distinct patterns and have it waver back and forth between the two patterns.
+
+One approach to making this easier would be to add "hysteresis" in the changing between patterns. The general definition of this is "the value of a physical property lags behind changes in the effect causing it" but I am using it as it is seen in electronics, in which once a decision is made the threshold is moved such that going back to the previous decision is harder. An example might be a 12 volt relay coil. If the voltage is raised slowly the relay may turn on at perhaps 11 volts, but it will remain turned on as you drop the voltage below 11 volts to perhaps 9 volts before it turns off.  I experimented with simulating a similar effect in software using the HC-SR04 in my "Park the Car" project (https://github.com/Mark-MDO47/KnowHow_ParkTheCar) but was never happy with the result.
+
+For this project I took a different approach. Each sound file that states the name of a pattern starts with a short silent period, giving the hand a chance to find a region where the new pattern is stable without having the speaker go back and forth rapidly speaking different patterns.
+
 ### Code Details
 [Top](#notes "Top")<br>
 
