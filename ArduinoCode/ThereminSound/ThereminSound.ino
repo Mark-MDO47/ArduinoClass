@@ -42,7 +42,7 @@
 #define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
 #define DPIN_AUDIO_BUSY 11  // digital input - HIGH when audio finishes
 
-SoftwareSerial mySoftwareSerial(DPIN_SWSRL_RX, DPIN_SWSRL_TX); // to talk to YX5200 audio player
+SoftwareSerial mySoftwareSerial(/*rx =*/DPIN_SWSRL_RX, /*tx =*/DPIN_SWSRL_TX); // to talk to YX5200 audio player
               // SoftwareSerial(rxPin,         txPin,       inverse_logic)
 DFRobotDFPlayerMini myDFPlayer;                                // to talk to YX5200 audio player
 void DFsetup();                                                // how to initialize myDFPlayer
