@@ -56,6 +56,9 @@ dkms.conf
 *.eml
 mdo*.txt
 *Present*.pptx
+~*.xlsx
+~*.docx
+~*.pptx
 
 # Generic backup files
 *~
