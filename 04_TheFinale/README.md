@@ -554,7 +554,7 @@ void loop() {
 
 ### Parallel Arduino-to-Arduino Interface
 [Top](#notes "Top")<br>
-The concept for this interface is to make it very simple and avoid placing a comutational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands.ino achieves this.
+The concept for this interface is to make it very simple and avoid placing a computational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands.ino achieves this.
 
 Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.<br>
 ```C
