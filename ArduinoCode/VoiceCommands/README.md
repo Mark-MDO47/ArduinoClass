@@ -1,9 +1,17 @@
 # Voice Commands
 
 ## Introduction
-This code is used for one Arduino Nano in a set of two Arduino Nanos in one build.
-
+This code is used for one Arduino Nano in a set of two Arduino Nanos in one build. This build is the second part in section 04.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
 
 This code is used in the Arduino Nano connected to the DFRobot DF2301Q (SKU SEN0539-EN, https://www.dfrobot.com/product-2665.html). This device allows us to enter voice commands.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
+The code for the other Arduino Nano in this build receives the choice of pattern to display and generates that pattern on the LEDs and announces the pattern name on the Bluetooth speaker.
+- TBS
 
-The other code
+## Changes in DFRobot code
+I hacked the DFRobot code to allow it to run on an Arduino Nano. I did not do this in a particularly pleasing way, just made it work.
+- Thus the DFRobot code here is not exactly the code from DFRobot. Caveat Programmor!
+
+I was having trouble making the I2C interface work on the Nano so I just stuck with the UART interface. Not sure if the problems were something to do with adapting to Arduino Nano that I didn't take into account or what they were.
+
