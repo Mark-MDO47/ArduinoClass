@@ -13,6 +13,8 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
+ * AllThePatterns.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C
+ *
  * Persistence of Vision AllThePatterns
  */
 
