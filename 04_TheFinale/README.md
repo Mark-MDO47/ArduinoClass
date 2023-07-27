@@ -482,9 +482,13 @@ The new Arduino Nano and its circuit on the right is very simple. Power and grou
 
 ### The VoiceCommands and VC_DemoReel Code
 [Top](#notes "Top")<br>
-I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector.
+I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below.
 
 The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version).
+
+#### DF2301QG code
+[Top](#notes "Top")<br>
+The concept for this code is very simple. After setup we periodically check to see if the DF2301QG has sent us a message. If so we check to see if it is one of the commands we will respond to (see table above) and if so calculate and return the corresponding pattern number. If there was no message or if it was not a command we respond to, we return the current pattern number.
 
 For talking with the DF2301QG, here is the code prior to **setup**<br>
 ```C
@@ -506,7 +510,7 @@ SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
 DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
 ```
 
-Here is the **setup** code<br>
+Here is the DF2301QG **setup** code<br>
 ```C
   // Init the DF2301QG voice command module
   while (!(asr.begin())) {
@@ -532,7 +536,7 @@ Here is the **setup** code<br>
   asr.playByCMDID(DF2301QG_Retreat);
 ```
 
-Here is the **loop** code<br>
+Here is the DF2301QG **loop** code<br>
 ```C
 #define WAIT_FOR 100 // wait 100 milliseconds
 void loop() {
@@ -544,3 +548,4 @@ void loop() {
   }
 ```
 
+### Parallel Arduino-to-Arduino Interface
