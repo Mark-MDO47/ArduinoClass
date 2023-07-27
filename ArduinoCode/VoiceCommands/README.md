@@ -12,6 +12,7 @@ The code for the other Arduino Nano in this build receives the choice of pattern
 ## Changes in DFRobot code
 I hacked the DFRobot code to allow it to run on an Arduino Nano. I did not do this in a particularly pleasing way, just made it work.
 - Thus the DFRobot code here is not exactly the code from DFRobot. Caveat Programmor!
+- The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q
 
 I was having trouble making the I2C interface work on the Nano so I just stuck with the UART interface. Not sure if the problems were something to do with adapting to Arduino Nano that I didn't take into account or what they were.
 
