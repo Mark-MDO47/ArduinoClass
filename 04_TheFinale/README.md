@@ -457,3 +457,31 @@ The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0
 - https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
 
 <img src="https://dfimg.dfrobot.com/store/cache3/data/SEN0539/SEN0539-EN-1.jpg" width="500" alt="Image of DF2301QG voice command module from dfrobot.com">
+
+### Modified DFRobot code for DF2301QG
+[Top](#notes "Top")<br>
+The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos. There was evidence that the order of operations needed to be different for certain models. I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
+
+The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. My hacked up library didn't seem to work with the I2C method but worked with the UART method. I didn't see any obvious reason it shouldn't work with I2C, so I went ahead with using the UART communication. Maybe someday I will go back and try to make the I2C protocol work with my hacked up Arduino Nano version.
+
+The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q<br>
+It can alternatively be loaded with the Arduino IDE library manager as seen below:
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Library_DF2301Q.png" width="600" alt="Image of Arduino IDE selection for DFRobot DF2301Q library">
+
+### The Circuit - Two Arduinos
+[Top](#notes "Top")<br>
+The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pin HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
+
+The addition of the DF2301QG to this mix caused similar problems. This time there was no way to avoid doing serial read operations - we need to get the code telling us what the voice command is! This worked fine if I used an Arduino Nano to talk to the DF2301QG and not the LEDs or YX5200, so I split it into two Arduinos as you can see here:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelVoiceCommand_Fritzing.png" width="600" alt="Image of circuit showing use of two Arduino Nanos">
+
+The Arduino Nano and its circuit on the left is pretty similar to the ThereminSound circuit - I just removed the HC-SR04 Ultrasonic Range Detector and an extraneous button.
+
+The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue UART wires go to the DF2301QG (be sure to select the UART communication mode). And there are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to have the least computational burden on the left Arduino Nano.
+
+### The VoiceCommands and VC_DemoReel Code
+[Top](#notes "Top")<br>
+I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector.
+
+The VoiceCommands.ino code for the Arduino on the right is very simple, since we use my hacked up DFRobot library code.
