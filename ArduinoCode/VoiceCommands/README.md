@@ -4,7 +4,7 @@
 This code is used for one Arduino Nano in a set of two Arduino Nanos in one build. This build is the second part in section 04.
 * https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
 
-This code is used in the Arduino Nano connected to the DFRobot DF2301Q (SKU SEN0539-EN, https://www.dfrobot.com/product-2665.html). This device allows us to enter voice commands.
+This code is used in the Arduino Nano connected to the DFRobot DF2301Q (SKU SEN0539-EN, https://www.dfrobot.com/product-2665.html). This device allows us to enter voice commands. It does not require nor use an internet connection; the processing is done locally.
 * https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
 
 The code for the other Arduino Nano in this build receives the choice of pattern to display and generates that pattern on the LEDs and announces the pattern name on the Bluetooth speaker.
