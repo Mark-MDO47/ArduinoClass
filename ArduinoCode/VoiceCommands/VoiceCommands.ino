@@ -22,7 +22,7 @@
 // Nano pin 5V      LEDstick VCC
 // Nano pin GND     LEDstick GND
 //
-// These are definitions for the DFRobot DF2301QG  from the Gravity product line
+// These are definitions for the DFRobot DF2301QG SKU SEN0539-EN from the Gravity product line
 //     voice command module
 //   https://www.dfrobot.com/product-2665.html
 //   https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
@@ -40,7 +40,7 @@
 #include "Arduino.h"
 
 // DFRobot SKU DF2301QG-EN communications
-#include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
+#include "SoftwareSerial.h"                  // to talk to DF2301Q without using up debug serial port
 #include "DFRobot_DF2301Q.h"
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
@@ -61,7 +61,7 @@ DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
 // List of patterns to cycle through.
 char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
-uint8_t gPrevPattern = -1; // previous pattern number
+uint8_t gPrevPattern = 255; // previous pattern number - will always start with a "change" in pattern
 
 
 // These are the connections to send pattern number to the other Arduino
