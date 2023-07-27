@@ -556,10 +556,96 @@ void loop() {
 [Top](#notes "Top")<br>
 The concept for this interface is to make it very simple and avoid placing a comutational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands.ino achieves this.
 
-Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.
+Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.<br>
 ```C
 #define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
 #define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
 #define XFR_PIN_YELLOW_2    4 // power 2^1 - part of 3-bit pattern number
 #define XFR_PIN_BLUE_4      5 // power 2^1 - part of 3-bit pattern number
+```
+
+VoiceCommands.ino uses the pins in output mode. It sets the interface "invalid" as soon as possible in **setup**<br>
+```C
+  pinMode(XFR_PIN_WHITE_VALID, OUTPUT);
+  digitalWrite(XFR_PIN_WHITE_VALID, LOW);   // set valid off
+  pinMode(XFR_PIN_ORANGE_1, OUTPUT);
+  pinMode(XFR_PIN_YELLOW_2, OUTPUT);
+  pinMode(XFR_PIN_BLUE_4, OUTPUT);
+```
+
+VC_DemoReel.ino sets the pins in input mode in **setup**<br>
+```C
+  pinMode(XFR_PIN_WHITE_VALID, INPUT_PULLUP);
+  pinMode(XFR_PIN_ORANGE_1,    INPUT_PULLUP);
+  pinMode(XFR_PIN_YELLOW_2,    INPUT_PULLUP);
+  pinMode(XFR_PIN_BLUE_4,      INPUT_PULLUP);
+```
+
+VoiceCommands.ino in **loop** checks every time to see if the pattern has changed (it is preset to be changed on startup) and if so, calls the routine to transfer the pattern number.<br>
+```C
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    // Call the transfer pattern function, sending pattern to other Arduino
+    xfr_pattern(gCurrentPatternNumber);
+    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+  }
+```
+
+VC_DemoReel.ino in **loop** periodically looks to see if there is a pattern to receive. Normally there is a valid pattern and it is only occasionally a different pattern than the previous pattern. VC_DemoReel.ino borrows the EVERY_N_MILLISECONDS macro since it includes the FastLED library.
+```C
+  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = rcv_pattern(); }
+```
+
+#### Parallel Interface Interesting Part
+[Top](#notes "Top")<br>
+Now we get to the interesting part - how do the two Arduino Nanos actually communicate?
+
+VoiceCommands.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
+As we have seen before, we use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
+Pay special attention to the two delay(1) lines.<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// xfr_pattern(pat_num) - transfer pattern number to other Arduino
+//    returns: none
+//
+void xfr_pattern(uint8_t pat_num) {
+  digitalWrite(XFR_PIN_WHITE_VALID, LOW);   // set valid off
+  delay(1); // make sure no timing issue with other Arduino
+
+  if (0 == (pat_num & 0x01)) digitalWrite(XFR_PIN_ORANGE_1, LOW);
+  else                       digitalWrite(XFR_PIN_ORANGE_1, HIGH);
+
+  if (0 == (pat_num & 0x02)) digitalWrite(XFR_PIN_YELLOW_2, LOW);
+  else                       digitalWrite(XFR_PIN_YELLOW_2, HIGH);
+
+  if (0 == (pat_num & 0x02)) digitalWrite(XFR_PIN_BLUE_4, LOW);
+  else                       digitalWrite(XFR_PIN_BLUE_4, HIGH);
+
+  delay(1); // probably doesn't need delay here, but belt and suspenders
+  digitalWrite(XFR_PIN_WHITE_VALID, HIGH);   // set valid ON
+} // end xfr_pattern()
+```
+
+VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging pattern number being sent, only occasionally does it change.<br>
+Because of the delay statements above near the changes of value of the valid state, we know that we have at least a millisecond to read a valid number if we detect the valid pin HIGH, so we proceed as fast as possible.<br>
+For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// rcv_pattern() - receive pattern number from other Arduino
+//    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
+//
+uint8_t rcv_pattern() {
+  uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
+  if (HIGH == digitalRead(XFR_PIN_WHITE_VALID)) { // we have at least 1 millisec to do read
+    the_pattern = 0;
+    if (HIGH == digitalRead(XFR_PIN_ORANGE_1)) the_pattern += 1;
+    if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
+    if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
+    if (the_pattern > PATTERN_MAX_NUM) {
+      Serial.print(F("ERROR - Invalid pattern from rcv_pattern(): ")); Serial.println(the_pattern);
+      the_pattern = PATTERN_MAX_NUM;
+    } // pattern number illegal
+  } // end if valid pattern number to read
+  return(the_pattern);
+} // end rcv_pattern()
 ```
