@@ -484,4 +484,63 @@ The new Arduino Nano and its circuit on the right is very simple. Power and grou
 [Top](#notes "Top")<br>
 I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector.
 
-The VoiceCommands.ino code for the Arduino on the right is very simple, since we use my hacked up DFRobot library code.
+The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version).
+
+For talking with the DF2301QG, here is the code prior to **setup**<br>
+```C
+// DFRobot SKU DF2301QG-EN communications
+#include "SoftwareSerial.h"                  // to talk to DF2301Q without using up debug serial port
+#include "DFRobot_DF2301Q.h"
+#include "DF2301QG_cmds.h" // my list of command ID codes
+
+// DF2301QG voice command module definitions
+#define DF2301QG_RX_PIN 10 // DF2301QG UART TX (Nano RX)
+#define DF2301QG_TX_PIN 12 // DF2301QG UART RX (Nano TX)
+/**
+   @brief DFRobot_URM13_RTU constructor
+   @param serial - serial ports for communication, supporting hard and soft serial ports
+   @param rx - UART The pin for receiving data
+   @param tx - UART The pin for transmitting data
+*/
+SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
+DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
+```
+
+Here is the **setup** code<br>
+```C
+  // Init the DF2301QG voice command module
+  while (!(asr.begin())) {
+    Serial.println("Communication with device failed, please check connection");
+    delay(3000);
+  }
+
+  softSerial.listen();
+  // here if want to reset the DF2301QG voice command module
+  // asr.resetModule();
+
+  /* possible DF2301QG "SET" commands
+     DF2301Q_UART_MSG_CMD_SET_VOLUME: Set volume, the set value range 1-7 
+     DF2301Q_UART_MSG_CMD_SET_ENTERWAKEUP: Enter wake-up state; set value 0
+     DF2301Q_UART_MSG_CMD_SET_MUTE Mute mode; set value 1: mute, 0: unmute
+     DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s
+  */
+  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_MUTE, 0);
+  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, 7);
+  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_WAKE_TIME, 20);
+
+  // tell that DF2301QG voice command module is ready
+  asr.playByCMDID(DF2301QG_Retreat);
+```
+
+Here is the **loop** code<br>
+```C
+#define WAIT_FOR 100 // wait 100 milliseconds
+void loop() {
+  static uint32_t prev_millisec = 0;
+  static uint32_t now_millisec = 0;
+  if ((now_millisec = millis()) >= (prev_millisec + WAIT_FOR)) {
+    prev_millisec = now_millisec;
+    gCurrentPatternNumber = handle_DF2301QG();
+  }
+```
+
