@@ -14,3 +14,5 @@
 | 03_SonarRangeDetector | [Theremin](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Theremin "Theremin") | The class code |
 | 03_SonarRangeDetector | [MDO_Theremin](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_Theremin "MDO_Theremin") | The code for ParkTheCar box |
 | 04_TheFinale | [ThereminSound](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound "ThereminSound") | The class code |
+| 04_TheFinale | [VoiceCommands](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands "VoiceCommands") | The class code |
+| 04_TheFinale | [VC_DemoReel](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel "VC_DemoReel") | The class code |
