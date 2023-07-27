@@ -2,16 +2,17 @@
 
 **Table of Contents**
 * [Top](#notes "Top")
-* [The Idea](#the-idea "The Idea")
-* [The Circuit](#the-circuit "The Circuit")
-  * [YX5200 Sound Module](#yx5200-sound-module "YX5200 Sound Module")
-  * [KCX_BT_EMITTER Bluetooth Sound Transmitter](#kcx_bt_emitter-bluetooth-sound-transmitter "KCX_BT_EMITTER Bluetooth Sound Transmitter")
-* [The Code](#the-code "The Code")
-  * [Code Outline](#code-outline "Code Outline")
-  * [Hysteresis](#hysteresis "Hysteresis")
-  * [Code Details](#code-details "Code Details")
+* [The ThereminSound Idea](#the-thereminsound-idea "The ThereminSound Idea")
+  * [The Circuit](#the-circuit "The Circuit")
+    * [YX5200 Sound Module](#yx5200-sound-module "YX5200 Sound Module")
+    * [KCX_BT_EMITTER Bluetooth Sound Transmitter](#kcx_bt_emitter-bluetooth-sound-transmitter "KCX_BT_EMITTER Bluetooth Sound Transmitter")
+  * [The ThereminSound Code](#the-thereminsound-code "The ThereminSound Code")
+    * [Code Outline](#code-outline "Code Outline")
+    * [Hysteresis](#hysteresis "Hysteresis")
+    * [Code Details](#code-details "Code Details")
+* [The VoiceCommands and VC_DemoReel Idea](#the-voicecommands-and-vc_demoreel-idea "The VoiceCommands and VC_DemoReel Idea")
 
-## The Idea
+## The ThereminSound Idea
 [Top](#notes "Top")<br>
 Our Theremin, especially with the large LED disks, is pretty impressive. It can be a little dicey to hold your hand in the right place to see the pattern play out, but the USB Monitor will tell which pattern it is showing.
 
@@ -22,7 +23,7 @@ In this project we will add a circuit to send sound to a Bluetooth speaker to te
 Here is a video of this circuit in operation:
 - https://youtu.be/G7ARC0xHXRg
 
-## The Circuit
+### The Circuit
 [Top](#notes "Top")<br>
 The plan is that the circuit to implement the sound to the bluetooth will be on a different breadboard than the one containing the Theremin circuit. There will only be one of these so I will bring it around to the different stations so everyone can try it. In order to use it we will need the setup for the large LED disks including its separate power supply, so I will bring that around too.
 
@@ -44,7 +45,7 @@ The interface between the two circuits consists of five wires on the new breadbo
 | Blue | YX5200 TX - used for Arduino to receive serial status from YX5200 |
 | Yellow | YX5200 Busy - used for Arduino to detect if current sound still being played |
 
-### YX5200 Sound Module
+#### YX5200 Sound Module
 [Top](#notes "Top")<br>
 The YX5200 Sound Module uses a FAT-formatted SD (a.k.a. TF) card of up to 32 GByte to store numbered sound files to play. It outputs the sound on both speaker-level (less than 3 Watts) and line-level outputs. For this circuit we will use the line level outputs.
 
@@ -65,7 +66,7 @@ Some of the things to keep in mind:
 - There are many clones of this chip and it is hard to know when you order one which one you will get. Some of the more elaborate features don't work on some of the clones.
 - The BUSY line will not change to busy status immediately; it takes some milliseconds. My measurements are that it might take as few as 40 milliseconds, but that may depend on which YX5200 clone you are using. After starting a sound, I make the software pretend that the BUSY line is in busy status for 250 milliseconds before actually using the state of the line.
 
-### KCX_BT_EMITTER Bluetooth Sound Transmitter
+#### KCX_BT_EMITTER Bluetooth Sound Transmitter
 [Top](#notes "Top")<br>
 The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver.The KCX_BT_EMITTER Version 1.1 (and 1.2) used here conforms to an earlier version of Bluetooth than the latest Bluetooth 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried. This version of the KCX_BT_EMITTER is the one I am familiar with. I have heard rumors of an updated Version 1.7 supporting stereo and/or Bluetooth 5.x but have no experience with these, although I have ordered some and will be experimenting with them.
 
@@ -78,14 +79,14 @@ Some of the things to keep in mind:
 - It does take a few seconds to pair up with a device.
 - Unlike the YX5200, the KCX_BT_EMITTER has a power-ground (or digital-ground) and an audio-ground (or analog-ground) clearly distinguished in its documentation.
 
-## The Code
+### The ThereminSound Code
 [Top](#notes "Top")<br>
 We start from the final Theremin code from section 3 https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector and name it ThereminSound.ino
 
 As mentioned above, I have directly copied the dfrobot.com DFPlayer library into the code area in the Arduino code section of this class GitHub page but alternatively the library is available in the library manager. I tend to keep my own copy of the library since I initially had to do significant debugging to learn how to communicate not just with the dfrobot.com version of the part but also with several of the different clones. It was convenient to be able to put debugging statements directly in the library to do that debugging, and I have continued the practice of having the library available for me to modify as desired. Note that there are also several alternative libraries for communicating with YX5200 parts.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound
 
-### Code Outline
+#### Code Outline
 [Top](#notes "Top")<br>
 Below is an outline of the changes we will make
 
@@ -123,7 +124,7 @@ NOTE: the myBusy column is "not busy" if HIGH==DPIN_AUDIO_BUSY **and** the force
 | 0 | 0 | not busy | start Cassini | no sound playing, intro done, no new pattern |
 | 1 | 0 | not busy | start pattern | no sound playing, pattern changed |
 
-### Hysteresis
+#### Hysteresis
 One aspect of the Sonar Range Finder is that it is easy to get your hand near the region separating two distinct patterns and have it waver back and forth between the two patterns.
 
 One approach to making this easier would be to add "hysteresis" in the changing between patterns. The general definition of this is "the value of a physical property lags behind changes in the effect causing it" but I am using it as it is seen in electronics, in which once a decision is made the threshold is moved such that going back to the previous decision is harder.
@@ -133,7 +134,7 @@ One approach to making this easier would be to add "hysteresis" in the changing 
 
 For this project I took a different approach. Each sound file that states the name of a pattern starts with a short silent period, giving the hand a chance to find a region where the new pattern is stable without having the speaker go back and forth rapidly speaking different patterns.
 
-### Code Details
+#### Code Details
 [Top](#notes "Top")<br>
 
 Replace everything between the following two lines with the below code and comments<br>
@@ -435,3 +436,8 @@ In the **loop()** routine, replace the following lines with the lines below. Not
   // whenever current sound is done, go back to Cassini
   DFcheckSoundDone();
 ```
+
+## The VoiceCommands and VC_DemoReel Idea
+[Top](#notes "Top")<br>
+The Theremin with pattern announcements over Bluetooth speaker is very cool; but if we could control it by voice commands that would be even cooler!
+
