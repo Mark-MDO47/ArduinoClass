@@ -11,6 +11,14 @@
     * [Hysteresis](#hysteresis "Hysteresis")
     * [Code Details](#code-details "Code Details")
 * [The VoiceCommands and VC_DemoReel Idea](#the-voicecommands-and-vc_demoreel-idea "The VoiceCommands and VC_DemoReel Idea")
+  * [Modified DFRobot code for DF2301QG](#modified-dfrobot-code-for-df2301qg "Modified DFRobot code for DF2301QG")
+  * [The Circuit - Two Arduinos](#the-circuit-\--two-arduinos "The Circuit - Two Arduinos")
+  * [The VoiceCommands and VC_DemoReel Code](#the-voicecommands-and-vc_demoreel-code "The VoiceCommands and VC_DemoReel Code")
+    * [DF2301QG code](#df2301qg-code "DF2301QG code")
+  * [Parallel Arduino-to-Arduino Interface](#parallel-arduino\-to\-arduino-interface "Parallel Arduino-to-Arduino Interface")
+    * [Parallel Interface Interesting Part](#parallel-interface-interesting-part "Parallel Interface Interesting Part")
+
+There are two projects or builds in this section (Finale and Encore?) - **ThereminSound** and **VoiceCommands and VC_DemoReel**.
 
 ## The ThereminSound Idea
 [Top](#notes "Top")<br>
