@@ -11,7 +11,7 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
- * https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ * VoiceCommands.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
  * 
  * Voice Commands - this Arduino gets voice commands from DF2301QG and sends pattern number
  *     to the other Arduino, which controls the LEDs and Bluetooth speaker.
@@ -37,12 +37,6 @@
 // XFR value 2 D-4  YELLOW - power 2^1 - part of 3-bit pattern number
 // XFR value 4 D-5  BLUE   - power 2^2 - part of 3-bit pattern number
 
-
-#define XFR_PIN_WHITE_VALID 2 // set to HI for others valid
-#define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
-#define XFR_PIN_YELLOW_2    4 // power 2^1 - part of 3-bit pattern number
-#define XFR_PIN_BLUE_4      5 // power 2^1 - part of 3-bit pattern number
-
 #include "Arduino.h"
 
 // DFRobot SKU DF2301QG-EN communications
@@ -62,13 +56,20 @@
 SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
 DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
 
-
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
 
 // List of patterns to cycle through.
 char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = -1; // previous pattern number
+
+
+// These are the connections to send pattern number to the other Arduino
+#define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
+#define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
+#define XFR_PIN_YELLOW_2    4 // power 2^1 - part of 3-bit pattern number
+#define XFR_PIN_BLUE_4      5 // power 2^1 - part of 3-bit pattern number
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // handle_DF2301QG() - process DF2301QG voice command module data.
