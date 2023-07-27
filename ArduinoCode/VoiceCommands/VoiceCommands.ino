@@ -22,10 +22,10 @@
 // Nano pin 5V      LEDstick VCC
 // Nano pin GND     LEDstick GND
 //
-// These are definitions for the DFRobot SKU DF2301QG-EN from the Gravity product line
+// These are definitions for the DFRobot DF2301QG  from the Gravity product line
 //     voice command module
 //   https://www.dfrobot.com/product-2665.html
-//   https://wiki.dfrobot.com/SKU_DF2301QG-EN_Gravity_Voice_Recognition_Module_I2C_UART#target_4
+//   https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
 // Nano pin 5V      DF2301QG VCC
 // Nano pin GND     DF2301QG GND
 // Nano pin D-10    DF2301QG UART TX (Nano RX) GREEN wire
