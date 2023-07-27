@@ -7,8 +7,8 @@ This code is used for one Arduino Nano in a set of two Arduino Nanos in one buil
 This code is used in the Arduino Nano connected to the DFRobot DF2301Q (SKU SEN0539-EN, https://www.dfrobot.com/product-2665.html). This device allows us to enter voice commands. It does not require nor use an internet connection; the processing is done locally.
 * https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
 
-The code for the other Arduino Nano in this build receives the choice of pattern to display and generates that pattern on the LEDs and announces the pattern name on the Bluetooth speaker.
-- TBS
+The code for the other Arduino Nano in this build receives the choice of pattern to display and generates that pattern on the LEDs and announces the pattern name on the Bluetooth speaker. The patterns are from Mark Kriegsman's classic DemoReel100.ino.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
 
 ## Changes in DFRobot code
 I hacked the DFRobot code to allow it to run on an Arduino Nano. I did not do this in a particularly pleasing way, just made it work.
