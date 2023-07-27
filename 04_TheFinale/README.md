@@ -481,7 +481,7 @@ It can alternatively be loaded with the Arduino IDE library manager as seen belo
 
 ### The Circuit - Two Arduinos
 [Top](#notes "Top")<br>
-The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
+The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a computational and timing burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
 
 The addition of the DF2301QG to this mix caused similar problems. This time there was no way to avoid doing serial read operations - we need to get the code telling us what the voice command is! This worked fine if I used an Arduino Nano to talk to the DF2301QG and not the LEDs or YX5200, so I split it into two Arduinos as you can see here:<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelVoiceCommand_Fritzing.png" width="600" alt="Image of circuit showing use of two Arduino Nanos">
@@ -490,7 +490,7 @@ The Arduino Nano and its circuit on the left is pretty similar to the ThereminSo
 
 The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue UART wires go to the DF2301QG (be sure to select the UART communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
 
-There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to have the least computational burden on the left Arduino Nano.
+There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
 
 ### The VoiceCommands and VC_DemoReel Code
 [Top](#notes "Top")<br>
