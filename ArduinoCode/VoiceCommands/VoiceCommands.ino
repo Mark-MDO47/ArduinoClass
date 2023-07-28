@@ -142,7 +142,7 @@ void setup() {
   }
 
   softSerial.listen(); // this seems to help
-  delay(2000); // let DF2301QG finish reset
+  delay(5000); // let DF2301QG finish reset
   // here if want to reset the DF2301QG voice command module
   // asr.resetModule();
 
