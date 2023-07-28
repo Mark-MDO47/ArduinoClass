@@ -562,7 +562,7 @@ Here is the DF2301QG **setup** code<br>
 
 Here is the DF2301QG **loop** code<br>
 ```C
-#define WAIT_FOR 100 // wait 100 milliseconds
+#define WAIT_FOR 200 // wait this many milliseconds between checking for voice commands
 void loop() {
   static uint32_t prev_millisec = 0;
   static uint32_t now_millisec = 0;
@@ -638,7 +638,7 @@ void xfr_pattern(uint8_t pat_num) {
   if (0 == (pat_num & 0x02)) digitalWrite(XFR_PIN_YELLOW_2, LOW);
   else                       digitalWrite(XFR_PIN_YELLOW_2, HIGH);
 
-  if (0 == (pat_num & 0x02)) digitalWrite(XFR_PIN_BLUE_4, LOW);
+  if (0 == (pat_num & 0x04)) digitalWrite(XFR_PIN_BLUE_4, LOW);
   else                       digitalWrite(XFR_PIN_BLUE_4, HIGH);
 
   delay(1); // probably doesn't need delay here, but belt and suspenders
