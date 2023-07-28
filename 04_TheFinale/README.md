@@ -459,6 +459,13 @@ In this project we will add a circuit to listen to voice commands for which patt
 | Display number three | sinelon |
 | Display number four | bpm |
 | Display number five | juggle |
+| --- | --- |
+| Volume up | change volume |
+| Volume down | change volume |
+| Change volume to maximum | change volume |
+| Change volume to minimum | change volume |
+| Change volume to medium | change volume |
+
 
 The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0539-EN from the Gravity product line. I will bring this circuit around to the stations so everyone can try it on their system.
 - https://www.dfrobot.com/product-2665.html
