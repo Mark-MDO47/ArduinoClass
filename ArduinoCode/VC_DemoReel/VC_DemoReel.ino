@@ -382,10 +382,10 @@ void setup() {
 
   pinMode(DPIN_AUDIO_BUSY, INPUT_PULLUP); // HIGH when audio stops
 
-  pinMode(XFR_PIN_WHITE_VALID, INPUT_PULLUP);
-  pinMode(XFR_PIN_ORANGE_1,    INPUT_PULLUP);
-  pinMode(XFR_PIN_YELLOW_2,    INPUT_PULLUP);
-  pinMode(XFR_PIN_BLUE_4,      INPUT_PULLUP);
+  pinMode(XFR_PIN_WHITE_VALID, INPUT);
+  pinMode(XFR_PIN_ORANGE_1,    INPUT);
+  pinMode(XFR_PIN_YELLOW_2,    INPUT);
+  pinMode(XFR_PIN_BLUE_4,      INPUT);
 
   mySoftwareSerial.begin(9600); // this is control to DFPlayer audio player
 

@@ -28,14 +28,23 @@
 //   https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
 // Nano pin 5V      DF2301QG VCC
 // Nano pin GND     DF2301QG GND
-// Nano pin D-10    DF2301QG UART TX (Nano RX) GREEN wire
-// Nano pin D-12    DF2301QG UART RX (Nano TX) BLUE wire
+// Nano pin D-12    DF2301QG UART TX (Nano RX) GREEN wire
+// Nano pin D-10    DF2301QG UART RX (Nano TX) BLUE wire
 //
 // These are the connections to send pattern number to the other Arduino
 // XFR valid   D-2  WHITE  - HI when other three pins are valid
 // XFR value 1 D-3  ORANGE - power 2^0 - part of 3-bit pattern number
 // XFR value 2 D-4  YELLOW - power 2^1 - part of 3-bit pattern number
 // XFR value 4 D-5  BLUE   - power 2^2 - part of 3-bit pattern number
+
+#define DEBUG_PRINT 0  // one for printing, zero for no printing
+#if DEBUG_PRINT
+#define DEBUG_DO_PRINT(a)   Serial.print(a)
+#define DEBUG_DO_PRINTLN(a) Serial.println(a)
+#else // DEBUG_PRINT
+#define DEBUG_DO_PRINT(a)   // Serial.print(a)
+#define DEBUG_DO_PRINTLN(a) // Serial.println(a)
+#endif // DEBUG_PRINT
 
 #include "Arduino.h"
 
@@ -45,8 +54,8 @@
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
 // DF2301QG voice command module definitions
-#define DF2301QG_RX_PIN 10 // DF2301QG UART TX (Nano RX)
-#define DF2301QG_TX_PIN 12 // DF2301QG UART RX (Nano TX)
+#define DF2301QG_RX_PIN 12 // DF2301QG UART TX (Nano RX)
+#define DF2301QG_TX_PIN 10 // DF2301QG UART RX (Nano TX)
 /**
    @brief DFRobot_URM13_RTU constructor
    @param serial - serial ports for communication, supporting hard and soft serial ports
@@ -83,9 +92,9 @@ uint8_t handle_DF2301QG() {
 
   if ((DF2301QG_Display_number_zero <= CMDID) && (CMDID <= DF2301QG_Display_number_five)) {
     pattern = CMDID - DF2301QG_Display_number_zero;
-    Serial.print(F("Set pattern ")); Serial.println(pattern);
+    DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
   } else if (CMDID != 0) {
-    Serial.print(F("DF2301QG cmd ID ")); Serial.println(CMDID);
+    DEBUG_DO_PRINT(F("DF2301QG cmd ID ")); DEBUG_DO_PRINTLN(CMDID);
   }
   return(pattern);
 } // end handle_DF2301QG()
@@ -124,15 +133,16 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
-  Serial.println(""); // print a blank line in case there is some junk from power-on
+  DEBUG_DO_PRINTLN(""); // print a blank line in case there is some junk from power-on
 
   // Init the DF2301QG voice command module
   while (!(asr.begin())) {
-    Serial.println("Communication with device failed, please check connection");
+    DEBUG_DO_PRINTLN("Communication with device failed, please check connection");
     delay(3000);
   }
 
-  softSerial.listen();
+  softSerial.listen(); // this seems to help
+  delay(2000); // let DF2301QG finish reset
   // here if want to reset the DF2301QG voice command module
   // asr.resetModule();
 
@@ -149,10 +159,10 @@ void setup() {
   // tell that DF2301QG voice command module is ready
   asr.playByCMDID(DF2301QG_Retreat);
 
-  Serial.println("ArduinoClass init...");
+  DEBUG_DO_PRINTLN("ArduinoClass init...");
 } // end setup()
 
-#define WAIT_FOR 100 // wait 100 milliseconds
+#define WAIT_FOR 75 // wait 100 milliseconds
 void loop() {
   static uint32_t prev_millisec = 0;
   static uint32_t now_millisec = 0;
@@ -164,6 +174,6 @@ void loop() {
     gPrevPattern = gCurrentPatternNumber;
     // Call the transfer pattern function, sending pattern to other Arduino
     xfr_pattern(gCurrentPatternNumber);
-    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+    // DEBUG_DO_PRINTLN(gPatternStrings[gCurrentPatternNumber]);
   }
 } // end loop()
