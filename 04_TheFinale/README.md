@@ -11,9 +11,9 @@
     * [Hysteresis](#hysteresis "Hysteresis")
     * [Code Details](#code-details "Code Details")
 * [The VoiceCommands and VC_DemoReel Idea](#the-voicecommands-and-vc_demoreel-idea "The VoiceCommands and VC_DemoReel Idea")
-  * [Modified DFRobot code for DF2301QG](#modified-dfrobot-code-for-df2301qg "Modified DFRobot code for DF2301QG")
   * [The Circuit - Two Arduinos](#the-circuit-\--two-arduinos "The Circuit - Two Arduinos")
   * [The VoiceCommands and VC_DemoReel Code](#the-voicecommands-and-vc_demoreel-code "The VoiceCommands and VC_DemoReel Code")
+    * [Modified DFRobot code for DF2301QG](#modified-dfrobot-code-for-df2301qg "Modified DFRobot code for DF2301QG")
     * [DF2301QG code](#df2301qg-code "DF2301QG code")
   * [Parallel Arduino-to-Arduino Interface](#parallel-arduino\-to\-arduino-interface "Parallel Arduino-to-Arduino Interface")
     * [Parallel Interface Interesting Part](#parallel-interface-interesting-part "Parallel Interface Interesting Part")
@@ -478,21 +478,6 @@ One interesting thing about this device is that it doesn't depend on any Interne
 Here is a YouTube of this project in operation:
 - https://youtu.be/_q94WiQ2BMc
 
-### Modified DFRobot code for DF2301QG
-[Top](#notes "Top")<br>
-The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos. There was evidence that the order of operations needed to be different for certain Arduino models.
-
-I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
-
-The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. My hacked up library didn't seem to work with the I2C method but worked with the UART method. I didn't see any obvious reason it shouldn't work with I2C, so I went ahead with using the UART communication. Maybe someday I will go back and try to make the I2C protocol work with my hacked up Arduino Nano version.
-
-The DF2301QG also has slide-switch-selectable internal or external speakers. Be sure the switches are in the right position before use.
-
-The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q<br>
-It can alternatively be loaded with the Arduino IDE library manager as seen below:
-
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Library_DF2301Q.png" width="600" alt="Image of Arduino IDE selection for DFRobot DF2301Q library">
-
 ### The Circuit - Two Arduinos
 [Top](#notes "Top")<br>
 The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a computational and timing burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
@@ -519,6 +504,21 @@ Below is a closeup image just the Voice Command part of the circuit. You can see
 I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below.
 
 The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version).
+
+#### Modified DFRobot code for DF2301QG
+[Top](#notes "Top")<br>
+The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos. There was evidence that the order of operations needed to be different for certain Arduino models.
+
+I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
+
+The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. My hacked up library didn't seem to work with the I2C method but worked with the UART method. I didn't see any obvious reason it shouldn't work with I2C, so I went ahead with using the UART communication. Maybe someday I will go back and try to make the I2C protocol work with my hacked up Arduino Nano version.
+
+The DF2301QG also has slide-switch-selectable internal or external speakers. Be sure the switches are in the right position before use.
+
+The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q<br>
+It can alternatively be loaded with the Arduino IDE library manager as seen below:
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Library_DF2301Q.png" width="600" alt="Image of Arduino IDE selection for DFRobot DF2301Q library">
 
 #### DF2301QG code
 [Top](#notes "Top")<br>
