@@ -524,6 +524,8 @@ It can alternatively be loaded with the Arduino IDE library manager as seen belo
 [Top](#notes "Top")<br>
 The concept for this code is very simple. After setup we periodically check to see if the DF2301QG has sent us a message. If so we check to see if it is one of the commands we will respond to (see table above) and if so calculate and return the corresponding new pattern number. If there was no message or if it was not a command we respond to, we return the unchanged current pattern number.
 
+
+
 For talking with the DF2301QG, here is the code prior to **setup**<br>
 ```C
 // DFRobot SKU DF2301QG-EN communications
@@ -532,8 +534,9 @@ For talking with the DF2301QG, here is the code prior to **setup**<br>
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
 // DF2301QG voice command module definitions
-#define DF2301QG_RX_PIN 10 // DF2301QG UART TX (Nano RX)
-#define DF2301QG_TX_PIN 12 // DF2301QG UART RX (Nano TX)
+// DF2301QG voice command module definitions
+#define DF2301QG_RX_PIN 12 // DF2301QG UART TX (Nano RX)
+#define DF2301QG_TX_PIN 10 // DF2301QG UART RX (Nano TX)
 /**
    @brief DFRobot_URM13_RTU constructor
    @param serial - serial ports for communication, supporting hard and soft serial ports
@@ -548,7 +551,7 @@ Here is the DF2301QG **setup** code<br>
 ```C
   // Init the DF2301QG voice command module
   while (!(asr.begin())) {
-    Serial.println("Communication with device failed, please check connection");
+    DEBUG_DO_PRINTLN("Communication with device failed, please check connection");
     delay(3000);
   }
 
@@ -592,7 +595,7 @@ Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.<br>
 #define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
 #define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
 #define XFR_PIN_YELLOW_2    4 // power 2^1 - part of 3-bit pattern number
-#define XFR_PIN_BLUE_4      5 // power 2^1 - part of 3-bit pattern number
+#define XFR_PIN_BLUE_4      5 // power 2^2 - part of 3-bit pattern number
 ```
 
 VoiceCommands.ino uses the pins in output mode. It sets the interface "invalid" as soon as possible in **setup**<br>
@@ -606,10 +609,10 @@ VoiceCommands.ino uses the pins in output mode. It sets the interface "invalid" 
 
 VC_DemoReel.ino sets the pins in input mode in **setup**<br>
 ```C
-  pinMode(XFR_PIN_WHITE_VALID, INPUT_PULLUP);
-  pinMode(XFR_PIN_ORANGE_1,    INPUT_PULLUP);
-  pinMode(XFR_PIN_YELLOW_2,    INPUT_PULLUP);
-  pinMode(XFR_PIN_BLUE_4,      INPUT_PULLUP);
+  pinMode(XFR_PIN_WHITE_VALID, INPUT);
+  pinMode(XFR_PIN_ORANGE_1,    INPUT);
+  pinMode(XFR_PIN_YELLOW_2,    INPUT);
+  pinMode(XFR_PIN_BLUE_4,      INPUT);
 ```
 
 VoiceCommands.ino in **loop** checks every time to see if the pattern has changed (it is preset to be changed on startup) and if so, calls the routine to transfer the pattern number.<br>
@@ -618,7 +621,7 @@ VoiceCommands.ino in **loop** checks every time to see if the pattern has change
     gPrevPattern = gCurrentPatternNumber;
     // Call the transfer pattern function, sending pattern to other Arduino
     xfr_pattern(gCurrentPatternNumber);
-    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+    // DEBUG_DO_PRINTLN(gPatternStrings[gCurrentPatternNumber]);
   }
 ```
 
