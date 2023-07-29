@@ -449,6 +449,9 @@ In the **loop()** routine, replace the following lines with the lines below. Not
 [Top](#notes "Top")<br>
 The Theremin with pattern announcements over Bluetooth speaker is very cool; but if we could control it by voice commands that would be even cooler!
 
+Here is a YouTube of this project in operation:
+- https://youtu.be/_q94WiQ2BMc
+
 In this project we will add a circuit to listen to voice commands for which pattern to display ("Display number zero" through "Display number five") and send an identifying code to the Arduino. This will cause us to display the associated DemoReel100 pattern on the LEDs and announce the pattern name on the Bluetooth speaker. We will disconnect the HC-SR04 Ultrasonic Range Detector to avoid confusion in commanding of patterns.
 
 | Voice Command | Pattern |
@@ -474,9 +477,6 @@ The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0
 <img src="https://dfimg.dfrobot.com/store/cache3/data/SEN0539/SEN0539-EN-1.jpg" width="500" alt="Image of DF2301QG voice command module from dfrobot.com">
 
 One interesting thing about this device is that it doesn't depend on any Internet connection or giant tech company voice-to-text service; it does the voice recognition locally.
-
-Here is a YouTube of this project in operation:
-- https://youtu.be/_q94WiQ2BMc
 
 ### The Circuit - Two Arduinos
 [Top](#notes "Top")<br>
