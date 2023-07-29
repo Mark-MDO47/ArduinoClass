@@ -44,7 +44,7 @@ Each of these kits costs about $8 today and I think you will experience that the
 
 You should then be able to do all of the standard projects. For the extra credit projects I will bring all the following for our use, to be moved from station to station.
 - connectors, clips, harnesses, and wires
-- large RGB Color LED Disks (93 LEDs and 241 LEDs) plus 9V battery and UBEC power convertor (I will provide some to share between student stations)
+- large RGB Color LED Disks (93 LEDs and 241 LEDs) plus battery and UBEC power convertor (I will provide some to share between student stations)
 - a breadboard with the sound circuitry (YX5200 sound module and KCX_BT_EMITTER Bluetooth module) for the finale project
 
 ## Some other items used in the extra credit projects
@@ -54,7 +54,7 @@ These will be provide to share between the stations.<br>
 | Part | Image |
 | --- | --- |
 | Large (93 or 241 LED) WS2812B disk | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png" width="400" alt="Image of 241 LED WS2812B Disk"> |
-| 9V battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC_PwrSetup.png" width="400" alt="Image of UBEC Power Setup"> |
+| Battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC_PwrSetup.png" width="400" alt="Image of UBEC Power Setup"> |
 | "Spinning Stick" Persistence of Vision wand with 8 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="400" alt="Image of Sideview of Spinning Stick"> |
 | Bluetooth and Sound Circuitry | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/BluetoothAndSoundCircuitry.png" width="800" alt="Image of Bluetooth and Sound Circuitry"> |
 | Voice Command module | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/DF2301GQ_photo.png" width="800" alt="Image of Voice Command module"> |
