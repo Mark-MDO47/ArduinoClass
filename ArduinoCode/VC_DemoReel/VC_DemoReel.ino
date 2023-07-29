@@ -12,6 +12,13 @@
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
  * VC_DemoReel.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ * Major kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC FastLED library and examples!!!
+ *    A sad note that Daniel Garcia, co-author of FastLED library, was on the dive boat that caught fire and has passed. 
+ *    Here is some info on the FastLED Reddit https://www.reddit.com/r/FastLED/
+ *
+ * The LED patterns are from Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
+ * 
+ * I also hand-edited a smiley face. It would be near criminal to use a voice command module with a 
  * 
  * VoiceCommand Demo Reel - this Arduino receives voice-commanded pattern numbers from the other 
  *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs and announces the pattern
@@ -47,6 +54,8 @@
 #include "Arduino.h"
 #include "SoftwareSerial.h"                  // to talk to myDFPlayer without using up debug serial port
 #include "DFRobotDFPlayerMini.h"             // to communicate with the YX5200 audio player
+
+#define NUMOF(x) (sizeof((x)) / sizeof((*x)))
 
 #define DPIN_SWSRL_TX    9  // serial out - talk to DFPlayer audio player (YX5200)
 #define DPIN_SWSRL_RX    8  // serial in  - talk to DFPlayer audio player (YX5200)
@@ -97,6 +106,7 @@ CRGB leds[NUM_LEDS];
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
+uint8_t gSmileyFaceOn = 1; // non-zero to turn on smiley face
 
 typedef struct { uint8_t idx_start; uint8_t idx_end; } led_idx_t;
 static const led_idx_t lower_smile[] = { {108, 115}, {141, 147} };
@@ -293,6 +303,28 @@ void DFsetup() {
 } // end DFsetup()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+// insertSmileyFace() - over-write a smiley face onto the pattern
+//
+void insertSmileyFace() {
+  static const led_idx_t * uplow_smile[] = { lower_smile, upper_smile, eyes };
+  static const uint8_t * uplow_smile_numof[] = { NUMOF(lower_smile), NUMOF(upper_smile), NUMOF(eyes) };
+  static uint8_t onoff = 0;
+  led_idx_t * array_led_idx;
+
+  onoff = (onoff+1) % 16;
+  for (uint8_t i = 0; i < NUMOF(uplow_smile); i++) {
+    array_led_idx = uplow_smile[i];
+    uint8_t numof = uplow_smile_numof[i];
+    for (uint8_t j = 0; j < numof; j++) {
+      for (uint8_t k = array_led_idx[j].idx_start; k <= array_led_idx[j].idx_end; k++) {
+        if (onoff & 0x8)  leds[k] = CRGB::Yellow;
+        else              leds[k] = CRGB::Black;
+      }
+    } // for all led_idx_t in this part
+  } // for all parts of uplow_smile
+} // end insertSmileyFace()
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The brilliant (no pun intended) Demo Reel 100 patterns!
 void rainbow() 
 {
@@ -415,6 +447,10 @@ void loop() {
 
   // Call the current pattern function once, updating the 'leds' array
   gPatterns[gCurrentPatternNumber]();
+  // if doing smiley face, insert that here
+  if (gSmileyFaceOn) {
+    insertSmileyFace();
+  }
 
   // send the 'leds' array out to the actual LED strip
   FastLED.show();  
