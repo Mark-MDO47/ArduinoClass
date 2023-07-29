@@ -475,6 +475,9 @@ The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0
 
 One interesting thing about this device is that it doesn't depend on any Internet connection or giant tech company voice-to-text service; it does the voice recognition locally.
 
+Here is a YouTube of this project in operation:
+- https://youtu.be/_q94WiQ2BMc
+
 ### Modified DFRobot code for DF2301QG
 [Top](#notes "Top")<br>
 The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos. There was evidence that the order of operations needed to be different for certain Arduino models.
@@ -496,13 +499,20 @@ The communication with the LEDs and with the YX5200 sound module use "software s
 
 The addition of the DF2301QG to this mix caused similar problems. This time there was no way to avoid doing serial read operations - we need to get the code telling us what the voice command is! This worked fine if I used an Arduino Nano to talk to the DF2301QG and not the LEDs or YX5200, so I split it into two Arduinos as you can see here:
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/04_TheFinale_DemoReelVoiceCommand.pdf<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelVoiceCommand_Fritzing.png" width="600" alt="Image of circuit showing use of two Arduino Nanos">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_TheFinale_DemoReelVoiceCommand_Fritzing.png" width="600" alt="Image of Fritzing of circuit showing use of two Arduino Nanos">
 
 The Arduino Nano and its circuit on the left is pretty similar to the ThereminSound circuit - I just removed the HC-SR04 Ultrasonic Range Detector and an extraneous button.
 
 The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue UART wires go to the DF2301QG (be sure to select the UART communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
 
 There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
+
+Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_setup.jpg" width="600" alt="Image of setup of Voice Command circuit showing use of two Arduino Nanos">
+
+Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the UART connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_closeup.jpg" width="600" alt="Image of closeup of just the Voice Command part of the circuit">
+
 
 ### The VoiceCommands and VC_DemoReel Code
 [Top](#notes "Top")<br>
