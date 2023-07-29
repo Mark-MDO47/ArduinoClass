@@ -111,7 +111,7 @@ uint8_t gSmileyFaceOn = 1; // non-zero to turn on smiley face
 typedef struct { uint8_t idx_start; uint8_t idx_end; } led_idx_t;
 static const led_idx_t lower_smile[] = { {108, 115}, {141, 147} };
 static const led_idx_t upper_smile[] = { {153, 153}, {175, 175}, {183, 183}, {201, 201}, {204, 205}, {219, 219} };
-static const led_idx_t eyes[] = { {159, 160}, {168, 169}, {189, 190}, {196, 197} };
+static const led_idx_t eyes[] = { {159, 160}, {168, 169}, {190, 191}, {197, 198} };
 
 #define DFCHANGEVOLUME 0 // zero does not change sound
 // #define DFPRINTDETAIL 1 // if need detailed status from myDFPlayer (YX5200 communications)
