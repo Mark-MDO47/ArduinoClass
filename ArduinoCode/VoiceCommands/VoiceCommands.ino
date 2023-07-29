@@ -77,7 +77,7 @@ uint8_t gPrevPattern = 255; // previous pattern number - will always start with 
 #define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
 #define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
 #define XFR_PIN_YELLOW_2    4 // power 2^1 - part of 3-bit pattern number
-#define XFR_PIN_BLUE_4      5 // power 2^1 - part of 3-bit pattern number
+#define XFR_PIN_BLUE_4      5 // power 2^2 - part of 3-bit pattern number
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
