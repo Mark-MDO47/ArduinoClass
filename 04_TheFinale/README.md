@@ -507,7 +507,7 @@ The new Arduino Nano and its circuit on the right is very simple. Power and grou
 
 There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
 
-Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
+Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. I had to make a power source with more oomph than the 9V battery; the 241 LEDs really use up the power. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_setup.jpg" width="600" alt="Image of setup of Voice Command circuit showing use of two Arduino Nanos">
 
 Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the UART connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection.<br>
