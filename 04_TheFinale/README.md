@@ -663,7 +663,7 @@ void xfr_pattern(uint8_t pat_num) {
 } // end xfr_pattern()
 ```
 
-VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging pattern number being sent, only occasionally does it change.<br>
+VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.<br>
 Because of the delay statements above near the changes of value of the valid state, we know that we have at least a millisecond to read a valid number if we detect the valid pin HIGH, so we proceed as fast as possible.<br>
 For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.<br>
 ```C
