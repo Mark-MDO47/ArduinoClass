@@ -409,7 +409,7 @@ uint8_t rcv_pattern() {
     if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
       if (PATTERN_SMILEY_ON == the_pattern)  gSmileyFaceOn = 1;
       else                                   gSmileyFaceOn = 0;
-      the_pattern = PATTERN_MAX_NUM;
+      the_pattern = gCurrentPatternNumber;
     } // pattern number illegal
   } // end if valid pattern number to read
   return(the_pattern);

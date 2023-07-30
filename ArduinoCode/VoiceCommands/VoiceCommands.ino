@@ -37,7 +37,7 @@
 // XFR value 2 D-4  YELLOW - power 2^1 - part of 3-bit pattern number
 // XFR value 4 D-5  BLUE   - power 2^2 - part of 3-bit pattern number
 
-#define DEBUG_PRINT 0  // one for printing, zero for no printing
+#define DEBUG_PRINT 1  // one for printing, zero for no printing
 #if DEBUG_PRINT
 #define DEBUG_DO_PRINT(a)   Serial.print(a)
 #define DEBUG_DO_PRINTLN(a) Serial.println(a)
@@ -73,6 +73,8 @@ uint8_t gDFvolume = DF2301QG_VOLUME_MAX;
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
 #define SMILE_OFF 0
 #define SMILE_ON  1
+#define PTRN_SMILE_ON 6
+#define PTRN_SMILE_OFF 7
 uint8_t gSmileyFaceOn = SMILE_OFF; // non-zero to turn on smiley face
 
 // List of patterns to cycle through.
@@ -108,8 +110,9 @@ uint8_t handle_DF2301QG() {
       break;
     case DF2301QG_Display_smiley_face:
       // pattern case: we send a "psuedo-pattern" number to companion Arduino Nano
-      if (0 != gSmileyFaceOn)  { pattern = SMILE_OFF; gSmileyFaceOn = 0; }
-      else                     { pattern = SMILE_ON;  gSmileyFaceOn = 1; }
+      if (0 != gSmileyFaceOn)  { pattern = PTRN_SMILE_OFF; gSmileyFaceOn = SMILE_OFF; }
+      else                     { pattern = PTRN_SMILE_ON;  gSmileyFaceOn = SMILE_ON; }
+      DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
       break;
     case DF2301QG_Volume_up: case DF2301QG_Volume_down: case DF2301QG_Change_volume_to_maximum:
     case DF2301QG_Change_volume_to_minimum: case DF2301QG_Change_volume_to_medium:
