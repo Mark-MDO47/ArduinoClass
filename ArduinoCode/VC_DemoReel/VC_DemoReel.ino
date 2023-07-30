@@ -98,6 +98,9 @@ uint8_t state_introSoundPlaying = 1; // we start with the intro sound
 #define SMILEY_COLOR_ALL_ONE
 // #define SMILEY_COLOR_RAINBOW
 
+#ifdef SMILEY_COLOR_ALL_ONE
+static const CRGB all_one_loop_array[] = {CRGB::Red, CRGB::White, CRGB::Blue, CRGB::Green };
+#endif // SMILEY_COLOR_ALL_ONE
 #ifdef SMILEY_COLOR_RAINBOW
 static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
 #endif // SMILEY_COLOR_RAINBOW
@@ -321,19 +324,26 @@ void DFsetup() {
 void insertSmileyFace() {
   static const led_idx_t * uplow_smile[] = { lower_smile, upper_smile, eyes };
   static const uint8_t * uplow_smile_numof[] = { NUMOF(lower_smile), NUMOF(upper_smile), NUMOF(eyes) };
-  static uint8_t onoff = 0;
-  led_idx_t * array_led_idx;
-
-  onoff = (onoff+1) % 16;
-  for (uint8_t i = 0; i < NUMOF(uplow_smile); i++) {
-    array_led_idx = uplow_smile[i];
-    uint8_t numof = uplow_smile_numof[i];
-    for (uint8_t j = 0; j < numof; j++) {
-      for (uint8_t k = array_led_idx[j].idx_start; k <= array_led_idx[j].idx_end; k++) {
+  led_idx_t * smile_led_idx;
 
 #ifdef SMILEY_COLOR_ALL_ONE
-        if (onoff & 0x8)  leds[k] = CRGB::Yellow;
-        else              leds[k] = CRGB::Black;
+  static uint8_t onoff = 0;
+  static uint32_t all_one_loop = 0;
+  onoff = (onoff+1) % 32;
+  if (15 == onoff) all_one_loop += 1;
+#endif // SMILEY_COLOR_ALL_ONE
+
+  for (uint8_t i = 0; i < NUMOF(uplow_smile); i++) {
+    smile_led_idx = uplow_smile[i];
+    uint8_t numof = uplow_smile_numof[i];
+    for (uint8_t j = 0; j < numof; j++) {
+      for (uint8_t k = smile_led_idx[j].idx_start; k <= smile_led_idx[j].idx_end; k++) {
+        // fill the LEDs for the smiley face
+
+#ifdef SMILEY_COLOR_ALL_ONE
+//        if (onoff & 0x8)  leds[k] = all_one_loop_array[all_one_loop % NUMOF(all_one_loop_array)];
+//        else              leds[k] = CRGB::Black;
+          leds[k] = all_one_loop_array[all_one_loop % NUMOF(all_one_loop_array)];
 #endif // SMILEY_COLOR_ALL_ONE
 #ifdef SMILEY_COLOR_RAINBOW
         leds[k] = rainbow_array[next_rainbow++];
@@ -345,9 +355,8 @@ void insertSmileyFace() {
           fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
         }
 #endif // SMILEY_COLOR_RAINBOW
-        
-        
-      }
+
+      } // end fill the LEDs for the smiley face
     } // for all led_idx_t in this part
   } // for all parts of uplow_smile
 } // end insertSmileyFace()

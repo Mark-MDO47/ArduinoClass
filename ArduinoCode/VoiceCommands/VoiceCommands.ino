@@ -126,6 +126,7 @@ uint8_t handle_DF2301QG() {
       if (gDFvolume > DF2301QG_VOLUME_MAX) gDFvolume = DF2301QG_VOLUME_MAX;
       if (gDFvolume < DF2301QG_VOLUME_MIN) gDFvolume = DF2301QG_VOLUME_MIN;
       asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
+      DEBUG_DO_PRINT(F("Set volume ")); DEBUG_DO_PRINTLN(gDFvolume);
       break;
     case 0:
       // just ignore it
@@ -193,7 +194,7 @@ void setup() {
      DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s
   */
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_MUTE, 0);
-  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
+  // asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_WAKE_TIME, 20);
 
   // tell that DF2301QG voice command module is ready
