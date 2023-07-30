@@ -462,7 +462,7 @@ In this project we will add a circuit to listen to voice commands for which patt
 | Display number three | sinelon |
 | Display number four | bpm |
 | Display number five | juggle |
-| Display smiley face | add smiley face to pattern |
+| Display smiley face | toggle smiley face into pattern |
 | --- | --- |
 | Volume up | change volume |
 | Volume down | change volume |
