@@ -94,7 +94,11 @@ uint8_t state_introSoundPlaying = 1; // we start with the intro sound
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
 #define FRAMES_PER_SECOND 120
 
+// with three bits for pattern numbers, we can only go from 0 through 7 inclusive
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define PATTERN_SMILEY_ON  (PATTERN_MAX_NUM+1)   // 6 to turn smiley face on
+#define PATTERN_SMILEY_OFF (PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
+
 
 // Variables will change:
 static uint8_t gHue = 0; // rotating "base color"
@@ -106,7 +110,7 @@ CRGB leds[NUM_LEDS];
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
-uint8_t gSmileyFaceOn = 1; // non-zero to turn on smiley face
+uint8_t gSmileyFaceOn = 0; // non-zero to turn on smiley face
 
 typedef struct { uint8_t idx_start; uint8_t idx_end; } led_idx_t;
 static const led_idx_t lower_smile[] = { {108, 115}, {141, 147} };
@@ -391,6 +395,9 @@ char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGl
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
+// 
+// PATTERN_SMILEY_ON or PATTERN_SMILEY_OFF will affect the smiley face
+//   but will not change the pattern number
 //
 uint8_t rcv_pattern() {
   uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
@@ -399,8 +406,9 @@ uint8_t rcv_pattern() {
     if (HIGH == digitalRead(XFR_PIN_ORANGE_1)) the_pattern += 1;
     if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
-    if (the_pattern > PATTERN_MAX_NUM) {
-      Serial.print(F("ERROR - Invalid pattern from rcv_pattern(): ")); Serial.println(the_pattern);
+    if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
+      if (PATTERN_SMILEY_ON == the_pattern)  gSmileyFaceOn = 1;
+      else                                   gSmileyFaceOn = 0;
       the_pattern = PATTERN_MAX_NUM;
     } // pattern number illegal
   } // end if valid pattern number to read

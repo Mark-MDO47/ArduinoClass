@@ -65,10 +65,18 @@
 SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
 DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
 
+#define DF2301QG_VOLUME_MIN   1
+#define DF2301QG_VOLUME_MAX   7
+uint8_t gDFvolume = DF2301QG_VOLUME_MAX;
+
+
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define SMILE_OFF 0
+#define SMILE_ON  1
+uint8_t gSmileyFaceOn = SMILE_OFF; // non-zero to turn on smiley face
 
 // List of patterns to cycle through.
-char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
+char * gPatternStrings[8 /*1+PATTERN_MAX_NUM+2*/] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 SMILEY ON", "7 SMILEY OFF" };
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 255; // previous pattern number - will always start with a "change" in pattern
 
@@ -86,16 +94,45 @@ uint8_t gPrevPattern = 255; // previous pattern number - will always start with 
 //
 uint8_t handle_DF2301QG() {
   uint8_t pattern = gCurrentPatternNumber; // integer pattern number from 0 thru 5 inclusive
+  uint8_t vol_tmp;
   uint8_t CMDID; // command code received from DFRobot DF2301QG
 
   CMDID = asr.getCMDID(); // Get the ID for spoken command word; 0 means no command
 
-  if ((DF2301QG_Display_number_zero <= CMDID) && (CMDID <= DF2301QG_Display_number_five)) {
-    pattern = CMDID - DF2301QG_Display_number_zero;
-    DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
-  } else if (CMDID != 0) {
-    DEBUG_DO_PRINT(F("DF2301QG cmd ID ")); DEBUG_DO_PRINTLN(CMDID);
-  }
+  switch (CMDID) {
+    case DF2301QG_Display_number_zero: case DF2301QG_Display_number_one: case DF2301QG_Display_number_two:
+    case DF2301QG_Display_number_three: case DF2301QG_Display_number_four: case DF2301QG_Display_number_five:
+      // pattern case: we send a pattern number to companion Arduino Nano
+      pattern = CMDID - DF2301QG_Display_number_zero;
+      DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
+      break;
+    case DF2301QG_Display_smiley_face:
+      // pattern case: we send a "psuedo-pattern" number to companion Arduino Nano
+      if (0 != gSmileyFaceOn)  { pattern = SMILE_OFF; gSmileyFaceOn = 0; }
+      else                     { pattern = SMILE_ON;  gSmileyFaceOn = 1; }
+      break;
+    case DF2301QG_Volume_up: case DF2301QG_Volume_down: case DF2301QG_Change_volume_to_maximum:
+    case DF2301QG_Change_volume_to_minimum: case DF2301QG_Change_volume_to_medium:
+      // non-pattern case - just change the volume
+      if (DF2301QG_Volume_up == CMDID) gDFvolume += 1;
+      else if (DF2301QG_Volume_down == CMDID) gDFvolume -= 1;
+      else if (DF2301QG_Change_volume_to_maximum == CMDID) gDFvolume = DF2301QG_VOLUME_MAX;
+      else if (DF2301QG_Change_volume_to_minimum == CMDID) gDFvolume = DF2301QG_VOLUME_MIN;
+      else if (DF2301QG_Change_volume_to_medium == CMDID) gDFvolume = (DF2301QG_VOLUME_MAX + DF2301QG_VOLUME_MIN) / 2;
+      // now check that we are still in range
+      if (gDFvolume > DF2301QG_VOLUME_MAX) gDFvolume = DF2301QG_VOLUME_MAX;
+      if (gDFvolume < DF2301QG_VOLUME_MIN) gDFvolume = DF2301QG_VOLUME_MIN;
+      asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
+      break;
+    case 0:
+      // just ignore it
+      break;
+    default:
+      // command ID we do not handle; just print it
+      DEBUG_DO_PRINT(F("DF2301QG cmd ID ")); DEBUG_DO_PRINTLN(CMDID);
+      break;
+  } // end switch (CMDID)
+
   return(pattern);
 } // end handle_DF2301QG()
 
@@ -153,7 +190,7 @@ void setup() {
      DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s
   */
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_MUTE, 0);
-  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, 7);
+  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_WAKE_TIME, 20);
 
   // tell that DF2301QG voice command module is ready
