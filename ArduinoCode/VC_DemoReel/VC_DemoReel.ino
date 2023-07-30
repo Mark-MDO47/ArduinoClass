@@ -93,15 +93,23 @@ uint8_t state_introSoundPlaying = 1; // we start with the intro sound
 // Mark-MDO47 FastLED definitions
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
 #define FRAMES_PER_SECOND 120
+#define FASTLED_RAINBOWPTRNLEN 64 // number of shades to cycle through
+#define FASTLED_RAINBOWHUEROTATE 500 // rotate hues every 500th color pick
+#define SMILEY_COLOR_ALL_ONE
+// #define SMILEY_COLOR_RAINBOW
+
+#ifdef SMILEY_COLOR_RAINBOW
+static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
+#endif // SMILEY_COLOR_RAINBOW
+static uint8_t gHue = 0; // rotating "base color"
+static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+static uint16_t next_rainbow = 0;
 
 // with three bits for pattern numbers, we can only go from 0 through 7 inclusive
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
 #define PATTERN_SMILEY_ON  (PATTERN_MAX_NUM+1)   // 6 to turn smiley face on
 #define PATTERN_SMILEY_OFF (PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
 
-
-// Variables will change:
-static uint8_t gHue = 0; // rotating "base color"
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -111,6 +119,7 @@ uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 uint8_t gSmileyFaceOn = 0; // non-zero to turn on smiley face
+
 
 typedef struct { uint8_t idx_start; uint8_t idx_end; } led_idx_t;
 static const led_idx_t lower_smile[] = { {108, 115}, {141, 147} };
@@ -321,8 +330,23 @@ void insertSmileyFace() {
     uint8_t numof = uplow_smile_numof[i];
     for (uint8_t j = 0; j < numof; j++) {
       for (uint8_t k = array_led_idx[j].idx_start; k <= array_led_idx[j].idx_end; k++) {
+
+#ifdef SMILEY_COLOR_ALL_ONE
         if (onoff & 0x8)  leds[k] = CRGB::Yellow;
         else              leds[k] = CRGB::Black;
+#endif // SMILEY_COLOR_ALL_ONE
+#ifdef SMILEY_COLOR_RAINBOW
+        leds[k] = rainbow_array[next_rainbow++];
+        if (next_rainbow >= FASTLED_RAINBOWPTRNLEN) next_rainbow = 0;
+        gHue_rotate_countdown -= 1;
+        if ((0 == gHue_rotate_countdown) || (gHue_rotate_countdown >= FASTLED_RAINBOWHUEROTATE)) {
+          gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+          gHue += 4; // rotating "base color"
+          fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+        }
+#endif // SMILEY_COLOR_RAINBOW
+        
+        
       }
     } // for all led_idx_t in this part
   } // for all parts of uplow_smile
@@ -419,6 +443,9 @@ void setup() {
   // ## Clockless types ##
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
   FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
+#ifdef SMILEY_COLOR_RAINBOW
+  fill_rainbow(rainbow_array, FASTLED_RAINBOWPTRNLEN, gHue, 21); // this fills up the colors to send later
+#endif // SMILEY_COLOR_RAINBOW
 
   Serial.begin(115200);         // this serial communication is for general debug; set the USB serial port to 115,200 baud
   while (!Serial) {
