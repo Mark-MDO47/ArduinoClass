@@ -613,6 +613,64 @@ void loop() {
 } // end loop()
 ```
 
+And here is the DF2301QG handler **handle_DF2301QG**. We handle three sets of commands. The two "pattern cases" will change the value of the pattern being sent to the VC_DemoReel Arduino Nano. The "non-pattern case" does not change the value of the pattern being sent but does send a command to the DF2301QG device to change the volume. Otherwise we ignore the case 0 and for all remaining values we print the numerical code received but do nothing.
+- pattern case: we send a pattern number to companion Arduino Nano
+- pattern case: we send a "psuedo-pattern" number to companion Arduino Nano
+- non-pattern case - just change the volume
+
+Note that the "psuedo-pattern" is a toggle on the smiley face. We keep track internally on whether smiley face is ON or OFF and each time we see the Display_smiley_face code we toggle it and send the "psuedo-pattern" of the current state of SMILE_OFF or SMILE_ON.
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// handle_DF2301QG() - process DF2301QG voice command module data.
+//    returns: pattern number 0 <= num <= PATTERN_MAX_NUM
+//
+uint8_t handle_DF2301QG() {
+  uint8_t pattern = gCurrentPatternNumber; // integer pattern number from 0 thru 5 inclusive
+  uint8_t vol_tmp;
+  uint8_t CMDID; // command code received from DFRobot DF2301QG
+
+  CMDID = asr.getCMDID(); // Get the ID for spoken command word; 0 means no command
+
+  switch (CMDID) {
+    case DF2301QG_Display_number_zero: case DF2301QG_Display_number_one: case DF2301QG_Display_number_two:
+    case DF2301QG_Display_number_three: case DF2301QG_Display_number_four: case DF2301QG_Display_number_five:
+      // pattern case: we send a pattern number to companion Arduino Nano
+      pattern = CMDID - DF2301QG_Display_number_zero;
+      DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
+      break;
+    case DF2301QG_Display_smiley_face:
+      // pattern case: we send a "psuedo-pattern" number to companion Arduino Nano
+      if (0 != gSmileyFaceOn)  { pattern = PTRN_SMILE_OFF; gSmileyFaceOn = SMILE_OFF; }
+      else                     { pattern = PTRN_SMILE_ON;  gSmileyFaceOn = SMILE_ON; }
+      DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
+      break;
+    case DF2301QG_Volume_up: case DF2301QG_Volume_down: case DF2301QG_Change_volume_to_maximum:
+    case DF2301QG_Change_volume_to_minimum: case DF2301QG_Change_volume_to_medium:
+      // non-pattern case - just change the volume
+      if (DF2301QG_Volume_up == CMDID) gDFvolume += 1;
+      else if (DF2301QG_Volume_down == CMDID) gDFvolume -= 1;
+      else if (DF2301QG_Change_volume_to_maximum == CMDID) gDFvolume = DF2301QG_VOLUME_MAX;
+      else if (DF2301QG_Change_volume_to_minimum == CMDID) gDFvolume = DF2301QG_VOLUME_MIN;
+      else if (DF2301QG_Change_volume_to_medium == CMDID) gDFvolume = (DF2301QG_VOLUME_MAX + DF2301QG_VOLUME_MIN) / 2;
+      // now check that we are still in range
+      if (gDFvolume > DF2301QG_VOLUME_MAX) gDFvolume = DF2301QG_VOLUME_MAX;
+      if (gDFvolume < DF2301QG_VOLUME_MIN) gDFvolume = DF2301QG_VOLUME_MIN;
+      asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
+      DEBUG_DO_PRINT(F("Set volume ")); DEBUG_DO_PRINTLN(gDFvolume);
+      break;
+    case 0:
+      // just ignore it
+      break;
+    default:
+      // command ID we do not handle; just print it
+      DEBUG_DO_PRINT(F("DF2301QG cmd ID ")); DEBUG_DO_PRINTLN(CMDID);
+      break;
+  } // end switch (CMDID)
+
+  return(pattern);
+} // end handle_DF2301QG()
+```
+
 ### Parallel Arduino-to-Arduino Interface
 [Top](#notes "Top")<br>
 The concept for this interface is to make it very simple and avoid placing a computational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands.ino achieves this.
