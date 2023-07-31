@@ -538,7 +538,6 @@ For talking with the DF2301QG, here is the code prior to **setup**<br>
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
 // DF2301QG voice command module definitions
-// DF2301QG voice command module definitions
 #define DF2301QG_RX_PIN 12 // DF2301QG UART TX (Nano RX)
 #define DF2301QG_TX_PIN 10 // DF2301QG UART RX (Nano TX)
 /**
@@ -549,6 +548,23 @@ For talking with the DF2301QG, here is the code prior to **setup**<br>
 */
 SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
 DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
+
+#define DF2301QG_VOLUME_MIN   1
+#define DF2301QG_VOLUME_MAX   7
+uint8_t gDFvolume = DF2301QG_VOLUME_MAX;
+
+
+#define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define SMILE_OFF 0
+#define SMILE_ON  1
+#define PTRN_SMILE_ON 6
+#define PTRN_SMILE_OFF 7
+uint8_t gSmileyFaceOn = SMILE_OFF; // non-zero to turn on smiley face
+
+// List of patterns to cycle through.
+char * gPatternStrings[8 /*1+PATTERN_MAX_NUM+2*/] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 SMILEY ON", "7 SMILEY OFF" };
+uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
+uint8_t gPrevPattern = 255; // previous pattern number - will always start with a "change" in pattern
 ```
 
 Here is the DF2301QG **setup** code<br>
@@ -571,7 +587,7 @@ Here is the DF2301QG **setup** code<br>
      DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s
   */
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_MUTE, 0);
-  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, 7);
+  // asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
   asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_WAKE_TIME, 20);
 
   // tell that DF2301QG voice command module is ready
@@ -588,6 +604,13 @@ void loop() {
     prev_millisec = now_millisec;
     gCurrentPatternNumber = handle_DF2301QG();
   }
+  if (gPrevPattern != gCurrentPatternNumber) {
+    gPrevPattern = gCurrentPatternNumber;
+    // Call the transfer pattern function, sending pattern to other Arduino
+    xfr_pattern(gCurrentPatternNumber);
+    // DEBUG_DO_PRINTLN(gPatternStrings[gCurrentPatternNumber]);
+  }
+} // end loop()
 ```
 
 ### Parallel Arduino-to-Arduino Interface
@@ -641,6 +664,7 @@ Now we get to the interesting part - how do the two Arduino Nanos actually commu
 VoiceCommands.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
 As we have seen before, we use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
 Pay special attention to the two delay(1) lines.<br>
+VoiceCommands.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // xfr_pattern(pat_num) - transfer pattern number to other Arduino
@@ -667,10 +691,14 @@ void xfr_pattern(uint8_t pat_num) {
 VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.<br>
 Because of the delay statements above near the changes of value of the valid state, we know that we have at least a millisecond to read a valid number if we detect the valid pin HIGH, so we proceed as fast as possible.<br>
 For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.<br>
+VC_DemoReel.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
+// 
+// PATTERN_SMILEY_ON or PATTERN_SMILEY_OFF will affect the smiley face
+//   but will not change the pattern number
 //
 uint8_t rcv_pattern() {
   uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
@@ -679,9 +707,10 @@ uint8_t rcv_pattern() {
     if (HIGH == digitalRead(XFR_PIN_ORANGE_1)) the_pattern += 1;
     if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
-    if (the_pattern > PATTERN_MAX_NUM) {
-      Serial.print(F("ERROR - Invalid pattern from rcv_pattern(): ")); Serial.println(the_pattern);
-      the_pattern = PATTERN_MAX_NUM;
+    if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
+      if (PATTERN_SMILEY_ON == the_pattern)  gSmileyFaceOn = 1;
+      else                                   gSmileyFaceOn = 0;
+      the_pattern = gCurrentPatternNumber;
     } // pattern number illegal
   } // end if valid pattern number to read
   return(the_pattern);
