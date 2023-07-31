@@ -69,7 +69,7 @@ void DFsetup();                                                // how to initial
 #define SOUNDNUM_INTRO   7 // our introduction
 #define SOUNDNUM_CASSINI 8 // Cassini Saturn sound - SPACE!!!
 #define SOUND_DEFAULT_VOL     25  // default volume - 25 is pretty good
-#define SOUND_BKGRND_VOL      20  // background volume
+#define SOUND_BKGRND_VOL      15  // background volume
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
 uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
@@ -110,8 +110,9 @@ static uint16_t next_rainbow = 0;
 
 // with three bits for pattern numbers, we can only go from 0 through 7 inclusive
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
-#define PATTERN_SMILEY_ON  (PATTERN_MAX_NUM+1)   // 6 to turn smiley face on
-#define PATTERN_SMILEY_OFF (PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
+#define PATTERN_SMILEY_ONLY 98 // pattern if just toggled smiley on
+#define PSUEDO_PATTERN_SMILEY_ON  (PATTERN_MAX_NUM+1)   // 6 to turn smiley face on
+#define PSUEDO_PATTERN_SMILEY_OFF (PSUEDO_PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
 
 
 // Define the array of leds
@@ -272,20 +273,28 @@ void DFcheckSoundDone() {
   if (0 != state_introSoundPlaying) { // intro still playing
     if (0 == myBusy) { // can play a non-intro sound
       if (0 != gPatternNumberChanged) { // start pattern sound
-        playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+	    if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+		  playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+		} else {
+          playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+		}
       } else { // start Cassini sound
         playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
       } // end start a sound
     } // end if can play a non-intro sound
   } else { // intro done
     if (0 != gPatternNumberChanged) { // always start new pattern number sound
-      playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+	  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+	    playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+	  } else {
+	    playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+	  }
     } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
       playNumber = SOUNDNUM_CASSINI;
     }
   } // end if intro done
 
-  if (99 != playNumber) { // there is a new sound to play
+  if ((99 != playNumber) && (PATTERN_SMILEY_ONLY != gCurrentPatternNumber)) { // there is a new sound to play
     gPatternNumberChanged = 0;
     state_introSoundPlaying = 0;
     if (SOUNDNUM_CASSINI == playNumber) {
@@ -362,6 +371,13 @@ void insertSmileyFace() {
 } // end insertSmileyFace()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
+// do_smiley_background() - background all-black if just toggled to smiley face
+//
+void do_smiley_background() {
+  for (uint16_t i=0; i < NUM_LEDS; i++) leds[i] = CRGB::Black;
+} // do_smiley_background
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The brilliant (no pun intended) Demo Reel 100 patterns!
 void rainbow() 
 {
@@ -429,8 +445,9 @@ char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGl
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
 // 
-// PATTERN_SMILEY_ON or PATTERN_SMILEY_OFF will affect the smiley face
-//   but will not change the pattern number
+// PSUEDO_PATTERN_SMILEY_ON or PSUEDO_PATTERN_SMILEY_OFF will affect the smiley face
+//   but will not change the pattern number EXCEPT for the first time it toggles on
+//   and (possibly) the first time it toggles off.
 //
 uint8_t rcv_pattern() {
   uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
@@ -440,9 +457,15 @@ uint8_t rcv_pattern() {
     if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
     if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
-      if (PATTERN_SMILEY_ON == the_pattern)  gSmileyFaceOn = 1;
-      else                                   gSmileyFaceOn = 0;
-      the_pattern = gCurrentPatternNumber;
+      if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
+		if (0 == gSmileyFaceOn) the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
+		else                    the_pattern = gCurrentPatternNumber;
+		gSmileyFaceOn = 1;
+	  } else {
+		if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
+		else                                              the_pattern = gCurrentPatternNumber;
+		gSmileyFaceOn = 0;
+	  }
     } // pattern number illegal
   } // end if valid pattern number to read
   return(the_pattern);
@@ -483,14 +506,22 @@ void loop() {
   if (gPrevPattern != gCurrentPatternNumber) {
     gPrevPattern = gCurrentPatternNumber;
     gPatternNumberChanged = 1; // alerts the announcement of the pattern
-    Serial.println(gPatternStrings[gCurrentPatternNumber]);
+	if (PATTERN_SMILEY_ONLY != gCurrentPatternNumber) {
+      Serial.println(gPatternStrings[gCurrentPatternNumber]);
+	} else {
+	  Serial.println(F("Smiley Face Only"));
+	}
   }
 
   // whenever current sound is done, go back to Cassini
   DFcheckSoundDone();
 
   // Call the current pattern function once, updating the 'leds' array
-  gPatterns[gCurrentPatternNumber]();
+  if (PATTERN_SMILEY_ONLY != gCurrentPatternNumber) {
+    gPatterns[gCurrentPatternNumber]();
+  } else {
+	  do_smiley_background();
+  }
   // if doing smiley face, insert that here
   if (gSmileyFaceOn) {
     insertSmileyFace();

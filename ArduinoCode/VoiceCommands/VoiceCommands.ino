@@ -37,7 +37,7 @@
 // XFR value 2 D-4  YELLOW - power 2^1 - part of 3-bit pattern number
 // XFR value 4 D-5  BLUE   - power 2^2 - part of 3-bit pattern number
 
-#define DEBUG_PRINT 1  // one for printing, zero for no printing
+#define DEBUG_PRINT 0  // one for printing, zero for no printing
 #if DEBUG_PRINT
 #define DEBUG_DO_PRINT(a)   Serial.print(a)
 #define DEBUG_DO_PRINTLN(a) Serial.println(a)
