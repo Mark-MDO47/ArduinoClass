@@ -451,22 +451,28 @@ char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGl
 //
 uint8_t rcv_pattern() {
   uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
+  uint8_t the_pattern_before_smiley = 0;
   if (HIGH == digitalRead(XFR_PIN_WHITE_VALID)) { // we have at least 1 millisec to do read
     the_pattern = 0;
     if (HIGH == digitalRead(XFR_PIN_ORANGE_1)) the_pattern += 1;
     if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
-    if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
-      if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
-		if (0 == gSmileyFaceOn) the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
-		else                    the_pattern = gCurrentPatternNumber;
-		gSmileyFaceOn = 1;
-	  } else {
-		if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
-		else                                              the_pattern = gCurrentPatternNumber;
-		gSmileyFaceOn = 0;
+    // handle smiley
+    if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
+		  if (0 == gSmileyFaceOn) {
+        the_pattern_before_smiley = gCurrentPatternNumber;
+		    the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
+		  }
+		  else {
+		    the_pattern = gCurrentPatternNumber;
+		  }
+		  gSmileyFaceOn = 1;
+	  } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
+		  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
+  		else                                              the_pattern = gCurrentPatternNumber;
+      if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
+  		gSmileyFaceOn = 0;
 	  }
-    } // pattern number illegal
   } // end if valid pattern number to read
   return(the_pattern);
 } // end rcv_pattern()
