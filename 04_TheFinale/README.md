@@ -733,7 +733,9 @@ VoiceCommands.ino in **loop** checks every time to see if the pattern has change
 
 VC_DemoReel.ino in **loop** periodically looks to see if there is a pattern to receive. Normally there is a valid pattern and it is only occasionally a different pattern than the previous pattern. VC_DemoReel.ino borrows the EVERY_N_MILLISECONDS macro since it includes the FastLED library.
 ```C
-  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = rcv_pattern(); }
+  EVERY_N_MILLISECONDS( 200 ) {
+    gCurrentPatternNumber = rcv_pattern();
+  }
 ```
 
 #### Parallel Interface Interesting Part
@@ -777,7 +779,7 @@ VC_DemoReel.ino<br>
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
-// 
+//
 // PSUEDO_PATTERN_SMILEY_ON or PSUEDO_PATTERN_SMILEY_OFF will affect the smiley face
 //   but will not change the pattern number EXCEPT for the first time it toggles on
 //   and (possibly) the first time it toggles off.
@@ -792,20 +794,19 @@ uint8_t rcv_pattern() {
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
     // handle smiley
     if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
-		  if (0 == gSmileyFaceOn) {
+      if (0 == gSmileyFaceOn) {
         the_pattern_before_smiley = gCurrentPatternNumber;
-		    the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
-		  }
-		  else {
-		    the_pattern = gCurrentPatternNumber;
-		  }
-		  gSmileyFaceOn = 1;
-	  } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
-		  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
-  		else                                              the_pattern = gCurrentPatternNumber;
-    if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
-  		gSmileyFaceOn = 0;
-	  }
+        the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
+      } else {
+        the_pattern = gCurrentPatternNumber;
+      }
+      gSmileyFaceOn = 1;
+    } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
+      if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
+      else                                              the_pattern = gCurrentPatternNumber;
+      if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
+      gSmileyFaceOn = 0;
+    }
   } // end if valid pattern number to read
   return(the_pattern);
 } // end rcv_pattern()
@@ -870,22 +871,22 @@ void DFcheckSoundDone() {
   if (0 != state_introSoundPlaying) { // intro still playing
     if (0 == myBusy) { // can play a non-intro sound
       if (0 != gPatternNumberChanged) { // start pattern sound
-	    if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
-		  playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
-		} else {
+        if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+          playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+        } else {
           playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
-		}
+        }
       } else { // start Cassini sound
         playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
       } // end start a sound
     } // end if can play a non-intro sound
   } else { // intro done
     if (0 != gPatternNumberChanged) { // always start new pattern number sound
-	  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
-	    playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
-	  } else {
-	    playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
-	  }
+      if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+        playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+      } else {
+        playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+      }
     } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
       playNumber = SOUNDNUM_CASSINI;
     }
