@@ -72,7 +72,7 @@ Some of the things to keep in mind:
 - There is a 1 KOhm resistor between the Arduino and the YX5200 RX pin. This is not optional. If this is left out then the commands sent on this line will be heard in the sound from the speaker.
 - When using the line-level outputs to the Bluetooth module, the correct ground must be used. There are two ground pins on the YX5200 and the documentation does not distinguish between them, but one works far better as audio-ground or analog-ground than the other. Again, you can refer to my YX5200 GitHub page (see above).
 - The card can play MP3 files but there is a delay to start playing. It is much faster starting with WAV files.
-- There are many clones of this chip and it is hard to know when you order one which one you will get. Some of the more elaborate features don't work on some of the clones.
+- There are many clones of this chip and it is hard to know when you order one, unless you order from dfrobot.com, which clone you will get. Some of the more elaborate features don't work on some of the clones.
 - The BUSY line will not change to busy status immediately; it takes some milliseconds. My measurements are that it might take as few as 40 milliseconds, but that may depend on which YX5200 clone you are using. After starting a sound, I make the software pretend that the BUSY line is in busy status for 250 milliseconds before actually using the state of the line.
 
 #### KCX_BT_EMITTER Bluetooth Sound Transmitter
