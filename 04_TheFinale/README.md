@@ -77,13 +77,14 @@ Some of the things to keep in mind:
 
 #### KCX_BT_EMITTER Bluetooth Sound Transmitter
 [Top](#notes "Top")<br>
-The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver.The KCX_BT_EMITTER Version 1.1 (and 1.2) used here conforms to an earlier version of Bluetooth than the latest Bluetooth 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried. This version of the KCX_BT_EMITTER is the one I am familiar with. I have heard rumors of an updated Version 1.7 supporting stereo and/or Bluetooth 5.x but have no experience with these, although I have ordered some and will be experimenting with them.
+The KCX_BT_EMITTER Bluetooth Sound Transmitter module takes its line-level inputs and sends them to a Bluetooth receiver.The KCX_BT_EMITTER Version 1.1 (and 1.2) used here conforms to an earlier version of Bluetooth than the latest Bluetooth 5.3. Depending on what documentation you read, it uses either version 4.1 or 4.2. This works well with my Bluetooth speaker but has not worked with any Bluetooth earphones I have tried. This version of the KCX_BT_EMITTER is the one I am familiar with. There is an updated Version 1.7 supporting some more advanced features but I have much more experience with these 1.1 versions.
 
 I have a separate GitHub project describing how to use this module:
-- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
+- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/tree/KCX_BT_EMITTER_V1.1 (branch for the V1.1 and V1.2 versions used here)
+- https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER (master branch, points to branches KCX_BT_EMITTER_V1.1 and KCX_BT_EMITTER_V1.7)
 
 Some of the things to keep in mind:
-- When it is freshly initialized, it will try to connect to the first Bluetooth audio receiver (speaker or earbuds or headphones) it finds. It can be paired with a specific device so it doesn't connect to some random speaker; to do that I use the "Programming Arduino" which allows me to see what Bluetooth devices it sees and to select among them for ones it will be allowed to connect with. The "Programming Arduino" can also remove devices from the allowed list.
+- When the KCX_BT_EMITTER is freshly initialized, it will try to connect to the first Bluetooth audio receiver (speaker or earbuds or headphones) it finds. It can be paired with a specific device so it doesn't connect to some random speaker; to do that I use the "Programming Arduino" which allows me to see what Bluetooth devices it sees and to select among them for ones it will be allowed to connect with. The "Programming Arduino" can also remove devices from the allowed list.
 - Once the KCX_BT_EMITTER has been programmed to allow pairing with one or more devices, it will not connect to a random device but will wait to connect to one of the devices on its list.
 - It does take a few seconds to pair up with a device.
 - Unlike the YX5200, the KCX_BT_EMITTER has a power-ground (or digital-ground) and an audio-ground (or analog-ground) clearly distinguished in its documentation.
@@ -506,21 +507,26 @@ Below is a closeup image just the Voice Command part of the circuit. You can see
 
 ### The VoiceCommands and VC_DemoReel Code
 [Top](#notes "Top")<br>
-I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below.
+I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below. Take a look here and see the discussions below for how it handles receiving the pattern commands and how it handles the "smiley face" psuedo-pattern.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
 
-The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version).
+The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version). It is not very similar to our other code, so probably best to copy it from here and read through the description below.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
 
 #### Modified DFRobot code for DF2301QG
 [Top](#notes "Top")<br>
-The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos. There was evidence that the order of operations needed to be different for certain Arduino models.
+The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos.
 
-I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
+I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. There is evidence that the order of operations needed to be different for certain Arduino models. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
 
 The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. My hacked up library didn't seem to work with the I2C method but worked with the UART method. I didn't see any obvious reason it shouldn't work with I2C, so I went ahead with using the UART communication. Maybe someday I will go back and try to make the I2C protocol work with my hacked up Arduino Nano version.
 
-The DF2301QG also has slide-switch-selectable internal or external speakers. Be sure the switches are in the right position before use.
+The DF2301QG also has slide-switch-selectable internal or external speakers; we set it to internal.
 
-The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q<br>
+Be sure the slide switches are in the right position before use.
+
+The unmodified DFRobot code can be found here:
+- https://github.com/DFRobot/DFRobot_DF2301Q
 It can alternatively be loaded with the Arduino IDE library manager as seen below:
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Library_DF2301Q.png" width="600" alt="Image of Arduino IDE selection for DFRobot DF2301Q library">
@@ -528,8 +534,6 @@ It can alternatively be loaded with the Arduino IDE library manager as seen belo
 #### DF2301QG code
 [Top](#notes "Top")<br>
 The concept for this code is very simple. After setup we periodically check to see if the DF2301QG has sent us a message. If so we check to see if it is one of the commands we will respond to (see table above) and if so calculate and return the corresponding new pattern number. If there was no message or if it was not a command we respond to, we return the unchanged current pattern number.
-
-
 
 For talking with the DF2301QG, here is the code prior to **setup**<br>
 ```C
