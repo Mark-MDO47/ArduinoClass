@@ -462,8 +462,8 @@ In this project we will add a circuit to listen to voice commands for which patt
 | Display number one | rainbowWithGlitter |
 | Display number two | confetti |
 | Display number three | sinelon |
-| Display number four | bpm |
-| Display number five | juggle |
+| Display number four | juggle |
+| Display number five | bpm |
 | Display smiley face | toggle smiley face and merge into pattern |
 | --- | --- |
 | Volume up | change volume |
