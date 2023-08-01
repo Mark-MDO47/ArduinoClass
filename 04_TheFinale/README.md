@@ -903,7 +903,7 @@ void DFcheckSoundDone() {
 } // end DFcheckSoundDone()
 ```
 
-We also want to have a background of LEDs all OFF (CRGB::Black) when the smiley face appears until a pattern is commanded.<br>
+Odds and Ends - we also want to have a background of LEDs all OFF (CRGB::Black) when the smiley face appears until a pattern is commanded.<br>
 VC_DemoReel.ino smiley face background.<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
