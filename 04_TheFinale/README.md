@@ -505,8 +505,6 @@ Below is a closeup image just the Voice Command part of the circuit. You can see
 
 ### The VoiceCommands and VC_DemoReel Code
 [Top](#notes "Top")<br>
-**NOTE THIS README NEEDS CODE UPDATE FOR SMILEY FACE; code itself is correct**
-
 I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below.
 
 The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version).
