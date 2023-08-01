@@ -12,13 +12,13 @@
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
  * VoiceCommands.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
- * 
+ *
  * Voice Commands - this Arduino gets voice commands from DF2301QG and sends pattern number
  *     to the other Arduino, which controls the LEDs and Bluetooth speaker.
  */
 
- // connections:
-// 
+// connections:
+//
 // Nano pin 5V      LEDstick VCC
 // Nano pin GND     LEDstick GND
 //
@@ -188,7 +188,7 @@ void setup() {
   // asr.resetModule();
 
   /* possible DF2301QG "SET" commands
-     DF2301Q_UART_MSG_CMD_SET_VOLUME: Set volume, the set value range 1-7 
+     DF2301Q_UART_MSG_CMD_SET_VOLUME: Set volume, the set value range 1-7
      DF2301Q_UART_MSG_CMD_SET_ENTERWAKEUP: Enter wake-up state; set value 0
      DF2301Q_UART_MSG_CMD_SET_MUTE Mute mode; set value 1: mute, 0: unmute
      DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s

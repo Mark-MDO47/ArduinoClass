@@ -4,7 +4,7 @@
 
 /*
  * Modified by Mark Olson for his Arduino class https://github.com/Mark-MDO47/ArduinoClass
- * 
+ *
  * We are using an Arduino Nano with a USB mini-B connector
  *            V3.0 ATmega328P 5V 16M CH340 Compatible to Arduino Nano V3
  *            32Kbyte Flash (program storage), 2Kbyte SRAM, 1Kbyte EEPROM
@@ -13,21 +13,21 @@
  *
  * VC_DemoReel.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
  * Major kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC FastLED library and examples!!!
- *    A sad note that Daniel Garcia, co-author of FastLED library, was on the dive boat that caught fire and has passed. 
+ *    A sad note that Daniel Garcia, co-author of FastLED library, was on the dive boat that caught fire and has passed.
  *    Here is some info on the FastLED Reddit https://www.reddit.com/r/FastLED/
  *
  * The LED patterns are from Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
- * 
- * I also hand-edited a smiley face. It would be near criminal to use a voice command module with a 
- * 
- * VoiceCommand Demo Reel - this Arduino receives voice-commanded pattern numbers from the other 
+ *
+ * I also hand-edited a smiley face. It would be near criminal to use a voice command module with a
+ *
+ * VoiceCommand Demo Reel - this Arduino receives voice-commanded pattern numbers from the other
  *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs and announces the pattern
  *   name on the Bluetooth speaker.
- *    
+ *
  */
 
- // connections:
-// 
+// connections:
+//
 // Nano pin 5V      LEDstick VCC
 // Nano pin GND     LEDstick GND
 // Nano pin D-7     LEDstick DIN
@@ -73,7 +73,7 @@ void DFsetup();                                                // how to initial
 #define SOUND_ACTIVE_PROTECT 250  // milliseconds to keep SW twiddled sound active after doing myDFPlayer.play(mySound)
 uint32_t state_timerForceSoundActv = 0;  // end timer for enforcing SOUND_ACTIVE_PROTECT
 uint8_t state_introSoundPlaying = 1; // we start with the intro sound
- 
+
 // These are the connections to receive pattern number from the other Arduino
 #define XFR_PIN_WHITE_VALID 2 // set to HI for others valid
 #define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
@@ -125,7 +125,10 @@ uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern numbe
 uint8_t gSmileyFaceOn = 0; // non-zero to turn on smiley face
 
 
-typedef struct { uint8_t idx_start; uint8_t idx_end; } led_idx_t;
+typedef struct {
+  uint8_t idx_start;
+  uint8_t idx_end;
+} led_idx_t;
 static const led_idx_t lower_smile[] = { {108, 115}, {141, 147} };
 static const led_idx_t upper_smile[] = { {153, 153}, {175, 175}, {183, 183}, {201, 201}, {204, 205}, {219, 219} };
 static const led_idx_t eyes[] = { {159, 160}, {168, 169}, {188, 189}, {195, 196} };
@@ -141,64 +144,64 @@ static const led_idx_t eyes[] = { {159, 160}, {168, 169}, {188, 189}, {195, 196}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 #if DFPRINTDETAIL
-void DFprintDetail(uint8_t type, int value){
+void DFprintDetail(uint8_t type, int value) {
   switch (type) {
-    case TimeOut:
-      Serial.println(F("Time Out!"));
+  case TimeOut:
+    Serial.println(F("Time Out!"));
+    break;
+  case WrongStack:
+    Serial.println(F("Stack Wrong!"));
+    break;
+  case DFPlayerCardInserted:
+    Serial.println(F("Card Inserted!"));
+    break;
+  case DFPlayerCardRemoved:
+    Serial.println(F("Card Removed!"));
+    break;
+  case DFPlayerCardOnline:
+    Serial.println(F("Card Online!"));
+    break;
+  case DFPlayerUSBInserted:
+    Serial.println("USB Inserted!");
+    break;
+  case DFPlayerUSBRemoved:
+    Serial.println("USB Removed!");
+    break;
+  case DFPlayerPlayFinished:
+    Serial.print(F("Number:"));
+    Serial.print(value);
+    Serial.println(F(" Play Finished!"));
+    break;
+  case DFPlayerError:
+    Serial.print(F("DFPlayerError:"));
+    switch (value) {
+    case Busy:
+      Serial.println(F("Card not found"));
       break;
-    case WrongStack:
-      Serial.println(F("Stack Wrong!"));
+    case Sleeping:
+      Serial.println(F("Sleeping"));
       break;
-    case DFPlayerCardInserted:
-      Serial.println(F("Card Inserted!"));
+    case SerialWrongStack:
+      Serial.println(F("Get Wrong Stack"));
       break;
-    case DFPlayerCardRemoved:
-      Serial.println(F("Card Removed!"));
+    case CheckSumNotMatch:
+      Serial.println(F("Check Sum Not Match"));
       break;
-    case DFPlayerCardOnline:
-      Serial.println(F("Card Online!"));
+    case FileIndexOut:
+      Serial.println(F("File Index Out of Bound"));
       break;
-    case DFPlayerUSBInserted:
-      Serial.println("USB Inserted!");
+    case FileMismatch:
+      Serial.println(F("Cannot Find File"));
       break;
-    case DFPlayerUSBRemoved:
-      Serial.println("USB Removed!");
-      break;
-    case DFPlayerPlayFinished:
-      Serial.print(F("Number:"));
-      Serial.print(value);
-      Serial.println(F(" Play Finished!"));
-      break;
-    case DFPlayerError:
-      Serial.print(F("DFPlayerError:"));
-      switch (value) {
-        case Busy:
-          Serial.println(F("Card not found"));
-          break;
-        case Sleeping:
-          Serial.println(F("Sleeping"));
-          break;
-        case SerialWrongStack:
-          Serial.println(F("Get Wrong Stack"));
-          break;
-        case CheckSumNotMatch:
-          Serial.println(F("Check Sum Not Match"));
-          break;
-        case FileIndexOut:
-          Serial.println(F("File Index Out of Bound"));
-          break;
-        case FileMismatch:
-          Serial.println(F("Cannot Find File"));
-          break;
-        case Advertise:
-          Serial.println(F("In Advertise"));
-          break;
-        default:
-          break;
-      } // end switch (value)
+    case Advertise:
+      Serial.println(F("In Advertise"));
       break;
     default:
       break;
+    } // end switch (value)
+    break;
+  default:
+    break;
   }  // end switch (type)
 } // end DFprintDetail()
 #endif // DFPRINTDETAIL
@@ -234,7 +237,9 @@ void  DFstartSound(uint16_t tmpSoundNum, uint16_t tmpVolume) {
   myDFPlayer.volume(tmpVolume);  // Set volume value. From 0 to 30 - FIXME 25 is good
 #if DFPRINTDETAIL
   if (myDFPlayer.available()) {
-    Serial.print(F(" DFstartSound ln ")); Serial.print((uint16_t) __LINE__); Serial.println(F(" myDFPlayer problem after volume"));
+    Serial.print(F(" DFstartSound ln "));
+    Serial.print((uint16_t) __LINE__);
+    Serial.println(F(" myDFPlayer problem after volume"));
     DFprintDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
 #endif // DFPRINTDETAIL
@@ -273,22 +278,22 @@ void DFcheckSoundDone() {
   if (0 != state_introSoundPlaying) { // intro still playing
     if (0 == myBusy) { // can play a non-intro sound
       if (0 != gPatternNumberChanged) { // start pattern sound
-	    if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
-		  playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
-		} else {
+        if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+          playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+        } else {
           playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
-		}
+        }
       } else { // start Cassini sound
         playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
       } // end start a sound
     } // end if can play a non-intro sound
   } else { // intro done
     if (0 != gPatternNumberChanged) { // always start new pattern number sound
-	  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
-	    playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
-	  } else {
-	    playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
-	  }
+      if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+        playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+      } else {
+        playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+      }
     } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
       playNumber = SOUNDNUM_CASSINI;
     }
@@ -309,12 +314,12 @@ void DFcheckSoundDone() {
 // DFsetup()
 void DFsetup() {
   Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
-  
+
   if (!myDFPlayer.begin(mySoftwareSerial, false, true)) {  // Use softwareSerial to communicate with mp3 player
     Serial.println(F("Unable to begin DFPlayer:"));
     Serial.println(F("1.Please recheck the connection!"));
     Serial.println(F("2.Please insert the SD card!"));
-    while(true){
+    while(true) {
       delay(1);
     }
   }
@@ -352,7 +357,7 @@ void insertSmileyFace() {
 #ifdef SMILEY_COLOR_ALL_ONE
 //        if (onoff & 0x8)  leds[k] = all_one_loop_array[all_one_loop % NUMOF(all_one_loop_array)];
 //        else              leds[k] = CRGB::Black;
-          leds[k] = all_one_loop_array[all_one_loop % NUMOF(all_one_loop_array)];
+        leds[k] = all_one_loop_array[all_one_loop % NUMOF(all_one_loop_array)];
 #endif // SMILEY_COLOR_ALL_ONE
 #ifdef SMILEY_COLOR_RAINBOW
         leds[k] = rainbow_array[next_rainbow++];
@@ -444,7 +449,7 @@ char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGl
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
-// 
+//
 // PSUEDO_PATTERN_SMILEY_ON or PSUEDO_PATTERN_SMILEY_OFF will affect the smiley face
 //   but will not change the pattern number EXCEPT for the first time it toggles on
 //   and (possibly) the first time it toggles off.
@@ -459,25 +464,24 @@ uint8_t rcv_pattern() {
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
     // handle smiley
     if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
-		  if (0 == gSmileyFaceOn) {
+      if (0 == gSmileyFaceOn) {
         the_pattern_before_smiley = gCurrentPatternNumber;
-		    the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
-		  }
-		  else {
-		    the_pattern = gCurrentPatternNumber;
-		  }
-		  gSmileyFaceOn = 1;
-	  } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
-		  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
-  		else                                              the_pattern = gCurrentPatternNumber;
+        the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
+      } else {
+        the_pattern = gCurrentPatternNumber;
+      }
+      gSmileyFaceOn = 1;
+    } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
+      if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
+      else                                              the_pattern = gCurrentPatternNumber;
       if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
-  		gSmileyFaceOn = 0;
-	  }
+      gSmileyFaceOn = 0;
+    }
   } // end if valid pattern number to read
   return(the_pattern);
 } // end rcv_pattern()
 
-void setup() { 
+void setup() {
   // ## Clockless types ##
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
   FastLED.setBrightness(BRIGHTMAX); // help keep our power draw through Arduino Nano down
@@ -508,15 +512,17 @@ void setup() {
 }  // end setup()
 
 void loop() {
-  EVERY_N_MILLISECONDS( 200 ) { gCurrentPatternNumber = rcv_pattern(); }
+  EVERY_N_MILLISECONDS( 200 ) {
+    gCurrentPatternNumber = rcv_pattern();
+  }
   if (gPrevPattern != gCurrentPatternNumber) {
     gPrevPattern = gCurrentPatternNumber;
     gPatternNumberChanged = 1; // alerts the announcement of the pattern
-	if (PATTERN_SMILEY_ONLY != gCurrentPatternNumber) {
+    if (PATTERN_SMILEY_ONLY != gCurrentPatternNumber) {
       Serial.println(gPatternStrings[gCurrentPatternNumber]);
-	} else {
-	  Serial.println(F("Smiley Face Only"));
-	}
+    } else {
+      Serial.println(F("Smiley Face Only"));
+    }
   }
 
   // whenever current sound is done, go back to Cassini
@@ -526,7 +532,7 @@ void loop() {
   if (PATTERN_SMILEY_ONLY != gCurrentPatternNumber) {
     gPatterns[gCurrentPatternNumber]();
   } else {
-	  do_smiley_background();
+    do_smiley_background();
   }
   // if doing smiley face, insert that here
   if (gSmileyFaceOn) {
@@ -534,10 +540,12 @@ void loop() {
   }
 
   // send the 'leds' array out to the actual LED strip
-  FastLED.show();  
+  FastLED.show();
   // insert a delay to keep the framerate modest
-  FastLED.delay(1000/FRAMES_PER_SECOND); 
+  FastLED.delay(1000/FRAMES_PER_SECOND);
 
   // do some periodic updates
-  EVERY_N_MILLISECONDS( 20 ) { gHue++; } // slowly cycle the "base color" through the rainbow
+  EVERY_N_MILLISECONDS( 20 ) {
+    gHue++;  // slowly cycle the "base color" through the rainbow
+  }
 }
