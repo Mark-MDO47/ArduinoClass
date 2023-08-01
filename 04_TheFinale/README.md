@@ -485,7 +485,7 @@ One interesting thing about this device is that it doesn't depend on any Interne
 [Top](#notes "Top")<br>
 The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a computational and timing burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
 
-The addition of the DF2301QG to this mix caused similar problems. This time there was no way to avoid doing serial read operations - we need to get the code telling us what the voice command is! This worked fine if I used an Arduino Nano to talk to the DF2301QG and not the LEDs or YX5200, so I split it into two Arduinos as you can see here:
+The addition of the DF2301QG to this mix caused similar problems. This time there was no way to avoid doing serial read operations - we need to get the numeric code telling us what the voice command is! This worked fine if I used an Arduino Nano to talk to the DF2301QG and not the LEDs or YX5200, so I split it into two Arduinos as you can see here:
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/04_TheFinale_DemoReelVoiceCommand.pdf<br>
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_schematic.png" width="750" alt="Image of schematic of Voice Command circuit showing use of two Arduino Nanos">
