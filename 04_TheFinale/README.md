@@ -17,6 +17,7 @@
     * [DF2301QG code](#df2301qg-code "DF2301QG code")
   * [Parallel Arduino-to-Arduino Interface](#parallel-arduino\-to\-arduino-interface "Parallel Arduino-to-Arduino Interface")
     * [Parallel Interface Interesting Part](#parallel-interface-interesting-part "Parallel Interface Interesting Part")
+  * [VC_DemoReel Sound Code](#vc_demoreel-sound-code "VC_DemoReel Sound Code")
 
 There are two projects or builds in this section (Finale and Encore?) - **ThereminSound** and **VoiceCommands and VC_DemoReel**.
 
@@ -809,8 +810,8 @@ uint8_t rcv_pattern() {
   return(the_pattern);
 } // end rcv_pattern()
 ```
- #### VC_DemoReel.ino Sound Code
- Even the sound code gets involved with smiley face, since the psuedo-pattern doesn't have a sound file (just shows how lazy I am).
+### VC_DemoReel Sound Code
+Even the sound code gets involved with smiley face, since the psuedo-pattern doesn't have a sound file (just shows how lazy I am).
 
 VC_DemoReel.ino previous code
 ```C
