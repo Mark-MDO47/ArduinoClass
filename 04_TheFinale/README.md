@@ -702,6 +702,25 @@ VC_DemoReel.ino sets the pins in input mode in **setup**<br>
   pinMode(XFR_PIN_BLUE_4,      INPUT);
 ```
 
+VC_DemoReel.ino does a fair bit of fancy footwork to handle the smiley face psuedo-pattern, and this gets mixed into the transfer code. First some definitions<br>
+```C
+#ifdef SMILEY_COLOR_ALL_ONE
+static const CRGB all_one_loop_array[] = {CRGB::Red, CRGB::White, CRGB::Blue, CRGB::Green };
+#endif // SMILEY_COLOR_ALL_ONE
+#ifdef SMILEY_COLOR_RAINBOW
+static CRGB rainbow_array[FASTLED_RAINBOWPTRNLEN]; // rainbow pattern colors
+#endif // SMILEY_COLOR_RAINBOW
+static uint8_t gHue = 0; // rotating "base color"
+static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
+static uint16_t next_rainbow = 0;
+
+// with three bits for pattern numbers, we can only go from 0 through 7 inclusive
+#define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define PATTERN_SMILEY_ONLY 98 // pattern if just toggled smiley on
+#define PSUEDO_PATTERN_SMILEY_ON  (PATTERN_MAX_NUM+1)   // 6 to turn smiley face on
+#define PSUEDO_PATTERN_SMILEY_OFF (PSUEDO_PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
+```
+
 VoiceCommands.ino in **loop** checks every time to see if the pattern has changed (it is preset to be changed on startup) and if so, calls the routine to transfer the pattern number.<br>
 ```C
   if (gPrevPattern != gCurrentPatternNumber) {
@@ -750,29 +769,147 @@ void xfr_pattern(uint8_t pat_num) {
 
 VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.<br>
 Because of the delay statements above near the changes of value of the valid state, we know that we have at least a millisecond to read a valid number if we detect the valid pin HIGH, so we proceed as fast as possible.<br>
-For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.<br>
+For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.
+
+This gets mixed up with the smiley face code since it reacts differently if we are commanding the smiley psuedo-pattern ON from being OFF (need CRGB:Black background pattern) or doing other pattern commands. Also when we command the  smiley psuedo-pattern OFF from being ON we try to return to the last commanded true pattern<br>
 VC_DemoReel.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
 //    returns: uint8_t pattern number 0 <= num <= PATTERN_MAX_NUM
 // 
-// PATTERN_SMILEY_ON or PATTERN_SMILEY_OFF will affect the smiley face
-//   but will not change the pattern number
+// PSUEDO_PATTERN_SMILEY_ON or PSUEDO_PATTERN_SMILEY_OFF will affect the smiley face
+//   but will not change the pattern number EXCEPT for the first time it toggles on
+//   and (possibly) the first time it toggles off.
 //
 uint8_t rcv_pattern() {
   uint8_t the_pattern = gCurrentPatternNumber; // if new pattern not valid, we return this
+  uint8_t the_pattern_before_smiley = 0;
   if (HIGH == digitalRead(XFR_PIN_WHITE_VALID)) { // we have at least 1 millisec to do read
     the_pattern = 0;
     if (HIGH == digitalRead(XFR_PIN_ORANGE_1)) the_pattern += 1;
     if (HIGH == digitalRead(XFR_PIN_YELLOW_2)) the_pattern += 2;
     if (HIGH == digitalRead(XFR_PIN_BLUE_4)) the_pattern += 4;
-    if (the_pattern > PATTERN_MAX_NUM) { // smiley face command
-      if (PATTERN_SMILEY_ON == the_pattern)  gSmileyFaceOn = 1;
-      else                                   gSmileyFaceOn = 0;
-      the_pattern = gCurrentPatternNumber;
-    } // pattern number illegal
+    // handle smiley
+    if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
+		  if (0 == gSmileyFaceOn) {
+        the_pattern_before_smiley = gCurrentPatternNumber;
+		    the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
+		  }
+		  else {
+		    the_pattern = gCurrentPatternNumber;
+		  }
+		  gSmileyFaceOn = 1;
+	  } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
+		  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
+  		else                                              the_pattern = gCurrentPatternNumber;
+    if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
+  		gSmileyFaceOn = 0;
+	  }
   } // end if valid pattern number to read
   return(the_pattern);
 } // end rcv_pattern()
+```
+ #### VC_DemoReel.ino Sound Code
+ Even the sound code gets involved with smiley face, since the psuedo-pattern doesn't have a sound file (just shows how lazy I am).
+
+VC_DemoReel.ino previous code
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFcheckSoundDone()
+//
+// notBusy means (HIGH == digitalRead(DPIN_AUDIO_BUSY)) && (millis() >= state_timerForceSoundActv)
+//    DPIN_AUDIO_BUSY goes HIGH when sound finished, but may take a while to start
+//    state_timerForceSoundActv is millisec count we have to wait for to before checking DPIN_AUDIO_BUSY
+//
+void DFcheckSoundDone() {
+  uint8_t myBusy = (HIGH != digitalRead(DPIN_AUDIO_BUSY)) || (millis() < state_timerForceSoundActv);
+  uint8_t playNumber = 99; // this means don't change
+
+  if (0 != state_introSoundPlaying) { // intro still playing
+    if (0 == myBusy) { // can play a non-intro sound
+      if (0 != gPatternNumberChanged) { // start pattern sound
+        playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+      } else { // start Cassini sound
+        playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
+      } // end start a sound
+    } // end if can play a non-intro sound
+  } else { // intro done
+    if (0 != gPatternNumberChanged) { // always start new pattern number sound
+      playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+    } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
+      playNumber = SOUNDNUM_CASSINI;
+    }
+  } // end if intro done
+
+  if (99 != playNumber) { // there is a new sound to play
+    gPatternNumberChanged = 0;
+    state_introSoundPlaying = 0;
+    if (SOUNDNUM_CASSINI == playNumber) {
+      DFstartSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
+    } else {
+      DFstartSound(gCurrentPatternNumber+1, SOUND_DEFAULT_VOL);
+    }
+  } // end if there is a new sound to play
+} // end DFcheckSoundDone()
+```
+
+VC_DemoReel.ino smiley face code
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DFcheckSoundDone()
+//
+// notBusy means (HIGH == digitalRead(DPIN_AUDIO_BUSY)) && (millis() >= state_timerForceSoundActv)
+//    DPIN_AUDIO_BUSY goes HIGH when sound finished, but may take a while to start
+//    state_timerForceSoundActv is millisec count we have to wait for to before checking DPIN_AUDIO_BUSY
+//
+void DFcheckSoundDone() {
+  uint8_t myBusy = (HIGH != digitalRead(DPIN_AUDIO_BUSY)) || (millis() < state_timerForceSoundActv);
+  uint8_t playNumber = 99; // this means don't change
+
+  if (0 != state_introSoundPlaying) { // intro still playing
+    if (0 == myBusy) { // can play a non-intro sound
+      if (0 != gPatternNumberChanged) { // start pattern sound
+	    if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+		  playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+		} else {
+          playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+		}
+      } else { // start Cassini sound
+        playNumber = SOUNDNUM_CASSINI; // this should never execute, we start with gPatternNumberChanged=1
+      } // end start a sound
+    } // end if can play a non-intro sound
+  } else { // intro done
+    if (0 != gPatternNumberChanged) { // always start new pattern number sound
+	  if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) {
+	    playNumber = SOUNDNUM_CASSINI; // we don't have a sound for smiley face
+	  } else {
+	    playNumber = gCurrentPatternNumber+1; // sound numbers start at 1
+	  }
+    } else if (0 == myBusy) { // sound finished and no new pattern, start Cassini
+      playNumber = SOUNDNUM_CASSINI;
+    }
+  } // end if intro done
+
+  if ((99 != playNumber) && (PATTERN_SMILEY_ONLY != gCurrentPatternNumber)) { // there is a new sound to play
+    gPatternNumberChanged = 0;
+    state_introSoundPlaying = 0;
+    if (SOUNDNUM_CASSINI == playNumber) {
+      DFstartSound(SOUNDNUM_CASSINI, SOUND_BKGRND_VOL);
+    } else {
+      DFstartSound(gCurrentPatternNumber+1, SOUND_DEFAULT_VOL);
+    }
+  } // end if there is a new sound to play
+} // end DFcheckSoundDone()
+```
+
+We also want to have a background of LEDs all OFF (CRGB::Black) when the smiley face appears until a pattern is commanded.<br>
+VC_DemoReel.ino smiley face background.<br>
+```C
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// do_smiley_background() - background all-black if just toggled to smiley face
+//
+void do_smiley_background() {
+  for (uint16_t i=0; i < NUM_LEDS; i++) leds[i] = CRGB::Black;
+} // do_smiley_background
 ```
