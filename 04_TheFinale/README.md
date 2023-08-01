@@ -645,8 +645,8 @@ uint8_t handle_DF2301QG() {
       break;
     case DF2301QG_Display_smiley_face:
       // pattern case: we send a "psuedo-pattern" number to companion Arduino Nano
-      if (0 != gSmileyFaceOn)  { pattern = PTRN_SMILE_OFF; gSmileyFaceOn = SMILE_OFF; }
-      else                     { pattern = PTRN_SMILE_ON;  gSmileyFaceOn = SMILE_ON; }
+      if (SMILE_OFF != gSmileyFaceOn)  { pattern = PTRN_SMILE_OFF; gSmileyFaceOn = SMILE_OFF; }
+      else                             { pattern = PTRN_SMILE_ON;  gSmileyFaceOn = SMILE_ON; }
       DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
       break;
     case DF2301QG_Volume_up: case DF2301QG_Volume_down: case DF2301QG_Change_volume_to_maximum:
