@@ -451,6 +451,8 @@ In the **loop()** routine, replace the following lines with the lines below. Not
 [Top](#notes "Top")<br>
 The Theremin with pattern announcements over Bluetooth speaker is very cool; but if we could control it by voice commands that would be even cooler!
 
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_smileyface.png" width="500" alt="Image of Voice Command Demo Reel with Smiley Face displayed">
+
 Here is a YouTube of this project in operation:
 - https://youtu.be/M8Xc4aVh5Hc
 
