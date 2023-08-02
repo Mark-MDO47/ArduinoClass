@@ -67,7 +67,7 @@ DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
 
 #define DF2301QG_VOLUME_MIN   1
 #define DF2301QG_VOLUME_MAX   7
-uint8_t gDFvolume = DF2301QG_VOLUME_MAX;
+int8_t gDFvolume = DF2301QG_VOLUME_MAX; // signed so that could always detect "-= 1", even if MIN changes to 0
 
 
 #define PATTERN_MAX_NUM 5 // 0-5 are patterns
