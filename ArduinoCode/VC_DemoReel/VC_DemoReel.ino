@@ -120,6 +120,7 @@ CRGB leds[NUM_LEDS];
 
 // our current pattern number, from 0 thru 5 inclusive
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
+uint8_t gLatestTruePatternNumber = 0; // latest true pattern (not psuedo-pattern)
 uint8_t gPrevPattern = 99; // previous pattern number
 uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 uint8_t gSmileyFaceOn = 0; // non-zero to turn on smiley face
@@ -465,17 +466,16 @@ uint8_t rcv_pattern() {
     // handle smiley
     if (PSUEDO_PATTERN_SMILEY_ON == the_pattern) {
       if (0 == gSmileyFaceOn) {
-        the_pattern_before_smiley = gCurrentPatternNumber;
         the_pattern = PATTERN_SMILEY_ONLY; // first time we toggle on
-      } else {
+      } else { // this really should not happen
         the_pattern = gCurrentPatternNumber;
       }
       gSmileyFaceOn = 1;
     } else if (PSUEDO_PATTERN_SMILEY_OFF == the_pattern) {
-      if (PATTERN_SMILEY_ONLY == gCurrentPatternNumber) the_pattern = gPrevPattern;
-      else                                              the_pattern = gCurrentPatternNumber;
-      if (PATTERN_SMILEY_ONLY == the_pattern) the_pattern = the_pattern_before_smiley; // always show a pattern
+      the_pattern = gLatestTruePatternNumber; // return to last true pattern
       gSmileyFaceOn = 0;
+    } else { // it is a true pattern not a psuedo-pattern
+      gLatestTruePatternNumber = the_pattern;
     }
   } // end if valid pattern number to read
   return(the_pattern);
