@@ -77,9 +77,9 @@ Some of the ESP32 modules that I use are currently less than $30 for quantity 5:
 Here is an article about how to choose which ESP32 module you want to use:
 - https://makeradvisor.com/esp32-development-boards-review-comparison/
 
-An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. It has dual-CPUs for expert users.
+An ESP32 module has MUCH more RAM and program storage than the original Arduinos, is much faster, and comes complete with easy-to-use on-board WIFI and Bluetooth. Many ESP32 boards including the ESP32 and the ESP32-S3 have dual-core CPUs for expert users.
 
-On the other hand, ESP32 modules work with 3.5V I/O instead of 5V so you need to be prepared to handle that. For instance I use the **[SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")** quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
+On the other hand, ESP32 modules typically work with 3.5V I/O instead of 5V so you need to be prepared to handle that. For instance I use the **[SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")** quadruple bus buffer and voltage translator to convert from 3.5 Volt outputs to 5 Volt outputs.
 
 One thing to keep in mind is that not all GPIO pins on an ESP32 are usable for every purpose. This article will take you through the basics. Don't worry - there are probably plenty of GPIO pins available for your project; just use the right ones!
 - https://randomnerdtutorials.com/esp32-pinout-reference-gpios/
@@ -91,7 +91,7 @@ In particular, the following pins affect the way the ESP32 boots, so unless you 
 - MTDO
 - GPIO5
 
-The ESP32 is also physically wider than the Arduino Nano and doesn't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
+ESP32 boards are typically physically wider than the Arduino Nano and they don't fit well on a standard solderless breadboard. I use two small breadboards to mount an ESP32 as shown below.
 
 | Top View | Side View |
 | --- | --- |
@@ -104,8 +104,12 @@ Here are some repositories and YouTubes showing off some of the advantages of th
   - https://www.youtube.com/watch?v=6yiuImbqKYY
 - https://github.com/RalphBacon/260-ESP32-Web-Pages-Part-2
   - https://youtu.be/7cfeWTsJxcE
+- https://github.com/garyexplains/examples/blob/master/ESP-NOW_on_Arduino_Nano_ESP32.md
+  - https://www.youtube.com/watch?v=MRgAeg2i5Qg
 - https://github.com/RalphBacon/ESP32-Dual-Core-Programming
   - https://youtu.be/jpVcCmh8sig
+- https://github.com/garyexplains/examples/tree/master/Dual_Core_for_RP2040_ESP32_ESP32-S3
+  - https://www.youtube.com/watch?v=w5YigjvSaF4
 
 For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/; this includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal one-PC is about $25/year at this time (2023); other licensing options are available.
 
