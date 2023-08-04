@@ -13,6 +13,7 @@
   * [Saturn Sounds from Cassini](#saturn-sounds-from-cassini "Saturn Sounds from Cassini")
   * [Text-to-Speech Robotic Sounds](#text\-to\-speech-robotic-sounds "Text-to-Speech Robotic Sounds")
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
+* DF3201QG
 * [UBEC Universal Battery Eliminator Circuit](#ubec-universal-battery-eliminator-circuit "UBEC Universal Battery Eliminator Circuit")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
@@ -239,6 +240,14 @@ The information on commanding the KCX_BT_EMITTER to auto-pair to a specific spea
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 
 ![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
+
+## DF2301QG Voice Recognizer and Command Module
+[Top](#resources "Top")<br>
+The DFRobot DF2301QG SKU SEN0539-EN recognizes voice commands and sends a numerical code to the Arduino. I have only been using this for a few weeks but it looks like fun! One interesting thing about this device is that it doesn't depend on any Internet connection or giant tech company voice-to-text service; it does the voice recognition locally.
+- https://www.dfrobot.com/product-2665.html
+- https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
+
+<img src="https://dfimg.dfrobot.com/store/cache3/data/SEN0539/SEN0539-EN-1.jpg" width="500" alt="Image of DF2301QG voice command module from dfrobot.com">
 
 ## UBEC Universal Battery Eliminator Circuit
 [Top](#resources "Top")<br>
