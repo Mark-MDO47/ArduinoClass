@@ -13,7 +13,7 @@
   * [Saturn Sounds from Cassini](#saturn-sounds-from-cassini "Saturn Sounds from Cassini")
   * [Text-to-Speech Robotic Sounds](#text\-to\-speech-robotic-sounds "Text-to-Speech Robotic Sounds")
 * [KCX_BT_EMITTER Bluetooth Audio Transmitter](#kcx_bt_emitter-bluetooth-audio-transmitter "KCX_BT_EMITTER Bluetooth Audio Transmitter")
-* [DF2301QG Voice Recognizer and Command Module](#df2301q-voice-recognizer-and-command-module "DF2301QG Voice Recognizer and Command Module")
+* [DF2301QG Voice Recognizer and Command Module](#df2301qg-voice-recognizer-and-command-module "DF2301QG Voice Recognizer and Command Module")
 * [UBEC Universal Battery Eliminator Circuit](#ubec-universal-battery-eliminator-circuit "UBEC Universal Battery Eliminator Circuit")
 * [9 10K Ohm resistors one package](#9-10k-ohm-resistors-one-package "9 10K Ohm resistors one package")
 * [SN74HCT125N 3-state Buffer](#sn74hct125n-3\-state-buffer "SN74HCT125N 3-state Buffer")
