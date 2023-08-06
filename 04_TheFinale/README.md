@@ -538,6 +538,22 @@ void DFRobot_DF2301Q_I2C::setVolume(uint8_t vol)
 }
 ```
 
+After some experimentation I decided that the I2C interface provided a more reliable communication between Arduino to DF2301QG than the UART interface.
+
+### TLDR I2C Interface
+[Top](#notes "Top")<br>
+The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; this is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
+- https://docs.arduino.cc/learn/communication/wire
+- https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
+- https://www.geeksforgeeks.org/i2c-communication-protocol/
+
+The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
+<img src="https://howtomechatronics.com/wp-content/uploads/2015/10/I2C-Communication-How-It-Works.png" width="750" alt="howtomechatronics.com image of I2C bus">
+
+Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
+
+I will leave the references above to explain the details of how the I2C interface works.
+
 ### The Circuit - Two Arduinos
 [Top](#notes "Top")<br>
 The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a computational and timing burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
