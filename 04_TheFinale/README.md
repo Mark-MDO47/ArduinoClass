@@ -484,6 +484,43 @@ The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0
 
 One interesting thing about this device is that it doesn't depend on any Internet connection or giant tech company voice-to-text service; it does the voice recognition locally.
 
+Another thing I noticed is that the documentation for UART calls to set volume give a range of 1 through 7 but the I2C code to set the volume seems to imply via commented-out code a range of 0 through 20. The module at power-on has a higher volume than a volume setting of 7.<br>
+**Documentation:**<br>
+```
+$ git remote -v
+origin  https://github.com/DFRobot/DFRobot_DF2301Q.git (fetch)
+origin  https://github.com/DFRobot/DFRobot_DF2301Q.git (push)
+$ grep -in "volume" *.* examples/*/*.* | grep -i "range\|DF2301Q_"
+$ grep -in "volume" *.* examples/*/*.* | grep -i "range\|[@]"
+DFRobot_DF2301Q.h:171:   * @fn setVolume
+DFRobot_DF2301Q.h:172:   * @brief Set volume
+DFRobot_DF2301Q.h:173:   * @param vol - Volume range(1-7)
+DFRobot_DF2301Q.h:302:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : Set volume, the set value range 1-7
+README.md:106:   * @fn setVolume
+README.md:107:   * @brief Set volume
+README.md:108:   * @param vol - Volume range(1-7)
+README.md:173:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : Set volume, the set value range 1-7
+README_CN.md:106:   * @fn setVolume
+README_CN.md:173:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : 设置音量, 设置值范围1~7
+examples/i2c/i2c.ino:5: * @n  Get and set the wake-up state duration, set mute mode, set volume, and enter the wake-up state
+examples/i2c/i2c.ino:30:   * @brief Set voice volume
+examples/i2c/i2c.ino:31:   * @param voc - Volume value(1~7)
+examples/uart/uart.ino:5: * @n  Set the wake-up state duration, set mute mode, set volume, enter the wake-up state, and reset the module
+examples/uart/uart.ino:49:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : Set volume, the set value range 1-7
+```
+
+**I2C Code:**<br>
+```C
+void DFRobot_DF2301Q_I2C::setVolume(uint8_t vol)
+{
+  // if (vol < 0)
+  //   vol = 0;
+  // else if (vol > 20)
+  //   vol = 20;
+  writeReg(DF2301Q_I2C_REG_SET_VOLUME, &vol);
+}
+```
+
 ### The Circuit - Two Arduinos
 [Top](#notes "Top")<br>
 The communication with the LEDs and with the YX5200 sound module use "software serial" communications on general purpose I/O pins. The Arduino Nano must set these pins HIGH or LOW at fairly precise times to send the information to the device. In my code I turn off the reply from the YX5200 because that seemed to be too high a computational and timing burden on the poor Arduino Nano - the commands would go out OK but when it tried to read the acknowledgement it couldn't get the correct data so it generated error messages. I ultimately decided to just assume the command went out OK so I disabled reading the acknowledgement.
