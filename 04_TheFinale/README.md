@@ -593,15 +593,16 @@ The library for communicating with the DF2301QG supplied by DFRobot didn't succe
 
 I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. There is evidence that the order of operations needed to be different for certain Arduino models. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
 
-The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. I had to hack up the DFRobot library to work with Arduino Nano and the UART method; you can find this code here:<br>
+The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects.<br>
+The DF2301QG also has slide-switch-selectable internal or external speakers; we set it to internal.<br>
+Be sure the slide switches are in the right position before use.
+
+
+I had to hack up the DFRobot library to work with Arduino Nano and the UART method; you can find this code here:<br>
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_UART
 
 The original DFRobot library did work with Arduino Nano and the I2C method, and some experiments I did suggest that I2C communication is more solid than the UART communication with this device (fewer voice commands that the DF2301QG tried to send to Nano but Nano did not receive). Because of this I used the I2C method. As I usually do with devices that I had to experiment with, I put the library code (in this case unmodified) directly in place with my code.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
-
-The DF2301QG also has slide-switch-selectable internal or external speakers; we set it to internal.
-
-Be sure the slide switches are in the right position before use.
 
 The unmodified DFRobot code can be found here:
 - https://github.com/DFRobot/DFRobot_DF2301Q
