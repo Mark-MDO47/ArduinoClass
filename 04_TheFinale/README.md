@@ -12,6 +12,7 @@
     * [Hysteresis](#hysteresis "Hysteresis")
     * [Code Details](#code-details "Code Details")
 * [The VoiceCommands and VC_DemoReel Idea](#the-voicecommands-and-vc_demoreel-idea "The VoiceCommands and VC_DemoReel Idea")
+  * [TLDR I2C Interface](#tldr-i2c-interface "TLDR I2C Interface")
   * [The Circuit - Two Arduinos](#the-circuit-\--two-arduinos "The Circuit - Two Arduinos")
   * [The VoiceCommands and VC_DemoReel Code](#the-voicecommands-and-vc_demoreel-code "The VoiceCommands and VC_DemoReel Code")
     * [Modified DFRobot code for DF2301QG](#modified-dfrobot-code-for-df2301qg "Modified DFRobot code for DF2301QG")
