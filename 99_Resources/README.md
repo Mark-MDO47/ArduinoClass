@@ -462,3 +462,21 @@ A higher level depiction of this output protocol in action (taken from the spec)
 Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "consumes" the first set of bytes and passes on the rest.
 
 ![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
+
+## TLDR UART Serial Interface
+[Top](#notes "Top")<br>
+To communicate with the YX5200 we use a serial data protocol named Universal Asynchronous Receiver Transmitter or UART for short.
+- We previously saw a serial data protocol for sending color information to the WS2812B LEDs; that one used a single wire to transmit data in just one direction.
+- The UART protocol used on the Arduinos is also one wire, but a second wire can be used to transmit in the other direction. The UART protocol itself can actually get more complicated than that, but for us this description is adequate.
+- UART interaces can be used to program the Arduino Nano; the USB port on the Arduino actually connects up to a hardware UART implementation.
+- Arduino UART interfaces to other devices are quite common; we will use a special library SoftwareSerial to connect to the YX5200 using ordinary digital I/O pins.
+
+Here is an excellent description of how the UART interface works:
+- https://www.seeedstudio.com/blog/2022/09/08/uart-communication-protocol-and-how-it-works/
+
+Below is an illustration from that tutorial showing the high/low sequences on the line for a UART byte transfer:<br>
+<img src="https://www.seeedstudio.com/blog/wp-content/uploads/2022/09/uart1.png" width="600" alt="seeedstudio.com image of UART byte transfer"><br>
+
+Note that the detection of the first high-to-low transition is used to set the time used to (hopefully) sample the other bits in the middle of the bit. The timing of the bits on the transmitting side and the timing of the detection of the bits on the receiving side need to remain in sync throughout or there can be a receive error. That caused us to use two Arduino Nanos in the **VoiceCommands and VC_DemoReel** project.<br>
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+
