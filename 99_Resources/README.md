@@ -25,6 +25,7 @@
 * [TLDR Decimal and Binary and Hexadecimal](#tldr-decimal-and-binary-and-hexadecimal "TLDR Decimal and Binary and Hexadecimal")
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
+* [TLDR UART Serial Interface](#tldr-uart-serial-interface "TLDR UART Serial Interface")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
