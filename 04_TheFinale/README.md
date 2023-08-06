@@ -4,6 +4,7 @@
 * [Top](#notes "Top")
 * [The ThereminSound Idea](#the-thereminsound-idea "The ThereminSound Idea")
   * [The Circuit](#the-circuit "The Circuit")
+    * [TLDR UART Serial Interface](#tldr-uart-serial-interface "TLDR UART Serial Interface")
     * [YX5200 Sound Module](#yx5200-sound-module "YX5200 Sound Module")
     * [KCX_BT_EMITTER Bluetooth Sound Transmitter](#kcx_bt_emitter-bluetooth-sound-transmitter "KCX_BT_EMITTER Bluetooth Sound Transmitter")
   * [The ThereminSound Code](#the-thereminsound-code "The ThereminSound Code")
