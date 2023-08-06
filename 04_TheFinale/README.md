@@ -568,14 +568,14 @@ The addition of the DF2301QG to this mix caused similar problems. This time ther
 
 The Arduino Nano and its circuit on the left is pretty similar to the ThereminSound circuit - I just removed the HC-SR04 Ultrasonic Range Detector and an extraneous button.
 
-The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue UART wires go to the DF2301QG (be sure to select the UART communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
+The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue ITC wires go to the DF2301QG (be sure to select the I2C communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
 
 There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
 
 Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. I had to make a power source with more oomph than the 9V battery; the 241 LEDs really use up the power. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_setup.jpg" width="600" alt="Image of setup of Voice Command circuit showing use of two Arduino Nanos">
 
-Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the UART connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection.<br>
+Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the I2C connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_closeup.jpg" width="600" alt="Image of closeup of just the Voice Command part of the circuit">
 
 
@@ -593,7 +593,11 @@ The library for communicating with the DF2301QG supplied by DFRobot didn't succe
 
 I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. There is evidence that the order of operations needed to be different for certain Arduino models. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
 
-The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. My hacked up library didn't seem to work with the I2C method but worked with the UART method. I didn't see any obvious reason it shouldn't work with I2C, so I went ahead with using the UART communication. Maybe someday I will go back and try to make the I2C protocol work with my hacked up Arduino Nano version.
+The DF2301QG has two slide-switch-selectable communication modes: UART and I2C. These are both pretty standard serial communication protocols; I2C is often used with Arduino projects. I had to hack up the DFRobot library to work with Arduino Nano and the UART method; you can find this code here:<br>
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_UART
+
+The original DFRobot library did work with Arduino Nano and the I2C method, and some experiments I did suggest that I2C communication is more solid than the UART communication with this device (fewer voice commands that the DF2301QG tried to send to Nano but Nano did not receive). Because of this I used the I2C method. As I usually do with devices that I had to experiment with, I put the library code (in this case unmodified) directly in place with my code.
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
 
 The DF2301QG also has slide-switch-selectable internal or external speakers; we set it to internal.
 
@@ -612,24 +616,17 @@ The concept for this code is very simple. After setup we periodically check to s
 For talking with the DF2301QG, here is the code prior to **setup**<br>
 ```C
 // DFRobot SKU DF2301QG-EN communications
-#include "SoftwareSerial.h"                  // to talk to DF2301Q without using up debug serial port
+#include "SoftwareSerial.h"                  // to talk to DF2301Q on UART without using up debug serial port
 #include "DFRobot_DF2301Q.h"
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
 // DF2301QG voice command module definitions
-#define DF2301QG_RX_PIN 12 // DF2301QG UART TX (Nano RX)
-#define DF2301QG_TX_PIN 10 // DF2301QG UART RX (Nano TX)
-/**
-   @brief DFRobot_URM13_RTU constructor
-   @param serial - serial ports for communication, supporting hard and soft serial ports
-   @param rx - UART The pin for receiving data
-   @param tx - UART The pin for transmitting data
-*/
-SoftwareSerial softSerial(/*rx =*/DF2301QG_RX_PIN, /*tx =*/DF2301QG_TX_PIN);
-DFRobot_DF2301Q_UART asr(/*softSerial =*/&softSerial);
+//    no definitions; pins A4 and A5 are automatically chosen for I2C
+//I2C communication
+DFRobot_DF2301Q_I2C asr;
 
 #define DF2301QG_VOLUME_MIN   1
-#define DF2301QG_VOLUME_MAX   7
+#define DF2301QG_VOLUME_MAX   15 // I2C indicates 20 might be possible
 int8_t gDFvolume = DF2301QG_VOLUME_MAX; // signed so that could always detect "-= 1", even if MIN changes to 0
 
 
@@ -654,20 +651,14 @@ Here is the DF2301QG **setup** code<br>
     delay(3000);
   }
 
-  softSerial.listen(); // this seems to help
+
   delay(5000); // let DF2301QG finish reset
   // here if want to reset the DF2301QG voice command module
   // asr.resetModule();
 
-  /* possible DF2301QG "SET" commands
-     DF2301Q_UART_MSG_CMD_SET_VOLUME: Set volume, the set value range 1-7 
-     DF2301Q_UART_MSG_CMD_SET_ENTERWAKEUP: Enter wake-up state; set value 0
-     DF2301Q_UART_MSG_CMD_SET_MUTE Mute mode; set value 1: mute, 0: unmute
-     DF2301Q_UART_MSG_CMD_SET_WAKE_TIME ; Wake-up duration; the set value range 0-255s
-  */
-  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_MUTE, 0);
-  // asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
-  asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_WAKE_TIME, 20);
+  asr.setMuteMode(0);
+  // asr.setVolume(gDFvolume);
+  asr.setWakeTime(20);
 
   // tell that DF2301QG voice command module is ready
   asr.playByCMDID(DF2301QG_Retreat);
@@ -675,7 +666,7 @@ Here is the DF2301QG **setup** code<br>
 
 Here is the DF2301QG **loop** code<br>
 ```C
-#define WAIT_FOR 200 // wait this many milliseconds between checking for voice commands
+#define WAIT_FOR 50 // wait this many milliseconds between checking for voice commands
 void loop() {
   static uint32_t prev_millisec = 0;
   static uint32_t now_millisec = 0;
@@ -734,7 +725,7 @@ uint8_t handle_DF2301QG() {
       // now check that we are still in range
       if (gDFvolume > DF2301QG_VOLUME_MAX) gDFvolume = DF2301QG_VOLUME_MAX;
       if (gDFvolume < DF2301QG_VOLUME_MIN) gDFvolume = DF2301QG_VOLUME_MIN;
-      asr.settingCMD(DF2301Q_UART_MSG_CMD_SET_VOLUME, gDFvolume);
+      asr.setVolume(gDFvolume);
       DEBUG_DO_PRINT(F("Set volume ")); DEBUG_DO_PRINTLN(gDFvolume);
       break;
     case 0:
