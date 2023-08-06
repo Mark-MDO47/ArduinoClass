@@ -598,10 +598,10 @@ The DF2301QG also has slide-switch-selectable internal or external speakers; we 
 Be sure the slide switches are in the right position before use.
 
 
-I had to hack up the DFRobot library to work with Arduino Nano and the UART method; you can find this code here:<br>
+I had to hack up the DFRobot library to work with Arduino Nano and the **UART** method; you can find this code here:<br>
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_UART
 
-The original DFRobot library did work with Arduino Nano and the I2C method, and some experiments I did suggest that I2C communication is more solid than the UART communication with this device (fewer voice commands that the DF2301QG tried to send to Nano but Nano did not receive). Because of this I used the I2C method. As I usually do with devices that I had to experiment with, I put the library code (in this case unmodified) directly in place with my code.
+The original DFRobot library did work with Arduino Nano and the **I2C** method, and some experiments I did suggest that I2C communication is more solid than the UART communication with this device (fewer voice commands that the DF2301QG tried to send to Nano but Nano did not receive). Because of this I used the I2C method. As I usually do with devices that I had to experiment with, I put the library code (in this case unmodified) directly in place with my code.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
 
 The unmodified DFRobot code can be found here:
