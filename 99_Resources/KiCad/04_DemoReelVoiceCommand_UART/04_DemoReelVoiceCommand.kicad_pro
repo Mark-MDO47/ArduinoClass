@@ -392,7 +392,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "04_DemoReelVoiceCommand.kicad_pro",
+    "filename": "04_DemoReelVoiceCommand_UART.kicad_pro",
     "version": 1
   },
   "net_settings": {
