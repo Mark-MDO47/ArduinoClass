@@ -69,7 +69,7 @@ Here is an excellent description of how the UART interface works:
 Below is an illustration from that tutorial showing the high/low sequences on the line for a UART byte transfer:<br>
 <img src="https://www.seeedstudio.com/blog/wp-content/uploads/2022/09/uart1.png" width="600" alt="seeedstudio.com image of UART byte transfer"><br>
 
-Note that the detection of the first high-to-low transition is used to set the time used to (hopefully) sample the other bits in the middle of the bit. The timing of the bits on the transmitting side and the timing of the detection of the bits on the receiving side need to remain in sync throughout or the can be a receive error. We will see how that can affect us in the **VoiceCommands and VC_DemoReel** project that follows this one.
+Note that the detection of the first high-to-low transition is used to set the time used to (hopefully) sample the other bits in the middle of the bit. The timing of the bits on the transmitting side and the timing of the detection of the bits on the receiving side need to remain in sync throughout or there can be a receive error. We will see how that can affect us in the **VoiceCommands and VC_DemoReel** project that follows this one.
 
 #### YX5200 Sound Module
 [Top](#notes "Top")<br>
