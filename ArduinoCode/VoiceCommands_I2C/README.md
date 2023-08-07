@@ -14,3 +14,6 @@ This code is used in **I2C** mode in the Arduino Nano connected to the DFRobot D
 
 The code for the other Arduino Nano in this build receives the choice of pattern to display and generates that pattern on the LEDs and announces the pattern name on the Bluetooth speaker. The patterns are from Mark Kriegsman's classic DemoReel100.ino.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
+
+## Unmodified DFRobot Code
+The unmodified DFRobot code can be found here: https://github.com/DFRobot/DFRobot_DF2301Q
