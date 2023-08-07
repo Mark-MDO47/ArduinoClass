@@ -1,4 +1,10 @@
 # Voice Commands
+This is the **UART** version of VoiceCommands. After experimentation I decided to use the **I2C** version; see below
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
+
+The main reasons for using the I2C version:
+- The DFRobot library for DF2301Q had to be hacked up to make it work in **UART** mode for the Arduino Nano.
+- Experimentation suggests that the **I2C** version is better at having the DF2301Q detected command message reach the Arduino Nano than the **UART version**.
 
 ## Introduction
 This code is used for one Arduino Nano in a set of two Arduino Nanos in one build. This build is the second part in section 04.
