@@ -26,6 +26,7 @@
 * [TLDR Power and Wires](#tldr-power-and-wires "TLDR Power and Wires")
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 * [TLDR UART Serial Interface](#tldr-uart-serial-interface "TLDR UART Serial Interface")
+* [TLDR I2C Interface](#tldr-i2c-interface "TLDR I2C Interface")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
@@ -481,3 +482,16 @@ Below is an illustration from that tutorial showing the high/low sequences on th
 Note that the detection of the first high-to-low transition is used to set the time used to (hopefully) sample the other bits in the middle of the bit. The timing of the bits on the transmitting side and the timing of the detection of the bits on the receiving side need to remain in sync throughout or there can be a receive error. That caused us to use two Arduino Nanos in the **VoiceCommands and VC_DemoReel** project.<br>
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
 
+### TLDR I2C Interface
+[Top](#notes "Top")<br>
+The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; this is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
+- https://docs.arduino.cc/learn/communication/wire
+- https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
+- https://www.geeksforgeeks.org/i2c-communication-protocol/
+
+The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
+<img src="https://howtomechatronics.com/wp-content/uploads/2015/10/I2C-Communication-How-It-Works.png" width="750" alt="howtomechatronics.com image of I2C bus">
+
+Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
+
+I will leave the references above to explain the details of how the I2C interface works.
