@@ -614,7 +614,7 @@ It can alternatively be loaded with the Arduino IDE library manager as seen belo
 [Top](#notes "Top")<br>
 The concept for this code is very simple. After setup we periodically check to see if the DF2301QG has sent us a message. If so we check to see if it is one of the commands we will respond to (see table above) and if so calculate and return the corresponding new pattern number. If there was no message or if it was not a command we respond to, we return the unchanged current pattern number.
 
-For talking with the DF2301QG, here is the code prior to **setup**<br>
+For talking with the DF2301QG in I2C mode, here is the code prior to **setup**<br>
 ```C
 // DFRobot SKU DF2301QG-EN communications
 #include "DFRobot_DF2301Q.h"
