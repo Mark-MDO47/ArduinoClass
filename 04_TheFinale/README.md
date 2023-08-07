@@ -617,7 +617,6 @@ The concept for this code is very simple. After setup we periodically check to s
 For talking with the DF2301QG, here is the code prior to **setup**<br>
 ```C
 // DFRobot SKU DF2301QG-EN communications
-#include "SoftwareSerial.h"                  // to talk to DF2301Q on UART without using up debug serial port
 #include "DFRobot_DF2301Q.h"
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
