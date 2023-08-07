@@ -568,9 +568,9 @@ The addition of the DF2301QG to this mix caused similar problems. This time ther
 
 The Arduino Nano and its circuit on the left is pretty similar to the ThereminSound circuit - I just removed the HC-SR04 Ultrasonic Range Detector and an extraneous button.
 
-The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue ITC wires go to the DF2301QG (be sure to select the I2C communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
+The new Arduino Nano and its circuit on the right is very simple. Power and ground are distributed with the traditional black and red wires. Green and Blue I2C wires go to the DF2301QG (be sure to select the I2C communication mode with the slide switch).  The wire color scheme is set by the cable included with the DF2301QG.
 
-There are four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
+There are a different four wires (blue, yellow, orange, and white) connecting the two Arduino Nanos providing a very simple parallel interface (as opposed to serial) to transfer the pattern number across. I used this parallel interface to minimize computational and timing burden on the left Arduino Nano.
 
 Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. I had to make a power source with more oomph than the 9V battery; the 241 LEDs really use up the power. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_setup_I2C.jpg" width="600" alt="Image of setup of Voice Command circuit showing use of two Arduino Nanos">
