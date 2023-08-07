@@ -11,10 +11,13 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
- * VoiceCommands.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ * VoiceCommands_UART.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
  *
- * Voice Commands - this Arduino gets voice commands from DF2301QG and sends pattern number
+ * Voice Commands - this Arduino gets voice commands from DF2301QG in UART mode and sends pattern number
  *     to the other Arduino, which controls the LEDs and Bluetooth speaker.
+ *
+ * I chose to use VoiceCommands_I2C.ino instead.
+ *
  */
 
 // connections:
