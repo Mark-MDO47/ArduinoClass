@@ -584,7 +584,7 @@ Below is a closeup image just the Voice Command part of the circuit. You can see
 I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left - it is very similar to the ThereminSound.ino code except I stripped out the code for the HC-SR04 Ultrasonic range detector. I did add the parallel Arduino-to-Arduino interface, and I will discuss the code on both sides of this below. Take a look here and see the discussions below for how it handles receiving the pattern commands and how it handles the "smiley face" psuedo-pattern.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
 
-The VoiceCommands.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version). It is not very similar to our other code, so probably best to copy it from here and read through the description below.
+The VoiceCommands_I2C.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version). It is not very similar to our other code, so probably best to copy it from here and read through the description below.
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
 
 #### Modified DFRobot code for DF2301QG
@@ -743,9 +743,9 @@ uint8_t handle_DF2301QG() {
 
 ### Parallel Arduino-to-Arduino Interface
 [Top](#notes "Top")<br>
-The concept for this interface is to make it very simple and avoid placing a computational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands.ino achieves this.
+The concept for this interface is to make it very simple and avoid placing a computational or timing burden on the left Arduino Nano running VC_DemoReel.ino. The use of a "valid" signal and some timing in the VoiceCommands_I2C.ino achieves this.
 
-Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.<br>
+Both VC_DemoReel.ino and VoiceCommands_I2C.ino use the same pins.<br>
 ```C
 #define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
 #define XFR_PIN_ORANGE_1    3 // power 2^0 - part of 3-bit pattern number
@@ -753,7 +753,7 @@ Both VC_DemoReel.ino and VoiceCommands.ino use the same pins.<br>
 #define XFR_PIN_BLUE_4      5 // power 2^2 - part of 3-bit pattern number
 ```
 
-VoiceCommands.ino uses the pins in output mode. It sets the interface "invalid" as soon as possible in **setup**<br>
+VoiceCommands_I2C.ino uses the pins in output mode. It sets the interface "invalid" as soon as possible in **setup**<br>
 ```C
   pinMode(XFR_PIN_WHITE_VALID, OUTPUT);
   digitalWrite(XFR_PIN_WHITE_VALID, LOW);   // set valid off
@@ -789,7 +789,7 @@ static uint16_t next_rainbow = 0;
 #define PSUEDO_PATTERN_SMILEY_OFF (PSUEDO_PATTERN_SMILEY_ON+1) // 7 to turn smiley face on
 ```
 
-VoiceCommands.ino in **loop** checks every time to see if the pattern has changed (it is preset to be changed on startup) and if so, calls the routine to transfer the pattern number.<br>
+VoiceCommands_I2C.ino in **loop** checks every time to see if the pattern has changed (it is preset to be changed on startup) and if so, calls the routine to transfer the pattern number.<br>
 ```C
   if (gPrevPattern != gCurrentPatternNumber) {
     gPrevPattern = gCurrentPatternNumber;
@@ -810,10 +810,10 @@ VC_DemoReel.ino in **loop** periodically looks to see if there is a pattern to r
 [Top](#notes "Top")<br>
 Now we get to the interesting part - how do the two Arduino Nanos actually communicate?
 
-VoiceCommands.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
+VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
 As we have seen before, we use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
 Pay special attention to the two delay(1) lines.<br>
-VoiceCommands.ino<br>
+VoiceCommands_I2C.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // xfr_pattern(pat_num) - transfer pattern number to other Arduino
