@@ -118,8 +118,8 @@ As mentioned above, I have directly copied the dfrobot.com DFPlayer library into
 [Top](#notes "Top")<br>
 Below is an outline of the changes we will make
 
-Curiously, before **setup()** we will:
-- Create the global object mySoftwareSerial to talk on our KCX_BT_EMITTER RX and TX pins.
+Before **setup()** we will:
+- Create the global object mySoftwareSerial to talk on our YX5200 RX and TX pins.
 - Create the global object myDFPlayer to handle YX5200 communications using the above pins.
 
 In **setup()** we will:
@@ -551,7 +551,7 @@ The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus*
 The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
 <img src="https://howtomechatronics.com/wp-content/uploads/2015/10/I2C-Communication-How-It-Works.png" width="750" alt="howtomechatronics.com image of I2C bus">
 
-Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
+Most Arduinos have I2C communication hardware built in. Curiously, that I2C hardware can be accessed by using the analog pins A4 and A5; that is what we will do with the Arduino Nano. Some Arduinos have other pins that can also access the I2C hardware.
 
 I will leave the references above to explain the details of how the I2C interface works.
 
