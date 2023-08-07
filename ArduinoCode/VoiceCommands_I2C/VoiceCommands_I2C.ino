@@ -52,7 +52,6 @@
 #include "Arduino.h"
 
 // DFRobot SKU DF2301QG-EN communications
-#include "SoftwareSerial.h"                  // to talk to DF2301Q without using up debug serial port
 #include "DFRobot_DF2301Q.h"
 #include "DF2301QG_cmds.h" // my list of command ID codes
 
