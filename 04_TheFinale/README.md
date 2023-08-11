@@ -585,7 +585,10 @@ I won't go into much detail for the VC_DemoReel.ino for the Arduino on the left 
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
 
 The VoiceCommands_I2C.ino code for the Arduino on the right is very simple, thanks to the DFRobot library code (even my hacked up version). It is not very similar to our other code, so probably best to copy it from here and read through the description below.
-- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands
+
+The **I2C** version seems to work a little better than the **UART** version and did not require hacking up the DFRobot library code. Bother versions are listed below:
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_UART
 
 #### Modified DFRobot code for DF2301QG
 [Top](#notes "Top")<br>
