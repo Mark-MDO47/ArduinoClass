@@ -14,9 +14,9 @@
 
 ## Introducing the Arduino Nano
 [Back to Top](#notes "Back to Top")<br>
-![alt text](https://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg "CircuitsToday.com picture of Arduino Nano")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Arduino-Nano-Pinout_from_circuitstoday.com.png "CircuitsToday.com picture of Arduino Nano")
 
-The Student Kit includes an Arduino Nano clone. I will also bring some additional supporting hardware for use during the class.
+The Student Kit includes an Arduino Nano clone. I will also bring some additional supporting hardware for use during the class. The above image is from CircuitsToday.com.
 
 The Arduino is one of a class of open-source hardware single-module computers designed by an organization named Arduino. They build the genuine Arduino boards and make the designs avaliable. There are many companies either making clones (such as the ones in our Student Kit) or extending the family (such as the ESP32, currently my favorite Arduino variant).
 - https://www.arduino.cc/en/about
