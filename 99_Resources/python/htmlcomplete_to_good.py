@@ -46,8 +46,15 @@ REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Reso
 
 
 
-
-
+###################################################################################
+# apply_body_replaces
+#
+# Does the replacements from REPLACE_BODY
+def apply_body_replaces(a_line):
+    for find in REPLACE_BODY.keys():
+        a_line = a_line.replace(find, REPLACE_BODY[find])
+    return(a_line)
+    # end apply_body_replaces()
 
 ###################################################################################
 # do_htmlcomplete_to_good
@@ -92,7 +99,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
         tmp = a_line.find(INITIAL_FIND)
         if -1 != tmp:
             fptr_out.write(INITIAL_REPLACE)
-            fptr_out.write(a_line[tmp:])
+            fptr_out.write(apply_body_replaces(a_line[tmp:]))
             break
         # read the next line
         a_line = fptr_in.readline()
@@ -100,8 +107,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     # copy to the end of useful info, doing replaces for the body of the page
     a_line = fptr_in.readline()
     while 0 != len(a_line):
-        for find in REPLACE_BODY.keys():
-            a_line = a_line.replace(find, REPLACE_BODY[find])
+        a_line = apply_body_replaces(a_line)
         if -1 != a_line.find(FINAL_FIND):
             fptr_out.write(FINAL_REPLACE)
             break
