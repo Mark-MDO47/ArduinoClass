@@ -107,7 +107,7 @@ We will use the HC-SR04 to detect the position of our hand and use that to contr
 
 Here is a picture from that Wikipedia article of Alexandra Stepanoff playing the theremin on NBC Radio in 1930.
 
-![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Theramin-Alexandra-Stepanoff-1930.jpg/220px-Theramin-Alexandra-Stepanoff-1930.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Theramin-Alexandra-Stepanoff-1930_from_wikimedia.org.jpg "from wikimedia.org an image of Alexandra Stepanoff playing the theremin on NBC Radio in 1930")
 
 Essentially, we will start with the DemoReel.ino file from 02 Part D and replace the USB serial commands with detection of hand position by the HC-SR04.
 
