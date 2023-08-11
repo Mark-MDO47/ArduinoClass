@@ -1,4 +1,5 @@
 # Resources
+![image](https://github.com/Mark-MDO47/ArduinoClass/assets/12884637/617c126d-64eb-4601-89e0-f45a3a0b7b68)
 
 **Table of Contents**
 * [Top](#resources "Top")
@@ -193,7 +194,7 @@ The YX5200 Audio Player can drive speakers or headphones from sound files you pl
 Placing the audio files onto the SD card requires special care. Also there are many clone versions with different chips and different firmware levels. The following link shows the method I used to get reliable performance.
 - https://github.com/Mark-MDO47/AudioPlayer-YX5200
 
-![alt text](https://github.com/Mark-MDO47/RubberBandGun/raw/master/PartsInfo/YX5200_MP3player.png "Image of YX5200 Audio Player")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/YX5200_MP3player.png "Image of YX5200 Audio Player")
 
 ### Saturn Sounds from Cassini
 [Top](#resources "Top")<br>
@@ -245,7 +246,7 @@ The KCX_BT_EMITTER can take the audio from the YX5200 and send it to a bluetooth
 The information on commanding the KCX_BT_EMITTER to auto-pair to a specific speaker is in Chinese. Also there is a trick to getting a low-noise connection between this and the YX5200. I have pointers to these details and some utilities I wrote to help with commanding/pairing in the following link.
 - https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER
 
-![alt text](https://github.com/Mark-MDO47/BluetoothAudioTransmitter_KCX_BT_EMITTER/raw/master/images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/KCX_BT_Board_IMG_1351.png "Image of KCX_BT_EMITTER Bluetooth Audio Transmitter")
 
 ## DF2301QG Voice Recognizer and Command Module
 [Top](#resources "Top")<br>
@@ -459,11 +460,11 @@ The WS2812B protocol can be found in this spec:
 
 A higher level depiction of this output protocol in action (taken from the spec) is shown here. First is the serial head-to-tail cascade architecture of the LEDs:
 
-![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
 
 Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "consumes" the first set of bytes and passes on the rest.
 
-![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
 
 ## TLDR UART Serial Interface
 [Top](#notes "Top")<br>
