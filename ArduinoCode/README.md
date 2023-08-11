@@ -1,3 +1,6 @@
+# Notes
+
+## Introduction
 
 | Class Project | Arduino Code | Comment |
 | --- | --- | --- |
