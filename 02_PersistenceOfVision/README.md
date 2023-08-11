@@ -260,11 +260,11 @@ The WS2812B protocol can be found in this spec:
 
 A higher level depiction of this output protocol in action (taken from the spec) is shown here. First is the serial head-to-tail cascade architecture of the LEDs:
 
-![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/CascadeLED_SerialProtocol_arch.png "WS2812b RGB serial cascade architecture (from spec)")
 
 Then the high-level serial output protocol as seen by each of the LEDs in the architecture diagram. Note how each LED "consumes" the first set of bytes and passes on the rest.
 
-![alt text](https://github.com/Mark-MDO47/FPGA_RBG_2_RBGW/blob/master/images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/WS2812B_RGB_SerialProtocol.png "WS2812b RGB serial output protocol (from spec)")
 
 In summary, there is a serial data protocol used to control strings of WS2812B RGB LEDs.
 - 3 8-bit bytes per LED are sent to control Red/Green/Blue.
