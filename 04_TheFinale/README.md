@@ -519,7 +519,7 @@ README.md:107:   * @brief Set volume
 README.md:108:   * @param vol - Volume range(1-7)
 README.md:173:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : Set volume, the set value range 1-7
 README_CN.md:106:   * @fn setVolume
-README_CN.md:173:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : 设置音量, 设置值范围1~7
+README_CN.md:173:   * @n       DF2301Q_UART_MSG_CMD_SET_VOLUME : ????, ?????1~7
 examples/i2c/i2c.ino:5: * @n  Get and set the wake-up state duration, set mute mode, set volume, and enter the wake-up state
 examples/i2c/i2c.ino:30:   * @brief Set voice volume
 examples/i2c/i2c.ino:31:   * @param voc - Volume value(1~7)
