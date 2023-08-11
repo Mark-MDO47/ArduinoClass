@@ -47,7 +47,7 @@ The Arduino IDE uses a variant of the C++ language. You can program in a C++ sty
 [Top](#resources "Top")<br>
 We will be using Arduino Nano clones in our projects. You can ignore the following for our class; this is for follow-up by interested persons. Below is an image of an Arduino Nano from www.circuitstoday.com.
 
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/4610X SERIES_from_digikey.com.jpg "CircuitsToday.com picture of Arduino Nano")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Arduino-Nano-Pinout_from_circuitstoday.com.png "CircuitsToday.com picture of Arduino Nano")
 
 Lots of info on the Arduino Nano is found here (diagrams, not schematics)
 * https://www.circuitstoday.com/arduino-nano-tutorial-pinout-schematics
