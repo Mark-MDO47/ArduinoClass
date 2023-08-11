@@ -41,7 +41,7 @@ FINAL_REPLACE = """
 """
 
 
-REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/': r'./Images/',
+REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/': r'Images/',
                 "user-content-": ""}
 
 
@@ -71,6 +71,8 @@ REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Reso
 # .../fix_html/second.html
 
 def do_htmlcomplete_to_good(fname, fptr_out):
+    global REPLACE_BODY # we will add entries
+
     fptr_in = open(fname, 'rt')
     my_fname = os.path.abspath(fname)
     dot = os.path.split(my_fname)
@@ -82,6 +84,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
             my_dirs.append(a_file)
     if 1 != len(my_dirs):
         sys.stderr.write("ERROR - directory containing file has %d subdirectories, expected 1\n" % len(my_dirs))
+    REPLACE_BODY[my_dirs[0]+"/"] = "Images/"
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
