@@ -8,7 +8,7 @@
 | 02_PersistenceOfVision Part_A | [FastLEDBlink](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/FastLEDBlink "FastLEDBlink") | The class code |
 | 02_PersistenceOfVision Part_B | [Sawtooth](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Sawtooth "Sawtooth") | The class code |
 | 02_PersistenceOfVision Part_C | [Oval](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Oval "Oval") | The class code |
-| 02_PersistenceOfVision Part_C | [HelloWorld](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ "HelloWorld") | The class code |
+| 02_PersistenceOfVision Part_C | [HelloWorld](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/HelloWorld "HelloWorld") | The class code |
 | 02_PersistenceOfVision Part_C | [SawtoothRevisited](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/SawtoothRevisited "SawtoothRevisited") | The class code |
 | 02_PersistenceOfVision Part_C | [AllThePatterns](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns "AllThePatterns") | The class code |
 | 02_PersistenceOfVision Part_C | [MDO_AllThePatterns](https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_AllThePatterns "MDO_AllThePatterns") | The code for ParkTheCar box |
