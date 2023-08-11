@@ -265,7 +265,7 @@ A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Cou
 This handy device allows the use of one component to give 10 individual pullups. This is useful for instance if your project has a lot of buttons.
 - https://www.digikey.com/en/products/detail/bourns-inc/4610X-AP1-103LF/3741070
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/4610X SERIES_from_digikey.com.jpg" width="150" alt="digikey.com image of 9 10K Ohm resistors one package">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/4610X_SERIES_from_digikey.com.jpg" width="150" alt="digikey.com image of 9 10K Ohm resistors one package">
 
 ## SN74HCT125N 3-state Buffer
 [Top](#resources "Top")<br>
