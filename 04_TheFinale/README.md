@@ -589,7 +589,7 @@ The VoiceCommands_I2C.ino code for the Arduino on the right is very simple, than
 
 #### Modified DFRobot code for DF2301QG
 [Top](#notes "Top")<br>
-The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos.
+The library for communicating with the DF2301QG supplied by DFRobot didn't succesfully compile for the **UART** interface with an Arduino Nano. Looking at their code, it compiled for certain Arduinos but not all Arduinos.
 
 I don't know but I would guess that they set up their code to only compile with models of Arduino that they had tested with the code. There is evidence that the order of operations needed to be different for certain Arduino models. As a result I hacked up the DFRobot code a bit to make it compile for the Arduino Nano.
 
