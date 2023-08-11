@@ -52,8 +52,36 @@ REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Reso
 ###################################################################################
 # do_htmlcomplete_to_good
 #
+# We expect a directory structure something like this (fix_html is arbitrary):
+#
+# .../fix_html/
+# .../fix_html/first/
+# .../fix_html/first/first.htm
+# .../fix_html/first/first_files/*
+# .../fix_html/second/second.htm
+# .../fix_html/second/second_files/*
+# etc.
+#
+# We expect there will be a directory with all the images we are to use;
+#       these files are placed there separately
+# .../fix_html/images/*
+#
+# We will create files as follows that use the files in the images directory
+# .../fix_html/first.html
+# .../fix_html/second.html
+
 def do_htmlcomplete_to_good(fname, fptr_out):
     fptr_in = open(fname, 'rt')
+    my_fname = os.path.abspath(fname)
+    dot = os.path.split(my_fname)
+    dotdot = os.path.split(dot[0])
+    my_files = os.listdir(dot[0])
+    my_dirs = []
+    for a_file in my_files:
+        if os.path.isdir(os.path.join(dot[0],a_file)):
+            my_dirs.append(a_file)
+    if 1 != len(my_dirs):
+        sys.stderr.write("ERROR - directory containing file has %d subdirectories, expected 1\n" % len(my_dirs))
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
@@ -91,18 +119,19 @@ def do_htmlcomplete_to_good(fname, fptr_out):
 # python htmlcomplete_to_good.py -h to see what the arguments are
 #
 if __name__ == "__main__":
-    my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
-        formatter_class=argparse.RawTextHelpFormatter,
-        description="stdout receives tab-separated-values form of data from listFname",
-        epilog="""Example:
-python htmlcomplete_to_good.py list.txt prevRatings.xlsx  > formattedList.txt
-""",
-        usage='%(prog)s listFname prevRatingsFname')
-    my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
-    args = my_parser.parse_args()
+#     my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
+#         formatter_class=argparse.RawTextHelpFormatter,
+#         description="stdout receives standalone version of fname",
+#         epilog="""Example:
+# python htmlcomplete_to_good.py save-as-html-complete-README.htm > standalone.html
+# """,
+#         usage='%(prog)s listFname prevRatingsFname')
+#     my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
+#     args = my_parser.parse_args()
 
 
     # all the real work is done here
-    do_htmlcomplete_to_good(args.fname, sys.stdout)
+    # do_htmlcomplete_to_good(args.fname, sys.stdout)
+    do_htmlcomplete_to_good(r"C:\Users\mdo\Downloads\html_fix\index\index.htm", sys.stdout)
 
     # end of "__main__"
