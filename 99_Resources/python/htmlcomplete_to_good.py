@@ -1,5 +1,8 @@
 # Author: Mark Olson 2023-08-10
 #
+# This is tuned specifically to the Arduino Class
+#    https://github.com/Mark-MDO47/ArduinoClass/tree/master
+#
 # process the save-as-html-complete of a README.md from github.com
 #   and make it an html we can use
 #
@@ -41,8 +44,37 @@ FINAL_REPLACE = """
 """
 
 
-REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/': r'Images/',
-                "user-content-": ""}
+REPLACE_BODY = [
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/", "Images/"],
+    ["user-content-", ""],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf", "03_SonarRangeDetector_ExtraFun.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision_stick.pdf", "02_PersistenceOfVision_stick.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/04_TheFinale_DemoReelVoiceCommand_I2C.pdf", "04_TheFinale_DemoReelVoiceCommand_I2C.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf", "01_Blinking_LED_part_A_Schematic.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_B_Schematic.pdf", "01_Blinking_LED_part_B_Schematic.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf", "02_PersistenceOfVision.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector.pdf", "03_SonarRangeDetector.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/04_TheFinale_ThereminSound.pdf", "04_TheFinale_ThereminSound.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Pattern_Calcs.xlsx", "Pattern_Calcs.xlsx"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_A/README.md", "02_PersistenceOfVision_Part_A.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md", "02_PersistenceOfVision_Part_B.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md", "02_PersistenceOfVision_Part_C.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md", "02_PersistenceOfVision_Part_D.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_A", "02_PersistenceOfVision_Part_A.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_B", "02_PersistenceOfVision_Part_B.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C", "02_PersistenceOfVision_Part_C.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_D", "02_PersistenceOfVision_Part_D.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md", "99_Resources.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision", "02_PersistenceOfVision.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector", "03_SonarRangeDetector.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/00_InstallArduinoIDE", "00_InstallArduinoIDE.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/Sounds", "99_Resources_Sounds.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad", "99_Resources_KiCad.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/05_ThatIsNotAll", "05_ThatIsNotAll.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED", "01_BlinkingLED.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale", "04_TheFinale.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources", "99_Resources.html"]
+]
 
 
 
@@ -51,8 +83,8 @@ REPLACE_BODY = {r'https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Reso
 #
 # Does the replacements from REPLACE_BODY
 def apply_body_replaces(a_line):
-    for find in REPLACE_BODY.keys():
-        a_line = a_line.replace(find, REPLACE_BODY[find])
+    for pair in REPLACE_BODY:
+        a_line = a_line.replace(pair[0], pair[1])
     return(a_line)
     # end apply_body_replaces()
 
@@ -91,7 +123,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
             my_dirs.append(a_file)
     if 1 != len(my_dirs):
         sys.stderr.write("ERROR - directory containing file has %d subdirectories, expected 1\n" % len(my_dirs))
-    REPLACE_BODY[my_dirs[0]+"/"] = "Images/"
+    REPLACE_BODY.append([my_dirs[0]+"/", "Images/"])
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
@@ -128,19 +160,19 @@ def do_htmlcomplete_to_good(fname, fptr_out):
 # python htmlcomplete_to_good.py -h to see what the arguments are
 #
 if __name__ == "__main__":
-#     my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
-#         formatter_class=argparse.RawTextHelpFormatter,
-#         description="stdout receives standalone version of fname",
-#         epilog="""Example:
-# python htmlcomplete_to_good.py save-as-html-complete-README.htm > standalone.html
-# """,
-#         usage='%(prog)s listFname prevRatingsFname')
-#     my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
-#     args = my_parser.parse_args()
+    my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
+        formatter_class=argparse.RawTextHelpFormatter,
+        description="stdout receives standalone version of fname",
+        epilog="""Example:
+python htmlcomplete_to_good.py save-as-html-complete-README.htm > standalone.html
+""",
+        usage='%(prog)s listFname prevRatingsFname')
+    my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
+    args = my_parser.parse_args()
 
 
     # all the real work is done here
-    # do_htmlcomplete_to_good(args.fname, sys.stdout)
-    do_htmlcomplete_to_good(r"C:\Users\mdo\Downloads\html_fix\index\index.htm", sys.stdout)
+    do_htmlcomplete_to_good(args.fname, sys.stdout)
+    #  do_htmlcomplete_to_good(r"C:\Users\mdo\Downloads\html_fix\index\index.htm", sys.stdout)
 
     # end of "__main__"
