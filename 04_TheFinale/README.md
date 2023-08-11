@@ -498,7 +498,7 @@ The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0
 - https://www.dfrobot.com/product-2665.html
 - https://wiki.dfrobot.com/SKU_SEN0539-EN_Gravity_Voice_Recognition_Module_I2C_UART
 
-<img src="https://dfimg.dfrobot.com/store/cache3/data/SEN0539/SEN0539-EN-1.jpg" width="500" alt="Image of DF2301QG voice command module from dfrobot.com">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/SEN0539-EN-1_from_dfrobot.com.jpg" width="500" alt="Image of DF2301QG voice command module from dfrobot.com">
 
 One interesting thing about this device is that it doesn't depend on any Internet connection or giant tech company voice-to-text service; it does the voice recognition locally.
 
