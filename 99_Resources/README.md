@@ -1,5 +1,4 @@
 # Resources
-![image](https://github.com/Mark-MDO47/ArduinoClass/assets/12884637/617c126d-64eb-4601-89e0-f45a3a0b7b68)
 
 **Table of Contents**
 * [Top](#resources "Top")
