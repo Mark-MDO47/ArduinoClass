@@ -29,6 +29,24 @@ table {
 th, td {
   padding: 15px;
 }
+
+h1 {
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+h2 {
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+h3 {
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+h4 {
+    border-bottom:1px solid #CCC;
+    padding-bottom:3px;
+}
+
 </style>
 </head>
 <body>
@@ -60,16 +78,33 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_B/README.md", "02_PersistenceOfVision_Part_B.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_C/README.md", "02_PersistenceOfVision_Part_C.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md", "02_PersistenceOfVision_Part_D.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_AllThePatterns", "ArduinoCode_MDO_AllThePatterns.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_UART", "ArduinoCode_VoiceCommands_UART.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_A", "02_PersistenceOfVision_Part_A.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_B", "02_PersistenceOfVision_Part_B.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_C", "02_PersistenceOfVision_Part_C.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision/Part_D", "02_PersistenceOfVision_Part_D.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/SawtoothRevisited", "ArduinoCode_SawtoothRevisited.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C", "ArduinoCode_VoiceCommands_I2C.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns", "ArduinoCode_AllThePatterns.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound", "ArduinoCode_ThereminSound.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands", "ArduinoCode_VoiceCommands.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/FastLEDBlink", "ArduinoCode_FastLEDBlink.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_DemoReel", "ArduinoCode_MDO_DemoReel.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_Theremin", "ArduinoCode_MDO_Theremin.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel", "ArduinoCode_VC_DemoReel.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md", "99_Resources.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision", "02_PersistenceOfVision.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/HelloWorld", "ArduinoCode_HelloWorld.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector", "03_SonarRangeDetector.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/00_InstallArduinoIDE", "00_InstallArduinoIDE.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/DemoReel", "ArduinoCode_DemoReel.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Sawtooth", "ArduinoCode_Sawtooth.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Theremin", "ArduinoCode_Theremin.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/Sounds", "99_Resources_Sounds.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad", "99_Resources_KiCad.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Blink", "ArduinoCode_Blink.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Oval", "ArduinoCode_Oval.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/05_ThatIsNotAll", "05_ThatIsNotAll.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED", "01_BlinkingLED.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale", "04_TheFinale.html"],
