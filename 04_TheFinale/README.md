@@ -549,7 +549,7 @@ The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus*
 - https://www.geeksforgeeks.org/i2c-communication-protocol/
 
 The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
-<img src="https://howtomechatronics.com/wp-content/uploads/2015/10/I2C-Communication-How-It-Works.png" width="750" alt="howtomechatronics.com image of I2C bus">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C-Communication-How-It-Works_from_howtomechatronics.com.png" width="750" alt="howtomechatronics.com image of I2C bus">
 
 Most Arduinos have I2C communication hardware built in. Curiously, that I2C hardware can be accessed by using the analog pins A4 and A5; that is what we will do with the Arduino Nano. Some Arduinos have other pins that can also access the I2C hardware.
 
