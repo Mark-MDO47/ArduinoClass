@@ -125,7 +125,7 @@ As you undoubtedly know, LEDs are designed to be connected with positive voltage
 
 Here from the above link is a diagram showing how to identify the polarity (+ and - pins) of an LED:
 
-![alt text](https://pxt.azureedge.net/blob/03fec9ac9dbaee9f745ae2beda43fc15119c1c20/static/cp/learn/pins-tutorial/devices/led-polarity.jpg "Adafruit.com polarity of LED")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/led-polarity_from_adafruit.com_azureedge.net.jpg "Adafruit.com polarity of LED")
 
 Here from the above link is a diagram showing a simple battery circuit to light up an LED. Note the resistor to prevent burning out the LED. This is NOT our Arduini circuit; it just shows how to make an LED light up with a battery.
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/led-connection_from_adafruit.com_azureedge.net.jpg 
