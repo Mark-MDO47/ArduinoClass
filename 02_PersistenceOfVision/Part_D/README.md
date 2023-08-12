@@ -19,6 +19,9 @@ We will continue with our modified FastLED example program from **Part_C** to pe
 The idea is to use Mark Kriegsman's classic DemoReel100.ino with our LED Stick, and use USB Serial commands to choose the pattern.<br>
 - https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
 
+If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_FastLED/DemoReel100:
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode
+
 Copy the latest .ino file from Part C (either HelloWorld.ino or AllThePatterns.ino, depending on whether you did the extra credit) into a directory named DemoReel with filename DemoReel.ino, then open it in the Arduino IDE.
 
 Now do global replaces with case sensitivity on as shown below:

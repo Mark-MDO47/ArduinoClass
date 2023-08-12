@@ -5,13 +5,13 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+## Table of Contents
 * [Top](#notes "Top")
 * [Arduino IDE](#arduino-ide "Arduino IDE")
 * [C and C++ Languages used in Arduino IDE](#c-and-cplusplus-languages-used-in-arduino-ide "C and C++ Languages used in Arduino IDE")
 * [Schematics and Fritzing](#schematics-and-fritzing "Schematics and Fritzing")
-* [KiCad - optional](#kicad-\--optional "KiCad - optional")
-* [Fritzing - optional](#fritzing-\--optional "Fritzing - optional")
+  * [KiCad - optional](#kicad-\--optional "KiCad - optional")
+  * [Fritzing - optional](#fritzing-\--optional "Fritzing - optional")
 
 ## Arduino IDE
 [Top](#notes "Top")<br>
@@ -32,6 +32,7 @@ The Arduino IDE uses a variant of the C++ language. You can program in a C++ sty
 [Top](#notes "Top")<br>
 
 ### Schematics
+[Top](#notes "Top")<br>
 Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
 
 Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
@@ -42,6 +43,7 @@ Example schematic wiring diagram showing a physical representation of an Arduino
 - I don't always follow the "rules" about placement of all inputs on one side and all outputs on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it bewildering to have to figure out the physical placement somewhere other than the schematic.
 
 ### Fritzing
+[Top](#notes "Top")<br>
 I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
 
 Example Fritzing with the same components as the above schematic and with the addition of the breadboard:<br>
