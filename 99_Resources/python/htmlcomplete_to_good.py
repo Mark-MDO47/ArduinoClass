@@ -109,7 +109,7 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale", "04_TheFinale.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources", "99_Resources.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode", "ArduinoCode.html"],
-    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master", "_index.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master", "_index.html"]
 ]
 
 
