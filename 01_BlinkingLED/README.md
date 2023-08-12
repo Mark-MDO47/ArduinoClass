@@ -72,6 +72,9 @@ In the Arduino IDE, choose menu **File** -> **Examples** -> **01.Basics** -> **B
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlink.png "Arduino IDE loading Blink example program")
 
+If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_ArduinoIDE/Blink:
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode
+
 In the **setup()** function you will find a "pinMode" call; this sets the internal "pin" to OUTPUT mode so we can turn the internal LED on and off.
 - LED_BUILTIN is a symbol for the "pin" number that controls the built-in LED on the Arduino. This LED_BUILTIN symbol will automatically be correct when compiling for any Arduino.
 
