@@ -1,4 +1,4 @@
-# Voice Commands
+# Voice Commands UART
 This is the **UART** version of VoiceCommands. After experimentation I decided to use the **I2C** version; see below
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C
 
