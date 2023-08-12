@@ -61,7 +61,7 @@ FINAL_REPLACE = """
 </body></html>
 """
 
-
+# NOTE: these are (mostly) in order of length; that is important!
 REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/", "Images/"],
     ["user-content-", ""],
@@ -88,7 +88,6 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C", "ArduinoCode_VoiceCommands_I2C.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns", "ArduinoCode_AllThePatterns.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound", "ArduinoCode_ThereminSound.html"],
-    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands", "ArduinoCode_VoiceCommands.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/FastLEDBlink", "ArduinoCode_FastLEDBlink.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_DemoReel", "ArduinoCode_MDO_DemoReel.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_Theremin", "ArduinoCode_MDO_Theremin.html"],
@@ -108,7 +107,9 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/05_ThatIsNotAll", "05_ThatIsNotAll.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/01_BlinkingLED", "01_BlinkingLED.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale", "04_TheFinale.html"],
-    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources", "99_Resources.html"]
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources", "99_Resources.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode", "ArduinoCode.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/tree/master", "_index.html"],
 ]
 
 
