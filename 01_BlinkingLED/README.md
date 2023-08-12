@@ -222,7 +222,7 @@ The screen itself looks like this:
 
 You may need to set the serial monitor to 115,200 baud to match what our **setup()** routine is going to do.
 
-Now our one-time **setup()** code is starting to be a little more complex. I am sure you can figure out what the new code does even if some techniques are unfamiliar to you.
+Now our one-time **setup()** code is starting to be a little more complex. I am sure you can figure out what the new code does even if some techniques are unfamiliar to you. In particular, don't worry about the **F** macro in **Serial.println(F("ArduinoClass init..."));**; it works just as if the **F()** was not there but saves a little RAM. See the section on "PROGMEM and "F" macro to save RAM" for more information.
 ```C
 #define DPIN_LED_OUT 3 // this pin drives the external LED
 #define DPIN_BTN_IN  5 // this pin is used to sense the external button
