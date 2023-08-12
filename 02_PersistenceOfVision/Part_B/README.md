@@ -78,7 +78,7 @@ Our plan is that when the button is pressed the LED sawtooth pattern goes back t
 I should mention that there is such a thing as contact bounce, which we could handle in the button routine. I chose not to pay attention to this for our simple project. If you want to see more on that topic look in the Arduino IDE under
 - **File** -> **Examples** -> **02.Digital** -> **Debounce**
 
-If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_ArduinoIDE\Debounce:
+If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_ArduinoIDE/Debounce:
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode
 
 Here is the definition of our button pin; it goes with the other definitions before the **setup()** routine
