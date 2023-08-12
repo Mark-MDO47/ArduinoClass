@@ -140,6 +140,9 @@ Open another Example program - Blink Without Delay - and let's compare it with B
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlinkWithoutDelay.png "Arduino IDE loading Blink Without Delay example program")
 
+If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_ArduinoIDE/BlinkWithoutDelay
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode
+
 The **setup()** code is essentially the same - just setting up the LED pin as OUTPUT.
 
 There are some new "state" variables, defined before (and outside) of **setup()** and **loop()** - defining them this way means that the values will remain unchanged between calls to **loop()**.
