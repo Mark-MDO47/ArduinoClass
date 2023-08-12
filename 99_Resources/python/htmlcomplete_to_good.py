@@ -157,6 +157,20 @@ def apply_body_replaces(a_line):
 # We will create files as follows that use the files in the images directory
 # .../fix_html/first.html
 # .../fix_html/second.html
+#
+# This is accomplished by a shell script:
+"""
+for d in `ls | grep / | grep -v Images`
+do
+  cd $d
+  f=`ls *.htm`
+  echo $f
+  python /d/github-Mark-MDO47/ArduinoClass/99_Resources/python/htmlcomplete_to_good.py ${f} > ../${f}l
+  cd ..
+done
+mv index.html _index.html
+cp -p *.html /d/github-Mark-MDO47/_html_fix/
+"""
 
 def do_htmlcomplete_to_good(fname, fptr_out):
     global REPLACE_BODY # we will add entries
