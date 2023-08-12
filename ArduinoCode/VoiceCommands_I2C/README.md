@@ -1,4 +1,4 @@
-# Voice Commands
+# Voice Commands I2C
 This is the **I2C** version of VoiceCommands. After experimentation I decided to use this **I2C** version instead of the **UART** version.
 
 The main reasons for using the I2C version:
