@@ -176,6 +176,10 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     global REPLACE_BODY # we will add entries
 
     fptr_in = open(fname, 'rt')
+
+    # I was thinking of writing to html in the .. directory by code but
+    #    it was so easy in the shell script...
+    """
     my_fname = os.path.abspath(fname)
     dot = os.path.split(my_fname)
     dotdot = os.path.split(dot[0])
@@ -187,6 +191,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     if 1 != len(my_dirs):
         sys.stderr.write("ERROR - directory containing file has %d subdirectories, expected 1\n" % len(my_dirs))
     REPLACE_BODY.append([my_dirs[0]+"/", "Images/"])
+    """
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
