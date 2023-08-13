@@ -64,6 +64,7 @@ FINAL_REPLACE = """
 # NOTE: these are (mostly) in order of length; that is important!
 REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/", "Images/"],
+    ['img src="index_files/', 'img src="Images/'],
     ["user-content-", ""],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf", "03_SonarRangeDetector_ExtraFun.pdf"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision_stick.pdf", "02_PersistenceOfVision_stick.pdf"],
@@ -123,6 +124,15 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources", "99_Resources.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode", "ArduinoCode"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master", "_index.html"],
+    ["https://youtube.com/shorts/qGxECSMQtAQ", "YouTube/01_blink_button_2023-04-20.mp4"],
+    ["https://youtu.be/c5UH3J40uWE", "YouTube/01_blink_extLED_setup_2023-04-28.mp4"],
+    ["https://youtu.be/cnjk-xBvyEo", "YouTube/02A_fastled_blink_2023-04-28.mp4"],
+    ["https://youtu.be/UdA5ehl802k", "YouTube/02B_sawtooth_2023-04-20.mp4"],
+    ["https://youtu.be/I-3vgafNRE8", "YouTube/02C_oval_button_2023-04-29.mp4"],
+    ["https://youtu.be/sXV3qn8dh8o", "YouTube/02D_sinelon_2023-04-29.mp4"],
+    ["https://youtu.be/0KehSIJmKcs", "YouTube/03_Theremin_final_2023-04-29.mp4"],
+    ["https://youtu.be/G7ARC0xHXRg", "YouTube/04_ThereminSound_final_2023-04-29.mp4"],
+    ["https://youtu.be/M8Xc4aVh5Hc", "YouTube/04_VoiceCommands_and_VC_DemoReel_02.mp4"]
 ]
 
 
