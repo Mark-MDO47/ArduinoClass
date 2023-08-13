@@ -47,6 +47,7 @@ You should then be able to do all of the standard projects. For the extra credit
 - connectors, clips, harnesses, and wires
 - large RGB Color LED Disks (93 LEDs and 241 LEDs) plus battery and UBEC power convertor (I will provide some to share between student stations)
 - a breadboard with the sound circuitry (YX5200 sound module and KCX_BT_EMITTER Bluetooth module) for the finale project
+- a breadboard with an extra Arduino Nano and a voice recognition and command module (DF2301QG) for the finale project
 
 ## Some other items used in the extra credit projects
 [Top](#arduino-class "Top")<br>
