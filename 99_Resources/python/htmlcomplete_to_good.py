@@ -144,6 +144,7 @@ REPLACE_BODY = [
 def apply_body_replaces(a_line):
     for pair in REPLACE_BODY:
         a_line = a_line.replace(pair[0], pair[1])
+
     return(a_line)
     # end apply_body_replaces()
 
@@ -187,21 +188,21 @@ def do_htmlcomplete_to_good(fname, fptr_out):
 
     fptr_in = open(fname, 'rt')
 
-    # I was thinking of writing to html in the .. directory by code but
-    #    it was so easy in the shell script...
-    """
     my_fname = os.path.abspath(fname)
     dot = os.path.split(my_fname)
-    dotdot = os.path.split(dot[0])
     my_files = os.listdir(dot[0])
     my_dirs = []
+    my_fns = []
     for a_file in my_files:
+        if os.path.isfile(os.path.join(dot[0],a_file)):
+            my_fns.append(a_file)
         if os.path.isdir(os.path.join(dot[0],a_file)):
             my_dirs.append(a_file)
     if 1 != len(my_dirs):
-        sys.stderr.write("ERROR - directory containing file has %d subdirectories, expected 1\n" % len(my_dirs))
-    REPLACE_BODY.append([my_dirs[0]+"/", "Images/"])
-    """
+        sys.stderr.write("ERROR - directory containing file %s has %d subdirectories, expected 1\n" % (dot[1], len(my_dirs)))
+    if 1 != len(my_fns):
+        sys.stderr.write("ERROR - directory containing file %s has %d files, expected 1\n" % (dot[1], len(my_fns)))
+    REPLACE_BODY.append(['"'+my_dirs[0]+"/", '"Images/'])
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
