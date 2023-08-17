@@ -6,4 +6,4 @@ Click this link to back to go back to the root of the Arduino class
 
 
 ## Notes
-This area contains the sound files and an Attributions.html file for the Arduino Class.
+This area contains the sound files and an Attributions.html for the sound files for the Arduino Class.
