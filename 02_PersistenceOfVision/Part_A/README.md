@@ -18,7 +18,7 @@ We will use a slightly modified FastLED example program **Blink** to make sure w
 Copy the code or the file from here and put it in a directory named FastLEDBlink with filename FastLEDBlink.ino and open it with the Arduino IDE
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
-If for some reason you do not have access to that you can find a copy (from 2023-08) in this area under _Examples_FastLED/Blink
+If for some reason you do not have access to the internet you can find a copy (from 2023-08) in this area under _Examples_FastLED/Blink
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode
 
 Take a look at the code. You should be able to identify the steps before and in **setup()** we talked about earlier
