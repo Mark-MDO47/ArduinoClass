@@ -216,16 +216,16 @@ As mentioned, these WS2812B RGB LEDs use just power/ground/serialdata. Other RGB
 Here is what we do before **setup()**
 - We include the FastLED file (**#include <FastLED.h>**)
 - Either do or don't include a line that says FASTLED_USING_NAMESPACE
-  - NOTE: some of the FastLED examples use the macro FASTLED_USING_NAMESPACE. This is OK to use but does nothing on the Arduino Nano; it only takes effect on spark platforms.
+  - NOTE: some of the FastLED examples use the macro FASTLED_USING_NAMESPACE. This is OK to use but does nothing on the Arduino Nano; it only takes effect on spark platforms from sparkfun.com.
   - See https://github.com/FastLED/FastLED/issues/574
-- We tell it what pin is to be used for serial communication
-  - We are not using the built-in USB serial port for FastLED; FastLED will take care of sending the serial data on a digital I/O pin for us.
+- We tell it what pin is to be used for serial communication.
+  - We are not using the built-in USB HW serial port for FastLED; FastLED will take care of sending the serial data on a digital I/O pin controlled by software.
 - We tell it how many LEDs are in the string attached to that pin
 - We tell it what order the three bytes go onto the data line: RGB, RBG, GBR, etc.
-- We use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage when the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
+- We use the typedef (a C-language construct for an activity-specific data type) **CRGB** to create an array for data storage from which the data is sent to the LEDs. We will call this array fastled_array, but the name is arbitrary.
 
 Here is what we do in **setup()**
-- We use **FastLED.addLeds(...)** to point at fastled_array and give it the information about pin, number of LEDs, and color order.
+- We use **FastLED.addLeds(...)** to point at fastled_array and give it the information about what I/O pin, number of LEDs, and color order.
 
 Here is what we do in **loop()**
 - If it is time for the next data pattern:
