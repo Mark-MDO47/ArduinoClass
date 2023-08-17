@@ -144,7 +144,10 @@ We will use the breadboard and some connectors to implement the following circui
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_Schematic.png "Circuit Diagram of 01-Part-A: our external LED connections")
 
-Here is an example of the above circuit implemented on a breadboard. Note that the wire from the black clip on Arduino pin "GND" goes to the horizontal row 3 on the breadboard, connecting to the negative pin of the LED. Also the wire from the green clip on Arduino pin "D3" goes to the horizontal row 10 on the breadboard, and the signal runs across to the resistor on row 10 which connects to row 1 which is the positive pin of the LED.<br>
+Here is an example of the above circuit implemented on a breadboard. Note that the wire fromArduino pin "GND" goes to the horizontal row 19 on the breadboard and is connected by a black wire to one of the "-" rails which runs vertically on the breadboard.
+We take advantage of this negative rail by connecting the negative pin of the LED to the negative rail.<br>
+Also the resistor connects to Arduino pin "D3" on row 21 and goes to the horizontal row 14 on the breadboard which is not otherwise connected to an Arduino pin,
+and that signal runs across to the positive pin of the LED.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_setup.png "Image of 01_BlinkingLED Part A implementation")
 
 Here is a Fritzing of the above circuit on a breadboard. Note that I did not use the breadboard in exactly the same way for this Fritzing as I did for the actual implementation above. In the implementation I took advantage of the vertical breadboard connection for the ground, but in the Fritzing I just did a straight connection. Also in the implementation I used the 220 Ohm resistor itself to connnect up to a higher horizontal row, but in the Fritzing I put the resistor on the break between horizontal rows. I am using these two versions of the same circuit to illustrate some different styles of breadboard usage and to explore use of the vertical power rails and the horizontal rows.<br>
@@ -190,7 +193,15 @@ Here is what our new circuit looks like. As before, I have added +/- symbols in 
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_Schematic.png "Circuit Diagram of 01-Part-B: add button")
 
-Below is an image of 01_BlinkingLED Part B setup. Notice that the button has four pins and is situated with two pins on horizontal rows 1 & 3 on the left side of the middle split and two on the same horizontal rows the right side. We found by experiment that when the button is pushed it connects the pins on opposite corners. Thus the blue wire from Arduino pin "D3" goes to "1A", connects to the upper left corner of the button, then to the lower right corner of the button which goes by orange wire to the the "-" power rail and from there all the way to the bottom of the "-" power rail and the black wire connecting to Arduino pin "GND".<br>
+Below is an image of 01_BlinkingLED Part B setup.
+Notice that the button has four pins and is situated with two pins on horizontal
+rows 6 & 8 on the left side of the middle split and two on the same horizontal
+rows the right side.<br>
+I found by experiment that when the button is pushed it connects the pins on opposite corners.
+Thus the yellow wire from Arduino pin "D5" goes to horizontal row 6, connects to the upper left corner of the button,
+then the lower right corner of the button goes by black wire to the the "-" vertical power rail
+and from there all the way to the bottom of the "-" power rail and the black wire connecting to Arduino pin "GND".
+
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_setup.png "Image of 01_BlinkingLED Part B setup")
 
 Here is a Fritzing for the same circuit. Note that once again there are variations between the implementation above and the Fritzing.<br>
