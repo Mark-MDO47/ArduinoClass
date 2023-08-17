@@ -193,7 +193,15 @@ Here is what our new circuit looks like. As before, I have added +/- symbols in 
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_Schematic.png "Circuit Diagram of 01-Part-B: add button")
 
-Below is an image of 01_BlinkingLED Part B setup. Notice that the button has four pins and is situated with two pins on horizontal rows 1 & 3 on the left side of the middle split and two on the same horizontal rows the right side. We found by experiment that when the button is pushed it connects the pins on opposite corners. Thus the blue wire from Arduino pin "D3" goes to "1A", connects to the upper left corner of the button, then to the lower right corner of the button which goes by orange wire to the the "-" power rail and from there all the way to the bottom of the "-" power rail and the black wire connecting to Arduino pin "GND".<br>
+Below is an image of 01_BlinkingLED Part B setup.
+Notice that the button has four pins and is situated with two pins on horizontal
+rows 6 & 8 on the left side of the middle split and two on the same horizontal
+rows the right side.<br>
+I found by experiment that when the button is pushed it connects the pins on opposite corners.
+Thus the yellow wire from Arduino pin "D5" goes to horizontal row 6, connects to the upper left corner of the button,
+then the lower right corner of the button goes by black wire to the the "-" vertical power rail
+and from there all the way to the bottom of the "-" power rail and the black wire connecting to Arduino pin "GND".
+
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_B_setup.png "Image of 01_BlinkingLED Part B setup")
 
 Here is a Fritzing for the same circuit. Note that once again there are variations between the implementation above and the Fritzing.<br>
