@@ -55,6 +55,7 @@ These will be provide to share between the stations.<br>
 
 | Part | Image |
 | --- | --- |
+| Mirror | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/mirror_from_bedbathandbeyond.com.png" width="100" alt="Image from bedbathandbeyond.com of a mirror for viewing persistence of vision"> |
 | Large (93 or 241 LED) WS2812B disk | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/241LED_WS2812B.png" width="400" alt="Image of 241 LED WS2812B Disk"> |
 | Battery, Universal Battery Eliminator Circuit (UBEC), (Frankenstein) knife switch | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC_PwrSetup.png" width="400" alt="Image of UBEC Power Setup"> |
 | "Spinning Stick" Persistence of Vision wand with 8 WS2812B LEDs | <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/02_PersistenceOfVision_PartC_stick_sideView.png" width="400" alt="Image of Sideview of Spinning Stick"> |
