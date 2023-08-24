@@ -1,6 +1,6 @@
 # Arduino Class
 For an Arduino class 2023; FabLab will be first<br>
-Author: Mark Olson
+Author: Mark Olson<br>
 To all who attended the first Arduino Class at FabLab: thanks and I hope you had fun while learning a few things!
 
 **Table of Contents**
