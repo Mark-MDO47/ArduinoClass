@@ -5,11 +5,41 @@ To all who attended the first Arduino Class at FabLab: thanks and I hope you had
 
 **Table of Contents**
 * [Top](#arduino-class "Top")
+* [Learning C and Cplusplus](#learning-c-and-cplusplus "Learning C and Cplusplus")
 * [Lesson Plan](#lesson-plan "Lesson Plan")
 * [Parts Kit Provided](#parts-kit-provided "Parts Kit Provided")
 * [Some other items used in the extra credit projects](#some-other-items-used-in-the-extra-credit-projects "Some other items used in the extra credit projects")
 * [Some other things you might see in the class](#some-other-things-you-might-see-in-the-class "Some other things you might see in the class")
 * [Please Bring USB Cable](#please-bring-usb-cable "Please Bring USB Cable")
+
+## Learning C and Cplusplus
+[Top](#arduino-class "Top")<br>
+One thing I learned when teaching the first class is that things will move much faster if everyone has some basic experience with a text-base programming language.
+
+The Arduino IDE uses C and C++ languages (except for some of the I/O libraries, as explained later).<br>
+- If you have experience in Python, Java, or other programming languages you will probably be able to catch on to the parts of C and C++ used in this class quickly.
+- If you have never programmed before, I suggest you learn the basics of C before attending this class. You can easily pick up on the few parts of C++ used in this class if you have some knowledge of C (or even Python or Java or other languages)
+
+One factor to consider: Arduino does not implement the standard "printing" etc. functions for either C (printf and scanf) or C++ (IO Streams); Arduino uses relatively simple "Serial" methods such as Serial.begin, Serial.print and Serial.println for output; Serial.available, Serial.read and Serial.readln for input.
+- If you want to learn the full languages to further your career, you will probably want to learn the standard C and C++ methods at the same time as learning C and C++.
+- If you want to get started by doing some fun Arduino projects you can skim the standard C and C++ methods, knowing that they are not used for these projects. You can return to the standard methods later.
+
+Here are some web resources for learning the C language:
+- https://www.java67.com/2020/07/5-free-courses-to-learn-c-programming.html
+- https://medium.com/javarevisited/10-best-c-programming-courses-for-beginners-2c2c1f6bcb12
+
+Here are a few of the highly rated **free** C-language ones from the above lists. I have not taken these classes myself but at a quick glance they seem OK.
+- https://www.udemy.com/course/quickstart-guide-c-programming/
+- https://www.udemy.com/course/c-programming-2019-master-the-basics/
+- https://www.youtube.com/watch?v=KJgsSFOSQv0   C Programming Tutorial for Beginners (about 4 hours)
+- https://www.educative.io/courses/learn-c-from-scratch
+
+There are many books on learning the C language. I have no experience with most of them.<br>
+The following book is how I learned the C language, back when dinosaurs ruled the earth. I really like its approach of building up knowledge in blocks such that you can use them immediately and they all fit together.<br>
+- **The C Programming Language** by Brian W. Kernighan and Dennis M. Ritchie
+
+If you search you might find the "mass-market paperback" at around $20 or maybe a used copy for even less.<br>
+If you are going to get a copy, I suggest you try to get the latest edition. Since you will be investing the time, you might as well be close to up-to-date (2nd edition is Copyright 2012).
 
 ## Lesson Plan
 [Top](#arduino-class "Top")<br>
