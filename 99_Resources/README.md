@@ -262,7 +262,7 @@ The DFRobot DF2301QG SKU SEN0539-EN recognizes voice commands and sends a numeri
 
 ## UBEC Universal Battery Eliminator Circuit
 [Top](#resources "Top")<br>
-A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This device will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source battery and put the UBEC close to the circuit drawing the power and thus reduce the current in the wires between.<br>
+A UBEC (Universal Battery Eliminator Circuit - not Union of Banana Exporting Countries) is often used to power an Arduino and perhaps some of its other circuits as well. This switching power supply will typically take as input something in the range of about 6V to 28V DC and usually has selectable output voltage of either 5V or 6V. I often connect a 9V battery as input to a UBEC or two or more 18650 batteries. If there is a heavy draw somewhere in your circuit that is far from the batteries, you can increase the voltage of your source battery and put the UBEC close to the circuit drawing the power and thus reduce the current in the wires between.<br>
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/UBEC.png "Image of typical UBEC")
 
 ## 9 10K Ohm resistors one package
