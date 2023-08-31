@@ -117,6 +117,8 @@ Here are some repositories and YouTubes showing off some of the advantages of th
   - https://youtu.be/jpVcCmh8sig
 - https://github.com/garyexplains/examples/tree/master/Dual_Core_for_RP2040_ESP32_ESP32-S3
   - https://www.youtube.com/watch?v=w5YigjvSaF4
+- https://www.youtube.com/watch?v=k_D_Qu0cgu8  ESP32 Dual Core on Arduino IDE
+  - https://github.com/SensorsIot/ESP32-Dual-Core
 
 For ESP32 I personally use Microsoft Visual Studio Community with the extension "VSIX Arduino IDE (Vx.x) for Visual Studio (xxxx)" https://www.visualmicro.com/; this includes an Over-The-Air WiFi debugger that works with my ESP32 modules with built-in Wifi. The debugger isn't perfect but being able to connect over WiFi is great. This extension does cost; Hobby/Personal one-PC is about $25/year at this time (2023); other licensing options are available.
 
