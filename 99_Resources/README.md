@@ -525,5 +525,20 @@ Here is a graph from i2c.info/i2c-bus-specification showing the Rule of Change o
 Here is a graph from i2c.info/i2c-bus-specification showing the Start and Stop Condition of Serial Data on the I2C bus.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_StartAndStopCondition_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Start and Stop Condition of Serial Data on I2C bus">
 
-Here is a graph from i2c.info/i2c-bus-specification showing a Sample Transaction on the I2C bus.<br>
+Here is a graph from i2c.info/i2c-bus-specification showing a Sample Transaction on the I2C bus. Note that data is transmitted Most Significant Bit (MSB) first.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_SampleTransaction_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Sample Transaction on I2C bus">
+
+The concept for our simple one bus controller, standard 7-bit addresses case goes somewhat as follows:
+- When the controller (Arduino) wants to talk to the target (DF2301QG), it causes a START condition and then sends the 7-bit address of the DF2301QG and then sends one bit that tells whether the Arduino wants to write or read a register.
+- The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed
+- The Arduino sends eight bits of the register address for the DF2301QG register it wants to write or rea
+- The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed
+- If the Arduino is writing data to the DF2301QG register:
+  - The Arduino sends the eight-bit value to write into the DF2301QG register
+  - The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed (it will store the data into the DF2301QG register internally)
+- Or else if the Arduino is reading data from the DF2301QG register:
+  - The DF2301QG sends the eight-bit value that was read from the DF2301QG register
+  - The Arduino sends an ACK bit saying that it saw that and is ready to proceed
+- The Arduino causes a STOP condition
+
+There are possible variations on the above to speed operations for multiple consecutive register reads or writes, but once again you can read about these in the references above.
