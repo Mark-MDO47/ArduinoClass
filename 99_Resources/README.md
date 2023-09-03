@@ -501,4 +501,6 @@ The image below from howtomechatronics.com shows what a typical I2C bus might lo
 
 Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
 
+Also, I have seen examples in the Arduino documentation with and without the pullup resistors near the right side of the above diagram. I think it is safe to have the pullup resistors, but for some applications they may not be absolutely necessary. I would expect that having the pullup resistors in the circuit would make the communications a bit more reliable.
+
 I will leave the references above to explain the details of how the I2C interface works.
