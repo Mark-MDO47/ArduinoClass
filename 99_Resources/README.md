@@ -503,4 +503,11 @@ Curiously, most Arduinos have I2C communication hardware built in that can be ac
 
 Also, I have seen examples in the Arduino documentation with and without the pullup resistors near the right side of the above diagram. I think it is safe to have the pullup resistors, but for some applications they may not be absolutely necessary. I would expect that having the pullup resistors in the circuit would make the communications a bit more reliable.
 
-I will leave the references above to explain the details of how the I2C interface works.
+The description below is mostly drawn from the references here; see the references for the full description.
+
+#### Truly TLDR - the I2C Interface
+In I2C there are two lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
+- Some descriptions speak of 8-bit data words with a START or ACK bit; others speak of 9-bit data words including the START and ACK bit.
+  - I will describe it as 8-bit data words with a START or ACK bit
+- The data line can change only when the clock line is low. It can not change when the clock line is high.
+
