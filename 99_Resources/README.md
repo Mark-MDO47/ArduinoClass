@@ -513,7 +513,17 @@ The description below is mostly drawn from the references here; see the referenc
 In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
 - Some descriptions speak of 8-bit data words or packets, each word/packet followed by an ACK bit, surrounded by START/STOP condition bits; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
   - I will describe it as 8-bit data words followed by an ACK bit surrounded by START/STOP conditions. To me, the 8-bits is data and the START/STOP conditions and ACK bits are protocol.
-- The data line can change only when the clock line is low. It can not change when the clock line is high.<br>
-<img src="" width="750" alt="howtomechatronics.com image of I2C bus">
+- The serial data line can change only when the serial clock line is low. It can not change when the serial clock line is high.<br>
+- After each 8-bit data word is sent, the receiver of the data (controller or target) sends an ACK bit that says either the word was received correctly or not.
+  - I will not go into what is done if the ACK bit says not received; read the references for that information.
+- An entire group of 8-bit data word transfers is surrounded by a START condition and a STOP condition.
+  - There is also a START repeat but I will not cover that here;  read the references for that information.
 
+Here is a graph from i2c.info/i2c-bus-specification showing the Rule of Change of Serial Data on the I2C bus.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_RuleChangeOfData_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Rule of Change of Serial Data on I2C bus">
 
+Here is a graph from i2c.info/i2c-bus-specification showing the Start and Stop Condition of Serial Data on the I2C bus.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_StartAndStopCondition_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Start and Stop Condition of Serial Data on I2C bus">
+
+Here is a graph from i2c.info/i2c-bus-specification showing a Sample Transaction on the I2C bus.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_SampleTransaction_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Sample Transaction on I2C bus">
