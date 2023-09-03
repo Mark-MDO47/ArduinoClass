@@ -495,19 +495,25 @@ The **I2C** (Inter-Integrated Circuit) interface is a serial protocol using a **
 - https://docs.arduino.cc/learn/communication/wire
 - https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
 - https://www.geeksforgeeks.org/i2c-communication-protocol/
+- https://www.nxp.com/docs/en/user-guide/UM10204.pdf - UM10204 I2C-bus specification and user manual Rev. 7.0 — 1 October 2021
+- https://i2c.info/i2c-bus-specification - I2C Bus Specification
 
-The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
+The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master or controller (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices in the image below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x50.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C-Communication-How-It-Works_from_howtomechatronics.com.png" width="750" alt="howtomechatronics.com image of I2C bus">
 
 Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
 
 Also, I have seen examples in the Arduino documentation with and without the pullup resistors near the right side of the above diagram. I think it is safe to have the pullup resistors, but for some applications they may not be absolutely necessary. I would expect that having the pullup resistors in the circuit would make the communications a bit more reliable.
 
+Our usage is a simple one: just one bus controller, standard 7-bit addresses.
+
 The description below is mostly drawn from the references here; see the references for the full description.
 
 #### Truly TLDR - the I2C Interface
-In I2C there are two lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
-- Some descriptions speak of 8-bit data words surrounded by START/STOP condition bits and each word followed by an ACK bit; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
-  - I will describe it as 8-bit data words with additional START/STOP conditions and ACK bits. To me, the 8-bits is data and the START/STOP conditions and ACK bits are protocol.
-- The data line can change only when the clock line is low. It can not change when the clock line is high.
+In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
+- Some descriptions speak of 8-bit data words or packets, each word/packet followed by an ACK bit, surrounded by START/STOP condition bits; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
+  - I will describe it as 8-bit data words followed by an ACK bit surrounded by START/STOP conditions. To me, the 8-bits is data and the START/STOP conditions and ACK bits are protocol.
+- The data line can change only when the clock line is low. It can not change when the clock line is high.<br>
+<img src="" width="750" alt="howtomechatronics.com image of I2C bus">
+
 
