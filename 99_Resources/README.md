@@ -507,7 +507,7 @@ The description below is mostly drawn from the references here; see the referenc
 
 #### Truly TLDR - the I2C Interface
 In I2C there are two lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
-- Some descriptions speak of 8-bit data words with a START or ACK bit; others speak of 9-bit data words including the START and ACK bit.
-  - I will describe it as 8-bit data words with a START or ACK bit
+- Some descriptions speak of 8-bit data words surrounded by START/STOP condition bits and each word followed by an ACK bit; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
+  - I will describe it as 8-bit data words with additional START/STOP conditions and ACK bits. To me, the 8-bits is data and the START/STOP conditions and ACK bits are protocol.
 - The data line can change only when the clock line is low. It can not change when the clock line is high.
 
