@@ -491,7 +491,7 @@ Note that the detection of the first high-to-low transition is used to set the t
 
 ### TLDR I2C Interface
 [Top](#notes "Top")<br>
-The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; this is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
+The **I2C** (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; in the Arduino world this is also known as the **Two Wire Interface**. This **bus** structure is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
 - https://docs.arduino.cc/learn/communication/wire
 - https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
 - https://www.geeksforgeeks.org/i2c-communication-protocol/
