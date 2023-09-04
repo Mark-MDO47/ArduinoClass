@@ -566,8 +566,8 @@ Here is the sequence:
 - Looking at the value of data at the next seven rising edges of clock, we see 1 1 0 0 1 0 0; this corresponds to 0x64, the default I2C address of the DF2301QG.
 - The eighth rising edge of clock shows a 0; the eighth bit is the data direction bit (R/W): a ‘zero’ indicates a transmission (WRITE), a ‘one’ indicates a request for data (READ). So this is a data write from the Arduino to the DF2301QG.
 - Between the eighth rising edge and ninth rising edge of the clock is a little glitch in serial data. That is because the Arduino drives the first eight bits but the DF2301QG drives the next bit (ACK). This glitch happens as the Arduino gives up control of the data line and the DF2301QG takes control of the data line. The glitch doesn't affect anything since at this point data is sampled on the rising edge of clock.
-- The ninth rising edge of clock shows a 0; this means the DF2301QG succesfully read the data byte.
+- The ninth rising edge of clock shows a 0; this means the DF2301QG succesfully read the byte containing its I2C address and the R/W bit.
 - Then there is another glitch on the serial data line and a stretchout with serial clock held low.
   - The glitch happens as before, but this time the DF2301QG is passing control of the data line to the Arduino.
-  - The stretchout with serial clock held low is a feature of I2C (remember I2C uses an open collector circuit). This allows the target (DF2301QG in our case) to take as much time as it needs to process the last data byte.
+  - The stretchout with serial clock held low is a feature of I2C (remember I2C uses an open collector circuit). This allows the target (DF2301QG in our case) to take as much time as it needs to finish processing the last byte and get ready for the next byte.
 - Eventually the stretchout finishes and the clock has another rising edge.
