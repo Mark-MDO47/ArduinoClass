@@ -550,6 +550,7 @@ After some experimentation I decided that the I2C interface provided a more reli
 [Top](#notes "Top")<br>
 The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; this is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
 - https://docs.arduino.cc/learn/communication/wire
+- https://learn.sparkfun.com/tutorials/i2c/introduction
 - https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
 - https://www.geeksforgeeks.org/i2c-communication-protocol/
 - https://www.nxp.com/docs/en/user-guide/UM10204.pdf - UM10204 I2C-bus specification and user manual Rev. 7.0 — 1 October 2021
