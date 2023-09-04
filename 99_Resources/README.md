@@ -549,3 +549,7 @@ Here is an example from our 04_TheFinale Voice Commands project as captured on a
 - Blue (on bottom) corresponds to SDA (Serial Data)
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_OscopeCloseup.jpg" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
+
+Let's examine this a little closer. Below is the first data word including the ACK.
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_Oscope-A.jpg" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
