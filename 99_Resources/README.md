@@ -520,6 +520,10 @@ In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Not
 - An entire group of 8-bit data word transfers is surrounded by a START condition and a STOP condition.
   - There is also a START repeat but I will not cover that here;  read the references for that information.
 
+The serial data and serial clock lines are driven by both the controller and the target using a type of circuitry known as "open collector". For our purposes, this means it behaves much like the buttons we saw earlier: in one position (pushed) it connects the bus (wire) to ground, in the other position (not pushed) it doesn't connect the bus (wire) to anything. Thus the bus is either at ground (pushed) or at whatever voltage it would be if the button were not in the circuit. In I2C there are pullup resistors so that it is either at LOW (ground level) or HIGH (usually either 3.5V or 5V). In our circuit, HIGH is 5V.
+
+Note that if either (or with many I2C devices, any) side of this circuit pulls to ground, the bus voltage will be ground. This allows the target device to hold clock LOW if it needs a little more time to process the last byte.
+
 Here is a graph from i2c.info/i2c-bus-specification showing the Rule of Change of Serial Data on the I2C bus.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_RuleChangeOfData_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Rule of Change of Serial Data on I2C bus">
 
@@ -552,4 +556,15 @@ Here is an example from our 04_TheFinale Voice Commands project as captured on a
 
 Let's examine this a little closer. Below is the first data word including the ACK.
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_Oscope-A.jpg" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_Oscope-A.png" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
+
+Here is the sequence:
+- The falling edge of data (blue) and then falling edge of clock (yellow) signals the START condition.
+- Looking at the value of data at the next seven rising edges of clock, we see 1 1 0 0 1 0 0; this corresponds to 0x64, the default I2C address of the DF2301QG.
+- The eighth rising edge of clock shows a 0; the eighth bit is the data direction bit (R/W): a ‘zero’ indicates a transmission (WRITE), a ‘one’ indicates a request for data (READ). So this is a data write from the Arduino to the DF2301QG.
+- Between the eighth rising edge and ninth rising edge of the clock is a little glitch in serial data. That is because the Arduino drives the first eight bits but the DF2301QG drives the next bit (ACK). This glitch happens as the Arduino gives up control of the data line and the DF2301QG takes control of the data line. The glitch doesn't affect anything since at this point data is sampled on the rising edge of clock.
+- The ninth rising edge of clock shows a 0; this means the DF2301QG succesfully read the data byte.
+- Then there is another glitch on the serial data line and a stretchout with serial clock held low.
+  - The glitch happens as before, but this time the DF2301QG is passing control of the data line to the Arduino.
+  - The stretchout with serial clock held low is a feature of I2C; this allows the target (DF2301QG in our case) to take as much time as it needs to process the last data byte.
+- Eventually the stretchout finishes and the clock has another rising edge.
