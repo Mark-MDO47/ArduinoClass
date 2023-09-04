@@ -556,7 +556,7 @@ Here is an example from our 04_TheFinale Voice Commands project as captured on a
 
 Let's examine this a little closer. Below is the first data word including the ACK.
 
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_Oscope-A.png" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_Oscope_A.png" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
 
 Here is the sequence:
 - The falling edge of data (blue) and then falling edge of clock (yellow) signals the START condition.
@@ -566,5 +566,5 @@ Here is the sequence:
 - The ninth rising edge of clock shows a 0; this means the DF2301QG succesfully read the data byte.
 - Then there is another glitch on the serial data line and a stretchout with serial clock held low.
   - The glitch happens as before, but this time the DF2301QG is passing control of the data line to the Arduino.
-  - The stretchout with serial clock held low is a feature of I2C; this allows the target (DF2301QG in our case) to take as much time as it needs to process the last data byte.
+  - The stretchout with serial clock held low is a feature of I2C (remember I2C uses an open collector circuit). This allows the target (DF2301QG in our case) to take as much time as it needs to process the last data byte.
 - Eventually the stretchout finishes and the clock has another rising edge.
