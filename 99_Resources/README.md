@@ -543,3 +543,9 @@ The concept for our simple one bus controller, standard 7-bit addresses case goe
 - The Arduino causes a STOP condition
 
 There are possible variations on the above to speed operations for multiple consecutive register reads or writes, but once again you can read about these in the references above.
+
+Here is an example from our 04_TheFinale Voice Commands project as captured on an Oscilloscope. The horizontal direction is time, increasing as we go from left to right. The vertical direction is voltage, increasing as we go from bottom to top. Each of the traces has its own point on the vertical direction that corresponds to zero volts. I placed the two traces close together to make it easier to see the timing.
+- Yellow (on top) corresponds to SCL (Serial Clock)
+- Blue (on bottom) corresponds to SDA (Serial Data)
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_OscopeCloseup.jpg" width="750" alt="Oscilloscope capture of Serial Clock and Serial Data on I2C bus">
