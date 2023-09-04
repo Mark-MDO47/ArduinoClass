@@ -499,7 +499,7 @@ The **I2C** (Inter-Integrated Circuit) interface is a serial protocol using a **
 - https://www.nxp.com/docs/en/user-guide/UM10204.pdf - UM10204 I2C-bus specification and user manual Rev. 7.0 — 1 October 2021
 - https://i2c.info/i2c-bus-specification - I2C Bus Specification
 
-The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** protocol, in which the bus master or controller (in this case an Arduino) decides who talks on the bus at any time. The master also generates the clock. The other devices all have an address (example 0x34 for one of the devices in the image below) that allows the master to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x64.<br>
+The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** or **controller/target** protocol, in which the bus controller (in this case an Arduino) decides who talks on the bus at any time. The controller also generates the clock. The other devices (targets) all have an address (example 0x34 for one of the devices in the image below) that allows the controller to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x64.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C-Communication-How-It-Works_from_howtomechatronics.com.png" width="750" alt="howtomechatronics.com image of I2C bus">
 
 Curiously, most Arduinos have I2C communication hardware built in that can be accessed by using the analog pins A4 and A5. That is what we will do with the Arduino Nano.
@@ -533,22 +533,25 @@ Here is a graph from i2c.info/i2c-bus-specification showing the Start and Stop C
 Here is a graph from i2c.info/i2c-bus-specification showing a Sample Transaction on the I2C bus. Note that data is transmitted Most Significant Bit (MSB) first.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_SampleTransaction_from_i2c.info_i2c-bus-specification.png" width="750" alt="i2c.info/i2c-bus-specification graph of Sample Transaction on I2C bus">
 
-The concept for our simple one bus controller, standard 7-bit addresses case goes somewhat as follows:
-- When the controller (Arduino) wants to talk to the target (DF2301QG), it causes a START condition and then sends the 7-bit address of the DF2301QG and then sends one bit that tells whether the Arduino wants to write or read a register
-- The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed
-- The Arduino sends eight bits of the register address for the DF2301QG register it wants to write or read
-- The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed
-- If the Arduino is writing data to the DF2301QG register:
-  - The Arduino sends the eight-bit value to write into the DF2301QG register
-  - The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed (it will store the data into the DF2301QG register internally)
-- Or else if the Arduino is reading data from the DF2301QG register:
-  - The DF2301QG sends the eight-bit value that was read from the DF2301QG register
-  - The Arduino sends an ACK bit saying that it saw that and is ready to proceed
-- The Arduino causes a STOP condition
+We have a simple single bus controller (Arduino), standard 7-bit addresses I2C bus. In this example the Arduino needs to read the data contents of a target (DF2301QG) register. The controller first writes the register address to the DF2301QG and then reads the register contents from the DF2301QG. Each of those steps has multiple steps as seen below.
+- The Arduino (controller) performs a START condition
+- The Arduino then writes the register address to the target device DF2301QG
+  - First it sends the DF2301QG I2C address with the R/W bit set to write (zero).
+  - The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed.
+  - Then the Arduino it sends the register address that it will eventually read.
+  - The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed.
+- The Arduino changes the data transfer direction and then reads the register contents from the DF2301QG.
+  - The Arduino generates a REPEATED START condition
+  - The Arduino then sends the DF2301QG I2C address with the R/W bit set to read (one).
+  - The DF2301QG sends an ACK bit saying that it saw that and is ready to proceed
+  - NOTE: After this the data transfer direction is changed due to the R/W bit
+  - The DF2301QG transmits the data in response to Arduino clocks.
+- The Arduino performs a STOP condition
 
-There are possible variations on the above to speed operations for multiple consecutive register reads or writes, but once again you can read about these in the references above.
+This is illustrated in the figure below:<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_ExampleReadRegValue.png" width="750" alt="Illustration of I2C bus reading a register value from a target">
 
-Here is an example from our 04_TheFinale Voice Commands project as captured on an Oscilloscope. The horizontal direction is time, increasing as we go from left to right. The vertical direction is voltage, increasing as we go from bottom to top. Each of the traces has its own point on the vertical direction that corresponds to zero volts. I placed the two traces close together to make it easier to see the timing.
+The same sequence from our 04_TheFinale Voice Commands project is captured below on an Oscilloscope. The horizontal direction is time, increasing as we go from left to right. The vertical direction is voltage, increasing as we go from bottom to top. Each of the traces has its own point on the vertical direction that corresponds to zero volts. I placed the two traces close together to make it easier to see the timing.
 - Yellow (on top) corresponds to SCL (Serial Clock)
 - Blue (on bottom) corresponds to SDA (Serial Data)
 
