@@ -181,14 +181,19 @@ void loop() {
 ```
 
 ### TLDR the Arduino delay function
-As an aside, the Arduino delay(n) function does not behave similar to all the sleep(n) functions I have seen in other languages.
+[Back to Top](#notes "Back to Top")<br>
+As an aside, the Arduino delay(n) function does NOT behave similarly to all the sleep(n) functions I have seen in other languages.
 - the sleep(n) functions I have seen will sleep **at least as long** as the parameter **n** indicates
 - the Arduino delay(n) function will return after **at least as long** as **n-1** milliseconds
 - https://forum.arduino.cc/t/problem-with-delay-and-millis/686674
 
-Curiously, this behaviour is not mentioned in the Arduino documentation for the delay() function https://www.arduino.cc/reference/en/language/functions/time/delay/
+Curiously, this behaviour is not mentioned in the Arduino documentation for the delay() function.
+- https://www.arduino.cc/reference/en/language/functions/time/delay/
 
-This doesn't matter to us very much here; if we sleep 999 milliseconds or 1000 milliseconds or even 1001 milliseconds it doesn't cause a traffic accident or other bad effects. We will see this problem in a place where it does affect us later in https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/README.md
+This doesn't matter to us very much here. If we sleep 999 milliseconds or 1000 milliseconds or even 1001 milliseconds it doesn't cause a traffic accident or other bad effects.
+
+We will see this problem in a place where it does affect us later:
+- https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/README.md
 
 ### Try it Part A
 [Back to Top](#notes "Back to Top")<br>
