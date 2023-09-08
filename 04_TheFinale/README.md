@@ -757,6 +757,8 @@ uint8_t handle_DF2301QG() {
 [Top](#notes "Top")<br>
 The concept for this interface is to make it very simple and avoid placing a computational or timing burden on the VC_DemoReel.ino Arduino Nano. The use of a "valid" signal and some timing in the VoiceCommands_I2C.ino Arduino Nano achieves this.
 
+Note that with 0 through 5 for the true DemoReel100 patterns and 6 and 7 for the smiley face psuedo-patterns we cover the range of 0 through 7 which fits in three bits. Thus we use one pin for the valid signal and three pins for data bits.
+
 Both VC_DemoReel.ino and VoiceCommands_I2C.ino use the same pins.<br>
 ```C
 #define XFR_PIN_WHITE_VALID 2 // set to HIGH for others valid
@@ -782,7 +784,7 @@ VC_DemoReel.ino sets the pins in input mode in **setup**<br>
   pinMode(XFR_PIN_BLUE_4,      INPUT);
 ```
 
-VC_DemoReel.ino does a fair bit of fancy footwork to handle the smiley face psuedo-pattern, and this gets mixed into the transfer code. First some definitions<br>
+VC_DemoReel.ino definitions<br>
 ```C
 #ifdef SMILEY_COLOR_ALL_ONE
 static const CRGB all_one_loop_array[] = {CRGB::Red, CRGB::White, CRGB::Blue, CRGB::Green };
@@ -861,11 +863,12 @@ void xfr_pattern(uint8_t pat_num) {
 } // end xfr_pattern()
 ```
 
-VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.<br>
+VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.
+
 Because of the VoiceCommands_I2C.ino **delay(1)** statements above near the changes of value of the **valid** state, we know that the VC_DemoReel.ino Arduino has at least a millisecond to read a valid number if it detects the valid pin HIGH. VC_DemoReel.ino proceeds as fast as possible to get the bits from the interface using three consecutive **if (HIGH == digitalRead(** statements, but actually a millisecond is plenty of time to do so.<br>
 For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.
 
-This code gets mixed up with the smiley face code since it reacts differently if we are commanding the smiley psuedo-pattern ON from being OFF (need CRGB:Black background pattern) or doing other pattern commands. Also when we command the smiley psuedo-pattern OFF from being ON we try to return to the last commanded "true" pattern.<br>
+VC_DemoReel.ino does a fair bit of fancy footwork to handle the smiley face psuedo-pattern, and this gets mixed into the transfer code. It reacts differently if we are commanding the smiley psuedo-pattern ON from being OFF (need CRGB:Black background pattern) or doing other pattern commands. Also when we command the smiley psuedo-pattern OFF from being ON we try to return to the last commanded "true" pattern.<br>
 VC_DemoReel.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -903,6 +906,7 @@ uint8_t rcv_pattern() {
 } // end rcv_pattern()
 ```
 ### VC_DemoReel Sound Code
+[Top](#notes "Top")<br>
 Even the sound code gets involved with smiley face, since the psuedo-pattern doesn't have a sound file (just shows how lazy I am).
 
 VC_DemoReel.ino previous code
