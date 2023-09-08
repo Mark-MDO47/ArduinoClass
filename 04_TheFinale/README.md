@@ -561,7 +561,7 @@ The image below from howtomechatronics.com shows what a typical I2C bus might lo
 
 Most Arduinos have I2C communication hardware built in. Curiously, that I2C hardware can be accessed by using the analog pins A4 and A5; that is what we will do with the Arduino Nano. Some Arduinos have other pins that can also access the I2C hardware.
 
-The "Resources" page has some more details on this interface:
+The "Resources" page has much more detail on this interface:
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md
 
 ### The Circuit - Two Arduinos
@@ -584,7 +584,7 @@ There are a different four wires (blue, yellow, orange, and white) connecting th
 Below is an image of the setup of the complete Voice Command circuit showing use of two Arduino Nanos. I had to make a power source with more oomph than the 9V battery; the 241 LEDs really use up the power. This is one of two configurations I used for power; the other used three 18650 batteries and was maybe more successful. We said before that we were approaching the limit of practical complexity wiring up with breadboards; this really pushes that limit!<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_setup_I2C.jpg" width="600" alt="Image of setup of Voice Command circuit showing use of two Arduino Nanos">
 
-Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the I2C connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection.<br>
+Below is a closeup image just the Voice Command part of the circuit. You can see the green and blue lines for the I2C connection to the DF2301QG and also see the white/orange/yellow/blue lines for the parallel Arduino-to-Arduino connection. Also visible on the bottom left of the picture are the two pullup resistors for the I2C Serial Clock (SCL) and Serial Data (SDA) lines.<br>
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_VC_closeup_I2C.jpg" width="600" alt="Image of closeup of just the Voice Command part of the circuit">
 
 
