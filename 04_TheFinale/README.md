@@ -425,7 +425,7 @@ void DFsetup() {
   myDFPlayer.EQ(DFPLAYER_EQ_BASS); // our speaker is quite small
   myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD); // device is SD card
   myDFPlayer.volume(SOUND_DEFAULT_VOL);  // Set volume value. From 0 to 30 - FIXME 25 is good
-  delay(3); // allow bluetooth connection to complete
+  delay(3000); // allow bluetooth connection to complete
   Serial.println(F("DFPlayer Mini online."));
 
   DFstartSound(SOUNDNUM_INTRO, SOUND_DEFAULT_VOL);
@@ -830,7 +830,7 @@ There are other ways to achieve data consistency - such as checksums, error corr
 
 VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
 We use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
-Pay special attention to the two **delay(1)** lines, near each change of the **valid** signal. The effect is twofold:
+Pay special attention to the two **delay(1+1)** lines, near each change of the **valid** signal. The effect is twofold:
 - there is one millisecond after changing to **not valid** where we are still holding the pattern in a valid state.
 - the time of **not valid** is stretched to at least two milliseconds
 
@@ -840,9 +840,12 @@ VoiceCommands_I2C.ino<br>
 // xfr_pattern(pat_num) - transfer pattern number to other Arduino
 //    returns: none
 //
+// note: Arduino delay(n) will delay at least n-1 milliseconds, unlike the rest of the world, so add 1
+//   see https://forum.arduino.cc/t/problem-with-delay-and-millis/686674
+//
 void xfr_pattern(uint8_t pat_num) {
   digitalWrite(XFR_PIN_WHITE_VALID, LOW);   // set valid off
-  delay(1); // make sure no timing issue with other Arduino
+  delay(1+1); // make sure no timing issue with other Arduino
 
   if (0 == (pat_num & 0x01)) digitalWrite(XFR_PIN_ORANGE_1, LOW);
   else                       digitalWrite(XFR_PIN_ORANGE_1, HIGH);
@@ -853,7 +856,7 @@ void xfr_pattern(uint8_t pat_num) {
   if (0 == (pat_num & 0x04)) digitalWrite(XFR_PIN_BLUE_4, LOW);
   else                       digitalWrite(XFR_PIN_BLUE_4, HIGH);
 
-  delay(1); // probably doesn't need delay here, but belt and suspenders
+  delay(1+1); // probably doesn't need delay here, but makes pretty Oscope trace
   digitalWrite(XFR_PIN_WHITE_VALID, HIGH);   // set valid ON
 } // end xfr_pattern()
 ```
