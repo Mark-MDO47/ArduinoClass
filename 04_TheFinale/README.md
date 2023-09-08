@@ -822,9 +822,18 @@ VC_DemoReel.ino in **loop** periodically looks to see if there is a pattern to r
 [Top](#notes "Top")<br>
 Now we get to the interesting part - how do the two Arduino Nanos actually communicate?
 
+In a parallel interface, one issue is always to get all of the "data" lines with a consistent set of valid data. To achieve this, none of the data lines can change to a "new" pattern while the data lines are being read for an "old" pattern - in our case, you cannot successfully mix some data lines from the old pattern number and the new pattern number.
+
+In our ad-hoc parallel interface protocol we achieve this by having the transmit side keep the data constant on the "old" pattern number for one millisecond AFTER the **valid** signal says "invalid". This means if the receive side reads the **valid** signal and it says the data is valid, it has at least one more millisecond to read the data and have the data  be constant and consistent.
+
+There are other ways to achieve data consistency - such as checksums, error correction codes, reading the value multiple times and comparing - but all of these add to the computational and timing burden on the receiving side. The method we use sacrifices potential interface throughput for ease of the receiving side. We can do this since our data (the pattern number) doesn't change very often and so the loss in interface throughput is not an issue.
+
 VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
 We use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
-Pay special attention to the two **delay(1)** lines, just prior to each change of the **valid** signal.<br>
+Pay special attention to the two **delay(1)** lines, near each change of the **valid** signal. The effect is twofold:
+- there is one millisecond after changing to **not valid** where we are still holding the pattern in a valid state.
+- the time of **not valid** is stretched to at least two milliseconds
+
 VoiceCommands_I2C.ino<br>
 ```C
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
