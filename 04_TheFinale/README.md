@@ -822,9 +822,9 @@ VC_DemoReel.ino in **loop** periodically looks to see if there is a pattern to r
 [Top](#notes "Top")<br>
 Now we get to the interesting part - how do the two Arduino Nanos actually communicate?
 
-In a parallel interface, one issue is always to get all of the "data" lines with a consistent set of valid data. To achieve this, none of the data lines can change to a "new" pattern while the data lines are being read for an "old" pattern - in our case, you cannot successfully mix some data lines from the old pattern number and the new pattern number.
+In a parallel interface, one issue is always to read all of the "data" lines with a consistent set of valid data. To achieve this, none of the data lines can change to a "new" pattern while the data lines are being read for an "old" pattern. In our case, you cannot successfully mix some data lines from the old pattern number and some from the new pattern number.
 
-In our ad-hoc parallel interface protocol we achieve this by having the transmit side keep the data constant on the "old" pattern number for one millisecond AFTER the **valid** signal says "invalid". This means if the receive side reads the **valid** signal and it says the data is valid, it has at least one more millisecond to read the data and have the data  be constant and consistent.
+In our ad-hoc parallel interface protocol (specially designed by me ;^) we achieve this by having the transmit side keep the data constant on the "old" pattern number for one millisecond AFTER the **valid** signal says "invalid". This means if the receive side reads the **valid** signal and it says the data is valid, it has at least one more millisecond to read the data and have the data still be constant and consistent.
 
 There are other ways to achieve data consistency - such as checksums, error correction codes, reading the value multiple times and comparing - but all of these add to the computational and timing burden on the receiving side. The method we use sacrifices potential interface throughput for ease of the receiving side. We can do this since our data (the pattern number) doesn't change very often and so the loss in interface throughput is not an issue.
 
