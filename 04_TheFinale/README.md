@@ -707,7 +707,7 @@ Note that the "psuedo-pattern" is a toggle on the smiley face. We keep track int
 //    returns: pattern number 0 <= num <= PATTERN_MAX_NUM
 //
 uint8_t handle_DF2301QG() {
-  uint8_t pattern = gCurrentPatternNumber; // integer pattern number from 0 thru 5 inclusive
+  uint8_t pattern = gCurrentPatternNumber; // integer pattern number from 0 thru 7 inclusive (includes smiley face)
   uint8_t vol_tmp;
   uint8_t CMDID; // command code received from DFRobot DF2301QG
 
