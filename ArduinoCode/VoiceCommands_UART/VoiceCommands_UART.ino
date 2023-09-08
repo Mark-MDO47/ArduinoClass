@@ -147,9 +147,12 @@ uint8_t handle_DF2301QG() {
 // xfr_pattern(pat_num) - transfer pattern number to other Arduino
 //    returns: none
 //
+// note: Arduino delay(n) will delay at least n-1 milliseconds, unlike the rest of the world, so add 1
+//   see https://forum.arduino.cc/t/problem-with-delay-and-millis/686674
+//
 void xfr_pattern(uint8_t pat_num) {
   digitalWrite(XFR_PIN_WHITE_VALID, LOW);   // set valid off
-  delay(1); // make sure no timing issue with other Arduino
+  delay(1+1); // make sure no timing issue with other Arduino
 
   if (0 == (pat_num & 0x01)) digitalWrite(XFR_PIN_ORANGE_1, LOW);
   else                       digitalWrite(XFR_PIN_ORANGE_1, HIGH);
@@ -160,7 +163,7 @@ void xfr_pattern(uint8_t pat_num) {
   if (0 == (pat_num & 0x04)) digitalWrite(XFR_PIN_BLUE_4, LOW);
   else                       digitalWrite(XFR_PIN_BLUE_4, HIGH);
 
-  delay(1); // probably doesn't need delay here, but belt and suspenders
+  delay(1+1); // probably doesn't need delay here, but makes pretty Oscope trace
   digitalWrite(XFR_PIN_WHITE_VALID, HIGH);   // set valid ON
 } // end xfr_pattern()
 

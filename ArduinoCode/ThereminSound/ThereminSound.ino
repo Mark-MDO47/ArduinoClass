@@ -274,7 +274,7 @@ void DFsetup() {
   myDFPlayer.EQ(DFPLAYER_EQ_BASS); // our speaker is quite small
   myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD); // device is SD card
   myDFPlayer.volume(SOUND_DEFAULT_VOL);  // Set volume value. From 0 to 30 - FIXME 25 is good
-  delay(3); // allow bluetooth connection to complete
+  delay(3000); // allow bluetooth connection to complete
   Serial.println(F("DFPlayer Mini online."));
 
   DFstartSound(SOUNDNUM_INTRO, SOUND_DEFAULT_VOL);
