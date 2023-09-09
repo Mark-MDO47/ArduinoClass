@@ -841,7 +841,7 @@ The sequence is as follows:
 - The **valid** signal holds its LOW value for another two milliseconds (again see the description below).
 - The **valid** signal goes from LOW to HIGH, signaling that the data lines are ready to be sampled. 
 
-VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
+VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5 for DemoReel100 patterns, 6 or 7 for smiley face commands) on the interface. As we saw above, this routine is only called when the pattern number changes.<br>
 We use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
 Pay special attention to the two **delay(1+1)** lines, near each change of the **valid** signal. The effect is twofold:
 - there is one millisecond after changing to **not valid** where we are still holding the pattern in a valid state.
@@ -876,7 +876,7 @@ void xfr_pattern(uint8_t pat_num) {
 
 VC_DemoReel.ino periodically monitors the valid line to see if there is a valid pattern number being sent. Normally there is an unchanging valid pattern number being sent, only occasionally does it change.
 
-Because of the VoiceCommands_I2C.ino **delay(1)** statements above near the changes of value of the **valid** state, we know that the VC_DemoReel.ino Arduino has at least a millisecond to read a valid number if it detects the valid pin HIGH. VC_DemoReel.ino proceeds as fast as possible to get the bits from the interface using three consecutive **if (HIGH == digitalRead(** statements, but actually a millisecond is plenty of time to do so.<br>
+Because of the VoiceCommands_I2C.ino **delay(1+1)** statements above near the changes of value of the **valid** state, we know that the VC_DemoReel.ino Arduino has at least a millisecond to read a valid number if it detects the valid pin HIGH. VC_DemoReel.ino proceeds as fast as possible to get the bits from the interface using three consecutive **if (HIGH == digitalRead(** statements, but actually a millisecond is plenty of time to do so.<br>
 For each of the bits in the binary number we add in its numerical value only if the pin is HIGH.
 
 VC_DemoReel.ino does a fair bit of fancy footwork to handle the smiley face psuedo-pattern, and this gets mixed into the transfer code. It reacts differently if we are commanding the smiley psuedo-pattern ON from being OFF (need CRGB:Black background pattern) or doing other pattern commands. Also when we command the smiley psuedo-pattern OFF from being ON we try to return to the last commanded "true" pattern.<br>
