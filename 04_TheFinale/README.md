@@ -561,7 +561,7 @@ The image below from howtomechatronics.com shows what a typical I2C bus might lo
 
 Most Arduinos have I2C communication hardware built in. Curiously, that I2C hardware can be accessed by using the analog pins A4 and A5; that is what we will do with the Arduino Nano. Some Arduinos have other pins that can also access the I2C hardware.
 
-The "Resources" page has much more detail on this interface:
+The "Resources" page has much more detail on this interface including some oscilloscope traces:
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md
 
 ### The Circuit - Two Arduinos
