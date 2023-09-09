@@ -844,7 +844,7 @@ The sequence is as follows:
 VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5 for DemoReel100 patterns, 6 or 7 for smiley face commands) on the interface. As we saw above, this routine is only called when the pattern number changes.<br>
 We use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
 Pay special attention to the two **delay(1+1)** lines, near each change of the **valid** signal. The effect is twofold:
-- there is one millisecond after changing to **not valid** where we are still holding the pattern in a valid state.
+- there is at least one millisecond after changing to **not valid** where we are still holding the pattern in a valid state.
 - the time of **not valid** is stretched to at least two milliseconds
 
 VoiceCommands_I2C.ino<br>
