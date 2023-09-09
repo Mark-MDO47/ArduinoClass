@@ -830,6 +830,17 @@ In our ad-hoc parallel interface protocol (specially designed by me ;^) we achie
 
 There are other ways to achieve data consistency - such as checksums, error correction codes, reading the value multiple times and comparing - but all of these add to the computational and timing burden on the receiving side. The method we use sacrifices potential interface throughput for ease of the receiving side. We can do this since our data (the pattern number) doesn't change very often and so the loss in interface throughput is not an issue.
 
+Here is an oscilloscope trace of a transaction on this interface. The top yellow traces is the **valid** signal; the remaining three traces are the data lines representing 1, 2, and 4 respectively. The vertical dotted lines represent time markers; each 500 microseconds apart.
+
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/Parallel_Oscope.jpg" width="750" alt="Oscilloscope trace of Parallel Arduino to Arduino Interface">
+
+The sequence is as follows:
+- First the **valid** signal goes from HIGH to LOW.
+- The data lines hold their values for another two milliseconds (greater than one millisecond, perhaps just a little over two milliseconds as described below).
+- The data lines then move to their new values at about the middle of the screen.
+- The **valid** signal holds its LOW value for another two milliseconds (again see the description below).
+- The **valid** signal goes from LOW to HIGH, signaling that the data lines are ready to be sampled. 
+
 VoiceCommands_I2C.ino routine **xfr_pattern()** will put the pattern number (0 through 5) on the interface. As we saw above, this routine is only called when the pattern changes.<br>
 We use masking to obtain the binary bits of the pattern number and put them on appropriate pins representing those binary bits. This bit pattern will persist in a valid state until there is a new pattern number.<br>
 Pay special attention to the two **delay(1+1)** lines, near each change of the **valid** signal. The effect is twofold:
