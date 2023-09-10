@@ -410,14 +410,14 @@ So how do we specify integer constants in the various number systems?
 - decimal - just use decimal digits but do not start with zero. If you want the value zero, 0 octal = 0 decimal = 0.
 - octal - use octal digits and start with a zero
 - hexadecimal - use 0x followed by hexadecimal digits; OK to use either upper or lower case hex letters
-- binary - us 0b followed by binary digits
+- binary - use 0b followed by binary digits
 
 The following statements cause identical values to be stored in "i":
 ```C
-i =       47;
-i =      057;
-i =     0x2f;
-i = 0b101111;
+i =       47; // decimal
+i =      057; // octal
+i =     0x2f; // hexadecimal
+i = 0b101111; // binary
 ```
 
 There is more to learn, for instance negative numbers in twos-complement or ones-complement and how they behave, but the above will pretty much cover this class.
