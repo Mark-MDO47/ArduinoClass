@@ -32,6 +32,7 @@ Click this link to back to go back to the root of the Arduino class
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 * [TLDR UART Serial Interface](#tldr-uart-serial-interface "TLDR UART Serial Interface")
 * [TLDR I2C Interface](#tldr-i2c-interface "TLDR I2C Interface")
+* [Truly TLDR - the I2C Interface Details](#truly-tldr-\--the-i2c-interface-details "Truly TLDR - the I2C Interface Details")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
@@ -509,6 +510,7 @@ I2C specifies that the pullup resistors be used (not shown in the above diagram)
 The description below is mostly drawn from the references above; see the references for the full description.
 
 #### Truly TLDR - the I2C Interface Details
+[Top](#notes "Top")<br>
 In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
 - Some descriptions speak of 8-bit data words or packets, each word/packet followed by an ACK bit, surrounded by START/STOP condition bits; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
   - I will describe it as 8-bit data words followed by an ACK bit surrounded by START/STOP conditions. To me, the 8-bits is data and the START/STOP conditions and ACK bits are protocol.
@@ -516,7 +518,7 @@ In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Not
   - Despite this statement in the above references, the data line can change when clock is high in order to generate a REPEATED START condition. 
 - After each 8-bit data word is sent, the receiver of the data (controller or target) sends an ACK bit that says either the word was received correctly or not.
   - I will not go into what is done if the ACK bit says not received; read the references for that information.
-  - I notice the Arduino doesn't seem to bother with setting the ACK bit when it receives a data word, at least for the last data word. Maybe it considers the STOP condition to be enough notification that the word transfer completed.
+  - I notice the Arduino doesn't set the ACK bit when it receives the last data word of a read operation. This is due to the 5th condition for NACK given in the user manual: "A controller-receiver must signal the end of the transfer to the target transmitter".
 - An entire group of 8-bit data word transfers is surrounded by a START condition and a STOP condition.
   - There is also a START repeat but I will not cover that here;  read the references for that information.
 
