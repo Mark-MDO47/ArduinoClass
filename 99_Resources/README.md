@@ -308,7 +308,7 @@ I use the free schematic editor KiCad for capturing schematics (what I do might 
 
 If you don't want to use KiCad, don't worry - all the schematic wiring diagrams for the class are in PDF form in the various directories, and also in images in the description of each project.
 
-There are many YouTube videos describing the basics of KiCad usage. I recommend viewing a few of them if you want to start with KiCad. Most are quite good; I didn't really have a favorite. Be aware that KiCad version 6.0 was the start of some bit changes, so try to find videos using that or later. KiCad is currently (2023) at version 7.0.5.
+There are many YouTube videos describing the basics of KiCad usage. I recommend viewing a few of them if you want to start with KiCad. Most are quite good; I didn't really have a favorite. Be aware that KiCad version 6.0 was the start of some big changes, so try to find videos using that version or later. KiCad is currently (2023) at version 7.0.5.
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/KiCad_screen.png" width="300" alt="Image of KiCad Schematic Capture screen">
 
