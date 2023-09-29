@@ -13,6 +13,11 @@ import os
 import argparse
 
 INITIAL_FIND = r'<h1 tabindex="-1" dir="auto">'
+"""
+'<h1 tabindex="-1" id="user-content-
+' dir="auto">'
+"""
+
 INITIAL_REPLACE = """
 <!DOCTYPE html>
 <html>
@@ -203,6 +208,9 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     if 1 != len(my_fns):
         sys.stderr.write("ERROR - directory containing file %s has %d files, expected 1\n" % (dot[1], len(my_fns)))
     REPLACE_BODY.append(['"'+my_dirs[0]+"/", '"Images/'])
+    print("my_dirs[0]=%s" % my_dirs[0])
+    thing = ['"'+my_dirs[0]+"/", '"Images/']
+    print("REPLACE_BODY.append(%s)" % thing)
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
@@ -239,6 +247,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
 # python htmlcomplete_to_good.py -h to see what the arguments are
 #
 if __name__ == "__main__":
+    print("here in __main__")
     my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
         formatter_class=argparse.RawTextHelpFormatter,
         description="stdout receives standalone version of fname",
@@ -249,7 +258,7 @@ python htmlcomplete_to_good.py save-as-html-complete-README.htm > standalone.htm
     my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
     args = my_parser.parse_args()
 
-
+    print("filename: %s" % args.fname)
     # all the real work is done here
     do_htmlcomplete_to_good(args.fname, sys.stdout)
     #  do_htmlcomplete_to_good(r"C:\Users\mdo\Downloads\html_fix\index\index.htm", sys.stdout)
