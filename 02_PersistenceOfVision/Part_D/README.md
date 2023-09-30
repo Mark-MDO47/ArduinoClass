@@ -164,7 +164,7 @@ The goal is to read commands from the USB serial port. To do this and fit within
 - if there are characters to read, we should read them quickly and put them somewhere and then let **loop()** fall through...
 - when we detect end-of-command (linefeed or '\n'), we either notify the **loop()** code or call the processing routine ourselves
 
-For our purposes, we will use **Serial.available()** to detect when character(s) are available to read and **Serial.read()** to read a single character at a time. We do NOT want to use **Serial.readln()** because that would stop Arduino execution until we get a complete line.
+For our purposes, we will use **Serial.available()** to detect when character(s) are available to read and **Serial.read()** to read a single character at a time. We do NOT want to use any of the Serial methods that read entire strings (such as **Serial.parseInt()**) because that would stop Arduino execution until we get a complete line.
 
 The basic flow is as follows. We make some definitions up in the **#define** and **variable definition** sections early in the code.
 
