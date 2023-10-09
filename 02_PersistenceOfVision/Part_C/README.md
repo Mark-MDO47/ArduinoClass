@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Decimal and Binary and Hexadecimal - Oh My](#decimal-and-binary-and-hexadecimal-\--oh-my "Decimal and Binary and Hexadecimal - Oh My")
   * [How do we use decimal and binary and hexadecimal numbers in the code](#how-do-we-use-decimal-and-binary-and-hexadecimal-numbers-in-the-code "How do we use decimal and binary and hexadecimal numbers in the code")
 * [Oval](#oval "Oval")
@@ -17,7 +18,7 @@ Click this link to back to go back to the root of the Arduino class
 * [All the Patterns - Extra Credit](#all-the-patterns-\--extra-credit "All the Patterns - Extra Credit")
   * [Pattern Code and Serial Commands](#pattern-code-and-serial-commands "Pattern Code and Serial Commands")
   * [EEPROM Introduction](#eeprom-introduction "EEPROM Introduction")
-  * [EEPROM Code](#eeprom-code "EEPROM Code")
+  * [EEPROM CODE](#eeprom-code "EEPROM CODE")
   * [Persistence of Vision Spinning Stick](#persistence-of-vision-spinning-stick "Persistence of Vision Spinning Stick")
 
 First we will take a look at **Decimal, Binary, and Hexadecimal** arithmetic, since we will be using some tricks in this realm to implement our patterns.

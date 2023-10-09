@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Code for FastLEDBlink](#code-for-fastledblink "Code for FastLEDBlink")
 * [Wiring for FastLEDBlink](#wiring-for-fastledblink "Wiring for FastLEDBlink")
 * [Try It](#try-it "Try It")

@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Smoke and Mirrors](#smoke-and-mirrors "Smoke and Mirrors")
 * [Code Cleanup](#code-cleanup "Code Cleanup")
 * [Code for Button](#code-for-button "Code for Button")
