@@ -490,7 +490,7 @@ Below is an illustration from that tutorial showing the high/low sequences on th
 Note that the detection of the first high-to-low transition is used to set the time used to (hopefully) sample the other bits in the middle of the bit. The timing of the bits on the transmitting side and the timing of the detection of the bits on the receiving side need to remain in sync throughout or there can be a receive error. That caused us to use two Arduino Nanos in the **VoiceCommands and VC_DemoReel** project.<br>
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
 
-### TLDR I2C Interface
+## TLDR I2C Interface
 [Top](#notes "Top")<br>
 The **I2C** (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; in the Arduino world this is also known as the **Two Wire Interface**. This **bus** structure is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
 - https://docs.arduino.cc/learn/communication/wire
@@ -509,7 +509,7 @@ I2C specifies that the pullup resistors be used (not shown in the above diagram)
 
 The description below is mostly drawn from the references above; see the references for the full description.
 
-#### Truly TLDR - the I2C Interface Details
+### Truly TLDR - the I2C Interface Details
 [Top](#notes "Top")<br>
 In I2C there are two active lines: SDA (Serial Data) and SCL (Serial Clock). Notice that in the UART interface and the WS2812B interface there is no clock line; that is what makes them Asynchronous and I2C Synchronous.
 - Some descriptions speak of 8-bit data words or packets, each word/packet followed by an ACK bit, surrounded by START/STOP condition bits; others speak of 9-bit data packets or frames including the ACK bit surrounded by START/STOP condition bits.
