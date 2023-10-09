@@ -5,10 +5,12 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Introducing the Arduino Nano](#introducing-the-arduino-nano "Introducing the Arduino Nano")
 * [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
+* [View an Empty Sketch (Arduino program)](#view-an-empty-sketch-(arduino-program) "View an Empty Sketch (Arduino program)")
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
 * [Now It Runs Whenever you Turn On Power](#now-it-runs-whenever-you-turn-on-power "Now It Runs Whenever you Turn On Power")
 * [Part A - Add an external LED](#part-a-\--add-an-external-led "Part A - Add an external LED")
@@ -16,7 +18,11 @@ Click this link to back to go back to the root of the Arduino class
   * [Try it Part A](#try-it-part-a "Try it Part A")
 * [Part B - Add Button and Display Messages on USB Serial Port](#part-b-\--add-button-and-display-messages-on-usb-serial-port "Part B - Add Button and Display Messages on USB Serial Port")
   * [Try it Part B](#try-it-part-b "Try it Part B")
+  * [Some Arduino and C-language features not used above](#some-arduino-and-c\-language-features-not-used-above "Some Arduino and C-language features not used above")
 * [Resources](#resources "Resources")
+  * [Arduino Nano and ATMEGA 328P](#arduino-nano-and-atmega-328p "Arduino Nano and ATMEGA 328P")
+  * [My favorite Arduino clone - ESP32](#my-favorite-arduino-clone-\--esp32 "My favorite Arduino clone - ESP32")
+  * [PROGMEM and "F" macro to save RAM](#progmem-and-"f"-macro-to-save-ram "PROGMEM and "F" macro to save RAM")
 
 ## Introducing the Arduino Nano
 [Back to Top](#notes "Back to Top")<br>

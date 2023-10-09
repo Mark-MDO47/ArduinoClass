@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Human Vision Persistence](#human-vision-persistence "Human Vision Persistence")
   * [Four Projects](#four-projects "Four Projects")
   * [Why so Fast?](#why-so-fast "Why so Fast?")
@@ -18,6 +19,7 @@ Click this link to back to go back to the root of the Arduino class
   * [The Code - FastLED](#the-code-\--fastled "The Code - FastLED")
 * [The Code - What are we Doing](#the-code-\--what-are-we-doing "The Code - What are we Doing")
 * [Resources](#resources "Resources")
+  * [WS2812B Protocol](#ws2812b-protocol "WS2812B Protocol")
 
 ## Human Vision Persistence
 [Top](#notes "Top")<br>

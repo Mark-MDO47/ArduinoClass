@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#notes "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [HC-SR04 Ultrasonic Range Finder](#hc\-sr04-ultrasonic-range-finder "HC-SR04 Ultrasonic Range Finder")
 * [Speed of Sound](#speed-of-sound "Speed of Sound")
 * [Pros and Cons of HC-SR04](#pros-and-cons-of-hc\-sr04 "Pros and Cons of HC-SR04")

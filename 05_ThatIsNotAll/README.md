@@ -12,8 +12,9 @@ Before getting into some of the boards, modules and systems that I enjoy using, 
 
 There are many types of Arduinos and many sensors that can connect to Arduinos and even other types of boards that serve similar purposes.
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#it-is-a-wide-world-out-there "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Favorite Boards](#favorite-boards "Favorite Boards")
 * [Favorite Devices](#favorite-devices "Favorite Devices")
 * [Projects I want to Restart](#projects-i-want-to-restart "Projects I want to Restart")

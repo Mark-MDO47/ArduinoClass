@@ -3,7 +3,7 @@ For an Arduino class 2023; FabLab will be first<br>
 Author: Mark Olson<br>
 To all who attended the first Arduino Class at FabLab: thanks and I hope you had fun while learning a few things!
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#arduino-class "Top")
 * [Lesson Plan](#lesson-plan "Lesson Plan")
 * [Parts Kit Provided](#parts-kit-provided "Parts Kit Provided")
