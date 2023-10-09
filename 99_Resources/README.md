@@ -301,7 +301,7 @@ I sometimes call my schematics "schematic wiring diagrams" because I don't quite
 - I often show all power and ground connections as wires rather than going to standard voltage and ground symbols. I do this to make these connections more visible. When assembling or soldering together a circuit, one of my most common errors is to forget to connect a power or ground pin, so this format of schematic is helpful to me.
 - I don't always follow the "rules" about placement of all chip input pins on one side and all chip output pins on the other side; instead I make my own symbols for such things as Arduinos and other chips and modules that show the physical placement of the pins on the part. I do this because I often wire directly from the schematic and find it annoying to have to figure out the physical pin placement somewhere other than the schematic.
 
-## KiCad
+### KiCad
 [Top](#resources "Top")<br>
 I use the free schematic editor KiCad for capturing schematics (what I do might better be called wiring diagrams; see above). KiCad can also do Spice simulations, PCB board layout, Gerber File generation, Bill of Materials --- the whole works!
 - https://www.kicad.org/
