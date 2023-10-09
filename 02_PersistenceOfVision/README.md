@@ -236,7 +236,7 @@ Here is what we do in **loop()**
 A preview - look here to see what our first attempt at using the LED strip will look like. I know, we just cannot get away from Blink; it is the "Hello World" of Arduinos.
 - https://github.com/FastLED/FastLED/blob/master/examples/Blink/Blink.ino
 
-### The Code - What are we Doing
+## The Code - What are we Doing
 Now we understand
 - the basics of persistance of vision
 - how to organize our code using timers so we can respond rapidly to many sensors and devices
