@@ -5,8 +5,9 @@ Click this link to back to go back to the root of the Arduino class
 - https://github.com/Mark-MDO47/ArduinoClass/tree/master
 
 
-**Table of Contents**
+**Table Of Contents**
 * [Top](#resources "Top")
+* [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Arduino IDE](#arduino-ide "Arduino IDE")
 * [The Computer Language used in the Arduino IDE](#the-computer-language-used-in-the-arduino-ide "The Computer Language used in the Arduino IDE")
 * [Arduino Nano and ATMEGA 328P](#arduino-nano-and-atmega-328p "Arduino Nano and ATMEGA 328P")
@@ -32,7 +33,7 @@ Click this link to back to go back to the root of the Arduino class
 * [TLDR WS2812B Serial Protocol](#tldr-ws2812b-serial-protocol "TLDR WS2812B Serial Protocol")
 * [TLDR UART Serial Interface](#tldr-uart-serial-interface "TLDR UART Serial Interface")
 * [TLDR I2C Interface](#tldr-i2c-interface "TLDR I2C Interface")
-* [Truly TLDR - the I2C Interface Details](#truly-tldr-\--the-i2c-interface-details "Truly TLDR - the I2C Interface Details")
+  * [Truly TLDR - the I2C Interface Details](#truly-tldr-\--the-i2c-interface-details "Truly TLDR - the I2C Interface Details")
 
 ## Arduino IDE
 [Top](#resources "Top")<br>
