@@ -12,8 +12,10 @@ import sys
 import os
 import argparse
 
-INITIAL_FIND = r'<h1 tabindex="-1" dir="auto">'
+INITIAL_FIND = r'<h1 tabindex="-1" id="user-content'
 """
+r'<h1 tabindex="-1"' # 
+
 '<h1 tabindex="-1" id="user-content-
 ' dir="auto">'
 """
@@ -74,6 +76,7 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/03_SonarRangeDetector/03_SonarRangeDetector_ExtraFun.pdf", "03_SonarRangeDetector_ExtraFun.pdf"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision_stick.pdf", "02_PersistenceOfVision_stick.pdf"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/04_TheFinale_DemoReelVoiceCommand_I2C.pdf", "04_TheFinale_DemoReelVoiceCommand_I2C.pdf"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino", "ArduinoCode/SawtoothRevisited/SawtoothRevisited.ino"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf", "01_Blinking_LED_part_A_Schematic.pdf"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_B_Schematic.pdf", "01_Blinking_LED_part_B_Schematic.pdf"],
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/02_PersistenceOfVision.pdf", "02_PersistenceOfVision.pdf"],
@@ -86,6 +89,7 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/02_PersistenceOfVision/Part_D/README.md", "02_PersistenceOfVision_Part_D.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/SawtoothRevisited/README.md", "ArduinoCode_SawtoothRevisited.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VoiceCommands_I2C/README.md", "ArduinoCode_VoiceCommands_I2C.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/HelloWorld/HelloWorld.ino", "ArduinoCode/HelloWorld/HelloWorld.ino"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns/README.md", "ArduinoCode_AllThePatterns.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound/README.md", "ArduinoCode_ThereminSound.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/FastLEDBlink/README.md", "ArduinoCode_FastLEDBlink.html"],
@@ -105,6 +109,7 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Blink/README.md", "ArduinoCode_Blink.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/AllThePatterns", "ArduinoCode/AllThePatterns"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/Oval/README.md", "ArduinoCode_Oval.html"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/ArduinoCode/Oval/Oval.ino", "ArduinoCode/Oval/Oval.ino"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ThereminSound", "ArduinoCode/ThereminSound"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/FastLEDBlink", "ArduinoCode/FastLEDBlink"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/MDO_DemoReel", "ArduinoCode_MDO_DemoReel.html"],
@@ -113,6 +118,7 @@ REPLACE_BODY = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/README.md", "99_Resources.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/02_PersistenceOfVision", "02_PersistenceOfVision.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/HelloWorld", "ArduinoCode/HelloWorld"],
+    ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/04_TheFinale/README.md", "04_TheFinale.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/03_SonarRangeDetector", "03_SonarRangeDetector.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/README.md", "ArduinoCode.html"],
     ["https://github.com/Mark-MDO47/ArduinoClass/tree/master/00_InstallArduinoIDE", "00_InstallArduinoIDE.html"],
@@ -139,7 +145,6 @@ REPLACE_BODY = [
     ["https://youtu.be/G7ARC0xHXRg", "YouTube/04_ThereminSound_final_2023-04-29.mp4"],
     ["https://youtu.be/M8Xc4aVh5Hc", "YouTube/04_VoiceCommands_and_VC_DemoReel_02.mp4"]
 ]
-
 
 
 ###################################################################################
@@ -174,7 +179,7 @@ def apply_body_replaces(a_line):
 # .../fix_html/first.html
 # .../fix_html/second.html
 #
-# This is accomplished by a shell script:
+# This is accomplished by the following shell script:
 """
 for d in `ls | grep / | grep -v Images`
 do
