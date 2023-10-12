@@ -285,10 +285,10 @@ The version I use is a Dual In-Line Package (DIP) chip; the following is an imag
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/SN74HCT125N.jpg "Image from www.amazon.com of the SN74HCT125N")
 
 ## Schematics KiCad and Fritzing
-[Top](resources "Top")<br>
+[Top](#resources "Top")<br>
 
 ### Schematics
-[Top](resources "Top")<br>
+[Top](#resources "Top")<br>
 Simple schematic diagrams are used throughout this course. These use special symbols to represent parts of an electrical circuit - such as resistors and LEDs - and lines to represent the connections.
 
 Example schematic wiring diagram showing a physical representation of an Arduino Nano, a resistor, and a Light Emitting Diode or LED:<br>
@@ -336,7 +336,7 @@ If you want to use KiCad to edit the schematic wiring diagrams for this class, I
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_Preferences_AddSymbolLibraries.png "Image of KiCad after adding mdoLibrary.kicad_sym to global libraries")
 
 ### Fritzing
-[Top](resources "Top")<br>
+[Top](#resources "Top")<br>
 I have included Fritzing images for most of the projects in this course. These give a more physical view of how to wire an electrical circuit than a schematic. They are commonly used to illustrate breadboard projects and can even show the breadboard itself.
 
 Example Schematic and corresponding Fritzing with the same components and with the addition of the breadboard:<br>
