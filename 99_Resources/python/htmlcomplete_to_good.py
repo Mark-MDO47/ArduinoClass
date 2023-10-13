@@ -68,8 +68,12 @@ FINAL_REPLACE = """
 </body></html>
 """
 
+REPLACE_BODY = [] # will be filled in later
+
+
 # NOTE: these are (mostly) in order of length; that is important!
-REPLACE_BODY = [
+# This one for https://github.com/Mark-MDO47/ArduinoClass
+REPLACE_BODY_ARD_CLS = [
     ["https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/", "Images/"],
     ['img src="index_files/', 'img src="Images/'],
     ["user-content-", ""],
@@ -146,6 +150,55 @@ REPLACE_BODY = [
     ["https://youtu.be/M8Xc4aVh5Hc", "YouTube/04_VoiceCommands_and_VC_DemoReel_02.mp4"]
 ]
 
+# NOTE: these are (mostly) in order of length; that is important!
+# This one for https://github.com/Mark-MDO47/CforArduinoClass
+#
+# to start on this list, save to *.htm files using FireFox -> SavePageAs -> WebPageComplete(*.htm,*.html)
+#      save as *.htm
+# grep CforArduinoClass */*.htm | sed "s?^.*http?http?" | sed "s?[\"\&< ].*??" | sort | uniq | grep http
+#
+REPLACE_BODY_C4CLS = [
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/", "Images/"],
+    ['img src="index_files/', 'img src="Images/'],
+    ["user-content-", ""],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/Arduino-Nano-Pinout_from_circuitstoday.com.png", "Images/Arduino-Nano-Pinout_from_circuitstoday.com.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/02_LetsGetTalking/README.md#ascii-characters-and-strings", "02_LetsGetTalking.html#ascii-characters-and-strings"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png", "Images/Config_USB_SerialMonitor_screen.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/03_SerMon_DO_DEBUG_INPUT_run.png", "Images/03_SerMon_DO_DEBUG_INPUT_run.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_setup.png", "Images/01_BlinkingLED_part_A_setup.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/02_LetsGetTalking/02_LetsGetTalking.ino", "ArduinoCode_02_LetsGetTalking_02_LetsGetTalking.ino.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor.png", "Images/Config_USB_SerialMonitor.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/03_SerMon_DO_DEBUG_run.png", "Images/03_SerMon_DO_DEBUG_run.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/02_SerMon_setup_only.png", "Images/02_SerMon_setup_only.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/IDE_CompileAndRun.png", "Images/IDE_CompileAndRun.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/03_YakityYak/03_YakityYak.ino", "ArduinoCode_03_YakityYak_03_YakityYak.ino.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/02_LetsGetTalking/README.md", "ArduinoCode_02_LetsGetTalking.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/02_LetsGetTalking/README.md", "ArduinoCode_02_LetsGetTalking.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/02_SerMon_run.png", "Images/02_SerMon_run.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/03_SerMon_run.png", "Images/03_SerMon_run.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/IDE_LoadBlink.png", "Images/IDE_LoadBlink.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/README.md#some-resources-on-the-web", "README.md#some-resources-on-the-web"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/03_YakityYak/README.md", "ArduinoCode_03_YakityYak.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/ConfigUSB.png", "Images/ConfigUSB.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/IDE_Blink.png", "Images/IDE_Blink.png"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/03_YakityYak/README.md", "ArduinoCode_03_YakityYak.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/01_Blink/README.md", "ArduinoCode_01_Blink.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/00_InstallArduinoIDE/README.md", "00_InstallArduinoIDE.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/01_Blink/README.md", "ArduinoCode_01_Blink.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/02_LetsGetTalking/README.md", "02_LetsGetTalking.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/01_BlinkingLED/README.md", "01_BlinkingLED.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/03_YakityYak/README.md", "03_YakityYak.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/README.md", "ArduinoCode.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master/00_InstallArduinoIDE", "00_InstallArduinoIDE.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master/02_LetsGetTalking", "02_LetsGetTalking.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master/01_BlinkingLED", "01_BlinkingLED.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master/03_YakityYak", "03_YakityYak.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master/ArduinoCode", "ArduinoCode.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/README.md", "_index.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/README.md", "_index.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master", "_index.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass", "_index.html"],
+]
 
 ###################################################################################
 # apply_body_replaces
@@ -213,9 +266,9 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     if 1 != len(my_fns):
         sys.stderr.write("ERROR - directory containing file %s has %d files, expected 1\n" % (dot[1], len(my_fns)))
     REPLACE_BODY.append(['"'+my_dirs[0]+"/", '"Images/'])
-    print("my_dirs[0]=%s" % my_dirs[0])
-    thing = ['"'+my_dirs[0]+"/", '"Images/']
-    print("REPLACE_BODY.append(%s)" % thing)
+    # print("my_dirs[0]=%s" % my_dirs[0])
+    # thing = ['"'+my_dirs[0]+"/", '"Images/']
+    # print("REPLACE_BODY.append(%s)" % thing)
 
     # process to the initial find/replace
     a_line = fptr_in.readline()
@@ -252,18 +305,36 @@ def do_htmlcomplete_to_good(fname, fptr_out):
 # python htmlcomplete_to_good.py -h to see what the arguments are
 #
 if __name__ == "__main__":
-    print("here in __main__")
+    # print("here in __main__")
     my_parser = argparse.ArgumentParser(prog='htmlcomplete_to_good',
         formatter_class=argparse.RawTextHelpFormatter,
         description="stdout receives standalone version of fname",
         epilog="""Example:
-python htmlcomplete_to_good.py save-as-html-complete-README.htm > standalone.html
+python htmlcomplete_to_good.py --arduino_class save-as-html-complete-README.htm > standalone_ard_cls.html
+python htmlcomplete_to_good.py --c_for_arduino_class save-as-html-complete-README.htm > standalone_c4ard_cls.html
 """,
         usage='%(prog)s listFname prevRatingsFname')
     my_parser.add_argument('fname',type=str,help='path to fname *.htm, save-as-html-complete of a README.md from github.com')
+
+    me_group1 = my_parser.add_mutually_exclusive_group(required=False)
+    me_group1.add_argument('-a',
+                           '--arduino_class',
+                           action='store_true',
+                           help='process ArduinoClass files (default)')
+    me_group1.add_argument('-c',
+                           '--c_for_arduino_class',
+                           action='store_true',
+                           help='process CforArduinoClass files')
+
     args = my_parser.parse_args()
 
-    print("filename: %s" % args.fname)
+    # print("filename: %s" % args.fname)
+
+    if args.c_for_arduino_class:
+        REPLACE_BODY = REPLACE_BODY_C4CLS
+    else:
+        REPLACE_BODY = REPLACE_BODY_ARD_CLS
+
     # all the real work is done here
     do_htmlcomplete_to_good(args.fname, sys.stdout)
     #  do_htmlcomplete_to_good(r"C:\Users\mdo\Downloads\html_fix\index\index.htm", sys.stdout)
