@@ -454,6 +454,13 @@ Looking up in the table referenced above, an AWG30 single strand wire meeting th
 
 For my Graduation Cap project with 372 WS2812B LEDs I used AWG20 multi stranded wire for power and ground because it came in contact with my daughters when operating the caps and I wasn't willing to chance any possibility of discomfort.
 
+## TLDR The infamous static keyword in C and CPlusPlus
+[Top](#resources "Top")<br>
+This "stackoverflow" gives a great description of the problems with the static keyword between C and C++.
+- https://stackoverflow.com/questions/943280/difference-between-static-in-c-and-static-in-c#:~:text=The%20static%20keyword%20serves%20the,the%20duration%20of%20the%20program.
+
+In summary the keyword "static" originally meant that the declared variable "would be given storage for the lifetime of the program in an area for such variables, and not stored on the stack as is usual for function local variables". It seems the problems started when static got overloaded to say that the defined variable would have file scope linkage and the address would not be available in a different file. When C++ added objects they added yet another meaning of static having to do with the usage inside objects. At this point the C++ language **depracates** the use of file scope static for objects in namespace scope (this has been a moving target and further changes are expected due to problems with the "export" keyword).
+
 ## TLDR WS2812B Serial Protocol
 [Top](#resources "Top")<br>
 There is a serial data protocol used to control this string of 8 WS2812B LEDs.
