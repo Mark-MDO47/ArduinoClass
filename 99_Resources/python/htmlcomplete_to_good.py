@@ -4,8 +4,62 @@
 #    https://github.com/Mark-MDO47/ArduinoClass/tree/master
 #
 # process the save-as-html-complete of a README.md from github.com
-#   and make it an html we can use
+#   and make it an html we can use.
+# this code is tuned to the way I organize my repos. You can tune yours a bit
+#   by what you put in REPLACE_BODY
 #
+# The area where we store "save-as-html-complete" and run this tool is not the final
+#    stand-alone version of the repository; it will have a lot of other
+#    stuff in the subdirectories.
+# I use a second build area in which I store the following in these directories
+#    Images - all images contained in the repo. Best to copy them all here if
+#             you want to view this with no internet access.
+#    <other resources> such as KiCad, Fritzing, ArduinoCode, Sounds, etc.
+#             same idea as above. Put it in here if you want folks to be
+#             able to get it with no internet access.
+# I copy the *.html tool outputs to this second area, along with
+#    all the *.pdf files, into the root directory. The other areas I fill in
+#    with the associated resources.
+# The REPLACE_BODY substitutions tie this all together.
+#
+# When done; all the *.html and *.pdf will be in the root directory.
+#
+#    All images from the repo should be placed in a subdirectory Images
+#
+# I use FireFox to do the save-as-html-complete; other browsers probably work
+#    on Github (example https://github.com/Mark-MDO47/ArduinoClass)
+#       I close all the side windows and click on the README.md; this gives
+#       https://github.com/Mark-MDO47/ArduinoClass/blob/master/README.md
+#    then I do <menu icon> -> Save Page As... (or CTRL+S) and choose to "Save as type:"
+#       "Web Page, complete (*.htm;*.html)" as a *.htm file
+#    I save in a unique directory for each README.md, usually named for the
+#       directory it comes from.
+#       In the case of the root of the repo, I typically name the directory
+#       "index" or "_index"
+#    I name the *.htm file that it creates the same as the directory it goes in.
+#    I repeat this for all README.md files in the repository.
+#
+# NOTE: the INITIAL_FIND is continually changing as GitHub changes their
+#    webpages, so it may be that you will need to change it.
+#    There is a comment showing some things I have searched for in the past.
+# NOTE that this also means you probably need to save all the webpages at
+#    about the same time so the search works for all of them.
+# The concept of INITIAL_FIND is to skip most of the GitHub specific controls
+#    and etc. and get to the user content of the README.md *.htm.
+#
+# The next step is to run this program on all the *.htm in the subdirectories
+#    and put the output into the root directory
+# I use this bash shell script to do that. It generates *.html files from input *.htm files.
+    # for d in `ls | grep / | grep -v Images`
+    # do
+    #   cd $d
+    #   f=`ls *.htm`
+    #   echo $f
+    #   python /d/github-Mark-MDO47/ArduinoClass/99_Resources/python/htmlcomplete_to_good.py ${f} > ../${f}l
+    #   cd ..
+    # done
+#
+
 
 import sys
 # import string
@@ -148,7 +202,7 @@ REPLACE_BODY_ARD_CLS = [
     ["https://youtu.be/0KehSIJmKcs", "YouTube/03_Theremin_final_2023-04-29.mp4"],
     ["https://youtu.be/G7ARC0xHXRg", "YouTube/04_ThereminSound_final_2023-04-29.mp4"],
     ["https://youtu.be/M8Xc4aVh5Hc", "YouTube/04_VoiceCommands_and_VC_DemoReel_02.mp4"]
-]
+] # end REPLACE_BODY_ARD_CLS[]
 
 # NOTE: these are (mostly) in order of length; that is important!
 # This one for https://github.com/Mark-MDO47/CforArduinoClass
@@ -166,12 +220,12 @@ REPLACE_BODY_C4CLS = [
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor_screen.png", "Images/Config_USB_SerialMonitor_screen.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/03_SerMon_DO_DEBUG_INPUT_run.png", "Images/03_SerMon_DO_DEBUG_INPUT_run.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/01_BlinkingLED_part_A_setup.png", "Images/01_BlinkingLED_part_A_setup.png"],
-    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/02_LetsGetTalking/02_LetsGetTalking.ino", "ArduinoCode_02_LetsGetTalking_02_LetsGetTalking.ino.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/02_LetsGetTalking/02_LetsGetTalking.ino", "ArduinoCode/02_LetsGetTalking/02_LetsGetTalking.ino"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/Config_USB_SerialMonitor.png", "Images/Config_USB_SerialMonitor.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/03_SerMon_DO_DEBUG_run.png", "Images/03_SerMon_DO_DEBUG_run.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/02_SerMon_setup_only.png", "Images/02_SerMon_setup_only.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/IDE_CompileAndRun.png", "Images/IDE_CompileAndRun.png"],
-    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/03_YakityYak/03_YakityYak.ino", "ArduinoCode_03_YakityYak_03_YakityYak.ino.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/03_YakityYak/03_YakityYak.ino", "ArduinoCode/03_YakityYak/03_YakityYak.ino"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/02_LetsGetTalking/README.md", "ArduinoCode_02_LetsGetTalking.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/02_LetsGetTalking/README.md", "ArduinoCode_02_LetsGetTalking.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/02_SerMon_run.png", "Images/02_SerMon_run.png"],
@@ -182,6 +236,7 @@ REPLACE_BODY_C4CLS = [
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/ConfigUSB.png", "Images/ConfigUSB.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/99_Resources/Images/IDE_Blink.png", "Images/IDE_Blink.png"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/03_YakityYak/README.md", "ArduinoCode_03_YakityYak.html"],
+    ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/01_Blink/01_Blink.ino", "ArduinoCode/01_Blink/01_Blink.ino"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/blob/master/ArduinoCode/01_Blink/README.md", "ArduinoCode_01_Blink.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/00_InstallArduinoIDE/README.md", "00_InstallArduinoIDE.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/ArduinoCode/01_Blink/README.md", "ArduinoCode_01_Blink.html"],
@@ -198,17 +253,18 @@ REPLACE_BODY_C4CLS = [
     ["https://github.com/Mark-MDO47/CforArduinoClass/raw/master/README.md", "_index.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass/tree/master", "_index.html"],
     ["https://github.com/Mark-MDO47/CforArduinoClass", "_index.html"],
-]
+] # end REPLACE_BODY_C4CLS[]
 
 ###################################################################################
 # apply_body_replaces
 #
 # Does the replacements from REPLACE_BODY
+g_line_num = 0
 def apply_body_replaces(a_line):
     for pair in REPLACE_BODY:
         a_line = a_line.replace(pair[0], pair[1])
 
-    return(a_line)
+    return a_line
     # end apply_body_replaces()
 
 ###################################################################################
@@ -248,6 +304,7 @@ cp -p *.html /d/github-Mark-MDO47/_html_fix/
 
 def do_htmlcomplete_to_good(fname, fptr_out):
     global REPLACE_BODY # we will add entries
+    global g_line_num # so can print out meaningful error messages
 
     fptr_in = open(fname, 'rt')
 
@@ -273,6 +330,7 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     # process to the initial find/replace
     a_line = fptr_in.readline()
     while 0 != len(a_line):
+        g_line_num += 1
         tmp = a_line.find(INITIAL_FIND)
         if -1 != tmp:
             fptr_out.write(INITIAL_REPLACE)
@@ -284,13 +342,18 @@ def do_htmlcomplete_to_good(fname, fptr_out):
     # copy to the end of useful info, doing replaces for the body of the page
     a_line = fptr_in.readline()
     while 0 != len(a_line):
+        g_line_num += 1
         a_line = apply_body_replaces(a_line)
         if -1 != a_line.find(FINAL_FIND):
             fptr_out.write(FINAL_REPLACE)
             break
         fptr_out.write(a_line)
         # read the next line
-        a_line = fptr_in.readline()
+        try:
+            a_line = fptr_in.readline()
+        except:
+            sys.stderr.write("ERROR - problem input line %d %s\n" % (g_line_num, fname))
+            break
 
     fptr_in.close()
     fptr_out.close()
