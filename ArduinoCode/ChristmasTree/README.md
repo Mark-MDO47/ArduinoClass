@@ -13,6 +13,10 @@ The code for the WS2812B LEDs is pointed to below. It receives its voice command
 The code for the other Arduino Nano is connected to the DFRobot DF2301Q (SKU SEN0539-EN, https://www.dfrobot.com/product-2665.html). This device allows us to enter voice commands. It does not require nor use an internet connection; the processing is done locally. It transfers the voice-command pattern number to the other Arduino. This will be the **I2C** version:
 * https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree/VoiceCommands_I2C
 
+The schematic for the circuit can be found here:
+* https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad/99_ChristmasTree
+
+
 ## Parts List
 | Qty | Part | Notes |
 | --- | --- | --- |
