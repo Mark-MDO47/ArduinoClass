@@ -26,7 +26,7 @@ The schematic for the circuit can be found here:
 | 2 | Arduino Nano | Using inexpensive clones |
 | 1 | DF2301Q Voice Recognition Sensor | See above for ordering details |
 | 3 | WS2812B 8-LED Rings | Leftovers from 93-LED disks |
-| 1 | WS2812B 16-LED Ring | Leftovers from 93-LED disk |
+| 1 | WS2812B 12-LED Ring | Leftovers from 93-LED disk |
 | 1 | Cardboard Cutout Christmas Tree | Extremely simple |
 | 1 | Cardboard Cutout Star | Extremely simple |
 | 1 | Stand with support for tree | Extremely simple |
