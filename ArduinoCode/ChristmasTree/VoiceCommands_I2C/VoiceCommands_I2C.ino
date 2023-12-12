@@ -157,7 +157,8 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 
-  DEBUG_DO_PRINTLN(""); // print a blank line in case there is some junk from power-on
+  Serial.println(""); // print a blank line in case there is some junk from power-on
+  Serial.println("ArduinoClass Christmas Tree startup...");
 
   // Init the DF2301QG voice command module
   while (!(asr.begin())) {
@@ -176,7 +177,7 @@ void setup() {
   // tell that DF2301QG voice command module is ready
   asr.playByCMDID(DF2301QG_Retreat);
 
-  DEBUG_DO_PRINTLN("ArduinoClass init...");
+  Serial.println("ArduinoClass Christmas Tree init...");
 } // end setup()
 
 #define WAIT_FOR 50 // wait this many milliseconds between checking for voice commands

@@ -7,15 +7,19 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
- * VC_DemoReel.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree
+ * VoiceCommand Christmas Tree - this Arduino receives voice-commanded pattern numbers from the other
+ *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs
+ *
+ * This is a modified version of https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
+ *    which was part of https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ *
+ * VC_ChristmasTree.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree
  * Major kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC FastLED library and examples!!!
+ * 
  *    A sad note that Daniel Garcia, co-author of FastLED library, was on the dive boat that caught fire and has passed.
  *    Here is some info on the FastLED Reddit https://www.reddit.com/r/FastLED/
  *
  * The LED patterns are from Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
- *
- * VoiceCommand Christmas Tree - this Arduino receives voice-commanded pattern numbers from the other
- *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs
  *
  */
 
@@ -145,7 +149,7 @@ void juggle() {
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
 SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm };
-char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGlitter dist", "2 confetti dist", "3 sinelon dist", "4 juggle dist", "5 bpm dist" };
+char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow display", "1 rainbowWithGlitter display", "2 confetti display", "3 sinelon display", "4 juggle display", "5 bpm display" };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
