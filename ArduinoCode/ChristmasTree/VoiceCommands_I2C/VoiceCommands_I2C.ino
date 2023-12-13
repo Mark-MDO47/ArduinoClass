@@ -36,7 +36,7 @@
 // XFR value 2 D-4  YELLOW - power 2^1 - part of 3-bit pattern number
 // XFR value 4 D-5  BLUE   - power 2^2 - part of 3-bit pattern number
 
-#define DEBUG_PRINT 0  // one for printing, zero for no printing
+#define DEBUG_PRINT 1  // one for printing, zero for no printing
 #if DEBUG_PRINT
 #define DEBUG_DO_PRINT(a)   Serial.print(a)
 #define DEBUG_DO_PRINTLN(a) Serial.println(a)
@@ -61,10 +61,10 @@ DFRobot_DF2301Q_I2C asr;
 int8_t gDFvolume = DF2301QG_VOLUME_MAX; // signed so that could always detect "-= 1", even if MIN changes to 0
 
 
-#define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define PATTERN_MAX_NUM 7 // 0-7 are patterns
 
 // List of patterns to cycle through.
-char * gPatternStrings[6 /*1+PATTERN_MAX_NUM*/] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm" };
+char * gPatternStrings[8 /*1+PATTERN_MAX_NUM*/] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 spinner", "7 popColor" };
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gPrevPattern = 255; // previous pattern number - will always start with a "change" in pattern
 
@@ -90,6 +90,7 @@ uint8_t handle_DF2301QG() {
   switch (CMDID) {
     case DF2301QG_Display_number_zero: case DF2301QG_Display_number_one: case DF2301QG_Display_number_two:
     case DF2301QG_Display_number_three: case DF2301QG_Display_number_four: case DF2301QG_Display_number_five:
+    case DF2301QG_Display_number_six: case DF2301QG_Display_number_seven:
       // pattern case: we send a pattern number to companion Arduino Nano
       pattern = CMDID - DF2301QG_Display_number_zero;
       DEBUG_DO_PRINT(F("Set pattern ")); DEBUG_DO_PRINTLN(pattern);
