@@ -173,25 +173,34 @@ void spinner() {
 } // end spinner()
 
 void popColor() {
-  // fills up LEDs then drains them
+  // pops rings of different colors
   #define POP_COLORS 9
   static CRGB pop_colors[POP_COLORS] = { CRGB::NavajoWhite, CRGB::Red, CRGB::Green, CRGB::Blue, CRGB::Yellow, CRGB::Magenta, CRGB::Cyan, CRGB::DarkOrchid, CRGB::DeepPink };
   #define NUM_CIRCLES 4
   static uint8_t circle_idx_start_end[NUM_CIRCLES+1] = { 0, 8, 16, 24, 36 };
-  #define POP_HOLD 8
+  #define POP_HOLD 16
   #define POP_CYCLE (POP_COLORS * NUM_CIRCLES * POP_HOLD)
-  static uint32_t pop_cycle = 0;
-  uint8_t circle_idx = (pop_cycle/POP_HOLD) % NUM_CIRCLES;
-  uint8_t color_idx = (pop_cycle/POP_HOLD) % POP_COLORS;
+  static uint32_t pop_cycle_A = 0;
+  static uint32_t pop_cycle_B = 2;
+  uint8_t circle_idx_A = (pop_cycle_A/POP_HOLD) % NUM_CIRCLES;
+  uint8_t color_idx_A = (pop_cycle_A/POP_HOLD) % POP_COLORS;
+  uint8_t circle_idx_B = (pop_cycle_B/POP_HOLD) % NUM_CIRCLES;
+  uint8_t color_idx_B = (pop_cycle_B/POP_HOLD) % POP_COLORS;
+  int i;
 
-  for (int i = 0; i < NUM_LEDS; i++) {
+  for (i = 0; i < NUM_LEDS; i++) {
     leds[i] = CRGB::Black;
   }
-  for (int i = circle_idx_start_end[circle_idx]; i < circle_idx_start_end[circle_idx+1]; i++) {
-    leds[i] = pop_colors[color_idx];
+  for (i = circle_idx_start_end[circle_idx_A]; i < circle_idx_start_end[circle_idx_A+1]; i++) {
+    leds[i] = pop_colors[color_idx_A];
   }
-  pop_cycle = (pop_cycle+1) % POP_CYCLE;
-} // end popColor()
+  for (i = circle_idx_start_end[circle_idx_B]; i < circle_idx_start_end[circle_idx_B+1]; i++) {
+    leds[i] = pop_colors[color_idx_B];
+  }
+  // next cycle
+  pop_cycle_A = (pop_cycle_A+1) % POP_CYCLE;
+  if (0 != (pop_cycle_A % POP_COLORS)) pop_cycle_B = (pop_cycle_B+1) % POP_CYCLE;
+} // end popColor() 
 
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
