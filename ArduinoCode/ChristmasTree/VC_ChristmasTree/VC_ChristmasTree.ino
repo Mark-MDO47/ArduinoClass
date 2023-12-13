@@ -7,15 +7,19 @@
  *            http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
  *            http://www.pighixxx.com/test/pinouts/boards/nano.pdf
  *
- * VC_DemoReel.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree
+ * VoiceCommand Christmas Tree - this Arduino receives voice-commanded pattern numbers from the other
+ *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs
+ *
+ * This is a modified version of https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/VC_DemoReel
+ *    which was part of https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale
+ *
+ * VC_ChristmasTree.ino is code for https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree
  * Major kudos to Daniel Garcia and Mark Kriegsman for the FANTASTIC FastLED library and examples!!!
+ * 
  *    A sad note that Daniel Garcia, co-author of FastLED library, was on the dive boat that caught fire and has passed.
  *    Here is some info on the FastLED Reddit https://www.reddit.com/r/FastLED/
  *
  * The LED patterns are from Mark Kriegsman's classic DemoReel100.ino https://github.com/FastLED/FastLED/tree/master/examples/DemoReel100
- *
- * VoiceCommand Christmas Tree - this Arduino receives voice-commanded pattern numbers from the other
- *   Arduino and displays the appropriate DemoReel100 pattern on the LEDs
  *
  */
 
@@ -66,7 +70,7 @@ static uint16_t gHue_rotate_countdown = FASTLED_RAINBOWHUEROTATE;
 static uint16_t next_rainbow = 0;
 
 // with three bits for pattern numbers, we can only go from 0 through 7 inclusive
-#define PATTERN_MAX_NUM 5 // 0-5 are patterns
+#define PATTERN_MAX_NUM 7 // 0-7 are patterns
 
 // Define the array of leds
 CRGB leds[NUM_LEDS];
@@ -142,10 +146,66 @@ void juggle() {
   }
 }
 
+// Now for my home-grown patterns
+
+void spinner() {
+  // every 4th LED will spin back and forth in sawtooth pattern
+  static uint16_t BeatsPerMinute = 67*256; // 8.8 fixed point binary
+  uint16_t i;
+  CRGBPalette16 palette = PartyColors_p;
+  #define SPIN_HOLD 4
+  static uint16_t spin_hold = 0;
+  static uint16_t spin = 0;
+  if (0 == (spin_hold % SPIN_HOLD)) {
+    spin += 1;
+    spin_hold = (spin_hold+1) % SPIN_HOLD;
+  } else {
+    spin_hold = (spin_hold+1) % SPIN_HOLD;
+    return;
+  }
+
+  for (i = 0; i < NUM_LEDS; i++) {
+    leds[i] = CRGB::Black;
+  }
+  for (i = 0; i < NUM_LEDS; i += 4) {
+    leds[(i+spin) % NUM_LEDS] = ColorFromPalette(palette, (gHue+(i*2)) % 256, 255);
+  }
+} // end spinner()
+
+void popColor() {
+  // pops rings of different colors
+  #define POP_COLORS 9
+  static CRGB pop_colors[POP_COLORS] = { CRGB::NavajoWhite, CRGB::Red, CRGB::Green, CRGB::Blue, CRGB::Yellow, CRGB::Magenta, CRGB::Cyan, CRGB::DarkOrchid, CRGB::DeepPink };
+  #define NUM_CIRCLES 4
+  static uint8_t circle_idx_start_end[NUM_CIRCLES+1] = { 0, 8, 16, 24, 36 };
+  #define POP_HOLD 16
+  #define POP_CYCLE (POP_COLORS * NUM_CIRCLES * POP_HOLD)
+  static uint32_t pop_cycle_A = 0;
+  static uint32_t pop_cycle_B = 2;
+  uint8_t circle_idx_A = (pop_cycle_A/POP_HOLD) % NUM_CIRCLES;
+  uint8_t color_idx_A = (pop_cycle_A/POP_HOLD) % POP_COLORS;
+  uint8_t circle_idx_B = (pop_cycle_B/POP_HOLD) % NUM_CIRCLES;
+  uint8_t color_idx_B = (pop_cycle_B/POP_HOLD) % POP_COLORS;
+  int i;
+
+  for (i = 0; i < NUM_LEDS; i++) {
+    leds[i] = CRGB::Black;
+  }
+  for (i = circle_idx_start_end[circle_idx_A]; i < circle_idx_start_end[circle_idx_A+1]; i++) {
+    leds[i] = pop_colors[color_idx_A];
+  }
+  for (i = circle_idx_start_end[circle_idx_B]; i < circle_idx_start_end[circle_idx_B+1]; i++) {
+    leds[i] = pop_colors[color_idx_B];
+  }
+  // next cycle
+  pop_cycle_A = (pop_cycle_A+1) % POP_CYCLE;
+  if (0 != (pop_cycle_A % POP_COLORS)) pop_cycle_B = (pop_cycle_B+1) % POP_CYCLE;
+} // end popColor() 
+
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
-SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm };
-char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow dist", "1 rainbowWithGlitter dist", "2 confetti dist", "3 sinelon dist", "4 juggle dist", "5 bpm dist" };
+SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm, spinner, popColor };
+char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 spinner", "7 popColor" };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
