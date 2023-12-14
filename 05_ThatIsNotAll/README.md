@@ -47,6 +47,17 @@ Some of the projects I have started but have placed on hold the last two years w
 - Automate the updates and backups on the home network using Ansible
 - Learn pfSense and upgrade my home network's implementation of Steve Gibson's "Three Dumb Routers" to use my Netgate SG3100 router appliance
 
+## A Quick Voice-Controlled Christmas Tree Project
+[Top](#it-is-a-wide-world-out-there "Top")<br>
+Here is a quick project I did for Christmas - a Voice-Controlled Christmas Tree. It features rings of WS2812B LEDs and the DF2301Q Voice Recognition Sensor. It has eight LED patterns that can be selected with a command of "Display Number #" where # is from 0-7. Six of the patterns are from FastLED DemoReel100 and two are homegrown. Information on it can be found in:
+- It is a continuation from https://github.com/Mark-MDO47/ArduinoClass/tree/master/04_TheFinale/README.md
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/99_Resources/KiCad/99_ChristmasTree
+- https://github.com/Mark-MDO47/ArduinoClass/tree/master/ArduinoCode/ChristmasTree
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_VC_ChristmasTree.jpg "Image of Voice-Controlled Christmas Tree front view")
+
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/99_VC_ChristmasTree_side.jpg "Image of Voice-Controlled Christmas Tree side view")
+
 ## Non-Electronics Non-Software
 [Top](#it-is-a-wide-world-out-there "Top")<br>
 One project I will be tackling soon is the renovation of my harpsichord, which is a keyboard instrument that plucks the strings instead of hammering them. This instrument was popular in Mozart's time.<br>
