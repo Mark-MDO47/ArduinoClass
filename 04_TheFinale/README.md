@@ -68,7 +68,7 @@ To communicate with the YX5200 we use a serial data protocol named Universal Asy
 - We previously saw a serial data protocol for sending color information to the WS2812B LEDs; that one used a single wire to transmit data in just one direction.
 - The UART protocol used on the Arduinos is also one wire, but a second wire can be used to transmit in the other direction. The UART protocol itself can actually get more complicated than that, but for us this description is adequate.
 - UART interaces can be used to program the Arduino Nano; the USB port on the Arduino actually connects up to a hardware UART implementation.
-- Arduino UART interfaces to other devices are quite common; we will use a special library SoftwareSerial to connect to the YX5200 using ordinary digital I/O pins.
+- Arduino UART interfaces to other devices are quite common; we will use a special library **SoftwareSerial** to connect to the YX5200 using ordinary digital I/O pins.
 
 Here is an excellent description of how the UART interface works:
 - https://www.seeedstudio.com/blog/2022/09/08/uart-communication-protocol-and-how-it-works/
