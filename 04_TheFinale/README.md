@@ -549,7 +549,7 @@ After some experimentation I decided that the I2C interface provided a more reli
 
 ### TLDR I2C Interface
 [Top](#notes "Top")<br>
-The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; this is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
+The **I2C** (Inter-Integrated Circuit) interface is a serial protocol using a **bus** structure; in the Arduino world this is also known as the **Two Wire Interface**. This **bus** structure is different than the WS2812B serial protocol and the UART serial protocol that are **point-to-point**. It also differs in that it is a **clocked** or **synchronous** serial interface and thus requires two lines (one clock one data), instead of the **asynchronous** serial interfaces that we have seen before.<br>
 - https://docs.arduino.cc/learn/communication/wire
 - https://learn.sparkfun.com/tutorials/i2c/introduction
 - https://howtomechatronics.com/tutorials/arduino/how-i2c-communication-works-and-how-to-use-it-with-arduino/
@@ -557,8 +557,8 @@ The I2C (Inter-Integrated Circuit) interface is a serial protocol using a **bus*
 - https://www.nxp.com/docs/en/user-guide/UM10204.pdf - UM10204 I2C-bus specification and user manual Rev. 7.0 — 1 October 2021
 - https://i2c.info/i2c-bus-specification - I2C Bus Specification
 
-The image below from howtomechatronics.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** or **controller/target** protocol, in which the bus controller (in our case an Arduino) decides who talks on the bus at any time. The controller also generates the clock. The other devices (targets) all have an address (example 0x34 for one of the devices below) that allows the controller to specifically talk with it. In our case we will use the default I2C address for the DF2301QG: 0x64.<br>
-<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C-Communication-How-It-Works_from_howtomechatronics.com.png" width="750" alt="howtomechatronics.com image of I2C bus">
+The image below from learn.sparkfun.com shows what a typical I2C bus might look like. Note that there are multiple devices attached to the bus, so there must be a part of the I2C protocol for deciding which device gets to talk on the bus next. The protocol used is one example of the **so-called master/slave** or **controller/peripheral** or **controller/target** protocol, in which the bus controller (in this case an Arduino) decides who talks on the bus at any time. The controller also generates the clock. There can be multiple controllers on an I2C bus but we will not cover that part of the protocol. The controller, as typical for these types of buses, does not have an address. The other devices (peripherals or targets) each have an address that is unique on this I2C bus; that allows the controller to specifically talk with each device without ambiguity. In our case we will have only one controller and one peripheral; the peripheral will use the default I2C address for the DF2301QG: 0x64.<br>
+<img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/I2C_from_learn.sparkfun.com.png" width="750" alt="learn.sparkfun.com image of I2C bus">
 
 Most Arduinos have I2C communication hardware built in. Curiously, that I2C hardware can be accessed by using the analog pins A4 and A5; that is what we will do with the Arduino Nano. Some Arduinos have other pins that can also access the I2C hardware.
 
