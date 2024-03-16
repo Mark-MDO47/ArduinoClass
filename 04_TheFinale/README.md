@@ -497,11 +497,11 @@ In this project we will add a circuit to listen to voice commands for which patt
 | Display number five | bpm |
 | Display smiley face | toggle smiley face and merge into pattern |
 | --- | --- |
-| Volume up | change volume |
-| Volume down | change volume |
-| Change volume to maximum | change volume |
-| Change volume to minimum | change volume |
-| Change volume to medium | change volume |
+| Volume up | change volume of DF2301QG |
+| Volume down | change volume of DF2301QG |
+| Change volume to maximum | change volume of DF2301QG |
+| Change volume to minimum | change volume of DF2301QG |
+| Change volume to medium | change volume of DF2301QG |
 
 
 The device we will use to accept voice commands is the DFRobot DF2301QG SKU SEN0539-EN from the Gravity product line. I will bring this circuit around to the stations so everyone can try it on their system.
