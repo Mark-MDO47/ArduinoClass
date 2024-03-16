@@ -478,7 +478,11 @@ The Theremin with pattern announcements over Bluetooth speaker is very cool; but
 
 <img src="https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/04_smileyface.png" width="500" alt="Image of Voice Command Demo Reel with Smiley Face displayed">
 
-Here is a YouTube of this project in operation:
+Here is a YouTube of this project in operation.
+- At the time this was recorded, I was still using a UART interface protocol for the Voice Control Module.
+- I later decided that the communications worked a bit better if I used the I2C interface protocol for this module.
+- The actual usage of the circuit and code doesn't change depending on which interface protocol is used.
+  - More info regarding the I2C interface protocol can be found later in this section.
 - https://youtu.be/M8Xc4aVh5Hc
 
 In this project we will add a circuit to listen to voice commands for which pattern to display ("Display number zero" through "Display number five") and send an identifying code to the Arduino. This will cause us to display the associated DemoReel100 pattern on the LEDs and announce the pattern name on the Bluetooth speaker. We will disconnect the HC-SR04 Ultrasonic Range Detector to avoid confusion in commanding of patterns.
