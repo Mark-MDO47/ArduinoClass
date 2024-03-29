@@ -143,8 +143,7 @@ Here from the above link is a diagram showing how to identify the polarity (+ an
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/led-polarity_from_adafruit.com_azureedge.net.jpg "Adafruit.com polarity of LED")
 
 Here from the above link is a diagram showing a simple battery circuit to light up an LED. Note the resistor to prevent burning out the LED. This is NOT our Arduini circuit; it just shows how to make an LED light up with a battery.
-![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/led-connection_from_adafruit.com_azureedge.net.jpg 
-"Adafruit.com Resistor and LED in circuit")
+![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/led-connection_from_adafruit.com_azureedge.net.jpg "Adafruit.com Resistor and LED in circuit")
 
 We will use the breadboard and some connectors to implement the following circuit. **Remember** to put the **"+"** side of the LED towards the resistor which connects to Digital I/O pin 3 (hereafter I would refer to this as D3 or D03). The schematic symbol for the Light Emitting Diode (or any diode) has the arrow pointing from the positive side to the negative side. In the diagram below, the left side of the LED is positive and the right side is negative. I have added +/- symbols in red to make it clear which side of the LED is which.
 - https://github.com/Mark-MDO47/ArduinoClass/blob/master/01_BlinkingLED/01_Blinking_LED_part_A_Schematic.pdf
