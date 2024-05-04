@@ -10,7 +10,7 @@ Click this link to back to go back to the root of the Arduino class
 * [Back to Root of Class](#back-to-root-of-class "Back to Root of Class")
 * [Introducing the Arduino Nano](#introducing-the-arduino-nano "Introducing the Arduino Nano")
 * [Connect the Arduino Nano to the USB cable](#connect-the-arduino-nano-to-the-usb-cable "Connect the Arduino Nano to the USB cable")
-* [View an Empty Sketch (Arduino program)](#view-an-empty-sketch-(arduino-program) "View an Empty Sketch (Arduino program)")
+* [View an Empty Sketch - Arduino program](#view-an-empty-sketch-\--arduino-program) "View an Empty Sketch (Arduino program)")
 * [Run the example Blink program](#run-the-example-blink-program "Run the example Blink program")
 * [Now It Runs Whenever you Turn On Power](#now-it-runs-whenever-you-turn-on-power "Now It Runs Whenever you Turn On Power")
 * [Part A - Add an external LED](#part-a-\--add-an-external-led "Part A - Add an external LED")
@@ -56,7 +56,7 @@ The Student Kit boards are built from relatively old Arduino Nano designs.
 
 ![alt text](https://github.com/Mark-MDO47/ArduinoClass/blob/master/99_Resources/Images/ConfigUSB.png "Configure USB port for old Arduino Nano")
 
-## View an Empty Sketch (Arduino program)
+## View an Empty Sketch - Arduino program
 [Back to Top](#notes "Back to Top")<br>
 The Arduino IDE uses a variant of the C++ language. You can program in a C++ style or a C style. The code that we will use in this course will be quite straighforward and should be understandable if you know any computer language. One thing to note about C/C++: array indices start with zero.
 
