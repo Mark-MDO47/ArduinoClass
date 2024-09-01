@@ -362,6 +362,15 @@ If you get deep into creating your own Fritzing parts, it might be worth looking
 Fritzing is the name of the organization that produces the Fritzing tool that produces these images. This leads to some linguistic confusion as I often refer to these images using the noun Fritzing, the activity I do to generate the image using the verb Fritzing, the saved file for the Fritzing tool using the noun Fritzing, and the saved generated special part for the tool using the adjective Fritzing: a Fritzing part (which sort of sounds like cursing). In my defense I offer the following quote from today's Wikipedia entry on "-ing":
 - "-ing" is a suffix used to make one of the inflected forms of English verbs. This verb form is used as a present participle, as a gerund, and sometimes as an independent noun or adjective.
 
+## Crimping Connectors
+[Top](#resources "Top")<br>
+You may bet to the point you want to crimp connectors onto wires for your own breadboard projects. The connectors that are used on the connector wires are known as **Dupont** connectors. Here are some videos I found helpful regarding crimping.
+- https://www.youtube.com/watch?v=wdMnvfcR6pI - SN-28B Ratchet Crimper/Plier Overview & Demonstration
+- https://www.youtube.com/watch?v=mdD9NaCWuJ8 - How to crimp Dupont Terminals, and why you SHOULDNT
+- https://www.youtube.com/watch?v=SGwrfrt8KJw - How To Crimp A JST-XH Pin | PR-3254/SN-28B Crimping Tutorial for Dupont Pins And Connectors
+
+A tip - if you are crimping small 30AWG wire into a Dupont connector, you can fold the exposed wires back to increase the width of wire that is crimped.
+
 ## Projects on the Web
 [Top](#resources "Top")<br>
 Here are a few potential projects on the web that have caught my eye
