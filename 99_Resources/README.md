@@ -368,6 +368,7 @@ You may bet to the point you want to crimp connectors onto wires for your own br
 - https://www.youtube.com/watch?v=wdMnvfcR6pI - SN-28B Ratchet Crimper/Plier Overview & Demonstration
 - https://www.youtube.com/watch?v=mdD9NaCWuJ8 - How to crimp Dupont Terminals, and why you SHOULDNT
 - https://www.youtube.com/watch?v=SGwrfrt8KJw - How To Crimp A JST-XH Pin | PR-3254/SN-28B Crimping Tutorial for Dupont Pins And Connectors
+- https://www.youtube.com/watch?v=GZOh1NzqzzU - Guide to crimp connectors - multiple types
 
 A tip - if you are crimping small 30AWG wire into a Dupont connector, you can fold the exposed wires back to increase the width of wire that is crimped.
 
