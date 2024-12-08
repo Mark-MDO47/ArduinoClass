@@ -206,7 +206,7 @@ void popColor() {
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
 SimplePatternList gPatterns = { allPatterns, rainbowWithGlitter, confetti, sinelon, juggle, bpm, spinner, popColor };
-char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 spinner", "7 popColor" };
+char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 allPatterns", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 spinner", "7 popColor" };
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // code to allow switching through all the patterns
