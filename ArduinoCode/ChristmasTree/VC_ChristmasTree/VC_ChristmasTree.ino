@@ -59,6 +59,9 @@ void DFsetup();                                                // how to initial
 #define DATA_PIN 7 // Mark-MDO47 we use pin 7 for LEDs
 // #define CLOCK_PIN 13 // Mark-MDO47 we don't use CLOCK_PIN with this LED Strip
 
+// definition time to wait between switching through all patterns
+#define WAIT_FOR_MSEC 6000   // milliseconds to wait before switching to next pattern for allPatterns()
+
 // Mark-MDO47 FastLED definitions
 #define BRIGHTMAX 40 // set to 250 for MUCH brighter
 #define FRAMES_PER_SECOND 120
@@ -79,13 +82,11 @@ CRGB leds[NUM_LEDS];
 uint8_t gCurrentPatternNumber = 0; // Index number of which pattern is current
 uint8_t gLatestTruePatternNumber = 0; // latest true pattern (not psuedo-pattern)
 uint8_t gPrevPattern = 99; // previous pattern number
-uint8_t gPatternNumberChanged = 0; // non-zero if need to announce pattern number
 
 typedef struct {
   uint8_t idx_start;
   uint8_t idx_end;
 } led_idx_t;
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // The brilliant (no pun intended) Demo Reel 100 patterns!
@@ -204,8 +205,26 @@ void popColor() {
 
 // List of patterns to cycle through.  Each is defined as a separate function below.
 typedef void (*SimplePatternList[])();
-SimplePatternList gPatterns = { rainbow, rainbowWithGlitter, confetti, sinelon, juggle, bpm, spinner, popColor };
+SimplePatternList gPatterns = { allPatterns, rainbowWithGlitter, confetti, sinelon, juggle, bpm, spinner, popColor };
 char * gPatternStrings[1+PATTERN_MAX_NUM] = { "0 rainbow", "1 rainbowWithGlitter", "2 confetti", "3 sinelon", "4 juggle", "5 bpm", "6 spinner", "7 popColor" };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// code to allow switching through all the patterns
+void allPatterns()
+{
+  uint32_t nowMillisec =  millis();
+  static uint8_t allPatternNumber = 1; // where we are when cycling through all patterns
+  static uint32_t allSwitchMillisec = 0;  // last time we switched patterns
+
+  if (nowMillisec >= (allSwitchMillisec + WAIT_FOR_MSEC)) {
+    uint8_t tmp = allPatternNumber + 1;
+    if ((tmp > PATTERN_MAX_NUM) || (0 == tmp)) { tmp = 1; }  // good practice to never store invalid value
+    allPatternNumber = tmp;
+    allSwitchMillisec = nowMillisec;
+  }
+  // Call the current all-pattern function once, updating the 'leds' array
+  gPatterns[allPatternNumber]();
+}  // end allPatterns()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // rcv_pattern() - receive pattern number from other Arduino
@@ -249,7 +268,6 @@ void loop() {
   }
   if (gPrevPattern != gCurrentPatternNumber) {
     gPrevPattern = gCurrentPatternNumber;
-    gPatternNumberChanged = 1; // alerts the announcement of the pattern
     Serial.println(gPatternStrings[gCurrentPatternNumber]);
   }
 
